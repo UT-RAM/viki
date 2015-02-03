@@ -1,0 +1,46 @@
+syntax: glob
+
+# data files
+*.dat
+
+# MarkDown compiled files
+*.html
+
+# LaTeX compiled files and other things you (probably) don't need
+*.pdf
+*.aux
+*.glo
+*.idx
+*.log
+*.toc
+*.ist
+*.acn
+*.acr
+*.alg
+*.bbl
+*.blg
+*.dvi
+*.glg
+*.gls
+*.ilg
+*.ind
+*.lof
+*.lot
+*.maf
+*.mtc
+*.mtc1
+*.out
+*.synctex.gz
+*.synctex(busy)
+*.thm
+*.nav
+*.snm
+*.synctex
+
+# Matlab
+*.asv
+
+# Images
+*.png
+
+syntax: regexp
