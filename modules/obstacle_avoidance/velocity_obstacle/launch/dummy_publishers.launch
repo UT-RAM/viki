@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+	<group ns="/James">
+		<node pkg="ram_vo" name="VO_controller" type="VO_controller"/>
+		<node pkg="ram_vo" name="dummy_publisher" type="dummy_publisher"/>
+	</group>
+
+<!--	
+	<group ns="/John">
+		<node pkg="ram_vo" name="VO_controller" type="VO_controller"/>
+		<node pkg="ram_vo" name="dummy_publisher" type="dummy_publisher"/>
+	</group>
+-->
+
+	<group ns="/Jacob">
+		<node pkg="ram_vo" name="VO_controller" type="VO_controller"/>
+		<node pkg="ram_vo" name="dummy_publisher" type="dummy_publisher"/>
+	</group>
+
+	<group ns="/Jason">
+		<node pkg="ram_vo" name="VO_controller" type="VO_controller"/>
+		<node pkg="ram_vo" name="dummy_publisher" type="dummy_publisher"/>
+	</group>
+	
+</launch>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<launch>
+  <include 
+    file="$(find ram_vo)/launch/Gazebosims/emptyworld_controller_quadcopter.launch">
+  </include>
+
+    <param name="/John/amax" value="10.0" />
+    <param name="/John/vmax" value="2.0" />
+    <param name="/John/radius" value="0.5" />
+
+    <param name="/James/radius" value="0.5" />
+
+  <node 
+    pkg="ram_vo"
+    name="master_divisor"
+    type="master_divisor" 
+    >
+    <param name="simulation" value="true" />
+  </node>
+
+  <node
+    pkg="ram_vo"
+    name="pose_remapper_robot"
+    type="pose_remapper"
+    >
+    <remap from="output" to="/John/unfiltered_pose" />
+    <param name="modelno" value="11"/>
+  </node>
+
+  <node
+    pkg="ram_vo"
+    name="pose_remapper_object_sphere1"
+    type="pose_remapper"
+    >
+    <remap from="output" to="/James/unfiltered_pose" />
+    <param name="modelno" value="1"/>
+  </node>
+
+  <node
+    ns="/John"
+    pkg="ram_vo"
+    name="VO_controller"
+    type="VO_controller"
+    launch-prefix="xterm -e gdb --args">
+  </node>
+
+  <node
+    pkg="ram_vo"
+    name="setpoint_remapper"
+    type="setpoint_remapper">
+    <remap from="input" to="John/setpoint" />
+
+  </node>
+
+  <node
+    ns="John"
+    pkg="ram_vo"
+    name="target_from_keyboard"
+    type="target_from_keyboard"
+    launch-prefix="xterm -e gdb --args"
+    />
+
+</launch>
