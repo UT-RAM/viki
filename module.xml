@@ -1,4 +1,5 @@
 <aeromodule>
+	<id>albatrouz_controller</id>
 	<meta> <!-- this tag includes includes info that you will not use via the core. it is for documentatin, and referral etc. -->
 		<description>
 			This is a piece of text that describes what this module does, etc. ie. This is a PID controller for the albatrouz hectacopter (yes, hectacopter), a very awesome multirotor.
@@ -23,24 +24,24 @@
 		</license>
 	</meta>
 
-	<executable type="rosnode" src="catkin_ws\aeroworks\controller" id="albatrouz_controller"> <!-- id is unique!! --> 
+	<executable type="rosnode" src="catkin_ws\aeroworks\controller" id="controller"> <!-- id is not unique -->
 		<inputs> <!-- all input topics -->
-			<input name="desired_position" type="geometry_msgs/Pose" required="true" description="the name should be self explanatory, but if its not one can put stuff here" /> <!-- -->
-			<input name="gains_changed" type="std_msgs/Empty" />
-			<input name="stop_and_hover" type="std_msgs/Empty" />
-			<input name="get_the_pilot_a_beer_from_the_fridge" type="std_msgs/Empty" required="true"/> <!-- i told you it was awesome -->
+			<input name="desired_position" type="rostopic" msgtype="geometry_msgs/Pose" required="true" description="the name should be self explanatory, but if its not one can put stuff here" /> <!-- -->
+			<input name="gains_changed" msgtype="std_msgs/Empty" />
+			<input name="stop_and_hover" msgtype="std_msgs/Empty" />
+			<input name="get_the_pilot_a_beer_from_the_fridge" msgtype="std_msgs/Empty" required="true"/> <!-- i told you it was awesome -->
 		</inputs>
 		<outputs> <!-- all output topics -->
-			<output name="gain_log" type="albatrouz_msgs/gains" required="false" />
-			<output name="amount_of_beer_left_in_the_fridge" type="std_msgs/Int" />
+			<output name="gain_log" msgtype="albatrouz_msgs/gains" required="false" />
+			<output name="amount_of_beer_left_in_the_fridge" msgtype="std_msgs/Int" />
 		</outputs>
 	</executable>
 
-	<executable type="python" src="catkin_ws\aeroworks\coll_detect" id="albarou_colldetect"> <!-- There is no reason why there should be mere 1 executable -->
+	<executable type="python" src="catkin_ws\aeroworks\coll_detect" id="albatrouz_colldetect"> <!-- There is no reason why there should be mere 1 executable -->
 		<inputs> <!-- no inputs -->
 		</inputs>
 
 		<outputs>
-			<output name="collision" type="std_msgs/Empty" description="This node will publish to this topic whenever it has crashed into something. useless." />
+			<output name="collision" msgtype="std_msgs/Empty" description="This node will publish to this topic whenever it has crashed into something. useless." />
 		</outputs>
 </aeromodule>

@@ -14,27 +14,27 @@
 		<param name="gain_preset" value="agressive" /> <!-- param goes in the ~ namespace -->
 	</params>
 
-	<executables>
+	<modules>
 		<robot namespace="albabot_number_1">
-			<executable id="albatrouz_controller" required="true">
+
+			<module id="albatrouz_controller" required="true"> <!-- runs all executables from that module -->
 				<param param_specific_for_this_executable="1.0" /> <!-- param will be placed in the namespace provided above -->
 				<remap from="a_topic" to="another_topic" />
-			</executable>
+				<depend required="true">albatrouz_controller</depend>
+				<depend required="false">albatrouz_colldetect</depend>
+			</module>
 
-			<executable id="albarrouz_colldetect" required="false">
-			</executable>
-
-			<executable id="xyz-target_from_keyboard" required="true">
+			<module id="xyz-target_from_keyboard" required="true">
 				<ramap from="output" to="desired_position" />
-			</executable>
+			</module>
 		</robot>
 
-		<executable id="big_red_button_is_pressed" required="true" name="button_listener_1">
+		<module id="big_red_button_is_pressed" required="true" name="button_listener_1">
 			<remap from="output" to="albabot_number_1/get_the_pilot_a_beer_from_the_fridge" />
-		</executable>
+		</module>
 
-		<executable id="big_red_button_is_pressed" required="true" name="button_listener_2"> <!-- this way you will always get 2 beers!! -->
+		<module id="big_red_button_is_pressed" required="true" name="button_listener_2"> <!-- this way you will always get 2 beers!! -->
 			<remap from="output" to="albabot_number_1/get_the_pilot_a_beer_from_the_fridge" />
-		</executable>
-	</executables>
+		</module>
+	</modules>
 </aeroconfig>
