@@ -1,4 +1,4 @@
-<module>
+<module id="easyPID">
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<inputs>
 		<input type="ros_topic" name="setpoint" link="control_node/setpoint" message_type="pose" required="true" />
