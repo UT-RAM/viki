@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+
+This launch file was intended for stand-alone use. This is the easiest file to use stand-alone. Joystick control is built-in. To switch to setpoint control, just launch controller.launch. The commands from the joystick are considered more important, so this can be used as fallback (always check the configuration of the muxer, though)
+
+It starts the following nodes:
+- An ardrone driver node, from ardrone_autonomy. Configuration of this node is as suggested in the original ardrone_autonomy launch files.
+- A fly_from_joystick node (cpp executable)
+- A ROS Joy node
+- An instance of the velocity muxer. 
+- An instance of the mocap_optitrack interface
+
+  -->
+
+<launch>
+  <node name="ardrone" pkg="ardrone_autonomy" type="ardrone_driver" output="screen" args="-ip 192.168.1.1" clear_params="true">
+    <param name="outdoor" value="0" />
+    <param name="max_bitrate" value="4000" />
+    <param name="bitrate" value="4000" />
+    <param name="navdata_demo" value="False" />
+        <param name="realtime_navdata" value="True" />
+        <param name="realtime_video" value="True" />
+        <param name="looprate" value="50" />
+    <param name="navdata_demo" value="0" /> <!-- May need to be false for tag detection -->
+    <!-- <param name="navdata_options" value="NAVDATA_OPTION_FULL_MASK" />  May need to be used for tag detection -->
+    <param name="flight_without_shell" value="0" />
+    <param name="altitude_max" value="3000" />
+    <param name="altitude_min" value="50" />
+    <param name="euler_angle_max" value="0.52" /> <!-- = max = 30 deg -->
+    <param name="control_vz_max" value="700" />
+    <param name="control_yaw" value="1.75" />
+    <param name="detect_type" value="CAD_TYPE_VISION" /> <!-- value 2 for front camera (enemy color), value 3 - no detection, and value 4 - vertical camera roundel detection values. CAD_TYPE_VISION is 2d horizontal tags (hopefully the colored ones on the drone) -->
+    <param name="enemy_colors" value="2" /><!-- Detect green,yellow, blue shell (1,2,3) -->
+    <param name= "enemy_without_shell" value="0" /> <!-- Detect indoor/outdoor shells -->
+    <!--  <param name="default_groundstripe_colors" value="ARDRONE_DETECTION_COLOR_ARRACE_FINISH_LINE" /> -->
+    <param name="detections_select_h" value="32" />
+    <param name="detections_select_v" value="0" /><!-- Bottom Camera detection disabled, was detections_select_v_hsync 128 -->
+    <param name="enemy_without_shell" value="0" />
+    <param name="do_imu_caliberation" value="true" />
+    <param name="tf_prefix" value="mydrone" />
+    <!-- Covariance Values (3x3 matrices reshaped to 1x9)-->
+    <rosparam param="cov/imu_la">[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1]</rosparam>
+    <rosparam param="cov/imu_av">[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]</rosparam>
+    <rosparam param="cov/imu_or">[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 100000.0]</rosparam>
+  </node>
+
+  <node name="joy" pkg="joy" type="joy_node" output="screen" />
+
+  <node name="fly_from_joystick" pkg="ram" type="fly_from_joystick">
+    <param name="x_axis" value="2"/> 
+    <param name="y_axis" value="1"/> 
+    <param name="z_axis" value="4"/> 
+    <param name="yaw_axis" value="3"/> 
+    <param name="x_velocity_max" value="1"/>
+    <param name="y_velocity_max" value="1"/>
+    <param name="z_velocity_max" value="1"/>
+    <param name="yaw_velocity_max" value="1"/>
+    <param name="slow_button" value="6"/>
+    <param name="reset_button" value="8"/>
+    <param name="land_button" value="11"/>
+    <param name="takeoff_button" value="12"/>
+    <param name="toggle_control_button" value="7" />
+    <param name="enable_stick_control_init" value="true" />
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager"/>
+  <node pkg="nodelet" type="nodelet" name="yocs_cmd_vel_mux" args="load yocs_cmd_vel_mux/CmdVelMuxNodelet nodelet_manager">
+    <param name="yaml_cfg_file" value="$(find ram)/launch/ram.yaml"/>
+  </node>
+
+  <node pkg="mocap_optitrack" 
+  type="mocap_node" 
+  name="mocap_node" 
+  respawn="false"
+  launch-prefix=""
+  required="true">
+    <rosparam file="$(find mocap_optitrack)/config/mocap.yaml" command="load" />
+  </node>
+</launch>

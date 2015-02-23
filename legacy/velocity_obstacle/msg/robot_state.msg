@@ -1,0 +1,4 @@
+int64 robot_number
+string robot_name
+geometry_msgs/Point position
+geometry_msgs/Point velocity

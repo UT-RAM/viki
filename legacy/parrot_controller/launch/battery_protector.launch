@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- 
+
+This launch file was intended for stand-alone use, but is not used anymore in the project. 
+No indication of the battery status is present, whatsoever. The drone will just land when the battery is low (approx. < 18%)
+During runtime, the battery status can be checked using rqt, plotting the /ardrone/navdata/batteryPercent
+
+-->
+
+	<launch>
+		<node pkg="sound_play" type="soundplay_node.py" name="soundplay_node" />
+		<node pkg="ram" type="battery_protector" name="battery_protector" />
+	</launch>

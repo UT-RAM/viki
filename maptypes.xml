@@ -1,0 +1,8 @@
+<!-- Under construction / evaluation / discussion -->
+<maptypes>
+	<map slug="twist" type="Geometry_msgs/Twist" />
+	<map slug="empty" type="Standard_msgs/Empty" />
+	<map slug="pose" type="Geometry_msgs/Pose" />
+	<map slug="video" type="?" />
+	<map slug="realnumber" type="float" />
+</maptypes>

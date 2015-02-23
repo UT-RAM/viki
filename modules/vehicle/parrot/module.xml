@@ -1,0 +1,24 @@
+<module>
+	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
+	<outputs>
+		<output type="ros_topic" name="front_video" link="ardrone_node/front_video" message_type="video_raw" required="true" />
+	</outputs>
+
+	<inputs>
+		<input type="ros_topic" name="cmd_vel" link="ardrone_node/cmd_vel" message_type="twist" required="true" />
+		<input type="ros_service" name="change_led" link="ardrone_node/change_led" message_type="empty" required="false" />
+	</inputs>
+
+	<vehicle type="ardrone">
+		<executable id="ardrone_node" pkg="ardrone_autonomy" exec="ardrone_node">
+			<outputs>
+				<output type="ros_topic" name="front_video" message_type="video_raw" required="false" />
+			</outputs>
+
+			<inputs>
+				<input type="ros_topic" name="cmd_vel" message_type="twist" required="true" />
+				<input type="ros_service" name="change_led" message_type="empty" required="false" />
+			</inputs>
+		</executable>
+	</vehicle>
+</module>

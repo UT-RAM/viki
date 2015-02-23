@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+
+This launch file was intended for use through the interface.
+It starts the following nodes:
+- The actual controller (cpp executable)
+- A state estimation node (cpp executable) , deriving the velocity from the position information from the OptiTrack (not started by this launch file!)
+- An ardrone driver node, from ardrone_autonomy. Configuration of this node is as suggested in the original ardrone_autonomy launch files.
+- A fly_from_joystick node (cpp executable)
+
+  -->
+
+<launch>
+  <arg name="prefix" />
+  <arg name="ip" />
+
+  <group ns="$(arg prefix)">
+    <node name="control" pkg="ram" type="controller" output="screen">
+      <param name="setpoint_x" value="0" />            <!-- Setpoint in world pose frame -->
+      <param name="setpoint_y" value="0" />            <!-- Setpoint in world pose frame -->
+      <param name="setpoint_z" value="1.4" />          <!-- Setpoint in world pose frame -->
+      <param name="setpoint_yaw" value="0" />          <!-- Setpoint in world pose frame -->
+      <param name="gain_p_z" value="1.2" />            <!-- Translational P gain for vertical speed -->
+      <param name="gain_d_z" value="0" />              <!-- Translational D gain for vertical speed -->
+      <param name="gain_p_translational" value="0.12" />    <!-- Translational P gain for lateral motion -->
+      <param name="gain_d_translational" value="0.08" />    <!-- Translational D gain for lateral motion -->
+      <param name="gain_p_rotational" value="0.9" />        <!-- Rotational P gain -->
+      <param name="gain_d_rotational" value="0.2" />        <!-- Rotational D gain -->
+      <param name="simulation" value="false" />             <!-- True if data is to be read from Gazebo (OLD) -->
+      <param name="hovermode" value="false" />              <!-- Enable hovermode if error in all directions is smaller than the hover_treshold -->
+      <param name="hover_treshold" value="0.05" />          <!-- Hover treshold -->
+      <param name="K" value="5" />                    <!-- OLD -->
+      <param name="uncertainty_band" value="0.08" />  <!-- OLD -->
+      <param name="pose_memory" value="30" />         <!-- Number of poses to remember for error calculation -->
+      <param name="publish_rate" value="35" />        <!-- Update frequency in HZ -->
+      <param name="gain_velocity" value="-0.3" />     <!-- Standard gain for velocity damping -->
+      <param name="velocity_damping" value="false" /> <!-- Enable or disable absolute velocity damping -->
+      <param name="i_action" value="false" />         <!-- Enable or disable integral action on start. There is absolutely no reason to enable this. -->
+      <param name="gain_i" value="0.01" />            <!-- Integral action gain (equal for lateral actions) -->
+    </node>
+
+    <node pkg="ram" type="state_estimation" name="state_estimation" output="screen">
+      <param name="K" value="70" />                   <!-- OLD -->
+      <param name="uncertainty_band" value="0.01" />  <!-- OLD -->
+      <param name="pose_memory" value="25" />         <!-- Number of poses to remember for velocity calculation -->
+    </node>
+
+    <node name="ardrone" pkg="ardrone_autonomy" type="ardrone_driver" output="screen" args="-ip $(arg ip)" clear_params="true">
+      <param name="outdoor" value="0" />
+      <param name="max_bitrate" value="1000" />
+      <param name="bitrate" value="1000" />
+      <param name="navdata_demo" value="False" />
+          <param name="realtime_navdata" value="True" />
+          <param name="realtime_video" value="True" />
+          <param name="looprate" value="50" />
+      <param name="navdata_demo" value="0" /> <!-- May need to be false for tag detection -->
+      <!-- <param name="navdata_options" value="NAVDATA_OPTION_FULL_MASK" />  May need to be used for tag detection -->
+      <param name="flight_without_shell" value="0" />
+      <param name="altitude_max" value="3000" />
+      <param name="altitude_min" value="50" />
+      <param name="euler_angle_max" value="0.52" /> <!-- = max = 30 deg -->
+      <param name="control_vz_max" value="700" />
+      <param name="control_yaw" value="1.75" />
+      <param name="detect_type" value="CAD_TYPE_VISION" /> <!-- value 2 for front camera (enemy color), value 3 - no detection, and value 4 - vertical camera roundel detection values. CAD_TYPE_VISION is 2d horizontal tags (hopefully the colored ones on the drone) -->
+      <param name="enemy_colors" value="2" /><!-- Detect green,yellow, blue shell (1,2,3) -->
+      <param name= "enemy_without_shell" value="0" /> <!-- Detect indoor/outdoor shells -->
+      <!--  <param name="default_groundstripe_colors" value="ARDRONE_DETECTION_COLOR_ARRACE_FINISH_LINE" /> -->
+      <param name="detections_select_h" value="32" />
+      <param name="detections_select_v" value="0" /><!-- Bottom Camera detection disabled, was detections_select_v_hsync 128 -->
+      <param name="enemy_without_shell" value="0" />
+      <param name="do_imu_caliberation" value="true" />
+      <param name="tf_prefix" value="mydrone" />
+      <!-- Covariance Values (3x3 matrices reshaped to 1x9)-->
+      <rosparam param="cov/imu_la">[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1]</rosparam>
+      <rosparam param="cov/imu_av">[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]</rosparam>
+      <rosparam param="cov/imu_or">[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 100000.0]</rosparam>
+    </node>
+
+    <node name="fly_from_joystick" pkg="ram" type="fly_from_joystick">
+      <param name="x_axis" value="2"/> 
+      <param name="y_axis" value="1"/> 
+      <param name="z_axis" value="4"/> 
+      <param name="yaw_axis" value="3"/> 
+      <param name="x_velocity_max" value="1"/>
+      <param name="y_velocity_max" value="1"/>
+      <param name="z_velocity_max" value="1"/>
+      <param name="yaw_velocity_max" value="1"/>
+      <param name="slow_button" value="11"/>            <!-- Recommended: 6 for Logitech Joystick, 11 for PS3 controller -->
+      <param name="reset_button" value="10"/>           <!-- Recommended: 8 for Logitech Joystick, 10 for PS3 controller -->
+      <param name="land_button" value="14"/>            <!-- Recommended: 11 for Logitech Joystick, 14 for PS3 controller  -->
+      <param name="takeoff_button" value="15"/>         <!-- Recommended: 15 for Logitech Joystick, 12 for PS3 controller -->
+      <param name="toggle_control_button" value="7" />  
+      <param name="enable_stick_control_init" value="true"/>
+      <param name="prefix" value="$(arg prefix)" />
+    </node>
+  </group>
+</launch>  

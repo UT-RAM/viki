@@ -1,0 +1,19 @@
+<module id="joystick">
+	<meta>
+        <name>Joystick node</name>
+		<description>Test</description>
+	</meta>
+
+	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
+	<outputs>
+		<output type="ros_topic" name="cmd_vel" link="joystick_node/cmd_vel" message_type="twist" required="true" />
+	</outputs>
+
+	<userinput type="joystick">
+		<executable id="joystick_node" pkg="joystick" exec="joystick_node">
+			<outputs>
+				<output type="ros_topic" name="cmd_vel" message_type="twist" required="false" />
+			</outputs>
+		</executable>
+	</userinput>
+</module>

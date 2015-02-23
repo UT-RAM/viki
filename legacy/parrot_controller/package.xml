@@ -1,0 +1,33 @@
+<package>
+  <name>ram</name>
+  <version>1.0.0</version>
+  <description>The ram_ba_package, written by Cees Trouwborst for a bachelor assignment at the Robotics and Mechatronics group at the University of Twente. This package implements a PD controller for setpoint control of a Parrot AR.Drone in indoor scenarios where position information is available.</description>
+  <maintainer email="ceestrouwborst@gmail.com">Cees Trouwborst</maintainer>
+  <license>TODO</license>
+  <url type="website">https://github.com/ceesietopc/ram_ba_package</url>
+
+
+  <!-- The *_depend tags are used to specify dependencies -->
+  <!-- Dependencies can be catkin packages or system dependencies -->
+  <!-- Examples: -->
+  <!-- Use build_depend for packages you need at compile time: -->
+  <!--   <build_depend>message_generation</build_depend> -->
+  <!-- Use buildtool_depend for build tool packages: -->
+  <!--   <buildtool_depend>catkin</buildtool_depend> -->
+  <!-- Use run_depend for packages you need at runtime: -->
+  <!--   <run_depend>message_runtime</run_depend> -->
+  <!-- Use test_depend for packages you need only for testing: -->
+  <!--   <test_depend>gtest</test_depend> -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>ardrone_autonomy</run_depend>
+  <run_depend>mocap_optitrack</run_depend>
+  <run_depend>yocs_cmd_vel_mux</run_depend>
+  <build_depend>message_generation</build_depend>
+  <run_depend>message_runtime</run_depend>
+</package>

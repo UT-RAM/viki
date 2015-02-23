@@ -1,0 +1,29 @@
+<configurations>
+	<configuration> <!-- aero run configuration.xml -->
+		<namespace id="parrot1">
+			<vehicle type="parrot" id="parrot" supress_warning="true" /> <!-- When not connected, no warning -->
+			<sensor type="specialIMU" id="imu" />
+			<helper type="collisionDetection" id="cd" />
+			<connect publisher="cd/out" listener="parrot/collission" /> <!-- EQUAL TO LINE * -->
+		</namespace>
+		
+		<vehicle type="parrot" id="parrot2" />
+
+		<connect namespace="parrot1" publisher="cd/out" listener="parrot/collission" /> <!-- THIS IS LINE * -->
+		<connect publisher="joystick1/cmd_vel" listener="parrot1/parrot/cmd_vel" />
+		<connect publisher="joystick1/cmd_vel" listener="parrot2/cmd_vel" />
+		<connect publisher="joystick1/button5" listener="parrot1/change_led" />
+	</configuration>
+
+	<configuration id="optitrack"> <!-- aero run configuration.xml optitrack -->
+		<vehicle type="parrot" id="parrot1" />
+		<sensor type="optitrack" id="opti1" />
+		<userinput type="setpoint" id="sp1" />
+		<controller type="easyPID" id="controller">
+			<param name="gain" value="2" />
+		</controller>
+		<connect publisher="sp1/setpoint" listener="controller/setpoint" />
+		<connect publisher="opti1/position" listener="controller/position" />
+		<connect publisher="controller/command" listener="parrot1/cmd_vel" />
+	</configuration>
+</configurations>
