@@ -1,5 +1,8 @@
 syntax: glob
 
+#winpdb
+*.pyc
+
 # data files
 *.dat
 
