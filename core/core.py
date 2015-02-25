@@ -1,5 +1,4 @@
 import xml.dom.minidom
-from var_dump import var_dump
 
 
 def lookupMessageType(message_type):
@@ -34,14 +33,13 @@ def getOptionalAttribute(element, attribute):
 
 
 class Interface:
-    def __init__(self, interface_type, name, message_type, required):
+    def __init__(self, interface_type,
+                 name, message_type, required, link=None):
         # TODO: Add error handling: what if attribute does not exist
         self.name = name
         self.type = interface_type
         self.message_type = lookupMessageType(message_type)
         self.required = required
-
-    def setLink(self, link):
         self.link = link
 
 
@@ -85,6 +83,7 @@ class Executable:
     def __init__(self, id, pkg, executable):
         self.inputs = []
         self.outputs = []
+        self.params = []
         self.id = id
         self.pkg = pkg
         self.executable = executable
@@ -95,7 +94,21 @@ class Executable:
     def addOutput(self, interface):
         self.outputs.append(interface)
 
+    def addParameter(self, parameter):
+        self.params.append(parameter)
+
+
+class Parameter:
+    def __init__(self, name, type, default=None, value=None):
+        self.name = name
+        self.default = default
+        self.type = type
+        self.value = value
+
+
+
 available_mods = []
+
 
 # Todo: Loop through files
 # START FILE LOOP
@@ -130,8 +143,7 @@ if gInputElement:
         oLink = gInput.attributes['link'].value
         oMessageType = gInput.attributes['message_type'].value
         oRequired = gInput.attributes['required'].value
-        interface = Interface(oType, oName, oMessageType, oRequired)
-        interface.setLink(oLink)
+        interface = Interface(oType, oName, oMessageType, oRequired, oLink)
         mod.addInput(interface)
 
 # MODULE OUTPUTS
@@ -144,8 +156,7 @@ if gOutputElement:
         oLink = gOutput.attributes['link'].value
         oMessageType = gOutput.attributes['message_type'].value
         oRequired = gOutput.attributes['required'].value
-        interface = Interface(oType, oName, oMessageType, oRequired)
-        interface.setLink(oLink)
+        interface = Interface(oType, oName, oMessageType, oRequired, oLink)
         mod.addOutput(interface)
 
 # Instead of looping over userinputs, controllers, etc. seperately, go find the executables to add flexibility in the classes
@@ -190,7 +201,15 @@ for executable in executables:
             executableObject.addOutput(interface)
 
     # PARAMS
-    # TODO: Params
+    ParameterElement = getElementsOnFirstLevel(executable, 'params')
+    if ParameterElement:
+        Parameters = getElements(ParameterElement[0])
+        for aParameter in Parameters:
+            aName = aParameter.attributes['name'].value
+            aType = aParameter.attributes['type'].value
+            aDefault = getOptionalAttribute(aParameter, 'default')
+            parameter = Parameter(aName, aType, default=aDefault)
+            executableObject.addParameter(parameter)
 
     role.addExecutable(executableObject)
     mod.addRole(role)
