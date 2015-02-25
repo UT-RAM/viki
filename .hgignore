@@ -46,4 +46,7 @@ syntax: glob
 # Images
 *.png
 
+.idea
+.DS_Store
+
 syntax: regexp
