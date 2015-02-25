@@ -71,7 +71,6 @@ class Module:
                 return role
 
 
-
 class Role:
     def __init__(self, id, type_id):
         self.executables = []
@@ -103,8 +102,8 @@ available_mods = []
 # Get DOM
 dom = xml.dom.minidom.parse('../modules/controller/easyPID/module.xml')
 moddom = dom.getElementsByTagName('module')[0]
-mod = Module(moddom.attributes['id'])
-print "Mod id is: ", mod.id.value
+mod = Module(moddom.attributes['id'].value)
+print "Mod id is: ", mod.id
 
 # META DATA
 meta = dom.getElementsByTagName('meta')
