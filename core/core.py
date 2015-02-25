@@ -50,9 +50,10 @@ class Module:
         self.outputs = []
         self.roles = []
         self.id = id
+        self.meta = {}
 
-    def setMeta(self, metaDict):
-        self.meta = metaDict
+    def addMeta(self, key, value):
+        self.meta[key] = value
 
     def addInput(self, interface):
         self.inputs.append(interface)
@@ -121,8 +122,7 @@ for dirName, subdirList, fileList in os.walk(rootDir):
                         # Check if there are childnodes
                         if len(getElements(metaelem)) > 0:
                             for metachild in getElements(metaelem):
-                                print metachild.tagName.title(), " has value: ", metachild.firstChild.nodeValue
-                                # TODO: put meta in dict and add to object
+                                mod.addMeta(metachild.tagName.lower(), metachild.firstChild.nodeValue)
                         else:
                             print "Empty meta data section in document"
 
