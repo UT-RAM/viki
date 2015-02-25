@@ -150,7 +150,7 @@ for dirName, subdirList, fileList in os.walk(rootDir):
                         oLink = gInput.attributes['link'].value
                         oMessageType = gInput.attributes['message_type'].value
                         oRequired = gInput.attributes['required'].value
-        interface = Interface(oType, oName, oMessageType, oRequired, oLink)
+                        interface = Interface(oType, oName, oMessageType, oRequired, oLink)
                         mod.addInput(interface)
 
                 # MODULE OUTPUTS
@@ -163,7 +163,7 @@ for dirName, subdirList, fileList in os.walk(rootDir):
                         oLink = gOutput.attributes['link'].value
                         oMessageType = gOutput.attributes['message_type'].value
                         oRequired = gOutput.attributes['required'].value
-        interface = Interface(oType, oName, oMessageType, oRequired, oLink)
+                        interface = Interface(oType, oName, oMessageType, oRequired, oLink)
                         mod.addOutput(interface)
 
                 # Instead of looping over userinputs, controllers, etc. seperately, go find the executables to add flexibility in the classes
@@ -208,16 +208,17 @@ for dirName, subdirList, fileList in os.walk(rootDir):
                             executableObject.addOutput(interface)
 
                     # PARAMS
-    		     executableObject.addParameter(parameter)
- if ParameterElement:
-        Parameters = getElements(ParameterElement[0])
-        for aParameter in Parameters:
-            aName = aParameter.attributes['name'].value
-            aType = aParameter.attributes['type'].value
-            aDefault = getOptionalAttribute(aParameter, 'default')
-            parameter = Parameter(aName, aType, default=aDefault)
-            executableObject.addParameter(parameter)
+                    ParameterElement = getElementsOnFirstLevel(executable, 'params')
+                    if ParameterElement:
+                        Parameters = getElements(ParameterElement[0])
+                        for aParameter in Parameters:
+                            aName = aParameter.attributes['name'].value
+                            aType = aParameter.attributes['type'].value
+                            aDefault = getOptionalAttribute(aParameter, 'default')
+                            parameter = Parameter(aName, aType, default=aDefault)
+                            executableObject.addParameter(parameter)
 
+                    executableObject.addParameter(parameter)
                     role.addExecutable(executableObject)
                     mod.addRole(role)
 
