@@ -111,7 +111,6 @@ class Parameter:
 available_mods = []
 
 
-# Todo: Loop through files
 # START FILE LOOP
 rootDir = '../'
 for dirName, subdirList, fileList in os.walk(rootDir):
@@ -228,3 +227,6 @@ for dirName, subdirList, fileList in os.walk(rootDir):
                 print mod.id, ' added!'
 
 # END FILE LOOP
+
+# WAIT BEFORE EXIT
+print "Finished, use a breakpoint on this line to avoid exit."
