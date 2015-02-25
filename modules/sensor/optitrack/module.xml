@@ -1,4 +1,5 @@
-<module>
+<!--AEROWORKS-->
+<module id="optitrack">
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<outputs>
 		<output type="ros_topic" name="position" link="mocap_node/pose" message_type="pose" required="true" />

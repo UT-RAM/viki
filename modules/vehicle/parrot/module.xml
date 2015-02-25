@@ -1,4 +1,5 @@
-<module>
+<!--AEROWORKS-->
+<module id="parrot">
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<outputs>
 		<output type="ros_topic" name="front_video" link="ardrone_node/front_video" message_type="video_raw" required="true" />

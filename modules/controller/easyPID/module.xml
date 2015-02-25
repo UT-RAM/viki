@@ -1,3 +1,4 @@
+<!--AEROWORKS-->
 <module id="easyPID">
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<inputs>
