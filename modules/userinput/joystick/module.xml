@@ -3,6 +3,7 @@
 	<meta>
         <name>Joystick node</name>
 		<description>Test</description>
+		<author>C. Trouwborst</author>
 	</meta>
 
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
