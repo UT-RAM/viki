@@ -73,3 +73,39 @@ class Parameter:
         self.default = default
         self.type = type
         self.value = value
+
+
+class Configuration:
+    def __init__(self, id):
+        self.id = id
+        self.modules_to_add = []
+        self.interfaces_to_add = []
+        self.namespaces = []
+
+
+class Namespace:
+    def __init__(self, id):
+        self.id = id
+        self.modules_to_add = []
+        self.interfaces_to_add = []
+
+
+class Module_to_add:
+    def __init__(self, role, type, id, supress_warning=False):
+        self.role = role
+        self.id = id
+        self.type = type
+        self.supress_warning = supress_warning
+        self.parameters_to_add = []
+
+
+class Interface_to_add:
+    def __init__(self, publisher, listener):
+        self.publisher = publisher
+        self.listener = listener
+
+
+class Parameter_to_add:
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value

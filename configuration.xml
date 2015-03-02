@@ -1,3 +1,4 @@
+<!-- AEROWORKS -->
 <configurations>
 	<configuration> <!-- aero run configuration.xml -->
 		<namespace id="parrot1">
