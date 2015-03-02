@@ -2,31 +2,7 @@ import xml.dom.minidom
 import os
 import re
 from objects import *
-
-
-def getElements(node):
-    # Empty
-    elems = []
-    for child in node.childNodes:
-        if child.nodeType == child.ELEMENT_NODE:
-            elems.append(child)
-    return elems
-
-
-def getElementsOnFirstLevel(parent, element):
-    elements = []
-    occurences = parent.getElementsByTagName(element)
-    for e in occurences:
-        if e.parentNode == parent:
-            elements.append(e)
-    return elements
-
-
-def getOptionalAttribute(element, attribute):
-    if element.hasAttribute(attribute):
-        return element.attributes[attribute].value
-    else:
-        return None
+from helpers import *
 
 
 def getAvailableModules():
