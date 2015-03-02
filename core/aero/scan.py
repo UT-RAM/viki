@@ -32,7 +32,6 @@ def getOptionalAttribute(element, attribute):
 def getAvailableModules():
     available_mods = []
 
-
     # START FILE LOOP
     rootDir = '../'
     for dirName, subdirList, fileList in os.walk(rootDir):
@@ -147,7 +146,6 @@ def getAvailableModules():
 
                     available_mods.append(mod)
                     print mod.id, ' added!'
-
 
     # END FILE LOOP
     return available_mods
