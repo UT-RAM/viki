@@ -1,5 +1,5 @@
 <!--AEROWORKS-->
-<module id="joystick">
+<module type="userpunt" id="joystick">
 	<meta>
         <name>Joystick node</name>
 		<description>Test</description>
@@ -11,11 +11,9 @@
 		<output type="ros_topic" name="cmd_vel" link="joystick_node/cmd_vel" message_type="twist" required="true" />
 	</outputs>
 
-	<userinput type="joystick">
-		<executable id="joystick_node" pkg="joystick" exec="joystick_node">
-			<outputs>
-				<output type="ros_topic" name="cmd_vel" message_type="twist" required="false" />
-			</outputs>
-		</executable>
-	</userinput>
+	<executable id="joystick_node" pkg="joystick" exec="joystick_node">
+		<outputs>
+			<output type="ros_topic" name="cmd_vel" message_type="twist" required="false" />
+		</outputs>
+	</executable>
 </module>
