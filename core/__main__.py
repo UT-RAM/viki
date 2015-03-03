@@ -1,4 +1,3 @@
-import time
 from aero.objects import *
 from aero import scan
 from aero import config_interpreter
