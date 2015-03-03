@@ -1,8 +1,7 @@
-<!-- AEROWORKS -->
 <configurations>
 	<configuration> <!-- aero run configuration.xml -->
 		<namespace id="parrot1">
-			<vehicle type="parrot" id="parrot" supress_warning="true" /> <!-- When not connected, no warning -->
+			<vehicle type="parrot" id="parrot1" supress_warning="true" /> <!-- When not connected, no warning -->
 			<sensor type="specialIMU" id="imu" />
 			<helper type="collisionDetection" id="cd" />
 			<connect publisher="cd/out" listener="parrot/collission" /> <!-- EQUAL TO LINE * -->

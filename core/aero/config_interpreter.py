@@ -3,15 +3,12 @@ from objects import *
 from helpers import *
 
 
-# TODO: make configurable which file to use
-configfilename = 'configuration.xml'
-config_id_to_use = None  # use None for default
-
-
-def getConfig():
+def getConfig(configfilename='configuration.xml', config_id_to_use=None):
+    print 'Parsing ' + configfilename + ', looking for configurations...'
     dom = xml.dom.minidom.parse(configfilename)
     configurations = dom.getElementsByTagName('configurations')[0]
 
+    domconfig = None
     if not configurations:
         print "No configurations found"
     else:
@@ -20,13 +17,14 @@ def getConfig():
             this_id = getOptionalAttribute(configuration, 'id')
             if this_id == config_id_to_use:
                 domconfig = configuration
-                print 'Found the desired configuration'
+                print 'Found the desired configuration in "' + configfilename +'"'
+                print 'Now intrepreting configuration...'
                 break
             else:
                 pass
 
-            if not domconfig:
-                raise Exception("Could not found the desired configuration")
+        if not domconfig:
+            raise Exception("Could not found the desired configuration")
 
         config = Configuration(config_id_to_use)
         domNamespaces = getElementsOnFirstLevel(domconfig, 'namespace')
@@ -93,5 +91,5 @@ def getConfig():
 
                 config.modules_to_add.append(mod)
 
-    print 'Configuration interpreted'
+    print 'Configuration interpreted succesfully.'
     return config

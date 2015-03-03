@@ -97,6 +97,8 @@ class Module_to_add:
         self.type = type
         self.supress_warning = supress_warning
         self.parameters_to_add = []
+
+        # here we put Module classes used for implementation
         self.implementation = None
 
 
