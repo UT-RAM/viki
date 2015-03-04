@@ -32,7 +32,7 @@ def getConfig(configfilename='configuration.xml', config_id_to_use=None):
             for domNamespace in domNamespaces:
                 elementsInNamespace = getElements(domNamespace)
                 if elementsInNamespace:
-                    ns = Namespace(domNamespace.attributes['id'])
+                    ns = Namespace(domNamespace.attributes['id'].value)
                     for dommod in elementsInNamespace:
                         tagtype = dommod.tagName.lower()
                         if tagtype == 'connect':
