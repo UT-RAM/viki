@@ -53,8 +53,8 @@ def getConfig(configfilename='configuration.xml', config_id_to_use=None):
                             if params:
                                 for domparam in params:
                                     param = Parameter_to_add(
-                                        domparam.attributes['name'],
-                                        domparam.attributes['value']
+                                        domparam.attributes['name'].value,
+                                        domparam.attributes['value'].value
                                         )
                                     mod.parameters_to_add.append(param)
 
@@ -84,8 +84,8 @@ def getConfig(configfilename='configuration.xml', config_id_to_use=None):
                 if params:
                     for domparam in params:
                         param = Parameter_to_add(
-                            domparam.attributes['name'],
-                            domparam.attributes['value']
+                            domparam.attributes['name'].value,
+                            domparam.attributes['value'].value
                             )
                         mod.parameters_to_add.append(param)
 

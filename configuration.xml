@@ -6,7 +6,9 @@
 			<connect publisher="opti1/out" listener="parrot/collission" /> <!-- EQUAL TO LINE * -->
 		</namespace>
 		
-		<vehicle type="parrot" id="parrot2" />
+		<vehicle type="parrot" id="parrot2">
+			<param name="leds" value="4" />
+		</vehicle>
 
 		<!-- To be implemented: <connect namespace="parrot1" publisher="cd/out" listener="parrot/collission" /> --> <!-- THIS IS LINE * -->
 		<connect publisher="joystick1/cmd_vel" listener="parrot1/parrot/cmd_vel" />
