@@ -1,5 +1,5 @@
 <!--AEROWORKS-->
-<module type="userpunt" id="joystick">
+<module type="userinput" id="joystick">
 	<meta>
         <name>Joystick node</name>
 		<description>Test</description>

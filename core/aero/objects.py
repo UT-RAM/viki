@@ -12,11 +12,12 @@ class Interface:
 
 
 class Module:
-    def __init__(self, id):
+    def __init__(self, type, id):
         self.inputs = []
         self.outputs = []
-        self.roles = []
+        self.executables = []
         self.id = id
+        self.type = type
         self.meta = {}
 
     def addMeta(self, key, value):
@@ -27,22 +28,6 @@ class Module:
 
     def addOutput(self, interface):
         self.outputs.append(interface)
-
-    def addRole(self, role):
-        self.roles.append(role)
-
-    def detachRole(self, id, type_id):
-        for role in self.roles[:]:
-            if role.id == id and role.type_id == type_id:
-                self.roles.remove(role)
-                return role
-
-
-class Role:
-    def __init__(self, id, type_id):
-        self.executables = []
-        self.id = id
-        self.type_id = type_id
 
     def addExecutable(self, executable):
         self.executables.append(executable)

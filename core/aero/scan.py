@@ -20,7 +20,7 @@ def getAvailableModules():
                     # Get DOM
                     dom = xml.dom.minidom.parse(fPath)
                     moddom = dom.getElementsByTagName('module')[0]
-                    mod = Module(moddom.attributes['id'].value)
+                    mod = Module(moddom.attributes['type'].value, moddom.attributes['id'].value)
 
                     # META DATA
                     meta = dom.getElementsByTagName('meta')
@@ -65,15 +65,6 @@ def getAvailableModules():
                     # Instead of looping over userinputs, controllers, etc. separately, go find the executables to add flexibility in the classes
                     executables = dom.getElementsByTagName('executable')
                     for executable in executables:
-                        # Get role info
-                        roleId = executable.parentNode.attributes['type'].value
-                        roleTypeId = executable.parentNode.tagName
-
-                        # Check if role is present in module. If so, detach for modification. If not, create
-                        role = mod.detachRole(roleId, roleTypeId)
-                        if not role:
-                            role = Role(roleId, roleTypeId)
-
                         executableId = executable.attributes['id'].value
                         executablePkg = executable.attributes['pkg'].value
                         executableExec = executable.attributes['exec'].value
@@ -114,9 +105,7 @@ def getAvailableModules():
                                 parameter = Parameter(aName, aType, default=aDefault)
                                 executableObject.addParameter(parameter)
 
-                        executableObject.addParameter(parameter)
-                        role.addExecutable(executableObject)
-                        mod.addRole(role)
+                        mod.addExecutable(executableObject)
 
                     # TODO: Internal connections
 
