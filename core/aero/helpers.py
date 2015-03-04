@@ -25,3 +25,14 @@ def getOptionalAttribute(element, attribute):
         return element.attributes[attribute].value
     else:
         return None
+
+
+def findModuleById(available_mods, module_id):
+    # Finds a module from a list of modules by its id and returns the module
+    # Returns None if the module is not in the list
+    module_found = None
+    for available_mod in available_mods:
+        if available_mod.id == module_id:
+            module_found = available_mod
+            break
+    return module_found
