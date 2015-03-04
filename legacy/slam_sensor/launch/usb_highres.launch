@@ -1,0 +1,44 @@
+<launch>	
+
+  <!-- Launch the usb camera acquisition node -->
+  <node pkg="usb_cam" type="usb_cam_node" name="usb_cam_node_left" output="screen">      
+	    <param name="video_device" value="/dev/video0" />
+	    <param name="camera_name" value="left_camera_high" />
+	    <param name="camera_frame_id" value="cam0" />
+		<param name="image_width" value="1920" />
+	    <param name="image_height" value="1080" />
+        <param name="framerate" value="10" />
+		<param name="brightness" value="150" />
+		<param name="contrast" value="150" />
+		<param name="saturation" value="130" />
+		<param name="sharpness" value="255" />
+		<param name="gain" value="20" />
+		<param name="exposure" type="int"  value="1" />
+		<param name="absolute_exposure" type="int"  value="80" />
+		<param name="autofocus" value="false"/>
+		<param name="focus" type="int" value="0" />
+		<param name="io_method" value="mmap"/>		
+		<param name="pixel_format" type="string" value="mjpeg" />
+  </node>
+
+  <node pkg="usb_cam" type="usb_cam_node" name="usb_cam_node_right" output="screen">      
+	    <param name="video_device" value="/dev/video1" />
+	    <param name="camera_name" value="right_camera_high" />
+	    <param name="camera_frame_id" value="cam0" />
+		<param name="image_width" value="1920" />
+	    <param name="image_height" value="1080" />
+        <param name="framerate" value="10" />
+		<param name="brightness" value="150" />
+		<param name="contrast" value="150" />
+		<param name="saturation" value="130" />
+		<param name="sharpness" value="255" />
+		<param name="gain" value="20" />
+		<param name="exposure_auto" type="int"  value="1" />
+		<param name="exposure_absolute" type="int"  value="20" />
+		<param name="autofocus" value="false"/>
+		<param name="focus" type="int" value="0" />
+		<param name="io_method" value="mmap"/>
+		<param name="pixel_format" type="string" value="mjpeg" />
+  </node>
+
+</launch>
