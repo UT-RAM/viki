@@ -64,7 +64,7 @@ class Configuration:
     def __init__(self, id):
         self.id = id
         self.modules_to_add = []
-        self.interfaces_to_add = []
+        self.connections_to_add = []
         self.namespaces = []
 
 
@@ -72,7 +72,7 @@ class Namespace:
     def __init__(self, id):
         self.id = id
         self.modules_to_add = []
-        self.interfaces_to_add = []
+        self.connections_to_add = []
 
 
 class Module_to_add:
@@ -87,7 +87,7 @@ class Module_to_add:
         self.implementation = None
 
 
-class Interface_to_add:
+class Connection_to_add:
     def __init__(self, publisher, listener):
         self.publisher = publisher
         self.listener = listener

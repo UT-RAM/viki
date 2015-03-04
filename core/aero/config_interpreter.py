@@ -36,11 +36,11 @@ def getConfig(configfilename='configuration.xml', config_id_to_use=None):
                     for dommod in elementsInNamespace:
                         tagtype = dommod.tagName.lower()
                         if tagtype == 'connect':
-                            interface = Interface_to_add(
+                            connection = Connection_to_add(
                                 dommod.attributes['publisher'].value,
                                 dommod.attributes['listener'].value
                                 )
-                            ns.interfaces_to_add.append(interface)
+                            ns.connections_to_add.append(connection)
                         else:
                             mod = Module_to_add(
                                 dommod.tagName.lower(),
@@ -67,11 +67,11 @@ def getConfig(configfilename='configuration.xml', config_id_to_use=None):
             if tagname == 'namespace':
                 pass
             elif tagname == 'connect':
-                interface = Interface_to_add(
+                connection = Connection_to_add(
                     element.attributes['publisher'].value,
                     element.attributes['listener'].value
                     )
-                config.interfaces_to_add.append(interface)
+                config.connections_to_add.append(connection)
             else:
                 mod = Module_to_add(
                     tagname,
