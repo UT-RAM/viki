@@ -20,5 +20,10 @@
 			<input type="ros_topic" name="cmd_vel" message_type="twist" required="true" />
 			<input type="ros_service" name="change_led" message_type="empty" required="false" />
 		</inputs>
+
+		<params>
+			<param name="leds" default="2" type="realnumber" />
+			<param name="test" default="3" type="integer" />
+		</params>
 	</executable>
 </module>
