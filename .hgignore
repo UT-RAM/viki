@@ -1,5 +1,8 @@
 syntax: glob
 
+#ROSlaunch
+*.launch
+
 #winpdb
 *.pyc
 
