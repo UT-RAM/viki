@@ -6,6 +6,7 @@ from helpers import *
 
 
 def getAvailableModules():
+    print "Scanning for modules in file tree..."
     available_mods = []
 
     # START FILE LOOP
@@ -113,4 +114,5 @@ def getAvailableModules():
                     print mod.id, ' added!'
 
     # END FILE LOOP
+    print "Got all available modules."
     return available_mods
