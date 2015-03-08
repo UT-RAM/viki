@@ -1,0 +1,13 @@
+<!--AEROWORKS-->
+<module type="sensor" id="imu">
+	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
+	<outputs>
+		<output type="ros_topic" name="imu" link="imu_node/data" message_type="imu" required="true" />
+	</outputs>
+
+	<executable id="imu_node" pkg="imu_pkg" exec="imu_exec">
+		<outputs>
+			<output type="ros_topic" name="imu_data" message_type="imu" required="false" />
+		</outputs>
+	</executable>
+</module>

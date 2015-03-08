@@ -36,3 +36,12 @@ def findModuleById(available_mods, module_id):
             module_found = available_mod
             break
     return module_found
+
+
+def getElementsOnFirstLevelExceptTag(parent, element):
+    elements = []
+    children = getElements(parent)
+    for c in children:
+        if c.parentNode == parent and c.tagName.lower() != element.lower():
+            elements.append(c)
+    return elements

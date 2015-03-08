@@ -73,6 +73,7 @@ class Namespace:
         self.id = id
         self.modules_to_add = []
         self.connections_to_add = []
+        self.namespaces = []
 
 
 class Module_to_add:

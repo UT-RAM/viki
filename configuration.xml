@@ -4,6 +4,15 @@
 			<vehicle type="parrot" id="parrot1" supress_warning="true" /> <!-- When not connected, no warning -->
 			<sensor type="optitrack" id="opti1" />
 			<connect publisher="opti1/out" listener="parrot/collission" /> <!-- EQUAL TO LINE * -->
+
+			<namespace id="sensorarray">
+				<sensor type="imu" id="imu1" />
+				<sensor type="imu" id="imu2" />
+				<namespace id="nestsensor">
+					<sensor type="imu" id="imu3" />
+					<sensor type="imu" id="imu4" />
+				</namespace>
+			</namespace>
 		</namespace>
 		
 		<vehicle type="parrot" id="parrot2">
