@@ -6,6 +6,7 @@ def matchConfig(configuration, available_mods):
     recursiveMatch(configuration, available_mods)
     return configuration
 
+
 def recursiveMatch(parent, available_mods):
     for module_to_add in parent.modules_to_add:
         impl = helpers.findModuleById(available_mods, module_to_add.type)
