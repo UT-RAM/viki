@@ -1,19 +1,42 @@
 <!--AEROWORKS-->
+
+<!-- This modules is based on ROS packages that you should get using apt-get, and therefore we do not implement the source within the framework. If you do not have these package yet you can get it by opening a console and running 'sudo apt-get install ros-indigo-joy' and 'sudo apt-get install ros-indigo-teleop-twist-joy'-->
 <module type="userinput" id="joystick">
 	<meta>
         <name>Joystick node</name>
-		<description>Test</description>
-		<author>C. Trouwborst</author>
+		<description>Uses joy/joy_node and teleop_twist_joy to generate a cmd_vel topic with twist messages</description>
+		<author>C. Trouwborst/A. Kamphuis</author>
 	</meta>
 
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<outputs>
-		<output type="ros_topic" name="cmd_vel" link="joystick_node/cmd_vel" message_type="twist" required="true" />
+		<output type="ros_topic" name="cmd_vel" link="twist_from_joy/cmd_vel" message_type="geometry_msgs/Twist" required="true" />
 	</outputs>
 
-	<executable id="joystick_node" pkg="joystick" exec="joystick_node">
+	<executable id="joystick_node" pkg="joy" exec="joy_node">
 		<outputs>
-			<output type="ros_topic" name="cmd_vel" message_type="twist" required="false" />
+			<output type="ros_topic" name="joy" message_type="sensor_msgs/Joy" required="true" />
+			<output type="ros_topic" name="/diagnostics" message_type="diagnostic_msgs/DiagnosticArray" required="false" />
+			<output type="ros_topic" name="/rosout" message_type="rosgraph_msgs/Log" required="false" />
+			<output type="ros_service" name="get_loggers" message_type="roscpp/GetLoggers" required="false" />
+			<output type="ros_service" name="set_logger_level" message_type="roscpp/SetLoggerLevel" />
 		</outputs>
 	</executable>
+
+	<executable id="twist_from_joy" pkg="teleop_twist_joy" exec="teleop_node">
+		<inputs>
+			<input type="ros_topic" name="joy" message_type="sensor_msgs/Joy" required="true" />
+		</inputs>
+		<outputs>
+			<output type="ros_topic" name="cmd_vel" message_type="geometry_msgs/Twist" required="true" />
+			<output type="ros_topic" name="/rosout" message_type="rosgraph_msgs/Log" required="false" />
+			<output type="ros_service" name="get_loggers" message_type="roscpp/GetLoggers" required="false" />
+			<output type="ros_service" name="set_logger_level" message_type="roscpp/SetLoggerLevel" />
+		</outputs>
+	</executable>
+
+	<configuration>
+		<connect publisher="joystick_node/joy" listener="twist_from_joy/joy" />
+	</configuration>
+
 </module>
