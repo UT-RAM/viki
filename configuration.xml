@@ -4,15 +4,6 @@
 			<vehicle type="parrot" id="parrot1" supress_warning="true" /> <!-- When not connected, no warning -->
 			<sensor type="optitrack" id="opti1" />
 			<connect publisher="opti1/out" listener="parrot/collission" /> <!-- EQUAL TO LINE * -->
-
-			<namespace id="sensorarray">
-				<sensor type="imu" id="imu1" />
-				<sensor type="imu" id="imu2" />
-				<namespace id="nestsensor">
-					<sensor type="imu" id="imu3" />
-					<sensor type="imu" id="imu4" />
-				</namespace>
-			</namespace>
 		</namespace>
 		
 		<vehicle type="parrot" id="parrot2">
@@ -20,9 +11,8 @@
 		</vehicle>
 
 		<!-- To be implemented: <connect namespace="parrot1" publisher="cd/out" listener="parrot/collission" /> --> <!-- THIS IS LINE * -->
-		<connect publisher="joystick1/cmd_vel" listener="parrot1/parrot/cmd_vel" />
 		<connect publisher="joystick1/cmd_vel" listener="parrot2/cmd_vel" />
-		<connect publisher="joystick1/button5" listener="parrot1/change_led" />
+		<connect publisher="joystick1/cmd_vel" listener="parrot1/parrot/cmd_vel" />
 	</configuration>
 
 	<configuration id="optitrack"> <!-- aero run configuration.xml optitrack -->
@@ -35,5 +25,13 @@
 		<connect publisher="sp1/setpoint" listener="controller/setpoint" />
 		<connect publisher="opti1/position" listener="controller/position" />
 		<connect publisher="controller/command" listener="parrot1/cmd_vel" />
+	</configuration>
+
+	<configuration id="simple">
+		<namespace id="test">
+			<vehicle type="parrot" id="parrot1" />
+			<userinput type="joystick" id="joy1" />
+		</namespace>
+		<connect publisher="test/joy1/cmd_vel" listener="test/parrot1/cmd_vel" />
 	</configuration>
 </configurations>
