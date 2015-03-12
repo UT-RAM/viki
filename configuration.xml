@@ -34,4 +34,11 @@
 		</namespace>
 		<connect publisher="test/joy1/cmd_vel" listener="test/parrot1/cmd_vel" />
 	</configuration>
+
+	<configuration id="milestone1">
+		<userinput type="joystick" id="joy1" >
+			<param name="dev" value="/dev/input/js2" />
+		</userinput>
+
+	</configuration>
 </configurations>

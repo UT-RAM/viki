@@ -7,7 +7,7 @@ from aero import helpers
 available_mods = scan.getAvailableModules()
 print "Got all the modules"
 
-configuration = config_interpreter.getConfig()
+configuration = config_interpreter.getConfig(config_id_to_use="milestone1")
 config_matcher.matchConfig(configuration, available_mods)
 writeLaunch.write(configuration)
 

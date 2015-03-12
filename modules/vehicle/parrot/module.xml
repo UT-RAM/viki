@@ -11,7 +11,7 @@
 	</inputs>
 
 	
-	<executable id="ardrone_node" pkg="ardrone_autonomy" exec="ardrone_node">
+	<executable id="ardrone_node" pkg="ardrone_autonomy" exec="ardrone_driver">
 		<outputs>
 			<output type="ros_topic" name="front_video" message_type="video_raw" required="false" />
 		</outputs>
