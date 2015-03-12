@@ -26,7 +26,8 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
     for mod in configPart.modules_to_add:
         # Loop through executables for specific module
         for executable in mod.implementation.executables:
-            node = ET.SubElement(configElem, "node", pkg=executable.pkg, name=mod.id+'_'+executable.id, type=executable.executable)
+            nodens = ET.SubElement(configElem, "group", ns=mod.id+'_'+executable.id)
+            node = ET.SubElement(nodens, "node", pkg=executable.pkg, name=mod.id+'_'+executable.id, type=executable.executable)
             # Check if one of the parameters that are to be set are present in this executable
             # Todo/problem: params are not defined at executable level, but at module level.
             for paramSearch in mod.parameters_to_add[:]:
