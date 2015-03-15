@@ -1,0 +1,17 @@
+# Individual subscriber configuration:
+#   name:           Source name
+#   topic:          The topic that provides cmd_vel messages
+#   timeout:        Time in seconds without incoming messages to consider this topic inactive
+#   priority:       Priority: an UNIQUE unsigned integer from 0 (lowest) to MAX_INT 
+#   short_desc:     Short description (optional)
+
+subscribers:
+  - name:        "Joystick"
+    topic:       "cmd_vel_joy"
+    timeout:     0.1
+    priority:    7
+  - name:        "Controller"
+    topic:       "cmd_vel_contoller"
+    timeout:     0.1
+    priority:    6
+publisher:       "cmd_vel"
