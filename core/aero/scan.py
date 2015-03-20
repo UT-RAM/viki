@@ -108,7 +108,16 @@ def getAvailableModules():
 
                         mod.addExecutable(executableObject)
 
-                    # TODO: Internal connections
+                    # Internal connections
+                    ConfigElements = getElementsOnFirstLevel(moddom, 'configuration')
+                    if ConfigElements:
+                        for ConfigElement in ConfigElements:
+                            connections_to_add = getElementsOnFirstLevel(ConfigElement, 'connect')
+                            if connections_to_add:
+                                for connection_to_add in connections_to_add:
+                                    Connection = Internal_Interface(connection_to_add.attributes['publisher'].value,
+                                                                    connection_to_add.attributes['listener'].value)
+                                    mod.addIntConnect(Connection)
 
                     available_mods.append(mod)
                     print mod.id, ' added!'

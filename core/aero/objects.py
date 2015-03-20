@@ -1,5 +1,6 @@
 from aero import helpers
 
+
 class Interface:
     def __init__(self, interface_type,
                  name, message_type, required, link=None):
@@ -11,6 +12,15 @@ class Interface:
         self.link = link
 
 
+# TODO: internal interface object does the same as connection to add.
+# Nevertheless i want them to have different names (seems nice)
+# How can we copy without inheritance? or do we just leave them like so?
+class Internal_Interface:
+    def __init__(self, publisher, listener):
+        self.publisher = publisher
+        self.listener = listener
+
+
 class Module:
     def __init__(self, type, id):
         self.inputs = []
@@ -19,6 +29,7 @@ class Module:
         self.id = id
         self.type = type
         self.meta = {}
+        self.config = []  # list of internal connections
 
     def addMeta(self, key, value):
         self.meta[key] = value
@@ -31,6 +42,9 @@ class Module:
 
     def addExecutable(self, executable):
         self.executables.append(executable)
+
+    def addIntConnect(self, Connection):
+        self.config.append(Connection)
 
 
 class Executable:
