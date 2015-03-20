@@ -100,7 +100,7 @@ public:
     params.getParam("prefix", prefix);
 
     // Init subscribers
-    joy_subscriber_ = node_handle_.subscribe<sensor_msgs::Joy>("/joy", 1, boost::bind(&Teleop::joyCallback, this, _1));
+    joy_subscriber_ = node_handle_.subscribe<sensor_msgs::Joy>("joy", 1, boost::bind(&Teleop::joyCallback, this, _1));
     velocity_publisher_ = node_handle_.advertise<geometry_msgs::Twist>("cmd_vel_joy", 1);
     land_publisher_ = node_handle_.advertise<std_msgs::Empty>("ardrone/land", 1);
     takeoff_publisher_ = node_handle_.advertise<std_msgs::Empty>("ardrone/takeoff", 1);
