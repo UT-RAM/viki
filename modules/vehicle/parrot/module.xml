@@ -7,7 +7,9 @@
 
 	<inputs>
 		<input type="ros_topic" name="cmd_vel" link="ardrone_node/cmd_vel" message_type="twist" required="true" />
-		<input type="ros_service" name="change_led" link="ardrone_node/change_led" message_type="empty" required="false" />
+        <input type="ros_topic" name="reset" link="ardrone_node/reset" message_type="standard_msgs/Empty" required="true" />
+        <input type="ros_topic" name="land" link="ardrone_node/land" message_type="standard_msgs/Empty" required="true" />
+        <input type="ros_topic" name="takeoff" link="ardrone_node/takeoff" message_type="standard_msgs/Empty" required="true" />
 	</inputs>
 
 	
@@ -18,7 +20,9 @@
 
 		<inputs>
 			<input type="ros_topic" name="cmd_vel" message_type="twist" required="true" />
-			<input type="ros_service" name="change_led" message_type="empty" required="false" />
+            <input type="ros_topic" name="reset" message_type="standard_msgs/Empty" required="true" />
+            <input type="ros_topic" name="land" message_type="standard_msgs/Empty" required="true" />
+            <input type="ros_topic" name="takeoff" message_type="standard_msgs/Empty" required="true" />
 		</inputs>
 
 		<params>

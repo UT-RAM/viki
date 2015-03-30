@@ -31,6 +31,9 @@
 			<vehicle type="parrot" id="parrot1" />
 			<userinput type="joystick" id="joy1" />
 		<connect publisher="joy1/cmd_vel_joy" listener="parrot1/cmd_vel" />
+        <connect publisher="joy1/land" listener="parrot1/land" />
+        <connect publisher="joy1/reset" listener="parrot1/reset" />
+        <connect publisher="joy1/takeoff" listener="parrot1/takeoff" />
 	</configuration>
 
 	<configuration id="milestone1">

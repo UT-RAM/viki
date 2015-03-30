@@ -11,6 +11,9 @@
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<outputs>
 		<output type="ros_topic" name="cmd_vel_joy" link="twist_from_joy/cmd_vel_joy" message_type="geometry_msgs/Twist" required="true" />
+        <output type="ros_topic" name="reset" link="twist_from_joy/reset" message_type="standard_msgs/Empty" required="true" />
+        <output type="ros_topic" name="land" link="twist_from_joy/land" message_type="standard_msgs/Empty" required="true" />
+        <output type="ros_topic" name="takeoff" link="twist_from_joy/takeoff" message_type="standard_msgs/Empty" required="true" />
 	</outputs>
 
 	<executable id="joystick_node" pkg="joy" exec="joy_node">
@@ -32,6 +35,9 @@
 		</inputs>
 		<outputs>
 			<output type="ros_topic" name="cmd_vel_joy" message_type="geometry_msgs/Twist" required="true" />
+            <output type="ros_topic" name="reset" message_type="standard_msgs/Empty" required="true" />
+            <output type="ros_topic" name="land" message_type="standard_msgs/Empty" required="true" />
+            <output type="ros_topic" name="takeoff" message_type="standard_msgs/Empty" required="true" />
 			<output type="ros_topic" name="/rosout" message_type="rosgraph_msgs/Log" required="false" />
 		</outputs>
 		<params>
