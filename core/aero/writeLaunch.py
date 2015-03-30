@@ -77,13 +77,13 @@ def lookup(configPart, string, path):
     # Keep checking if the first part of the connection string matches a namespace. If so: add it to the final connection string and pop it off.
     at_end = False
     while at_end is False:
-        connectionString += parts[0] + '/'
         matchFound = False
         for ns in configPart.namespaces:
             if ns.id == parts[0]:
-                configPart = ns
-                parts.pop(0)
                 matchFound = True
+                configPart = ns
+                connectionString += parts[0] + '/'
+                parts.pop(0)
         if matchFound is False:
             at_end = True
     # Correct namespace is found, now find node name
