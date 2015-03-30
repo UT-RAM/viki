@@ -43,9 +43,8 @@ def getOptionalAttribute(element, attribute):
 
     Return None if the attribute is not in the parent element.
 
-    Keyword arguments:
-    element -- the parent element that contains the attribute
-    attribute -- the optional attribute to return the value of
+    :param element: the parent element that contains the attribute
+    :param attribute: the optional attribute to return the value of
     """
     if element.hasAttribute(attribute):
         return element.attributes[attribute].value

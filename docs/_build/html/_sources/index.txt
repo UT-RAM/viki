@@ -1,0 +1,33 @@
+.. AeroWorks documentation master file, created by
+   sphinx-quickstart on Mon Mar 30 16:58:54 2015.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to AeroWorks's documentation!
+=====================================
+
+To update documentation, run the following lines in the root of the project.
+
+.. code-block:: bash
+
+      sphinx-apidoc -f -o docs core
+      cd docs
+      make html
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   test
+   test/testjes
+
+test
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
