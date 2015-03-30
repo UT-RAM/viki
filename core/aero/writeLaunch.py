@@ -23,8 +23,22 @@ def prettify(elem):
 
 def recursiveWrite(configPart, configElem, rootElem, path=''):
     # Loop through modules at current level
+    for con in configPart.connections_to_add:
+        from_attr = lookup(configPart, con.listener, path)
+        to_attr = lookup(configPart, con.publisher, path)
+        remap = ET.SubElement(rootElem, "remap")
+        remap.set('to', to_attr)
+        remap.set('from', from_attr)
+
     for mod in configPart.modules_to_add:
         # Loop through executables for specific module
+        for ic in mod.implementation.config:
+            from_attr = path + '/' + lookupInternal(ic.listener, mod)
+            to_attr = path + '/' + lookupInternal(ic.publisher, mod)
+            remap = ET.SubElement(rootElem, "remap")
+            remap.set('to', to_attr)
+            remap.set('from', from_attr)
+
         for executable in mod.implementation.executables:
             nodens = ET.SubElement(configElem, "group", ns=mod.id+'_'+executable.id)
             node = ET.SubElement(nodens, "node", pkg=executable.pkg, name=mod.id+'_'+executable.id, type=executable.executable)
@@ -43,21 +57,6 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
         # At this point, we end up with some parameters that are not "connected". Echo those.
         for paramSearch in mod.parameters_to_add:
             print 'Parameter "' + paramSearch.name + '", valued "' + paramSearch.value + '", could not be connected.'
-
-        for ic in mod.implementation.config:
-            from_attr = path + '/' + lookupInternal(ic.listener, mod)
-            to_attr = path + '/' + lookupInternal(ic.publisher, mod)
-            remap = ET.SubElement(rootElem, "remap")
-            remap.set('to', to_attr)
-            remap.set('from', from_attr)
-
-
-    for con in configPart.connections_to_add:
-        from_attr = lookup(configPart, con.listener, path)
-        to_attr = lookup(configPart, con.publisher, path)
-        remap = ET.SubElement(rootElem, "remap")
-        remap.set('to', to_attr)
-        remap.set('from', from_attr)
 
     try:
         for ns in configPart.namespaces:
