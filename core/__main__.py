@@ -1,3 +1,4 @@
+import sys
 from aero import scan
 from aero import config_interpreter
 from aero import config_matcher
@@ -7,7 +8,7 @@ from aero import helpers
 available_mods = scan.getAvailableModules()
 print "Got all the modules"
 
-configuration = config_interpreter.getConfig(config_id_to_use="simple")
+configuration = config_interpreter.getConfig(configfilename=sys.argv[1], config_id_to_use=sys.argv[2])
 config_matcher.matchConfig(configuration, available_mods)
 writeLaunch.write(configuration)
 
