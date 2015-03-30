@@ -70,16 +70,22 @@ def lookup(configPart, string, path):
     print 'Lookup started'
     # Split string in parts (basically the address)
     parts = string.split('/')
-    # If the number of parts is smaller than two, something is wrong.
+    # If the number of parts is smaller than two, something is wrong. More is possible (but not recommended)
     if len(parts) < 2:
         raise Exception("Incorrect connect-statement")
     connectionString = ''
-    while len(parts) > 2:
+    # Keep checking if the first part of the connection string matches a namespace. If so: add it to the final connection string and pop it off.
+    at_end = False
+    while at_end is False:
         connectionString += parts[0] + '/'
+        matchFound = False
         for ns in configPart.namespaces:
             if ns.id == parts[0]:
                 configPart = ns
-        parts.pop(0)
+                parts.pop(0)
+                matchFound = True
+        if matchFound is False:
+            at_end = True
     # Correct namespace is found, now find node name
     for mod in configPart.modules_to_add:
         if mod.id == parts[0]:
@@ -88,7 +94,7 @@ def lookup(configPart, string, path):
                 if con.name == parts[1]:
                     linkparts = con.link.split('/')
                     linkparts[0] = mod.id + '_' + linkparts[0]
-                    connectionString += linkparts[0] + '/' + linkparts[1]
+                    connectionString += linkparts[0] + '/' + "/".join(linkparts[1:])
                     break
             break
     return path + '/' + connectionString
@@ -97,5 +103,5 @@ def lookupInternal(string, mod):
     parts = string.split('/')
     if len(parts) < 2:
         raise Exception("Incorrect connect-statement")
-    parts[-2] = mod.id + "_" + parts[-2]
+    parts[-len(parts)] = mod.id + "_" + parts[-len(parts)]
     return "/".join(parts)
