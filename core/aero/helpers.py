@@ -1,9 +1,20 @@
 def lookupMessageType(message_type):
+    """Look up a message type from a list given its acronym and returns the full message type.
+
+    If the <message_type> is not an acronym from the list, return message_type.
+
+    Keyword arguments:
+    message_type -- the acronym to look up, or a non acronym message type
+    """
     return message_type
 
 
 def getElements(node):
-    # Empty
+    """Return a list of al dom elements in another element.
+
+    Keyword arguments:
+    node -- the parent element
+    """
     elems = []
     for child in node.childNodes:
         if child.nodeType == child.ELEMENT_NODE:
@@ -12,6 +23,12 @@ def getElements(node):
 
 
 def getElementsOnFirstLevel(parent, element):
+    """Return a list of elements below parent, that have tagname element.
+
+    Keyword arguments:
+    parent -- the parent element
+    element -- tagname of elements to return in the list
+    """
     elements = []
     occurences = parent.getElementsByTagName(element)
     for e in occurences:
@@ -21,6 +38,15 @@ def getElementsOnFirstLevel(parent, element):
 
 
 def getOptionalAttribute(element, attribute):
+    """Return the value of an attribute from an element,
+    but do not crash if it does not exist.
+
+    Return None if the attribute is not in the parent element.
+
+    Keyword arguments:
+    element -- the parent element that contains the attribute
+    attribute -- the optional attribute to return the value of
+    """
     if element.hasAttribute(attribute):
         return element.attributes[attribute].value
     else:
