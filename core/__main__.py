@@ -8,7 +8,13 @@ from aero import helpers
 available_mods = scan.getAvailableModules()
 print "Got all the modules"
 
-configuration = config_interpreter.getConfig(configfilename=sys.argv[1], config_id_to_use=sys.argv[2])
+configfilename = None
+config_id = None
+if len(sys.argv) > 1:
+    configfilename = sys.argv[1]
+if len(sys.argv) > 2:
+    config_id = sys.argv[2]
+configuration = config_interpreter.getConfig(configfilename=configfilename, config_id_to_use=config_id)
 config_matcher.matchConfig(configuration, available_mods)
 writeLaunch.write(configuration)
 

@@ -4,6 +4,8 @@ from helpers import *
 
 
 def getConfig(configfilename='configuration.xml', config_id_to_use=None):
+    if not configfilename:
+        configfilename = 'configuration.xml'
     print 'Parsing ' + configfilename + ', looking for configurations...'
     dom = xml.dom.minidom.parse(configfilename)
     configurations = dom.getElementsByTagName('configurations')[0]
