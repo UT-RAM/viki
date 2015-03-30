@@ -28,11 +28,9 @@
 	</configuration>
 
 	<configuration id="simple">
-		<namespace id="test">
 			<vehicle type="parrot" id="parrot1" />
 			<userinput type="joystick" id="joy1" />
-		</namespace>
-		<connect publisher="test/joy1/cmd_vel" listener="test/parrot1/cmd_vel" />
+		<connect publisher="joy1/cmd_vel_joy" listener="parrot1/cmd_vel" />
 	</configuration>
 
 	<configuration id="milestone1">

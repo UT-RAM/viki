@@ -44,10 +44,19 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
         for paramSearch in mod.parameters_to_add:
             print 'Parameter "' + paramSearch.name + '", valued "' + paramSearch.value + '", could not be connected.'
 
+        for ic in mod.implementation.config:
+            from_attr = path + '/' + lookupInternal(ic.listener, mod)
+            to_attr = path + '/' + lookupInternal(ic.publisher, mod)
+            remap = ET.SubElement(rootElem, "remap")
+            remap.set('to', to_attr)
+            remap.set('from', from_attr)
+
+
     for con in configPart.connections_to_add:
         from_attr = lookup(configPart, con.listener, path)
         to_attr = lookup(configPart, con.publisher, path)
-        remap = ET.SubElement(rootElem, "remap", to=to_attr)
+        remap = ET.SubElement(rootElem, "remap")
+        remap.set('to', to_attr)
         remap.set('from', from_attr)
 
     try:
@@ -84,3 +93,10 @@ def lookup(configPart, string, path):
                     break
             break
     return path + '/' + connectionString
+
+def lookupInternal(string, mod):
+    parts = string.split('/')
+    if len(parts) < 2:
+        raise Exception("Incorrect connect-statement")
+    parts[-2] = mod.id + "_" + parts[-2]
+    return "/".join(parts)
