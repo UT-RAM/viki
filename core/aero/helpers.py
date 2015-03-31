@@ -1,5 +1,7 @@
+"""A collection of functions that help during lookup of modules and interpretation."""
+
 def lookupMessageType(message_type):
-    """Look up a message type from a list given its acronym and returns the full message type.
+    """Look up a message type from a list given its acronym *message_type* and returns the full message type.
 
     If the *message_type* is not an acronym from the list, return *message_type*.
 
@@ -9,7 +11,7 @@ def lookupMessageType(message_type):
 
 
 def getElements(node):
-    """Return a list of al dom elements in an element.
+    """Return a list of al dom elements in the element *node*.
 
     :param node: the parent element
     """
@@ -50,9 +52,9 @@ def getOptionalAttribute(element, attribute):
 
 
 def findModuleById(available_mods, module_id):
-    """Find a module from a list of modules by its id and return the module.
+    """Find a module from list of modules (*available_mods*) by its *module_id* and return the module.
 
-    Return None if the module is not in the list.
+    Return None if the module is there is not a module with id *module_id* in *available_mods*.
 
     :param available_mods: list of all available modules
     :param module_id: id of the module to find
@@ -66,7 +68,7 @@ def findModuleById(available_mods, module_id):
 
 
 def getElementsOnFirstLevelExceptTag(parent, element):
-    """Get all elements below *parent* except for the ones tagged *element*.
+    """Return all elements below *parent* except for the ones tagged *element*.
 
     :param parent: the parent dom object
     :param elemnt: the tag-name of elements **not** to return

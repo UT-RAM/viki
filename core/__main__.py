@@ -1,3 +1,10 @@
+"""Start the Aeroworks robot-framework core.
+
+Call various other functions to scan for available modules in a file tree to finally build a launch file for a specific configuration.
+
+:param configfilename: the (relative) filename of a configuration file (can be given as first argument via command line) (default configuration.xml)
+:param config_id_to_use: the id of a specific configuration within *configfilename* to be used (can be given as second argument via command line) (default None)
+"""
 import sys
 from aero import scan
 from aero import config_interpreter

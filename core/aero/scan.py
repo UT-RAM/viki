@@ -1,3 +1,5 @@
+"""Provides :func:`getAvailableModules`.
+"""
 import xml.dom.minidom
 import os
 import re
@@ -6,6 +8,13 @@ from helpers import *
 
 
 def getAvailableModules():
+    """Return a list of modules available in the framework at this moment.
+
+    #. Run through the entire project tree searching for files called 'module.xml'.
+    #. Create an abstraction from each .xml file as objects from :mod:`core.aero.objects`.
+    #. Put abstraction in a list
+    #. Return list when done.
+    """
     print "Scanning for modules in file tree..."
     available_mods = []
 

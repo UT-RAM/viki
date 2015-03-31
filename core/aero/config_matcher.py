@@ -4,20 +4,22 @@ from helpers import *
 
 
 def matchConfig(configuration, available_mods):
-    """Start matching configuration to available modules_to_add
+    """Start matching modules and settings specified in *configuration* to available modules in *available_mods*.
 
     :param configuration: the abstraction of a configuration
-    :param available_mods: list of all available modules (as delivered by *scan.py*)
+    :param available_mods: list of all available modules (can be delivered by :func:`core.aero.scan.getAvailableModules` )
     """
     recursiveMatch(configuration, available_mods)
     return configuration
 
 
 def recursiveMatch(parent, available_mods):
-    """Recursively find all modules of *parent*.
+    """Find a the abstraction of an object mentioned in *parent* in *available_mods* and return.
+
+    Also step into every level of *parent* recusively and finally return is an abstraction of *parent* with all children abstracted.
 
     :param parent: the to-be-implemented object
-    :param available_mods: list of all available modules
+    :param available_mods: list of all available modules (can be delivered by :func:`core.aero.scan.getAvailableModules`
     """
     for module_to_add in parent.modules_to_add:
         impl = helpers.findModuleById(available_mods, module_to_add.type)

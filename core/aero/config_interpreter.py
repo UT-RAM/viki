@@ -1,15 +1,13 @@
-""" Provide tools to interpret configuration files and return abstractions of it."""
-
+"""Provide tools to interpret configuration files and return abstractions of it."""
 import xml.dom.minidom
 from objects import *
 from helpers import *
 
 
 def getConfig(configfilename='configuration.xml', config_id_to_use=None):
-    """Read in the configuration file.
+    """Read in the configuration file with path *configfilename*.
 
-    If there are multiple configurations inside the file, one specific
-    configuration is used, depending on the variables
+    If *config_id_to_use* is set, use a configuration with this specific id.
 
     Keyword arguments:
     configfilename -- the xml-file containing configuration(s) (default configuration.xml)
@@ -47,9 +45,9 @@ def getConfig(configfilename='configuration.xml', config_id_to_use=None):
 
 
 def recursiveGet(domparent, parent):
-    """Get information from a dom element recursively and place in an abstraction.
+    """Get information from dom element *domparent* and place in an abstraction called *parent*.
 
-    Uses objects from Objects.py to create an abstraction.
+    Recursively increase depth, stepping untill the deepest level of *domparent*. use objects from Objects.py to create an abstraction.
 
     Keyword arguments:
     domparent -- the (current) dom parent
