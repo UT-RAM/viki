@@ -1,19 +1,17 @@
 def lookupMessageType(message_type):
     """Look up a message type from a list given its acronym and returns the full message type.
 
-    If the <message_type> is not an acronym from the list, return message_type.
+    If the *message_type* is not an acronym from the list, return *message_type*.
 
-    Keyword arguments:
-    message_type -- the acronym to look up, or a non acronym message type
+    :param message_type: the acronym to look up, or a non acronym message type
     """
     return message_type
 
 
 def getElements(node):
-    """Return a list of al dom elements in another element.
+    """Return a list of al dom elements in an element.
 
-    Keyword arguments:
-    node -- the parent element
+    :param node: the parent element
     """
     elems = []
     for child in node.childNodes:
@@ -23,11 +21,10 @@ def getElements(node):
 
 
 def getElementsOnFirstLevel(parent, element):
-    """Return a list of elements below parent, that have tagname element.
+    """Return a list of elements below *parent*, that have tagname *element*.
 
-    Keyword arguments:
-    parent -- the parent element
-    element -- tagname of elements to return in the list
+    :param parent: the parent element
+    :param element: tagname of elements to return in the list
     """
     elements = []
     occurences = parent.getElementsByTagName(element)
@@ -38,12 +35,12 @@ def getElementsOnFirstLevel(parent, element):
 
 
 def getOptionalAttribute(element, attribute):
-    """Return the value of an attribute from an element,
-    but do not crash if it does not exist.
+    """Return the value of an *attribute* from an *element*,
+    but do not crash/throw if *attribute* does not exist.
 
-    Return None if the attribute is not in the parent element.
+    Return None if *attribute* is not in the parent *element*.
 
-    :param element: the parent element that contains the attribute
+    :param element: the parent element that (might) contain(s) the attribute
     :param attribute: the optional attribute to return the value of
     """
     if element.hasAttribute(attribute):
@@ -53,8 +50,13 @@ def getOptionalAttribute(element, attribute):
 
 
 def findModuleById(available_mods, module_id):
-    # Finds a module from a list of modules by its id and returns the module
-    # Returns None if the module is not in the list
+    """Find a module from a list of modules by its id and return the module.
+
+    Return None if the module is not in the list.
+
+    :param available_mods: list of all available modules
+    :param module_id: id of the module to find
+    """
     module_found = None
     for available_mod in available_mods:
         if available_mod.id == module_id:
@@ -64,6 +66,11 @@ def findModuleById(available_mods, module_id):
 
 
 def getElementsOnFirstLevelExceptTag(parent, element):
+    """Get all elements below *parent* except for the ones tagged *element*.
+
+    :param parent: the parent dom object
+    :param elemnt: the tag-name of elements **not** to return
+    """
     elements = []
     children = getElements(parent)
     for c in children:

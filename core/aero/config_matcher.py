@@ -6,16 +6,19 @@ from helpers import *
 def matchConfig(configuration, available_mods):
     """Start matching configuration to available modules_to_add
 
-    Keyword arguments:
-    configuration -- the abstraction of a configuration
-    available_mods -- list of all available modules (as delivered by scan.py)
+    :param configuration: the abstraction of a configuration
+    :param available_mods: list of all available modules (as delivered by *scan.py*)
     """
     recursiveMatch(configuration, available_mods)
     return configuration
 
 
 def recursiveMatch(parent, available_mods):
-    """Recursively find all modules of a parent"""
+    """Recursively find all modules of *parent*.
+
+    :param parent: the to-be-implemented object
+    :param available_mods: list of all available modules
+    """
     for module_to_add in parent.modules_to_add:
         impl = helpers.findModuleById(available_mods, module_to_add.type)
         if impl is None:
