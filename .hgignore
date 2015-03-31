@@ -12,9 +12,6 @@ docs/_build/doctrees/*
 # data files
 *.dat
 
-# MarkDown compiled files
-*.html
-
 # LaTeX compiled files and other things you (probably) don't need
 *.pdf
 *.aux
