@@ -115,9 +115,9 @@ def getAvailableModules():
                             connections_to_add = getElementsOnFirstLevel(ConfigElement, 'connect')
                             if connections_to_add:
                                 for connection_to_add in connections_to_add:
-                                    Connection = Internal_Interface(connection_to_add.attributes['publisher'].value,
+                                    internal_interface = Internal_Interface(connection_to_add.attributes['publisher'].value,
                                                                     connection_to_add.attributes['listener'].value)
-                                    mod.addIntConnect(Connection)
+                                    mod.addIntConnect(internal_interface)
 
                     available_mods.append(mod)
                     print mod.id, ' added!'

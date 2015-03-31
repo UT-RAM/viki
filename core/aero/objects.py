@@ -38,11 +38,16 @@ class Module:
         self.inputs = []
         #: A list of :class:`Interface` describing all outputs of the module.
         self.outputs = []
+        #: A list of :class:`Executable` describing all executables (ROS nodes) in the module.
         self.executables = []
+        #: Represents the ID of the module, as defined in the ``module.xml``. This is used for identifying and selecting the module throughout the process, so this value should be unique.
         self.id = id
+        #: Represents the type of the module, as defined in the ``module.xml``. This categorization is added for the comfort of the user. Examples are "userinput", "sensor", "controller" and "vehicle".
         self.type = type
+        #: Contains a dictionary with all module metadata, as defined in ``module.xml``.
         self.meta = {}
-        self.config = []  # list of internal connections
+        #: A list of :class:`Internal_Interface` describing all internal connections.
+        self.config = []
 
     def addMeta(self, key, value):
         self.meta[key] = value
@@ -56,8 +61,8 @@ class Module:
     def addExecutable(self, executable):
         self.executables.append(executable)
 
-    def addIntConnect(self, Connection):
-        self.config.append(Connection)
+    def addIntConnect(self, internal_interface):
+        self.config.append(internal_interface)
 
 
 class Executable:
