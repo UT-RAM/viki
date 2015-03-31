@@ -1,5 +1,8 @@
 syntax: glob
 
+#Sphinx build folder
+docs/_build/doctrees/*
+
 #ROSlaunch
 *.launch
 
