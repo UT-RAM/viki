@@ -9,9 +9,8 @@ def getConfig(configfilename='configuration.xml', config_id_to_use=None):
 
     If *config_id_to_use* is set, use a configuration with this specific id.
 
-    Keyword arguments:
-    configfilename -- the xml-file containing configuration(s) (default configuration.xml)
-    config_id_to_use -- use this specific configuration from within the configuration file (default None)
+    :param configfilename: the xml-file containing configuration(s) (default configuration.xml)
+    :param config_id_to_use: use this specific configuration from within the configuration file (default None)
     """
 
     if not configfilename:
@@ -47,11 +46,10 @@ def getConfig(configfilename='configuration.xml', config_id_to_use=None):
 def recursiveGet(domparent, parent):
     """Get information from dom element *domparent* and place in an abstraction called *parent*.
 
-    Recursively increase depth, stepping untill the deepest level of *domparent*. use objects from Objects.py to create an abstraction.
+    Recursively increase depth, stepping untill the deepest level of *domparent*. use objects from :mod:`core.aero.objects` to create an abstraction.
 
-    Keyword arguments:
-    domparent -- the (current) dom parent
-    parent -- the parent to which abstractions of the domparent are to be added
+    :param domparent: the (current) dom parent
+    :param parent: the parent to which abstractions of the domparent are to be added
     """
     elementsInParent = getElementsOnFirstLevelExceptTag(domparent, 'namespace')
     if elementsInParent:
