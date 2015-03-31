@@ -19,11 +19,6 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   test
-   test/testjes
-
-test
-
 Indices and tables
 ==================
 

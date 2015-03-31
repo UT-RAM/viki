@@ -1,29 +1,42 @@
-from aero import helpers
+"""Describes the different objects used as abstraction of the AeroWorks configuration and modules."""
+import helpers
 
 
 class Interface:
+    """An *interface* represents an in- or output of a module. This in- and outputs can be connected to other module's in- and outputs."""
     def __init__(self, interface_type,
                  name, message_type, required, link=None):
-        # TODO: Add error handling: what if attribute does not exist
+        #: Represents the name of the interface. E.g.: "cmd_vel"
         self.name = name
+        #: Represents the type of the interface. E.g.: "ros_topic"
         self.type = interface_type
+        #: Represents the message type the interface can handle. E.g.: "twist" or "standard_msgs/Empty"
         self.message_type = helpers.lookupMessageType(message_type)
+        #: Defines if the interface is required to be connected. Execution will halt if this requirement is not met.
         self.required = required
+        #: Contains the reference to the executable within the module that actually provides the in- or output. E.g.: "test_node/test_topic"
         self.link = link
 
 
-# TODO: internal interface object does the same as connection to add.
-# Nevertheless i want them to have different names (seems nice)
-# How can we copy without inheritance? or do we just leave them like so?
 class Internal_Interface:
+    """An *internal_interface* represents a connection between an in- and output **within** a module. At this point, implicitly only implemented for *ros_topic* type interfaces.
+
+    .. note:: In the future, this might be a specific case of :class:`Interface`.
+    """
     def __init__(self, publisher, listener):
+        #: Refers to the topic on which messages are be published. E.g. "node_name/command_giver"
         self.publisher = publisher
+        #: Refers to the topic where the node is listening for messages. This topic is remapped to listen to the publisher. E.g. "node2_name/i_listen_here"
         self.listener = listener
 
 
 class Module:
+    """A *module* represents a separately distributable piece of software, that is able to work within the AeroWorks infrastructure.
+    """
     def __init__(self, type, id):
+        #: A list of :class:`Interface` describing all inputs of the module.
         self.inputs = []
+        #: A list of :class:`Interface` describing all outputs of the module.
         self.outputs = []
         self.executables = []
         self.id = id

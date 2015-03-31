@@ -6,23 +6,16 @@
 Welcome to AeroWorks's documentation!
 =====================================
 
-To update documentation, run the following lines in the root of the project.
+To update documentation, run the following line in the root of the project.
 
 .. code-block:: bash
 
-      sphinx-apidoc -f -o docs core
-      cd docs
-      make html
+      sphinx-apidoc -f -o docs core; cd docs; make html; cd ..
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
-
-   test
-   test/testjes
-
-test
 
 Indices and tables
 ==================
