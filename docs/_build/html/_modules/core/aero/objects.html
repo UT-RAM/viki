@@ -139,44 +139,98 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c">#: A list of :class:`Interface` describing all outputs of the module.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: A list of :class:`Executable` describing all executables (ROS nodes) in the module.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executables</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: Represents the ID of the module, as defined in the ``module.xml``. This is used for identifying and selecting the module throughout the process, so this value should be unique.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="c">#: Represents the type of the module, as defined in the ``module.xml``. This categorization is added for the comfort of the user. Examples are &quot;userinput&quot;, &quot;sensor&quot;, &quot;controller&quot; and &quot;vehicle&quot;.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="c">#: Contains a dictionary with all module metadata, as defined in ``module.xml``.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c"># list of internal connections</span>
+        <span class="c">#: A list of :class:`Internal_Interface` describing all internal connections.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="Module.addMeta"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addMeta">[docs]</a>    <span class="k">def</span> <span class="nf">addMeta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds metadata to :attr:`meta`.</span>
+
+<span class="sd">        :param key: The key of the metadata. E.g. &quot;name&quot;</span>
+<span class="sd">        :type key: string</span>
+<span class="sd">        :param value: The value of the metadata. E.g. &quot;AeroWorks&quot;</span>
+<span class="sd">        :type value: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 </div>
 <div class="viewcode-block" id="Module.addInput"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addInput">[docs]</a>    <span class="k">def</span> <span class="nf">addInput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an input to the list of module inputs (:attr:`inputs`).</span>
+
+<span class="sd">        :param interface: The interface to add</span>
+<span class="sd">        :type interface: :class:`Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Module.addOutput"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addOutput">[docs]</a>    <span class="k">def</span> <span class="nf">addOutput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an output to the list of module outputs (:attr:`outputs`).</span>
+
+<span class="sd">        :param interface: The interface to add</span>
+<span class="sd">        :type interface: :class:`Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Module.addExecutable"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addExecutable">[docs]</a>    <span class="k">def</span> <span class="nf">addExecutable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an executable to the list of module executables (:attr:`executables`). Those executables are ROS nodes.</span>
+
+<span class="sd">        :param executable: The executable to add.</span>
+<span class="sd">        :type executable: :class:`Executable`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">executable</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Module.addIntConnect"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addIntConnect">[docs]</a>    <span class="k">def</span> <span class="nf">addIntConnect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Connection</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Connection</span><span class="p">)</span>
+<div class="viewcode-block" id="Module.addIntConnect"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addIntConnect">[docs]</a>    <span class="k">def</span> <span class="nf">addIntConnect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">internal_interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an internal connection to the list of module internal connections (:attr:`config`).</span>
+
+<span class="sd">        :param internal_interface: The connection to add</span>
+<span class="sd">        :type interface: :class:`Internal_Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">internal_interface</span><span class="p">)</span>
 
 </div></div>
 <div class="viewcode-block" id="Executable"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Executable">[docs]</a><span class="k">class</span> <span class="nc">Executable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An *executable* represents a ROS node that can be launched through a ROS launch file, generated by the AeroWorks infrastructure.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">pkg</span><span class="p">,</span> <span class="n">executable</span><span class="p">):</span>
+        <span class="c">#: A list of :class:`Interface` describing all inputs of the executable.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: A list of :class:`Interface` describing all outputs of the executable.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: A list of :class:`Parameter` describing parameters to be set for the executable.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: The ID of the executable, as given in the ``module.xml``.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="c">#: The ROS package that contains the executable. E.g.: &quot;joy&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pkg</span> <span class="o">=</span> <span class="n">pkg</span>
+        <span class="c">#: The ROS node executable to launch. E.g. &quot;joy_node&quot;.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executable</span> <span class="o">=</span> <span class="n">executable</span>
 
 <div class="viewcode-block" id="Executable.addInput"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Executable.addInput">[docs]</a>    <span class="k">def</span> <span class="nf">addInput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an input to the list of executable inputs (:attr:`inputs`).</span>
+
+<span class="sd">        :param interface: The interface to add</span>
+<span class="sd">        :type interface: :class:`Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Executable.addOutput"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Executable.addOutput">[docs]</a>    <span class="k">def</span> <span class="nf">addOutput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an output to the list of executable outputs (:attr:`outputs`).</span>
+
+<span class="sd">        :param interface: The interface to add</span>
+<span class="sd">        :type interface: :class:`Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Executable.addParameter"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Executable.addParameter">[docs]</a>    <span class="k">def</span> <span class="nf">addParameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a parameter to the list of executable parameters (:attr:`params`).</span>
+
+<span class="sd">        :param parameter: The parameter to add</span>
+<span class="sd">        :type parameter: :class:`Parameter`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
 
 </div></div>
