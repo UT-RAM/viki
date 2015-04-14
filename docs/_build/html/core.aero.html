@@ -61,7 +61,15 @@
         
           
           
-              <ul class="simple">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#system-set-up">System set up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-write-config">How to write config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute">How to contribute</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -110,19 +118,37 @@
 <code class="descclassname">core.aero.config_interpreter.</code><code class="descname">getConfig</code><span class="sig-paren">(</span><em>configfilename='configuration.xml'</em>, <em>config_id_to_use=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/config_interpreter.html#getConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.config_interpreter.getConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read in the configuration file with path <em>configfilename</em>.</p>
 <p>If <em>config_id_to_use</em> is set, use a configuration with this specific id.</p>
-<p>Keyword arguments:
-configfilename &#8211; the xml-file containing configuration(s) (default configuration.xml)
-config_id_to_use &#8211; use this specific configuration from within the configuration file (default None)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>configfilename</strong> &#8211; the xml-file containing configuration(s) (default configuration.xml)</li>
+<li><strong>config_id_to_use</strong> &#8211; use this specific configuration from within the configuration file (default None)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="core.aero.config_interpreter.recursiveGet">
 <code class="descclassname">core.aero.config_interpreter.</code><code class="descname">recursiveGet</code><span class="sig-paren">(</span><em>domparent</em>, <em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/config_interpreter.html#recursiveGet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.config_interpreter.recursiveGet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get information from dom element <em>domparent</em> and place in an abstraction called <em>parent</em>.</p>
-<p>Recursively increase depth, stepping untill the deepest level of <em>domparent</em>. use objects from Objects.py to create an abstraction.</p>
-<p>Keyword arguments:
-domparent &#8211; the (current) dom parent
-parent &#8211; the parent to which abstractions of the domparent are to be added</p>
+<p>Recursively increase depth, stepping untill the deepest level of <em>domparent</em>. use objects from <a class="reference internal" href="#module-core.aero.objects" title="core.aero.objects"><code class="xref py py-mod docutils literal"><span class="pre">core.aero.objects</span></code></a> to create an abstraction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domparent</strong> &#8211; the (current) dom parent</li>
+<li><strong>parent</strong> &#8211; the parent to which abstractions of the domparent are to be added</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -382,7 +408,7 @@ but do not crash/throw if <em>attribute</em> does not exist.</p>
 
 <dl class="method">
 <dt id="core.aero.objects.Module.addIntConnect">
-<code class="descname">addIntConnect</code><span class="sig-paren">(</span><em>Connection</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Module.addIntConnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Module.addIntConnect" title="Permalink to this definition">¶</a></dt>
+<code class="descname">addIntConnect</code><span class="sig-paren">(</span><em>internal_interface</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Module.addIntConnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Module.addIntConnect" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -396,15 +422,45 @@ but do not crash/throw if <em>attribute</em> does not exist.</p>
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="core.aero.objects.Module.config">
+<code class="descname">config</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#core.aero.objects.Internal_Interface" title="core.aero.objects.Internal_Interface"><code class="xref py py-class docutils literal"><span class="pre">Internal_Interface</span></code></a> describing all internal connections.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.aero.objects.Module.executables">
+<code class="descname">executables</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.executables" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#core.aero.objects.Executable" title="core.aero.objects.Executable"><code class="xref py py-class docutils literal"><span class="pre">Executable</span></code></a> describing all executables (ROS nodes) in the module.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.aero.objects.Module.id">
+<code class="descname">id</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the ID of the module, as defined in the <code class="docutils literal"><span class="pre">module.xml</span></code>. This is used for identifying and selecting the module throughout the process, so this value should be unique.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="core.aero.objects.Module.inputs">
 <code class="descname">inputs</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.inputs" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of <a class="reference internal" href="#core.aero.objects.Interface" title="core.aero.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a> describing all inputs of the module.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="core.aero.objects.Module.meta">
+<code class="descname">meta</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains a dictionary with all module metadata, as defined in <code class="docutils literal"><span class="pre">module.xml</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="core.aero.objects.Module.outputs">
 <code class="descname">outputs</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.outputs" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of <a class="reference internal" href="#core.aero.objects.Interface" title="core.aero.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a> describing all outputs of the module.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.aero.objects.Module.type">
+<code class="descname">type</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the type of the module, as defined in the <code class="docutils literal"><span class="pre">module.xml</span></code>. This categorization is added for the comfort of the user. Examples are &#8220;userinput&#8221;, &#8220;sensor&#8221;, &#8220;controller&#8221; and &#8220;vehicle&#8221;.</p>
 </dd></dl>
 
 </dd></dl>

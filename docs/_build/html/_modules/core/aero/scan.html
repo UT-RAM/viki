@@ -62,7 +62,15 @@
         
           
           
-              <ul class="simple">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../userguide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#system-set-up">System set up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#how-to-write-config">How to write config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#how-to-contribute">How to contribute</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -225,9 +233,9 @@
                             <span class="n">connections_to_add</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">ConfigElement</span><span class="p">,</span> <span class="s">&#39;connect&#39;</span><span class="p">)</span>
                             <span class="k">if</span> <span class="n">connections_to_add</span><span class="p">:</span>
                                 <span class="k">for</span> <span class="n">connection_to_add</span> <span class="ow">in</span> <span class="n">connections_to_add</span><span class="p">:</span>
-                                    <span class="n">Connection</span> <span class="o">=</span> <span class="n">Internal_Interface</span><span class="p">(</span><span class="n">connection_to_add</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                    <span class="n">internal_interface</span> <span class="o">=</span> <span class="n">Internal_Interface</span><span class="p">(</span><span class="n">connection_to_add</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
                                                                     <span class="n">connection_to_add</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;listener&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-                                    <span class="n">mod</span><span class="o">.</span><span class="n">addIntConnect</span><span class="p">(</span><span class="n">Connection</span><span class="p">)</span>
+                                    <span class="n">mod</span><span class="o">.</span><span class="n">addIntConnect</span><span class="p">(</span><span class="n">internal_interface</span><span class="p">)</span>
 
                     <span class="n">available_mods</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
                     <span class="k">print</span> <span class="n">mod</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s">&#39; added!&#39;</span>

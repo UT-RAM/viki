@@ -62,7 +62,15 @@
         
           
           
-              <ul class="simple">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../userguide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#system-set-up">System set up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#how-to-write-config">How to write config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#how-to-contribute">How to contribute</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -110,9 +118,8 @@
 
 <span class="sd">    If *config_id_to_use* is set, use a configuration with this specific id.</span>
 
-<span class="sd">    Keyword arguments:</span>
-<span class="sd">    configfilename -- the xml-file containing configuration(s) (default configuration.xml)</span>
-<span class="sd">    config_id_to_use -- use this specific configuration from within the configuration file (default None)</span>
+<span class="sd">    :param configfilename: the xml-file containing configuration(s) (default configuration.xml)</span>
+<span class="sd">    :param config_id_to_use: use this specific configuration from within the configuration file (default None)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">configfilename</span><span class="p">:</span>
@@ -148,11 +155,10 @@
 <div class="viewcode-block" id="recursiveGet"><a class="viewcode-back" href="../../../core.aero.html#core.aero.config_interpreter.recursiveGet">[docs]</a><span class="k">def</span> <span class="nf">recursiveGet</span><span class="p">(</span><span class="n">domparent</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get information from dom element *domparent* and place in an abstraction called *parent*.</span>
 
-<span class="sd">    Recursively increase depth, stepping untill the deepest level of *domparent*. use objects from Objects.py to create an abstraction.</span>
+<span class="sd">    Recursively increase depth, stepping untill the deepest level of *domparent*. use objects from :mod:`core.aero.objects` to create an abstraction.</span>
 
-<span class="sd">    Keyword arguments:</span>
-<span class="sd">    domparent -- the (current) dom parent</span>
-<span class="sd">    parent -- the parent to which abstractions of the domparent are to be added</span>
+<span class="sd">    :param domparent: the (current) dom parent</span>
+<span class="sd">    :param parent: the parent to which abstractions of the domparent are to be added</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">elementsInParent</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevelExceptTag</span><span class="p">(</span><span class="n">domparent</span><span class="p">,</span> <span class="s">&#39;namespace&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">elementsInParent</span><span class="p">:</span>

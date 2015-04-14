@@ -62,7 +62,15 @@
         
           
           
-              <ul class="simple">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../userguide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#system-set-up">System set up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#how-to-write-config">How to write config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#how-to-contribute">How to contribute</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -139,11 +147,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c">#: A list of :class:`Interface` describing all outputs of the module.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: A list of :class:`Executable` describing all executables (ROS nodes) in the module.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executables</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: Represents the ID of the module, as defined in the ``module.xml``. This is used for identifying and selecting the module throughout the process, so this value should be unique.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="c">#: Represents the type of the module, as defined in the ``module.xml``. This categorization is added for the comfort of the user. Examples are &quot;userinput&quot;, &quot;sensor&quot;, &quot;controller&quot; and &quot;vehicle&quot;.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="c">#: Contains a dictionary with all module metadata, as defined in ``module.xml``.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c"># list of internal connections</span>
+        <span class="c">#: A list of :class:`Internal_Interface` describing all internal connections.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="Module.addMeta"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addMeta">[docs]</a>    <span class="k">def</span> <span class="nf">addMeta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
@@ -157,8 +170,8 @@
 <div class="viewcode-block" id="Module.addExecutable"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addExecutable">[docs]</a>    <span class="k">def</span> <span class="nf">addExecutable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">executable</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Module.addIntConnect"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addIntConnect">[docs]</a>    <span class="k">def</span> <span class="nf">addIntConnect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Connection</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Connection</span><span class="p">)</span>
+<div class="viewcode-block" id="Module.addIntConnect"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addIntConnect">[docs]</a>    <span class="k">def</span> <span class="nf">addIntConnect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">internal_interface</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">internal_interface</span><span class="p">)</span>
 
 </div></div>
 <div class="viewcode-block" id="Executable"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Executable">[docs]</a><span class="k">class</span> <span class="nc">Executable</span><span class="p">:</span>
