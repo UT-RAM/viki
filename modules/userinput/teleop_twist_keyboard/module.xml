@@ -1,0 +1,21 @@
+<!--AEROWORKS-->
+
+<!-- downloaded from: https://github.com/ros-teleop/teleop_twist_keyboard -->
+<module type="userinput" id="keyboard">
+    <meta>
+        <name>Keyboard teleop node</name>
+        <description>Uses keyboard input to generate twist messages.</description>
+        <author>A. Kamphuis</author>
+    </meta>
+
+    <outputs>
+        <output type="ros_topic" name="cmd_vel" link="keyboard_node/cmd_vel" message_type="geometry_msgs/Twist" required="true" />
+    </outputs>
+
+    <executable id="keyboard_node" pkg="teleop_twist_keyboard" exec="teleop_twist_keyboard.py">
+        <outputs>
+            <output type="ros_topic" name="cmd_vel" message_type="geometry_msgs/Twist" required="true" />
+        </outputs>
+    </executable>
+
+</module>
