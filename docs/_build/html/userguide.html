@@ -31,6 +31,7 @@
 
   
     <link rel="top" title="AeroWorks 1.0 documentation" href="index.html"/>
+        <link rel="next" title="The developers" href="developers.html"/>
         <link rel="prev" title="API documentation" href="api.html"/> 
 
   
@@ -71,6 +72,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#how-to-contribute">How to contribute</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -108,23 +114,136 @@
             
   <div class="section" id="user-guide">
 <span id="userguide"></span><h1>User guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<p>This userguide aims to get you started using the Aeroworks framework as quick as possible. If you are here for the first time, you should check if you meet the requirements in <a class="reference internal" href="#system-setup"><span>System set up</span></a>. If you are not try using the <span class="xref std std-ref">start guide</span> for a quick setup or create your own setup with <a class="reference internal" href="#how-to-write-config">How to write config</a></p>
 <div class="section" id="system-set-up">
-<h2>System set up<a class="headerlink" href="#system-set-up" title="Permalink to this headline">¶</a></h2>
+<span id="system-setup"></span><h2>System set up<a class="headerlink" href="#system-set-up" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="for-using-the-framework">
+<h3>For using the framework<a class="headerlink" href="#for-using-the-framework" title="Permalink to this headline">¶</a></h3>
+<p>To use the Aeroworks framework you are going to need a few things. Let&#8217;s start at the very basis.</p>
+<div class="section" id="ubuntu-operating-system">
+<h4>Ubuntu operating system<a class="headerlink" href="#ubuntu-operating-system" title="Permalink to this headline">¶</a></h4>
+<p>Either use a computer that has Ubuntu installed at the RAM lab, install in on your own computer from <a class="reference external" href="http://www.ubuntu.com/download/desktop">the ubuntu download page</a>
+Ubuntu is not strictly necessary for running the framework. However it is the common practice at RAM. By working on Ubuntu you enable yourself to use the many different kinds of software that have been developed for the platform, some of which we&#8217;ll use.</p>
+<p>If you have in no way acces to a computer with Ubuntu, or cannot install it on a computer, you can use a virtual machine to run Ubuntu on your own computer. You could use <a class="reference external" href="https://www.virtualbox.org/">Oracle VM Virtualbox</a> to set it up.</p>
+</div>
+<div class="section" id="ros">
+<h4>ROS<a class="headerlink" href="#ros" title="Permalink to this headline">¶</a></h4>
+<p>Ros.org offers <a class="reference external" href="http://wiki.ros.org/indigo/Installation/Ubuntu">an excellent guide for installing ros</a> on your Ubuntu system, follow it to install ROS.</p>
+</div>
+<div class="section" id="python">
+<h4>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h4>
+<p>You need Python, get it at the <a class="reference external" href="https://www.python.org/downloads/source/">Python webpage</a>. If you need a little more help on this check out <a class="reference external" href="https://wiki.python.org/moin/BeginnersGuide/">a Python wiki for beginners</a>.</p>
+</div>
+<div class="section" id="the-code">
+<h4>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h4>
+<p>The framework is in an mercurial repository hosted at RAM. To get it you need mercurial which is often installed by default in Ubunut. Open a console and type</p>
+<div class="highlight-bash"><div class="highlight"><pre>hg version
+</pre></div>
+</div>
+<p>to see if you have mercurial. If you do not there is <a class="reference external" href="https://help.ubuntu.com/community/Mercurial">an ubuntu help page on getting mercurial</a>.</p>
+<p>The easiest way to set up the aeroworks framework is by putting it in your catkin workspace. If you haven&#8217;t already, set up your catkin workspace using <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment">this tutorial</a>. Open a console and use the &#8216;cd&#8217; command to get to your catkin workspace, and then into the &#8216;src&#8217; folder. If you have created the catkin workspace in you home folder, you can use the following code to clone the repository.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws/src/ <span class="o">&amp;&amp;</span> hg clone https://hg.ce.utwente.nl/aeroworks/
+</pre></div>
+</div>
+<p>You will need to enter your RAM username and password, after which you will have the latest version of the Aeroworks framework available. Go to the <a class="reference internal" href="#quick-start-guide">Quick start guide</a> to see what you can do with it!</p>
+</div>
+<div class="section" id="some-more-useful-links">
+<h4>Some more useful links<a class="headerlink" href="#some-more-useful-links" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="http://hginit.com/">A simple guide to mercurial and version control in general</a></li>
+</ul>
+</div>
+<div class="section" id="help">
+<h4>Help<a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h4>
+<p>If you need help, contact <span class="xref std std-ref">The developers</span>.</p>
+</div>
+</div>
+<div class="section" id="for-development">
+<h3>For development<a class="headerlink" href="#for-development" title="Permalink to this headline">¶</a></h3>
+<p>If you want to contribute to the Aeroworks project, be sure to check out <a class="reference internal" href="#how-to-contribute">How to contribute</a>.</p>
+<p>You can get Sphinx through apt-get, look for info on <a class="reference external" href="http://sphinx-doc.org/latest/install.html">the Sphinx documentation website</a>.</p>
+</div>
 </div>
 <div class="section" id="quick-start-guide">
 <h2>Quick start guide<a class="headerlink" href="#quick-start-guide" title="Permalink to this headline">¶</a></h2>
+<p>Assuming you have set everything up (for instance through <span class="xref std std-ref">System set up</span>) you can now run your first experiment using the Aeroworks framework.</p>
+<div class="section" id="quickstarting-a-turtle">
+<h3>Quickstarting a turtle<a class="headerlink" href="#quickstarting-a-turtle" title="Permalink to this headline">¶</a></h3>
+<p>ROS includes a turtle simulator package specifically to get you up to speed quickly. Here we will set it up.</p>
+</div>
+<div class="section" id="quickstarting-an-ar-drone">
+<h3>Quickstarting an AR.Drone<a class="headerlink" href="#quickstarting-an-ar-drone" title="Permalink to this headline">¶</a></h3>
+<p>Allright, you are going to fly a Parrot AR.drone, and going to control it with a joystick. Do not worry, we&#8217;ll talk you through it.</p>
+<div class="section" id="additional-requirements">
+<h4>Additional requirements<a class="headerlink" href="#additional-requirements" title="Permalink to this headline">¶</a></h4>
+<p>You are going to need a joystick. Find one from the lab (preferebly one that noone is using at the moment) and plug it into your pc. You need to find where it publishes to. Open a console and cd to <em>/dev/input/</em> and see what&#8217;s there using ls. You can do that by running the following line</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> /dev/input/ <span class="o">&amp;&amp;</span> ls
+</pre></div>
+</div>
+<p>You should see some items like <em>mouse1</em> and <em>js0</em>, maybe with different numbers and maybe more then just one. You need to find which one belongs to your joystick. To do that you can use the tool <em>jstest</em>. Key in jstest and use one of the <em>js</em>-items as argument. You can cancel the test by hitting <em>ctrl+c</em>.</p>
+<p>You are going to have to do this for every <em>js</em>-item (with the number behind it) untill you find one that clearly responds when you press buttons or move axis on your joystick, before hitting <em>ctrl+c</em>. When you have found it remember which one it was. Fur this quick start guide we will assume that it is <em>js0</em>.</p>
+<p>Go to the root of the aeroworks framework, and open configuration.xml, for instance by running</p>
+<div class="highlight-bash"><div class="highlight"><pre>gedit ~/catkin_ws/src/aeroworks/configuration.xml
+</pre></div>
+</div>
+<p>Find the part that says (or with another number behind js)</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;dev&quot;</span> <span class="na">value=</span><span class="s">&quot;/dev/input/js0&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>and replace <em>js0</em> with whatever you found before. We were going to assume it was <em>js0</em>, so in that case leave it be. Be sure to save the file if you have changed anything.</p>
+<p>To interpret the joystick information to command velocities that make sense we use a some special ros packages. We&#8217;ll talk you through them but for now just make sure you have the joy package. It might be installed for you, to check this run:</p>
+<div class="highlight-bash"><div class="highlight"><pre>rospack find joy
+</pre></div>
+</div>
+<p>If this returns a path rather than an error, you have got the package and can skip the following. If not, get it by running</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-indigo-joy
+</pre></div>
+</div>
+<p>You might need to enter the password to an administrator priviledged user account. Furthermore, you should replace <em>indigo</em> by the ROS distribution that you have got. You can find whichever distribution you have got by running</p>
+<div class="highlight-bash"><div class="highlight"><pre>rosversion -d
+</pre></div>
+</div>
+</div>
+<div class="section" id="connecting-to-the-drone">
+<h4>Connecting to the drone<a class="headerlink" href="#connecting-to-the-drone" title="Permalink to this headline">¶</a></h4>
+<p>Go to a place where it&#8217;s safe to fly, for instance the RAM flightarena. Switch on the Parrot AR.drone. Connect to the wireless network the parrot has created, it&#8217;s called parrot_*number*. Don&#8217;t mind the number. You can acces a list of wireless networks usually at the top-right of your screen, using the arrow symbols.</p>
+<p>Once you are connected to the drone you can test the connection by opening a console and running</p>
+<div class="highlight-bash"><div class="highlight"><pre>ping 192.168.1.1
+</pre></div>
+</div>
+<p>If the connection was succesfull you should see several ping statistics appearing on screen. Otherwise you&#8217;ll get a message saying it is unreachable.</p>
+</div>
+<div class="section" id="starting-the-framework">
+<h4>Starting the framework<a class="headerlink" href="#starting-the-framework" title="Permalink to this headline">¶</a></h4>
+<p>You are now ready to actually start the framework. Things are going to be fast now, keep in mind that the button to land is (if the joystick is labeled) labeled 11).</p>
+<p>Open a console and <em>cd</em> to the Aeroworks root directory you have cloned in the <a class="reference internal" href="#system-set-up">System set up</a>. Then start the core by running Python core with <em>configuration.xml</em> and <em>quickstart_parrot</em> as arguments. If you have set up the Aeroworks framework in the <em>src</em> folder of <em>~/catkin_ws</em> you can run the following line to start the core:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span>  ~/catkin_ws/src/aeroworks/ <span class="o">&amp;&amp;</span> python core configuration.xml quickstart_parrot
+</pre></div>
+</div>
+<p>You will get some feedback from the framework, eventually telling you it has finished. You should now have a file called aeroworks.launch in the root of the aeroworks folder (~/catkin_ws/src/aeroworks/aeroworks.launch by default). You can use this launch file to start every ROS node you are going to need for this experiment and also set up connections among them.</p>
+<p><em>cd</em> to the Aeroworks root and run <em>roslaunch aeroworks.launch</em>. If the framework is located in the default location you can do that by running</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws/src/aeroworks <span class="o">&amp;&amp;</span> roslaunch aeroworks.launch
+</pre></div>
+</div>
+</div>
+<div class="section" id="go-fly">
+<h4>Go fly<a class="headerlink" href="#go-fly" title="Permalink to this headline">¶</a></h4>
+<p>Hit the button labeled 12 to lift of, move the joystick around to play with your drone. Remember 11 is land.
+If your joystick is not labelled get yourself a labeled one, or be careful.</p>
+</div>
+</div>
 </div>
 <div class="section" id="how-to-write-config">
 <h2>How to write config<a class="headerlink" href="#how-to-write-config" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="how-to-contribute">
 <h2>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h2>
+<p>Will be more available later. For now please contact <span class="xref std std-ref">The developers</span>.</p>
 <div class="section" id="writing-code">
 <h3>Writing code<a class="headerlink" href="#writing-code" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="sending-in-modules">
 <h3>Sending in modules<a class="headerlink" href="#sending-in-modules" title="Permalink to this headline">¶</a></h3>
-<p>Will be more available later. For now please contact <a class="reference external" href="mailto:a&#46;kamphuis-1&#37;&#52;&#48;student&#46;utwente&#46;nl">Alex</a> or <a class="reference external" href="mailto:">Cees</a>.</p>
 <ul class="simple">
 <li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
 </ul>
@@ -137,6 +256,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="developers.html" class="btn btn-neutral float-right" title="The developers">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="api.html" class="btn btn-neutral" title="API documentation"><span class="fa fa-arrow-circle-left"></span> Previous</a>

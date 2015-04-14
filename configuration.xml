@@ -10,7 +10,7 @@
 			<param name="leds" value="4" />
 		</vehicle>
 
-		<!-- To be implemented: <connect namespace="parrot1" publisher="cd/out" listener="parrot/collission" /> --> <!-- THIS IS LINE * -->
+
 		<connect publisher="joystick1/cmd_vel" listener="parrot2/cmd_vel" />
 		<connect publisher="joystick1/cmd_vel" listener="parrot1/parrot/cmd_vel" />
 	</configuration>
@@ -36,10 +36,16 @@
         <connect publisher="joy1/takeoff" listener="parrot1/takeoff" />
 	</configuration>
 
-	<configuration id="milestone1">
-		<userinput type="joystick" id="joy1" >
-			<param name="dev" value="/dev/input/js2" />
-		</userinput>
 
+	<configuration id="quickstart_parrot"> <!-- Do not change or rename this, it use used for illustration in the quickstart guide -->
+			<vehicle type="parrot" id="parrot1" />
+			<userinput type="joystick" id="joy1">
+				<param name="dev" value="/dev/input/js0" />
+			</userinput>
+		<connect publisher="joy1/cmd_vel_joy" listener="parrot1/cmd_vel" />
+        <connect publisher="joy1/land" listener="parrot1/land" />
+        <connect publisher="joy1/reset" listener="parrot1/reset" />
+        <connect publisher="joy1/takeoff" listener="parrot1/takeoff" />
 	</configuration>
+
 </configurations>
