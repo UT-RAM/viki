@@ -1,0 +1,22 @@
+<!-- AEROWORKS -->
+
+<!-- This module file enables a ros default node in the aeroworks framework -->
+
+<module type="vehicle" id="turtlesim">
+    <meta>
+        <name>Turtlesim node</name>
+        <description>the ros default turtle sim node</description>
+        <author>ros.org</author>
+    </meta>
+
+    <inputs>
+        <input type="ros_topic" name="cmd_vel" message_type="geometry_msgs/Twist" required="true" link="turtlenode/turtle1/cmd_vel" />
+    </inputs>
+
+    <executable id="turtlenode" pkg="turtlesim" exec="turtlesim_node">
+        <inputs>
+            <input type="ros_topic" name="turtle1/cmd_vel" message_type="geometry_msgs/Twist" required="false" />
+        </inputs>
+    </executable>
+
+</module>

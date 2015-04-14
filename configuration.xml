@@ -36,6 +36,12 @@
         <connect publisher="joy1/takeoff" listener="parrot1/takeoff" />
 	</configuration>
 
+	<!-- Do not change this configuration, it is used in the quickstart guide -->
+	<configuration id="quickstart_turtle">
+		<vehicle type="turtlesim" id="turtle1" />
+		<userinput type="turtlekey" id="turtlekeynode" />
+		<connect publisher="turtlekeynode/cmd_vel" listener="turtle1/cmd_vel" />
+	</configuration>
 
 	<configuration id="quickstart_parrot"> <!-- Do not change or rename this, it use used for illustration in the quickstart guide -->
 			<vehicle type="parrot" id="parrot1" />
