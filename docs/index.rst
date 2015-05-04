@@ -30,7 +30,7 @@ Contents
    userguide
    developers
 
-auto generated pages
+Automatically generated pages
 --------------------
 * :ref:`genindex`
 * :ref:`modindex`
