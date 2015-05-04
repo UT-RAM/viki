@@ -231,7 +231,11 @@ Strictly speaking, Ubuntu is not necessary for running the framework: any platfo
 <div class="highlight-bash"><div class="highlight"><pre>jstest js0
 </pre></div>
 </div>
-<p>You are going to have to do this for every <em>js</em>-item (with the number behind it) until you find one that clearly responds when you press buttons or move axis on your joystick, before hitting <em>ctrl+c</em>. When you have found it remember which one it was. Fur this quick start guide we will assume that it is <em>js0</em>.</p>
+<p>If you don&#8217;t have <em>jstest</em> yet you can get it by running:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install jstest-gtk
+</pre></div>
+</div>
+<p>You are going to have to do this for every <em>js</em>-item (with the number behind it) until you find one that clearly responds when you press buttons or move axis on your joystick, before hitting <em>ctrl+c</em>. When you have found it remember which one it was. Fur this quick start guide we will assume that it is <em>js0</em>. If you are having trouble finding your joystick through a virtual machine, check out <a class="reference internal" href="virtualbox.html#virtualbox"><span>Difficulties with virtualbox</span></a>.</p>
 <p>Go to the root of the AeroWorks framework, and open configuration.xml, for instance by running</p>
 <div class="highlight-bash"><div class="highlight"><pre>gedit ~/catkin_ws/src/aeroworks/configuration.xml
 </pre></div>
@@ -253,15 +257,30 @@ Strictly speaking, Ubuntu is not necessary for running the framework: any platfo
 <div class="highlight-bash"><div class="highlight"><pre>rosversion -d
 </pre></div>
 </div>
+<p>Furthermore you need the ardrone_autonomy package, it&#8217;s a great ROS package that let&#8217;s you control the parrot. You can check if you have it using</p>
+<div class="highlight-bash"><div class="highlight"><pre>rospack find ardrone_autonomy
+</pre></div>
+</div>
+<p>If you don&#8217;t have it you can install it by running (with indigo replaced by your ros distribution)</p>
+<div class="highlight-bash"><div class="highlight"><pre>apt-get install ros-indigo-ardrone-autonomy
+</pre></div>
+</div>
+</div>
+<div class="section" id="catkin-and-source">
+<h4>Catkin and source<a class="headerlink" href="#catkin-and-source" title="Permalink to this headline">¶</a></h4>
+<p>Because you might have added new packages, you need to rebuild your catkin workspace and source the setup file so that ROS can find the new packages. You can do this by running</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws/ <span class="o">&amp;&amp;</span> catkin_make <span class="o">&amp;&amp;</span> <span class="nb">source </span>devel/setup.bash
+</pre></div>
+</div>
 </div>
 <div class="section" id="connecting-to-the-drone">
 <h4>Connecting to the drone<a class="headerlink" href="#connecting-to-the-drone" title="Permalink to this headline">¶</a></h4>
-<p>Go to a place where it&#8217;s safe to fly, for instance the RAM flightarena. Switch on the Parrot AR.drone. Connect to the wireless network the parrot has created, it&#8217;s called parrot_*number*. Don&#8217;t mind the number. You can acces a list of wireless networks usually at the top-right of your screen, using the arrow symbols.</p>
+<p>Go to a place where it&#8217;s safe to fly, for instance the RAM flightarena. Switch on the Parrot AR.drone. Connect to the wireless network the parrot has created, it&#8217;s called ardrone_*number*. Don&#8217;t mind the number. You can acces a list of wireless networks usually at the top-right of your screen, using the arrow symbols.</p>
 <p>Once you are connected to the drone you can test the connection by opening a console and running</p>
 <div class="highlight-bash"><div class="highlight"><pre>ping 192.168.1.1
 </pre></div>
 </div>
-<p>If the connection was succesful you should see several ping statistics appearing on screen. Otherwise you&#8217;ll get a message saying it is unreachable.</p>
+<p>If the connection was succesful you should see several ping statistics appearing on screen. Otherwise you&#8217;ll get a message saying it is unreachable. If you are having trouble connecting to the drone through a virtual machine check out <a class="reference internal" href="virtualbox.html#virtualbox"><span>Difficulties with virtualbox</span></a>.</p>
 </div>
 <div class="section" id="starting-the-framework">
 <h4>Starting the framework<a class="headerlink" href="#starting-the-framework" title="Permalink to this headline">¶</a></h4>

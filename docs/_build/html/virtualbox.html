@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Difficulties with virtualbox &mdash; AeroWorks 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="AeroWorks 1.0 documentation" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> AeroWorks</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-write-config">How to write config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute">How to contribute</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">AeroWorks</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Difficulties with virtualbox</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/virtualbox.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="difficulties-with-virtualbox">
+<span id="virtualbox"></span><h1>Difficulties with virtualbox<a class="headerlink" href="#difficulties-with-virtualbox" title="Permalink to this headline">¶</a></h1>
+<p>Setting up ros through your virtualbox might cause a troubles. The Aeroworks framework does not aim to help you solve all of these, but here you might find the solution to some common problems.</p>
+<div class="section" id="joystick-related">
+<h2>Joystick related<a class="headerlink" href="#joystick-related" title="Permalink to this headline">¶</a></h2>
+<p>If you are on a Windows host chances are that you have got to specifically <em>claim</em> the joystick for your virtual machine. You can do that by going to the virtual machine, click Devices in the menubar, click USB devices, and enable the one port with your joystick. That should be it.</p>
+<p>If the menubar is not visible you might need to hit your Host key, which is your right ctrl key by default.</p>
+</div>
+<div class="section" id="connecting-to-a-wireless-network">
+<h2>Connecting to a wireless network<a class="headerlink" href="#connecting-to-a-wireless-network" title="Permalink to this headline">¶</a></h2>
+<p>There are two approaches:</p>
+<div class="section" id="via-an-extra-adapter">
+<h3>Via an extra adapter<a class="headerlink" href="#via-an-extra-adapter" title="Permalink to this headline">¶</a></h3>
+<p>Get an external wireless adapter, plug it into your usb port and <em>claim</em> it following the procedure above. That should do the trick.</p>
+</div>
+<div class="section" id="via-your-host-pc-s-wireless-card">
+<h3>Via your host pc&#8217;s wireless card<a class="headerlink" href="#via-your-host-pc-s-wireless-card" title="Permalink to this headline">¶</a></h3>
+<p>Close your virtual machine and open vbox. Go to the network settings for the virtual machien you are planning to use. Add a new network adapter of type &#8216;bridged&#8217;. Make sure it is enabled using the button right there.</p>
+<p>Now connect to the drone with your Host, it will not work via the virtual machine. The virtual machine however is indirectly connected to the drone via the <em>bridge</em> you have just created.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

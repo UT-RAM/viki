@@ -175,7 +175,13 @@ You should see some items like *mouse1* and *js0*, maybe with different numbers 
 
     jstest js0
 
-You are going to have to do this for every *js*-item (with the number behind it) until you find one that clearly responds when you press buttons or move axis on your joystick, before hitting *ctrl+c*. When you have found it remember which one it was. Fur this quick start guide we will assume that it is *js0*.
+If you don't have *jstest* yet you can get it by running: 
+
+.. code-block:: bash
+
+    sudo apt-get install jstest-gtk
+
+You are going to have to do this for every *js*-item (with the number behind it) until you find one that clearly responds when you press buttons or move axis on your joystick, before hitting *ctrl+c*. When you have found it remember which one it was. Fur this quick start guide we will assume that it is *js0*. If you are having trouble finding your joystick through a virtual machine, check out :ref:`virtualbox`.
 
 Go to the root of the AeroWorks framework, and open configuration.xml, for instance by running
 
@@ -209,9 +215,30 @@ You might need to enter the password to an administrator privileged user account
 
     rosversion -d
 
+Furthermore you need the ardrone_autonomy package, it's a great ROS package that let's you control the parrot. You can check if you have it using
+
+.. code-block:: bash
+
+    rospack find ardrone_autonomy
+
+If you don't have it you can install it by running (with indigo replaced by your ros distribution)
+
+.. code-block:: bash
+
+    apt-get install ros-indigo-ardrone-autonomy
+
+
+Catkin and source
+"""""""""""""""""
+Because you might have added new packages, you need to rebuild your catkin workspace and source the setup file so that ROS can find the new packages. You can do this by running
+
+.. code-block:: bash
+
+    cd ~/catkin_ws/ && catkin_make && source devel/setup.bash
+
 Connecting to the drone
 """"""""""""""""""""""""
-Go to a place where it's safe to fly, for instance the RAM flightarena. Switch on the Parrot AR.drone. Connect to the wireless network the parrot has created, it's called parrot\_*number*. Don't mind the number. You can acces a list of wireless networks usually at the top-right of your screen, using the arrow symbols.
+Go to a place where it's safe to fly, for instance the RAM flightarena. Switch on the Parrot AR.drone. Connect to the wireless network the parrot has created, it's called ardrone\_*number*. Don't mind the number. You can acces a list of wireless networks usually at the top-right of your screen, using the arrow symbols.
 
 Once you are connected to the drone you can test the connection by opening a console and running
 
@@ -219,7 +246,7 @@ Once you are connected to the drone you can test the connection by opening a con
 
     ping 192.168.1.1
 
-If the connection was succesful you should see several ping statistics appearing on screen. Otherwise you'll get a message saying it is unreachable.
+If the connection was succesful you should see several ping statistics appearing on screen. Otherwise you'll get a message saying it is unreachable. If you are having trouble connecting to the drone through a virtual machine check out :ref:`virtualbox`.
 
 Starting the framework
 """"""""""""""""""""""
