@@ -1,6 +1,0 @@
-<!-- AEROWORKS -->
-<configurations>
-    <configuration id="onlyrqt">
-    <feedback_to_user type="rqtmodule" id="rqtnode1" />
-    </configuration>
-</configurations>
