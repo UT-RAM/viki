@@ -82,10 +82,8 @@ You can get Sphinx through apt-get, look for info on `the Sphinx documentation w
 
 .. _`the Sphinx documentation website`: http://sphinx-doc.org/latest/install.html
 
-
 Quick start guide
 -----------------
-.. It might be a good idea to create a turtlesim thingy here as well. because the AR.drone setup requires quite some work.
 
 Assuming you have set everything up (for instance through :ref:`System set up`) you can now run your first experiment using the AeroWorks framework.
 
@@ -275,17 +273,20 @@ If your joystick is not labelled get yourself a labeled one, or be careful.
 
 How to write config
 -------------------
+See configuration.xml in the root of the aeroworks directory for examples.
 
 How to contribute
 -----------------
 
-Will be more available later. For now please contact :doc:`../developers`.
+There are two ways you can contribute:
+
+Sending in modules (and config)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Please see :ref:`howtomod` and :ref:`howtoconfig`.
 
 Writing code
 ^^^^^^^^^^^^
-
-Sending in modules
-^^^^^^^^^^^^^^^^^^
+The framework is still heavily in development. If you want to help or have questions, contact :ref:`developers`.
 
 
 .. rubric:: Footnotes
@@ -295,4 +296,5 @@ Sending in modules
 
 
 * :ref:`search`
+* :ref:`home`
 

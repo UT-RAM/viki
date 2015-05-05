@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AeroWorks documentation home &mdash; AeroWorks 1.0 documentation</title>
+  <title>Framework description &mdash; AeroWorks 1.0 documentation</title>
   
 
   
@@ -30,8 +30,7 @@
   
 
   
-    <link rel="top" title="AeroWorks 1.0 documentation" href="#"/>
-        <link rel="next" title="API documentation" href="api.html"/> 
+    <link rel="top" title="AeroWorks 1.0 documentation" href="index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -46,7 +45,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="#" class="fa fa-home"> AeroWorks</a>
+          <a href="index.html" class="fa fa-home"> AeroWorks</a>
         
         
 <div role="search">
@@ -89,7 +88,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">AeroWorks</a>
+        <a href="index.html">AeroWorks</a>
       </nav>
 
 
@@ -98,12 +97,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>AeroWorks documentation home</li>
+    <li>Framework description</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/framework_description.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -111,60 +110,31 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="aeroworks-documentation-home">
-<span id="home"></span><h1>AeroWorks documentation home<a class="headerlink" href="#aeroworks-documentation-home" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to AeroWorks&#8217;s documentation!</p>
-<p>This documentation consists of three parts:</p>
-<ol class="arabic simple">
-<li><a class="reference internal" href="framework_description.html#framework-description"><span>Framework description</span></a> (what is the framework, what does it do and what for)</li>
-<li>A <a class="reference internal" href="userguide.html#userguide"><span>User guide</span></a></li>
-<li>An <a class="reference internal" href="api.html#apidoc"><span>API documentation</span></a></li>
-</ol>
-<p>The page you are seeing now is auto-generated using Sphinx. If you have sphinx you can update the documentation by running the following line in the root of the project.</p>
-<div class="highlight-bash"><div class="highlight"><pre>sphinx-apidoc -f -o docs core<span class="p">;</span> <span class="nb">cd </span>docs<span class="p">;</span> make html<span class="p">;</span> <span class="nb">cd</span> ..
-</pre></div>
+  <div class="section" id="framework-description">
+<span id="id1"></span><h1>Framework description<a class="headerlink" href="#framework-description" title="Permalink to this headline">¶</a></h1>
+<p>The AeroWorks robotics framework is software aiming to enable the quick and easy start up of experiments involving ROS.</p>
+<p>There are a few parts to the framework:</p>
+<div class="section" id="core">
+<h2>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h2>
+<p>The core of the framework is the actual part doing the work. The core provides functionality and ease but is rather stupid: it knows of no ROS nodes, executables or anything else you actually want to run. To create a useful experience the core needs the following additions.</p>
 </div>
-<p>The developers will also update the documentation in the repository when important changes are done. In that case just updating your repository to the latest version is sufficient.</p>
-<div class="section" id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-write-config">How to write config</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute">How to contribute</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
-</ul>
-</li>
-</ul>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Documentation consists of technical information and a user guide. This page is also part of the documentation and you have probably already seen <a class="reference internal" href="index.html#home"><span>AeroWorks documentation home</span></a>.</p>
 </div>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<p>A module is a collection of ROS nodes, with some configuration added so that it provides one simple function. A module is the smallest building block of the framework. You can write your own modules and put it in the dedicated contrib folder so that you and others can use it. Some modules are provided by the maintainers already to get you started quickly.</p>
 </div>
-<div class="section" id="automatically-generated-pages">
-<h2>Automatically generated pages<a class="headerlink" href="#automatically-generated-pages" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
-</ul>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Configurations are basically experimental set ups. It is a description of a combination of modules and how they interact with each other and with you, the user. For an experiment you are probably going to write your very own configuration files (though simple examples are provided).</p>
 </div>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api.html" class="btn btn-neutral float-right" title="API documentation">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-    </div>
   
 
   <hr/>

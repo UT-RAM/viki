@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AeroWorks documentation home &mdash; AeroWorks 1.0 documentation</title>
+  <title>Configuration writing guide &mdash; AeroWorks 1.0 documentation</title>
   
 
   
@@ -30,8 +30,7 @@
   
 
   
-    <link rel="top" title="AeroWorks 1.0 documentation" href="#"/>
-        <link rel="next" title="API documentation" href="api.html"/> 
+    <link rel="top" title="AeroWorks 1.0 documentation" href="index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -46,7 +45,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="#" class="fa fa-home"> AeroWorks</a>
+          <a href="index.html" class="fa fa-home"> AeroWorks</a>
         
         
 <div role="search">
@@ -89,7 +88,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">AeroWorks</a>
+        <a href="index.html">AeroWorks</a>
       </nav>
 
 
@@ -98,12 +97,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>AeroWorks documentation home</li>
+    <li>Configuration writing guide</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/howtoconfig.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -111,60 +110,52 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="aeroworks-documentation-home">
-<span id="home"></span><h1>AeroWorks documentation home<a class="headerlink" href="#aeroworks-documentation-home" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to AeroWorks&#8217;s documentation!</p>
-<p>This documentation consists of three parts:</p>
-<ol class="arabic simple">
-<li><a class="reference internal" href="framework_description.html#framework-description"><span>Framework description</span></a> (what is the framework, what does it do and what for)</li>
-<li>A <a class="reference internal" href="userguide.html#userguide"><span>User guide</span></a></li>
-<li>An <a class="reference internal" href="api.html#apidoc"><span>API documentation</span></a></li>
-</ol>
-<p>The page you are seeing now is auto-generated using Sphinx. If you have sphinx you can update the documentation by running the following line in the root of the project.</p>
-<div class="highlight-bash"><div class="highlight"><pre>sphinx-apidoc -f -o docs core<span class="p">;</span> <span class="nb">cd </span>docs<span class="p">;</span> make html<span class="p">;</span> <span class="nb">cd</span> ..
+  <div class="section" id="configuration-writing-guide">
+<span id="howtoconfig"></span><h1>Configuration writing guide<a class="headerlink" href="#configuration-writing-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="writing-configuration-tutorials">
+<h2>Writing configuration tutorials<a class="headerlink" href="#writing-configuration-tutorials" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple-tutorial">
+<span id="simpleconfigtutorial"></span><h3>Simple tutorial<a class="headerlink" href="#simple-tutorial" title="Permalink to this headline">¶</a></h3>
+<p>In this simple tutorial you are going to write a configuration file and a configuration to start the rqt_node that you might have created in .. <span class="target" id="simplemoduletutorial">simplemoduletutorial</span>:. If you have not made it yet, please do so first by following the tutorial.</p>
+<p>Now go to the folder (inside contrib) you have created for yourself and create a file there, for instance using gedit:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~catkin_ws/src/aeroworks/contrib/DoutzenMSC <span class="o">&amp;&amp;</span> gedit configuration.xml
 </pre></div>
 </div>
-<p>The developers will also update the documentation in the repository when important changes are done. In that case just updating your repository to the latest version is sufficient.</p>
-<div class="section" id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-write-config">How to write config</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute">How to contribute</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
-</ul>
-</li>
-</ul>
+<p>To let the framework know you are working on an Aeroworks configuration file start with and save:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+</pre></div>
 </div>
+<p>Now add the following tags:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;configurations&gt;</span>
+
+<span class="nt">&lt;/configurations&gt;</span>
+</pre></div>
 </div>
-<div class="section" id="automatically-generated-pages">
-<h2>Automatically generated pages<a class="headerlink" href="#automatically-generated-pages" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
-</ul>
+<p>You can place more then one configuration in the this file, so that you may collect all sort of different setups together. To start writing one specific configuration add, between the <em>configurations</em> tag and save:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;configuration</span> <span class="na">id=</span><span class="s">&quot;onlyrqt&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;feedback_to_user</span> <span class="na">type=</span><span class="s">&quot;rqtmodule&quot;</span> <span class="na">id=</span><span class="s">&quot;rqtnode1&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</pre></div>
+</div>
+<p>Your configuration is now ready to be started. Go to the Aeroworks root folder and start the core, providing your configuration file and configuration id as arguments. If you used the same file and configuration names as in the tutorials this should do it for you:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~catkin_ws/src/aeroworks/ <span class="o">&amp;&amp;</span> python core conrib/DoutzenMSC/configuration.xml onlyrqt
+</pre></div>
+</div>
+<p>Now run</p>
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch aeroworks.launch
+</pre></div>
+</div>
+<p>and watch as the rqt grapsh shows you which ros nodes are running. You can for instance launch the turtle simulator using the <a class="reference internal" href="userguide.html#userguide"><span>User guide</span></a>.</p>
+</div>
+<div class="section" id="advanced-tutorial">
+<h3>Advanced tutorial<a class="headerlink" href="#advanced-tutorial" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api.html" class="btn btn-neutral float-right" title="API documentation">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-    </div>
   
 
   <hr/>

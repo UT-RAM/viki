@@ -3,12 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. _home:
+
+AeroWorks documentation home
+============================
+
 Welcome to AeroWorks's documentation!
-=====================================
 
 This documentation consists of three parts:
 
-#. Framework description (what is the framework, what does it do and what for)
+#. :ref:`Framework description` (what is the framework, what does it do and what for)
 #. A :ref:`userguide`
 #. An :ref:`apidoc`
 
@@ -31,7 +35,7 @@ Contents
    developers
 
 Automatically generated pages
---------------------
+-----------------------------
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
