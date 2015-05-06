@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="AeroWorks 1.0 documentation" href="#"/>
-        <link rel="next" title="API documentation" href="api.html"/> 
+        <link rel="next" title="Framework description" href="framework_description.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -63,17 +63,41 @@
           
           
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#configuration">Configuration</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-write-config">How to write config</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute">How to contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute-and-get-to-work">How to contribute and get to work</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howtoconfig.html">Configuration writing guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howtomod.html">Module writing guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="howtomod.html#tutorial-on-module-xml-writing">Tutorial on module.xml writing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtomod.html#description-of-module-attributes-and-tags">description of module attributes and tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core.html">core package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="virtualbox.html">Difficulties with virtualbox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#joystick-related">Joystick related</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#connecting-to-a-wireless-network">Connecting to a wireless network</a></li>
 </ul>
 </li>
 </ul>
@@ -120,6 +144,11 @@
 <li>A <a class="reference internal" href="userguide.html#userguide"><span>User guide</span></a></li>
 <li>An <a class="reference internal" href="api.html#apidoc"><span>API documentation</span></a></li>
 </ol>
+<p>If you&#8217;ve been here before perhaps you are looking for the following links:</p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="howtomod.html#howtomod"><span>Module writing guide</span></a></li>
+<li><a class="reference internal" href="howtoconfig.html#howtoconfig"><span>Configuration writing guide</span></a></li>
+</ol>
 <p>The page you are seeing now is auto-generated using Sphinx. If you have sphinx you can update the documentation by running the following line in the root of the project.</p>
 <div class="highlight-bash"><div class="highlight"><pre>sphinx-apidoc -f -o docs core<span class="p">;</span> <span class="nb">cd </span>docs<span class="p">;</span> make html<span class="p">;</span> <span class="nb">cd</span> ..
 </pre></div>
@@ -129,17 +158,41 @@
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#configuration">Configuration</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-write-config">How to write config</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute">How to contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute-and-get-to-work">How to contribute and get to work</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howtoconfig.html">Configuration writing guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howtomod.html">Module writing guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="howtomod.html#tutorial-on-module-xml-writing">Tutorial on module.xml writing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtomod.html#description-of-module-attributes-and-tags">description of module attributes and tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core.html">core package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="virtualbox.html">Difficulties with virtualbox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#joystick-related">Joystick related</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#connecting-to-a-wireless-network">Connecting to a wireless network</a></li>
 </ul>
 </li>
 </ul>
@@ -161,7 +214,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api.html" class="btn btn-neutral float-right" title="API documentation">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="framework_description.html" class="btn btn-neutral float-right" title="Framework description">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

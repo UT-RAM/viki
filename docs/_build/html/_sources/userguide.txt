@@ -270,24 +270,13 @@ Go fly
 Hit the button labeled 12 to lift of, move the joystick around to play with your drone. Remember 11 is land.
 If your joystick is not labelled get yourself a labeled one, or be careful.
 
+.. _`How to contribute`:
 
-How to write config
--------------------
-See configuration.xml in the root of the aeroworks directory for examples.
+How to contribute and get to work
+---------------------------------
+You can write your own modules and configuration (learn it by using :ref:`howtomod` and :ref:`howtoconfig`). 
 
-How to contribute
------------------
-
-There are two ways you can contribute:
-
-Sending in modules (and config)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please see :ref:`howtomod` and :ref:`howtoconfig`.
-
-Writing code
-^^^^^^^^^^^^
 The framework is still heavily in development. If you want to help or have questions, contact :ref:`developers`.
-
 
 .. rubric:: Footnotes
 

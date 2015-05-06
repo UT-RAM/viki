@@ -16,6 +16,11 @@ This documentation consists of three parts:
 #. A :ref:`userguide`
 #. An :ref:`apidoc`
 
+If you've been here before perhaps you are looking for the following links:
+
+#. :ref:`howtomod`
+#. :ref:`howtoconfig`
+
 The page you are seeing now is auto-generated using Sphinx. If you have sphinx you can update the documentation by running the following line in the root of the project.
 
 .. code-block:: bash
@@ -30,9 +35,14 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   framework_description
    api
    userguide
    developers
+   howtoconfig
+   howtomod
+   modules
+   virtualbox
 
 Automatically generated pages
 -----------------------------

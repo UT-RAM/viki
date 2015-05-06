@@ -12,7 +12,7 @@ Writing configuration tutorials
 
 Simple tutorial
 ^^^^^^^^^^^^^^^
-In this simple tutorial you are going to write a configuration file and a configuration to start the rqt_node that you might have created in .. _`simplemoduletutorial`:. If you have not made it yet, please do so first by following the tutorial.
+In this simple tutorial you are going to write a configuration file and a configuration to start the rqt_node that you might have created in :ref:`simplemoduletutorial`. If you have not made it yet, please do so first by following the tutorial.
 
 Now go to the folder (inside contrib) you have created for yourself and create a file there, for instance using gedit:
 

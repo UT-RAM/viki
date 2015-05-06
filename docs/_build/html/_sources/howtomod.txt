@@ -100,7 +100,7 @@ For your convenience, this is how your module.xml file should look now:
 
 Your module is now finished and runnable. Find out how and confirm as described in :ref:`simpleconfigtutorial` or read on for more on module writing.
 
-Advanced tutorial
+Advanced examples
 ^^^^^^^^^^^^^^^^^
 
 
