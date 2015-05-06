@@ -3,7 +3,7 @@
 Framework description
 =====================
 
-The AeroWorks robotics framework is software aiming to enable the quick and easy start up of experiments involving ROS.
+The AeroWorks robotics framework is software aiming to enable the quick and easy start up of experiments involving ROS. It can help a student that is new to a experimental setup to quickly start where the previous contributor stopped. For example: if you are designing a position-controlled quadrotor, based on on-board camera and IMU info, you can immediately start a position-controlled drone based on external cameras (OptiTrack), redo/validate the experiments of the researcher who created that setup, and focus on your research.
 
 There are a few parts to the framework:
 
