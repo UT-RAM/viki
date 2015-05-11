@@ -54,6 +54,11 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
             # At this point, we also have the default parameters we should fill. loop again.
             for paramList in executable.params:
                 param = ET.SubElement(node, "param", name=paramList.name, value=paramList.default)
+
+            # find any command line arguments that belong to this executable
+            for argSearch in mod.args:
+                if argSearch.execid == executable.id:
+                    node.attrib['arg'] = argSearch.argument
         # At this point, we end up with some parameters that are not "connected". Echo those.
         for paramSearch in mod.parameters_to_add:
             print 'Parameter "' + paramSearch.name + '", valued "' + paramSearch.value + '", could not be connected.'

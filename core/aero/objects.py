@@ -164,9 +164,17 @@ class Module_to_add:
         self.type = type
         self.supress_warning = supress_warning
         self.parameters_to_add = []
+        self.args = []
 
         # here we put Module classes used for implementation
         self.implementation = None
+
+    def add_cmdline_arg(self, arg):
+        """Add a command line argument object *arg* to the list of arguments needed to run this module
+
+        :param arg: The command line argument object to add
+        """
+        self.args.append(arg)
 
 
 class Connection_to_add:
@@ -179,3 +187,9 @@ class Parameter_to_add:
     def __init__(self, name, value):
         self.name = name
         self.value = value
+
+
+class Cmdline_argument:
+    def __init__(self, executable_id, argument):
+        self.execid = executable_id
+        self.argument = argument

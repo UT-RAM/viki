@@ -78,6 +78,16 @@ def recursiveGet(domparent, parent):
                         )
                         mod.parameters_to_add.append(param)
 
+                args = getElementsOnFirstLevel(dommod, 'arg')
+                if args:
+                    for domarg in args:
+                        arg = Cmdline_argument(
+                            domarg.attributes['exec_id'].value,
+                            domarg.attributes['argument'].value
+                            )
+                        print("found a cmd line argument and added it to module to add")
+                        mod.add_cmdline_arg(arg)
+
                 parent.modules_to_add.append(mod)
     namespacesInParent = getElementsOnFirstLevel(domparent, 'namespace')
     if namespacesInParent:

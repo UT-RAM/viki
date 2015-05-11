@@ -36,6 +36,27 @@
         <connect publisher="joy1/takeoff" listener="parrot1/takeoff" />
 	</configuration>
 
+	<configuration id="turtle"> <!-- test cmd line arg -->>
+		<vehicle type="turtlesim" id="turtle1">
+			<arg exec_id="turtlenode" argument="xx"/>
+			<param name="testparam" value="1" />
+		</vehicle>
+		
+		<userinput type="turtlekey" id="turtlekeynode" />
+		
+		<connect publisher="turtlekeynode/cmd_vel" listener="turtle1/cmd_vel" />
+	</configuration>
+
+	<configuration id="turtle_1-2-many"> <!-- test cmd line arg -->>
+		<vehicle type="turtlesim" id="turtle1" />
+		<vehicle type="turtlesim" id="turtle2" />
+		
+		<userinput type="turtlekey" id="turtlekeynode" />
+		
+		<connect publisher="turtlekeynode/cmd_vel" listener="turtle1/cmd_vel" />
+		<connect publisher="turtlekeynode/cmd_vel" listener="turtle2/cmd_vel" />
+	</configuration>
+
 	<!-- Do not change this configuration, it is used in the quickstart guide -->
 	<configuration id="quickstart_turtle">
 		<vehicle type="turtlesim" id="turtle1" />
