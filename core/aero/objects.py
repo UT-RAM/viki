@@ -134,6 +134,13 @@ class Executable:
 
 
 class Parameter:
+    """A *Parameter* represents a param in the rosparam server
+
+    :param name: The name of the parameter
+    :param default: A default value, when no specific value is given
+    :param type: Type of parameter
+    :param value: Value of the parameter
+    """
     def __init__(self, name, type, default=None, value=None):
         self.name = name
         self.default = default
@@ -142,6 +149,15 @@ class Parameter:
 
 
 class Configuration:
+    """A *Configuration* is a list of settings,
+    usually from a configuration file, used to setup an experiment.
+
+    it contains:
+    :param id: unique id for this configuration
+    :param modules_to_add: list of modules needed in this *configuration*
+    :param connections_to_add: list of connections needed
+    :param namespaces: list of :class:Namespace in this *configuration*
+    """
     def __init__(self, id):
         self.id = id
         self.modules_to_add = []
@@ -150,6 +166,14 @@ class Configuration:
 
 
 class Namespace:
+    """A namespace is in itself basically a :class:Configuration ,
+    which can in turn contain multiple namespaces.
+    
+    :param id: unique id for this configuration
+    :param modules_to_add: list of modules needed in this *configuration*
+    :param connections_to_add: list of connections needed
+    :param namespaces: list of *namespace*s
+    """
     def __init__(self, id):
         self.id = id
         self.modules_to_add = []
@@ -158,6 +182,17 @@ class Namespace:
 
 
 class Module_to_add:
+    """An object representing a module that is desired to be in a configuration.
+    It is a temporary container for all information to get the actual :class:Module classes,
+    and contains an *implementation* where the :class:Module can be placed.
+
+    :param role: role of this module eg. userinput, vehicle, etc.
+    :param id: unique id of the module
+    :param type: type of module
+    :param supress_warning: suppress warnings given in/by this module (not yet implemented)
+    :param parameters_to_add: list of parameters that are to be added to class:Executable in this module
+    :param args: list of command line arguments that are used to start this modules nodes
+    """
     def __init__(self, role, type, id, supress_warning=False):
         self.role = role
         self.id = id
@@ -178,18 +213,34 @@ class Module_to_add:
 
 
 class Connection_to_add:
+    """Representation of a connection desired to add to a configuration
+
+    :param publisher: topic of the publisher to be connected
+    :param subscriber: topic of the subscriber to be connected
+    """
     def __init__(self, publisher, listener):
         self.publisher = publisher
         self.listener = listener
 
 
 class Parameter_to_add:
+    """A parameter to add to a module (and finally to an executable)
+
+    :param name: name of the parameter
+    :param value: value of the parameter
+    """
     def __init__(self, name, value):
         self.name = name
         self.value = value
 
 
 class Cmdline_argument:
+    """An argument to use when starting a specific rosnode.
+    Used for instance when starting rviz with a configuration file.
+
+    :param executable_id: id of the executable this argument is used for
+    :param argument: string of all arguments to use for this executable
+    """
     def __init__(self, executable_id, argument):
         self.execid = executable_id
         self.argument = argument
