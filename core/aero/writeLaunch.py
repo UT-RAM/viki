@@ -29,15 +29,17 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
         from_attr = lookup(configPart, con.listener, path)
         to_attr = lookup(configPart, con.publisher, path)
 
+        # NEW REMAP
         if from_attr is not to_attr:
             relayElement = ET.SubElement(rootElem, 'node')
-            relayElement.set('name', '$(anon remap_' +  str(random.random()) + ')')
+            relayElement.set('name', '$(anon remap_'
+                             + str(random.random()) + ')')
             relayElement.set('pkg', 'topic_tools')
             relayElement.set('type', 'relay')
             relayElement.set('args', to_attr + ' ' + from_attr)
             relayElement.set('ns', 'remaps')
 
-
+        # OLD REMAP
         # remap = ET.SubElement(rootElem, "remap")
         # remap.set('to', to_attr)
         # remap.set('from', from_attr)
@@ -49,10 +51,12 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
             to_attr = path + '/' + lookupInternal(ic.publisher, mod)
 
             # THIS IS THE NEW REMAP
-            # relayElement = ET.SubElement(rootElem, "node")
+            # relayElement = ET.SubElement(rootElem, 'node')
+            # relayElement.set('name', '$(anon remap_' +  str(random.random()) + ')')
             # relayElement.set('pkg', 'topic_tools')
             # relayElement.set('type', 'relay')
-            # relayElement.set('args', from_attr + ' ' + to_attr)
+            # relayElement.set('args', to_attr + ' ' + from_attr)
+            # relayElement.set('ns', 'remaps')
 
             # THIS IS THE OLD REMAP
             remap = ET.SubElement(rootElem, "remap")
