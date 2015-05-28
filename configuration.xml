@@ -47,7 +47,7 @@
 		<connect publisher="turtlekeynode/cmd_vel" listener="turtle1/cmd_vel" />
 	</configuration>
 
-	<configuration id="turtle_1-2-many"> <!-- test cmd line arg -->>
+	<configuration id="turtle_1-2-many"> <!-- test 1-2 many -->>
 		<vehicle type="turtlesim" id="turtle1" />
 		<vehicle type="turtlesim" id="turtle2" />
 		

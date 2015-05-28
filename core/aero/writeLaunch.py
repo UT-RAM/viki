@@ -1,6 +1,8 @@
 import xml.etree.cElementTree as ET
 import xml.dom.minidom
 import os
+import time
+import random
 from objects import *
 from helpers import *
 
@@ -26,15 +28,33 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
     for con in configPart.connections_to_add:
         from_attr = lookup(configPart, con.listener, path)
         to_attr = lookup(configPart, con.publisher, path)
-        remap = ET.SubElement(rootElem, "remap")
-        remap.set('to', to_attr)
-        remap.set('from', from_attr)
+
+        if from_attr is not to_attr:
+            relayElement = ET.SubElement(rootElem, 'node')
+            relayElement.set('name', '$(anon remap_' +  str(random.random()) + ')')
+            relayElement.set('pkg', 'topic_tools')
+            relayElement.set('type', 'relay')
+            relayElement.set('args', to_attr + ' ' + from_attr)
+            relayElement.set('ns', 'remaps')
+
+
+        # remap = ET.SubElement(rootElem, "remap")
+        # remap.set('to', to_attr)
+        # remap.set('from', from_attr)
 
     for mod in configPart.modules_to_add:
         # Loop through executables for specific module
         for ic in mod.implementation.config:
             from_attr = path + '/' + lookupInternal(ic.listener, mod)
             to_attr = path + '/' + lookupInternal(ic.publisher, mod)
+
+            # THIS IS THE NEW REMAP
+            # relayElement = ET.SubElement(rootElem, "node")
+            # relayElement.set('pkg', 'topic_tools')
+            # relayElement.set('type', 'relay')
+            # relayElement.set('args', from_attr + ' ' + to_attr)
+
+            # THIS IS THE OLD REMAP
             remap = ET.SubElement(rootElem, "remap")
             remap.set('to', to_attr)
             remap.set('from', from_attr)
