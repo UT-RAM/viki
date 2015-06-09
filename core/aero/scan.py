@@ -32,7 +32,15 @@ def getAvailableModules():
                         # Get DOM
                         dom = xml.dom.minidom.parse(fPath)
                         moddom = dom.getElementsByTagName('module')[0]
-                        mod = Module(moddom.attributes['type'].value, moddom.attributes['id'].value)
+
+                        # Skip if the module already exists
+                        modname = moddom.attributes['id'].value
+                        existingMod = findModuleById(available_mods, modname)
+                        if existingMod is not None:
+                            print "Module ", modname, " (in ", fPath, ") already exists (in ", mod.path, ") and is therefore skipped."
+                            continue
+
+                        mod = Module(moddom.attributes['type'].value, modname)
 
                         # META DATA
                         meta = dom.getElementsByTagName('meta')
@@ -47,6 +55,9 @@ def getAvailableModules():
                                         mod.addMeta(metachild.tagName.lower(), metachild.firstChild.nodeValue)
                                 else:
                                     print "Empty meta data section in document"
+
+                        # MODULE PATH
+                        mod.setPath(fPath)
 
                         # MODULE INPUTS
                         gInputElement = getElementsOnFirstLevel(moddom, 'inputs')

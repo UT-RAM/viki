@@ -48,6 +48,8 @@ class Module:
         self.meta = {}
         #: A list of :class:`Internal_Interface` describing all internal connections.
         self.config = []
+        #: Contains the path to the module config
+        self.path = ''
 
     def addMeta(self, key, value):
         """Adds metadata to :attr:`meta`.
@@ -87,9 +89,16 @@ class Module:
         """Adds an internal connection to the list of module internal connections (:attr:`config`).
 
         :param internal_interface: The connection to add
-        :type interface: :class:`Internal_Interface`
+        :type internal_interface: :class:`Internal_Interface`
         """
         self.config.append(internal_interface)
+
+    def setPath(self, path):
+        """Sets the path for the current module.
+
+        :param path: The path where to find the module
+        :type path: string"""
+        self.path = path
 
 
 class Executable:
