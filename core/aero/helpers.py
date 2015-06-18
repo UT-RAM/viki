@@ -1,7 +1,5 @@
 """A collection of functions that help during lookup of modules and interpretation."""
 
-import json
-
 def lookupMessageType(message_type):
     """Look up a message type from a list given its acronym *message_type* and returns the full message type.
 
@@ -81,12 +79,3 @@ def getElementsOnFirstLevelExceptTag(parent, element):
         if c.parentNode == parent and c.tagName.lower() != element.lower():
             elements.append(c)
     return elements
-
-
-def toJSON(py_object):
-    """Convert an object to JSON string using its __dict__
-
-    :param py_object: object to create a JSON string of
-    """
-
-    return json.dumps(py_object, default=lambda o: o.__dict__)

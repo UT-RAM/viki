@@ -5,95 +5,26 @@ Call various other functions to scan for available modules in a file tree to fin
 :param configfilename: the (relative) filename of a configuration file (can be given as first argument via command line) (default configuration.xml)
 :param config_id_to_use: the id of a specific configuration within *configfilename* to be used (can be given as second argument via command line) (default None)
 """
-# import sys
+import sys
 from aero import scan
-# from aero import config_interpreter
-# from aero import config_matcher
-# from aero import writeLaunch
+from aero import config_interpreter
+from aero import config_matcher
+from aero import writeLaunch
 from aero import helpers
-
-# imports, directly from:  http://www.aclevername.com/articles/python-webgui/
-import signal
-import os
-import time
-import urllib
-
-# from simplejson import dumps as to_json
-from simplejson import loads as from_json
-
-from gui.webgui import start_gtk_thread
-from gui.webgui import launch_browser
-from gui.webgui import synchronous_gtk_message
-# from gui.webgui import asynchronous_gtk_message
-from gui.webgui import kill_gtk_thread
-# end of imports from internet
-
 
 available_mods = scan.getAvailableModules()
 print "Got all the modules"
 
-
-# from: http://www.aclevername.com/articles/python-webgui/
-class Global(object):
-    quit = False
-
-    @classmethod
-    def set_quit(cls, *args, **kwargs):
-        cls.quit = True
-
-
-def main():
-    start_gtk_thread()
-
-    # Create a proper file:// URL pointing to demo.xhtml:
-    file = os.path.abspath('gui/demo.xhtml')
-    uri = 'file://' + urllib.pathname2url(file)
-    browser, web_recv, web_send = \
-        synchronous_gtk_message(launch_browser)(uri,
-                                                quit_function=Global.set_quit)
-
-    # Finally, here is our personalized main loop, 100% friendly
-    # with "select" (although I am not using select here)!:
-    clicks = -1
-    while not Global.quit:
-
-        again = False
-        msg = web_recv()
-        if msg:
-            msg = from_json(msg)
-            again = True
-
-        if msg == "get_available_modules":
-            web_send('document.getElementById("messages").innerHTML = %s' %
-                     helpers.toJSON(available_mods))
-
-        if "modstostart" in str(msg):
-            print msg
-
-        if msg == "testing123":
-            clicks += 1
-            testnr = (clicks % 3) + 1
-            web_send('document.getElementById("doesitwork").innerHTML = %s' %
-                     helpers.toJSON('testing... ' + str(testnr)))
-
-        if again:
-            pass
-        else:
-            time.sleep(0.1)
+configfilename = None
+config_id = None
+if len(sys.argv) > 1:
+    configfilename = sys.argv[1]
+if len(sys.argv) > 2:
+    config_id = sys.argv[2]
+configuration = config_interpreter.getConfig(configfilename=configfilename, config_id_to_use=config_id)
+config_matcher.matchConfig(configuration, available_mods)
+writeLaunch.write(configuration)
 
 
-def my_quit_wrapper(fun):
-    signal.signal(signal.SIGINT, Global.set_quit)
-
-    def fun2(*args, **kwargs):
-        try:
-            x = fun(*args, **kwargs)  # equivalent to "apply"
-        finally:
-            kill_gtk_thread()
-            Global.set_quit()
-        return x
-    return fun2
-
-
-if __name__ == '__main__':  # <-- this line is optional
-    my_quit_wrapper(main)()
+# WAIT BEFORE EXIT
+print "Finished, use a breakpoint on this line to avoid exit."
