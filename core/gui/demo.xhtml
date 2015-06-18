@@ -1,103 +1,126 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-      PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VIKI</title>
 
-  <head>
-
-    <title></title>
-
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/viki.css" rel="stylesheet">
     <script src="ipc.js" type="text/javascript"></script>
-
-    <!--
-    Here are some jQuery plugins that I recommend:
-
-    <script src="js/jquery-1.2.6.min.js" type="text/javascript"></script>
-    <script src="js/jquery-plugins/json.js" type="text/javascript"></script>
-    <script src="js/jquery-plugins/jquery.hotkeys-0.7.8.js" type="text/javascript"></script>
-    <script src="js/jquery-plugins/jquery.intercept.js" type="text/javascript"></script>
-    -->
-
-    <link href="demo.css" rel="stylesheet" type="text/css"></link>
-
     <script type="text/javascript">
-// <![CDATA[
+    // <![CDATA[
 
-// NOTE: jQuery would make this all much cleaner!  You need it!
+    // NOTE: jQuery would make this all much cleaner!  You need it!
 
-function got_a_click() {
-    // NOTE: send is a JavaScript function that is defined in "ipc.js".
-    //       This send function is how messages are sent from HTML
-    //       to Python:
-    send('"get_available_modules"');
-}
+    function got_a_click() {
+        // NOTE: send is a JavaScript function that is defined in "ipc.js".
+        //       This send function is how messages are sent from HTML
+        //       to Python:
+        send('"get_available_modules"');
+    }
 
-function check_communcation() {
-  send('"testing123"');
-}
+    function check_communcation() {
+      send('"testing123"');
+    }
 
-function send_json() {
-  send('modstostart' + document.getElementById('messages').innerHTML());
-}
+    function send_json() {
+      send('modstostart' + document.getElementById('messages').innerHTML());
+    }
 
-function document_ready() {
-    send('"document-ready"');
-    document.getElementById('messages').addEventListener('click', got_a_click, false);
-    document.getElementById('doesitwork').addEventListener('click', check_communcation, false);
-    document.getElementById('sendjson').addEventListener('click', send_json, false);
-}
+    function document_ready() {
+        send('"document-ready"');
+        document.getElementById('messages').addEventListener('click', got_a_click, false);
+        document.getElementById('doesitwork').addEventListener('click', check_communcation, false);
+        document.getElementById('sendjson').addEventListener('click', send_json, false);
+    }
 
-document.addEventListener('DOMContentLoaded', document_ready, false);
+    document.addEventListener('DOMContentLoaded', document_ready, false);
 
-// If you were using jQuery (with the JSON plugin), you'd write the above
-// code like this:
-//
-// Instead of addEventListener('DOMContentLoaded', ...), do this:
-// $(document).ready(function() {
-//     // Instead of getElementById('messages').addEventListener('click',...),
-//     // do this:
-//     // http://docs.jquery.com/Events/bind
-//     $('#messages').bind('click', got_a_click);
-//     // ...or try this shortcut version of bind:
-//     $('#messages').click(got_a_click);
-//     // http://jollytoad.googlepages.com/json.js provides $.toJSON(...):
-//     send($.toJSON('document.ready'));
-// })
+    // If you were using jQuery (with the JSON plugin), you'd write the above
+    // code like this:
+    //
+    // Instead of addEventListener('DOMContentLoaded', ...), do this:
+    // $(document).ready(function() {
+    //     // Instead of getElementById('messages').addEventListener('click',...),
+    //     // do this:
+    //     // http://docs.jquery.com/Events/bind
+    //     $('#messages').bind('click', got_a_click);
+    //     // ...or try this shortcut version of bind:
+    //     $('#messages').click(got_a_click);
+    //     // http://jollytoad.googlepages.com/json.js provides $.toJSON(...):
+    //     send($.toJSON('document.ready'));
+    // })
 
-// ]]>
-</script>
+    // ]]>
+    </script>
 
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <h1>Python + Web GUI Demo</h1>
 
-  </head>
+        <h2>Uptime</h2>
 
-  <body>
+        <p class="uptime">
+          Python uptime:
+          <span id="uptime-value">?</span> seconds.
+        </p>
 
-    <h1>Python + Web GUI Demo</h1>
+        <h2>Messages</h2>
 
-    <h2>Uptime</h2>
+        <p id="messages">
+          Click here (yes, anywhere here)...<br/>
+        </p>
 
-    <p class="uptime">
-      Python uptime:
-      <span id="uptime-value">?</span> seconds.
-    </p>
+        <p id="doesitwork">
+          Click here to see if we can communicate with Python. <br/>
+        </p>
 
-    <h2>Messages</h2>
+        <p id="sendjson">
+          Click here to send the JSON back to python. <br/>
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-lg-3" id="palette">
+            <h1>Palette</h1>
+            <p>List of all avaialable modules.</p>
 
-    <p id="messages">
-      Click here (yes, anywhere here)...<br/>
-    </p>
+            <p class="status">Modules are being loaded.</p>
 
-    <p id="doesitwork">
-      Click here to see if we can communicate with Python. <br/>
-    </p>
+            <div id="list"></div>
+        </div>
+        <div class="col-lg-9" id="project">
+            <h1>Project</h1>
+            <p>Your project overview</p>
 
-    <p id="sendjson">
-      Click here to send the JSON back to python. <br/>
-    </p>
+            <div class="project-container">
 
-  </body>
+                <div class="window" id="flowchartWindow1"><strong>1</strong><br/><br/></div>
+                <div class="window" id="flowchartWindow2"><strong>2</strong><br/><br/></div>
+                <div class="window" id="flowchartWindow3"><strong>3</strong><br/><br/></div>
+                <div class="window" id="flowchartWindow4"><strong>4</strong><br/><br/></div>
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.jsPlumb-1.7.5-min.js"></script>
+<script src="js/viki.js"></script>
+</body>
 </html>
