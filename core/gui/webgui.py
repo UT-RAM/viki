@@ -44,6 +44,7 @@ class WebKitMethods(object):
     def create_browser():
         return webkit.WebView()
 
+
     @staticmethod
     def inject_javascript(browser, script):
         browser.execute_script(script)
@@ -117,44 +118,53 @@ def synchronous_gtk_message(fun):
 
     return fun2
 
+def activate_inspector(inspector, target_view, splitter):
+    inspector_view = webkit.WebView()
+    splitter.pack_end(inspector_view)
+    return inspector_view
+
 
 def launch_browser(uri, quit_function=None, echo=True):
 
     window = gtk.Window()
     browser = implementation.create_browser()
+    browser.get_settings().set_property("enable-developer-extras", True)
 
     box = gtk.VBox(homogeneous=False, spacing=0)
     window.add(box)
 
+    inspector = browser.get_web_inspector()
+    inspector.connect("inspect-web-view",activate_inspector, box)
+
     if quit_function is not None:
-        # Obligatory "File: Quit" menu
-        # {
-        file_menu = gtk.Menu()
-        quit_item = gtk.MenuItem('Quit')
-        accel_group = gtk.AccelGroup()
-        quit_item.add_accelerator('activate',
-                                  accel_group,
-                                  ord('Q'),
-                                  gtk.gdk.CONTROL_MASK,
-                                  gtk.ACCEL_VISIBLE)
-        window.add_accel_group(accel_group)
-        file_menu.append(quit_item)
-        quit_item.connect('activate', quit_function)
-        quit_item.show()
-        #
-        menu_bar = gtk.MenuBar()
-        menu_bar.show()
-        file_item = gtk.MenuItem('File')
-        file_item.show()
-        file_item.set_submenu(file_menu)
-        menu_bar.append(file_item)
-        # }
-        box.pack_start(menu_bar, expand=False, fill=True, padding=0)
+            # Obligatory "File: Quit" menu
+            # {
+            file_menu = gtk.Menu()
+            quit_item = gtk.MenuItem('Quit')
+            accel_group = gtk.AccelGroup()
+            quit_item.add_accelerator('activate',
+                                      accel_group,
+                                      ord('Q'),
+                                      gtk.gdk.CONTROL_MASK,
+                                      gtk.ACCEL_VISIBLE)
+            window.add_accel_group(accel_group)
+            file_menu.append(quit_item)
+            quit_item.connect('activate', quit_function)
+            quit_item.show()
+            #
+            menu_bar = gtk.MenuBar()
+            menu_bar.show()
+            file_item = gtk.MenuItem('File')
+            file_item.show()
+            file_item.set_submenu(file_menu)
+            menu_bar.append(file_item)
+            # }
+            box.pack_start(menu_bar, expand=False, fill=True, padding=0)
 
     if quit_function is not None:
         window.connect('destroy', quit_function)
 
-    box.pack_start(browser, expand=True, fill=True, padding=0)
+    box.pack_start(browser, expand=False, fill=False, padding=0)
 
     window.set_default_size(800, 600)
     window.show_all()

@@ -63,18 +63,15 @@ def main():
             msg = from_json(msg)
             again = True
 
-        if msg == "get_available_modules":
-            web_send('document.getElementById("messages").innerHTML = %s' %
+        if msg == "ask_available_modules":
+            web_send('updateModules(%s)' %
                      helpers.toJSON(available_mods))
 
         if "modstostart" in str(msg):
             print msg
 
-        if msg == "testing123":
-            clicks += 1
-            testnr = (clicks % 3) + 1
-            web_send('document.getElementById("doesitwork").innerHTML = %s' %
-                     helpers.toJSON('testing... ' + str(testnr)))
+        if msg == "connection_check":
+            web_send('updateStatus("Communication okay")')
 
         if again:
             pass

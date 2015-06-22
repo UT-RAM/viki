@@ -1,33 +1,36 @@
 var modules;
 
 $(document).ready(function(){
+    $('#connCheck').click(function(){
+        send('"connection_check"');
+        return false;
+    });
 
-    modules = getAvailableMods(
-        function(){
-            $('#palette .status').hide();
-            showModulesInPalette(modules);
-            initPalette();
-        },
-        function(){
-            $('#palette .status').addClass('warning').show().text('Could not load available modules!');
-        }
-    );
+    $('#updateModules').click(function(){
+        updateStatus('Asking for modules')
+        send('"ask_available_modules"');
+        return false;
+    });
 
 });
 
-function getAvailableMods(success, fail) {
-    // Define set of modules
-    modules = [{name: 'test'},{name: 'test2'}];
+function updateStatus(msg) {
+    var dt = new Date();
+    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+    $('#statusLabel').html(msg + " hg sta(at " + time +")");
+}
 
-    success();
-    if(false) {fail()};
-
-    return modules;
+function updateModules(modules) {
+    updateStatus('Received modules');
+    console.log(modules);
+    showModulesInPalette(modules);
+    initPalette()
+    updateStatus('Updated module panel')
 }
 
 function showModulesInPalette(modules) {
     modules.forEach(function(module){
-        $('#palette #list').append('<div class="module_palette">'+module.name+'</div>');
+        $('#palette #list').append('<div class="module_palette">'+module.id+'</div>');
     });
 }
 
