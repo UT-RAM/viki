@@ -50,6 +50,7 @@ docs/_build/doctrees/*
 *.png
 
 .idea
+.iml
 .DS_Store
 
 syntax: regexp
