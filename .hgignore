@@ -53,4 +53,9 @@ docs/_build/doctrees/*
 .iml
 .DS_Store
 
+
+# sublime
+*.sublime-project
+*.sublime-workspace
+
 syntax: regexp
