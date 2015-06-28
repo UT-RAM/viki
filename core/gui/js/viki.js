@@ -20,8 +20,9 @@ function updateStatus(msg) {
     $('#statusLabel').html(msg + " at " + time +")");
 }
 
-function updateModules(modules) {
+function updateModules(modulelist) {
     updateStatus('Received modules');
+    modules = modulelist;
     console.log(modules);
     showModulesInPalette(modules);
     initPalette()
@@ -30,15 +31,24 @@ function updateModules(modules) {
 
 function showModulesInPalette(modules) {
     modules.forEach(function(module){
-        $('#palette #list').append('<div class="module_palette">'+module.id+'</div>');
+        $('#palette #list').append('<div class="module_palette" id="'+module.id+'">'+module.id+'</div>');
     });
 }
 
 function initPalette() {
-    $(".module_palette").draggable({revert: "invalid"});
-    $(".project-container").droppable({accept: ".module_palette", drop: function(event, ui){
-        alert('test');
-    }})
+    // $(".module_palette").draggable({revert: "invalid"});
+    // $(".project-container").droppable({accept: ".module_palette", drop: function(event, ui){
+        // alert('test');
+    // }})
+    $(".module_palette").attr({
+        "draggable" : "true",
+        "ondragstart" : "startDrag(event)"
+    });
+    $(".project-container").attr({
+        "ondragover" : "allowDrop(event)",
+        "ondrop" : "dropModule(event)"
+    });
+    
 }
 
 jsPlumb.ready(function () {
@@ -193,3 +203,24 @@ jsPlumb.ready(function () {
     jsPlumb.fire("jsPlumbDemoLoaded", instance);
 
 });
+
+function startDrag(ev) {
+    updateStatus("dragging object: " + ev.target.id);
+    ev.dataTransfer.setData("moduleId", ev.target.id);
+}
+
+function allowDrop(ev) {
+    // updateStatus("allowing drop now..");
+    ev.preventDefault();
+}
+
+function dropModule(ev) {
+    updateStatus("dropped a module to the project-container");
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("moduleId");
+    $(".project-container").append('<div class="window" id="'+data+'"><strong>'+data+'</strong><br/><br/></div>');
+    $(".window").attr({
+        "draggable" : "true"
+    });
+    alert(modules);
+}
