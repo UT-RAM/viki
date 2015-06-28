@@ -221,5 +221,5 @@ function dropModule(ev) {
     var data = ev.dataTransfer.getData("moduleId");
     $(".project-container").append('<div class="window" id="'+data+'"><strong>'+data+'</strong><br/><br/></div>');
     var instance = jsPlumb.getInstance();
-    console.log(instance);
+    instance.draggable($(".project-container .window"), { grid: [20, 20] });
 }
