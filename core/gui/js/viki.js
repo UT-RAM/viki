@@ -34,7 +34,7 @@ function showModulesInPalette(modules) {
     modules.forEach(function(module){
         $('#palette #list').append('<div class="module_palette" id="'+module.id+'">'+module.id+'</div>');
     });
-}
+} 
 
 function initPalette() {
     // $(".module_palette").draggable({revert: "invalid"});
@@ -220,6 +220,6 @@ function dropModule(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("moduleId");
     $(".project-container").append('<div class="window" id="'+data+'"><strong>'+data+'</strong><br/><br/></div>');
-    jsPlumb.draggable(data);
-    alert(modules);
+    var instance = jsPlumb.getInstance();
+    console.log(instance);
 }
