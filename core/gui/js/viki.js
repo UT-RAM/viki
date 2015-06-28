@@ -219,8 +219,13 @@ function dropModule(ev) {
     updateStatus("dropped a module to the project-container");
     ev.preventDefault();
 
+    // module id:
+    // TODO: make unique
     var data = ev.dataTransfer.getData("moduleId");
-    $(".project-container").append('<div class="window" id="'+data+'"><strong>'+data+'</strong><br/><br/></div>');
+    var modId = data;
+
+    
+    $(".project-container").append('<div class="window" id="'+modId+'"><strong>'+modId+'</strong><br/><br/></div>');
     
     // make draggable
     var instance = jsPlumb.getInstance();
@@ -234,8 +239,18 @@ function dropModule(ev) {
     var X = ev.pageX - 0.5*width;
     var Y = ev.pageY - 0.5*width;
 
-    $(".project-container #"+data).offset({
+    $(".project-container #"+modId).offset({
         top : Y,
         left: X
     });
+
+    // connections
+    instance.batch(function () {
+
+        _addEndpoints(modId, ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
+
+        // listen for new connections; initialise them the same way we initialise the connections at startup.
+        // instance.bind("connection", function (connInfo, originalEvent) {
+        //     init(connInfo.connection);
+        });
 }
