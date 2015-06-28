@@ -219,8 +219,6 @@ function dropModule(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("moduleId");
     $(".project-container").append('<div class="window" id="'+data+'"><strong>'+data+'</strong><br/><br/></div>');
-    $(".window").attr({
-        "draggable" : "true"
-    });
+    jsPlumbInstance.draggable(data);
     alert(modules);
 }
