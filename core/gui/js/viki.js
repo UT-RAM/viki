@@ -218,8 +218,17 @@ function allowDrop(ev) {
 function dropModule(ev) {
     updateStatus("dropped a module to the project-container");
     ev.preventDefault();
+
     var data = ev.dataTransfer.getData("moduleId");
     $(".project-container").append('<div class="window" id="'+data+'"><strong>'+data+'</strong><br/><br/></div>');
+    
+    // make draggable
     var instance = jsPlumb.getInstance();
     instance.draggable($(".project-container .window"), { grid: [20, 20] });
+
+    // get position
+    var top = ev.originalEvent.offsetX;
+    var left = ev.originalEvent.offsetY;
+    console.log(top);
+    console.log(left);
 }
