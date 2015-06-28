@@ -139,4 +139,5 @@ p.status {
 /* use to highlight the project container with a black line */
 .project-container {
     border: 1px solid black;
+    height: 600px;
 }

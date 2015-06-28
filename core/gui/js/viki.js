@@ -226,9 +226,16 @@ function dropModule(ev) {
     var instance = jsPlumb.getInstance();
     instance.draggable($(".project-container .window"), { grid: [20, 20] });
 
-    // get position
-    var top = ev.originalEvent.offsetX;
-    var left = ev.originalEvent.offsetY;
-    console.log(top);
-    console.log(left);
+    // start module at correct position
+    var width = $(".project-container .window").width();
+    var height = $(".project-container .window").height();
+    // TODO: adjust for when not gripping in the center
+
+    var X = ev.pageX - 0.5*width;
+    var Y = ev.pageY - 0.5*width;
+
+    $(".project-container #"+data).offset({
+        top : Y,
+        left: X
+    });
 }
