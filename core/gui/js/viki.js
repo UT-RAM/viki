@@ -17,7 +17,7 @@ $(document).ready(function(){
 function updateStatus(msg) {
     var dt = new Date();
     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    $('#statusLabel').html(msg + " hg sta(at " + time +")");
+    $('#statusLabel').html(msg + " at " + time +")");
 }
 
 function updateModules(modules) {
