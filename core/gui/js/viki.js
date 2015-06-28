@@ -1,4 +1,8 @@
 var modules;
+var jsPlumbInstance;  // to make instance globally available
+var settings = {
+    testvar: "hoi"
+};
 
 $(document).ready(function(){
     $('#connCheck').click(function(){
@@ -54,7 +58,7 @@ function initPalette() {
 
 jsPlumb.ready(function () {
 
-    var instance = jsPlumb.getInstance({
+    jsPlumbInstance = jsPlumb.getInstance({
         // default drag options
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
         // the overlays to decorate each connection with.  note that the label overlay uses a function to generate the label text; in this
@@ -78,7 +82,7 @@ jsPlumb.ready(function () {
             "Arrow"
         ]
     };
-    instance.registerConnectionType("basic", basicType);
+    jsPlumbInstance.registerConnectionType("basic", basicType);
 
     // this is the paint style for the connecting lines..
     var connectorPaintStyle = {
@@ -141,18 +145,18 @@ jsPlumb.ready(function () {
     var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
         for (var i = 0; i < sourceAnchors.length; i++) {
             var sourceUUID = toId + sourceAnchors[i];
-            instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
+            jsPlumbInstance.addEndpoint("flowchart" + toId, sourceEndpoint, {
                 anchor: sourceAnchors[i], uuid: sourceUUID
             });
         }
         for (var j = 0; j < targetAnchors.length; j++) {
             var targetUUID = toId + targetAnchors[j];
-            instance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
+            jsPlumbInstance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
         }
     };
 
     // suspend drawing and initialise.
-    instance.batch(function () {
+    jsPlumbInstance.batch(function () {
 
         _addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
         _addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
@@ -160,48 +164,48 @@ jsPlumb.ready(function () {
         _addEndpoints("Window1", ["LeftMiddle", "RightMiddle"], ["TopCenter", "BottomCenter"]);
 
         // listen for new connections; initialise them the same way we initialise the connections at startup.
-        instance.bind("connection", function (connInfo, originalEvent) {
+        jsPlumbInstance.bind("connection", function (connInfo, originalEvent) {
             init(connInfo.connection);
         });
 
         // make all the window divs draggable
-        instance.draggable($(".project-container .window"), { grid: [20, 20] });
+        jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
         // THIS DEMO ONLY USES getSelector FOR CONVENIENCE. Use your library's appropriate selector
         // method, or document.querySelectorAll:
         //jsPlumb.draggable(document.querySelectorAll(".window"), { grid: [20, 20] });
 
         // connect a few up
-        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"], editable: true});
-        instance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"], editable: true});
-        instance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"], editable: true});
-        instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"], editable: true});
-        instance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"], editable: true});
-        instance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"], editable: true});
+        jsPlumbInstance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"], editable: true});
+        jsPlumbInstance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"], editable: true});
+        jsPlumbInstance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"], editable: true});
+        jsPlumbInstance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"], editable: true});
+        jsPlumbInstance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"], editable: true});
+        jsPlumbInstance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"], editable: true});
         //
 
         //
         // listen for clicks on connections, and offer to delete connections on click.
         //
-        instance.bind("click", function (conn, originalEvent) {
+        jsPlumbInstance.bind("click", function (conn, originalEvent) {
             // if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
             //   instance.detach(conn);
             conn.toggleType("basic");
         });
 
-        instance.bind("connectionDrag", function (connection) {
+        jsPlumbInstance.bind("connectionDrag", function (connection) {
             console.log("connection " + connection.id + " is being dragged. suspendedElement is ", connection.suspendedElement, " of type ", connection.suspendedElementType);
         });
 
-        instance.bind("connectionDragStop", function (connection) {
+        jsPlumbInstance.bind("connectionDragStop", function (connection) {
             console.log("connection " + connection.id + " was dragged");
         });
 
-        instance.bind("connectionMoved", function (params) {
+        jsPlumbInstance.bind("connectionMoved", function (params) {
             console.log("connection " + params.connection.id + " was moved");
         });
     });
 
-    jsPlumb.fire("jsPlumbDemoLoaded", instance);
+    jsPlumb.fire("jsPlumbDemoLoaded", jsPlumbInstance);
 
 });
 
@@ -228,7 +232,7 @@ function dropModule(ev) {
     $(".project-container").append('<div class="window" id="'+modId+'"><strong>'+modId+'</strong><br/><br/></div>');
     
     // make draggable
-    var instance = jsPlumb.getInstance();
+    var instance = jsPlumbInstance;
     instance.draggable($(".project-container .window"), { grid: [20, 20] });
 
     // start module at correct position
@@ -244,13 +248,21 @@ function dropModule(ev) {
         left: X
     });
 
+
+    console.log(settings.testvar);
     // connections
-    instance.batch(function () {
+    var sourceUUID = modId + "TopCenter";
+    // instance.addEndpoint("flowchart" + modId,
+        // sourceEndpoint, {anchor: "TopCenter", uuid: sourceUUID});
 
-        _addEndpoints(modId, ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
-
-        // listen for new connections; initialise them the same way we initialise the connections at startup.
-        // instance.bind("connection", function (connInfo, originalEvent) {
-        //     init(connInfo.connection);
-        });
+    // for (var i = 0; i < sourceAnchors.length; i++) {
+    //         var sourceUUID = toId + sourceAnchors[i];
+    //         instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
+    //             anchor: sourceAnchors[i], uuid: sourceUUID
+    //         });
+    //     }
+    //     for (var j = 0; j < targetAnchors.length; j++) {
+    //         var targetUUID = toId + targetAnchors[j];
+    //         instance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
+    //     }
 }
