@@ -27,15 +27,15 @@ if [ ! -e "$bagfile" ]; then
 fi
 
 # remove the trailing part after the dot and absolute path, if present
-bagfilename=`echo $bagfile | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1`;
+bagfilename=`echo "$bagfile" | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1`;
 
 # if specified folder does not exist, create it
 if [ ! -d "$folder" ]; then
 	echo "$folder is not a valid folder...creating folder!";
-	mkdir $folder; #if permission is denied it should exit on error by itself
+	mkdir "$folder"; #if permission is denied it should exit on error by itself
 fi
 
-bagTopicList=`rostopic list -b $bagfile`;	# just do it once, time consuming
+bagTopicList=`rostopic list -b "$bagfile"`;	# just do it once, time consuming
 topicList="";
 
 if [[ $# > 2 ]]; then
@@ -50,13 +50,13 @@ if [[ $# > 2 ]]; then
 
 	echo "Will extract topics: $topicList";
 else
-	topicList = $bagTopicList;
+	topicList=$bagTopicList;
 fi
 
 for topic in $topicList; 
 do 
 	# discard topics referring to images
 	if ! [[ $topic == *"image"* ]]; then  
-		rostopic echo -p -b $bagfile $topic > $folder/$bagfilename_${topic//\//_}.csv ;
+		rostopic echo -p -b "$bagfile" $topic > "$folder"/"$bagfilename"\_${topic//\//_}.csv ;
 	fi
 done
