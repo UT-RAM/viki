@@ -1,0 +1,11 @@
+# Configuration file for the optitrack
+
+rigid_bodies:
+    '1':
+        pose: 'James/unfiltered_pose'     # The tracked drone
+    '2':
+        pose: 'John/unfiltered_pose'      # The tracking drone
+    '3':
+        pose: 'camera/unfiltered_pose'    # Position of the camera, for testing with the logitech camera
+    '4':
+        pose: 'single_marker/unfiltered_pose'   # Position of a single marker, for easy testing in earlier stages

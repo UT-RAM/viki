@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<calibration_Time>"05 May 2015"</calibration_Time>
+
+<Image_Width>640</Image_Width>
+<Image_Height>360</Image_Height>
+<Camera_Matrix type_id="opencv-matrix">
+  <rows>3</rows>
+  <cols>3</cols>
+  <dt>d</dt>
+  <data>
+568.628474 0.000000 313.360666
+0.000000 565.761243 204.611241
+0.000000 0.000000 1.000000</data></Camera_Matrix>
+<Distortion_Coefficients type_id="opencv-matrix">
+  <rows>8</rows>
+  <cols>1</cols>
+  <dt>d</dt>
+  <data>
+0.163391 0.726668 -0.003187 -0.000157 -1.096243 0.724048 0.836830 -1.332357
+</data></Distortion_Coefficients>
+
+</opencv_storage>
