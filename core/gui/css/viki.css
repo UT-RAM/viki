@@ -130,8 +130,14 @@ p.status {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    width: 40%;
+    width: 20%;
     line-height: 100px;
     text-align: center;
     float: left;
+}
+
+/* use to highlight the project container with a black line */
+.project-container {
+    border: 1px solid black;
+    height: 600px;
 }
