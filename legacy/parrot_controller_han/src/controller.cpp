@@ -324,7 +324,7 @@ public:
     errorsx_.push_back(ex);
     errorsy_.push_back(ey);
     errorsz_.push_back(ez);
-    errorsyaw_.push_back(ey);
+    errorsyaw_.push_back(eyaw);
 
     // Do some memory management 
     if(times_.size() > error_memory_) 
