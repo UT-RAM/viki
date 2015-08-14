@@ -8,7 +8,7 @@ Call various other functions to scan for available modules in a file tree to fin
 # import sys
 from aero import scan
 from aero import config_interpreter
-# from aero import config_matcher
+from aero import config_matcher
 from aero import writeLaunch
 from aero import helpers
 
@@ -81,7 +81,8 @@ def main():
 
     def vikiConfigLaunch():
         print("dit werkt echt wel");
-        configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")        
+        configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")
+        config_matcher.matchConfig(configfromfile, available_mods)        
         print(configfromfile)
         print(configfromfile.modules_to_add)
         writeLaunch.write(configfromfile)

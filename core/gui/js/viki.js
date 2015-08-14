@@ -293,13 +293,7 @@ function getModuleByUWindowId(uId) {
 
 function guid() {
     // generates a unique number
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
+    return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4);
 }
 
 function deleteWindowFromCanvas(uId) {
@@ -376,7 +370,7 @@ function writeConfig(config) {
     for (var i=0; i<config.connectsToAdd.length; i++){
         var connectXML = document.createElement("connect");
         connectXML.setAttribute("publisher", config.connectsToAdd[i].pub);
-        connectXML.setAttribute("subscriber", config.connectsToAdd[i].sub);
+        connectXML.setAttribute("listener", config.connectsToAdd[i].sub);
         configXML.appendChild(connectXML);
     }
     
