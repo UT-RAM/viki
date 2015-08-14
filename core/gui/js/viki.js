@@ -44,6 +44,7 @@ function initPalette() {
     });
 
     $(".module_palette").on("dragstart", startDrag);
+    $(".module_palette").on("dragend", updateModule);
 
     $(".project-container").attr({
         "ondragover" : "allowDrop(event)",
@@ -51,6 +52,26 @@ function initPalette() {
     });
     
 }
+
+// this is the paint style for the connecting lines..
+var connectorPaintStyle = {
+        lineWidth: 4,
+        strokeStyle: "#61B7CF",
+        joinstyle: "round",
+        outlineColor: "white",
+        outlineWidth: 2
+    },
+// .. and this is the hover style.
+    connectorHoverStyle = {
+        lineWidth: 4,
+        strokeStyle: "#216477",
+        outlineWidth: 2,
+        outlineColor: "white"
+    },
+    endpointHoverStyle = {
+        fillStyle: "#216477",
+        strokeStyle: "#216477"
+    };
 
 jsPlumb.ready(function () {
 
@@ -80,51 +101,9 @@ jsPlumb.ready(function () {
     };
     jsPlumbInstance.registerConnectionType("basic", basicType);
 
-    // this is the paint style for the connecting lines..
-    var connectorPaintStyle = {
-            lineWidth: 4,
-            strokeStyle: "#61B7CF",
-            joinstyle: "round",
-            outlineColor: "white",
-            outlineWidth: 2
-        },
-    // .. and this is the hover style.
-        connectorHoverStyle = {
-            lineWidth: 4,
-            strokeStyle: "#216477",
-            outlineWidth: 2,
-            outlineColor: "white"
-        },
-        endpointHoverStyle = {
-            fillStyle: "#216477",
-            strokeStyle: "#216477"
-        },
-    // the definition of source endpoints (the small blue ones)
-        sourceEndpoint = {
-            endpoint: "Dot",
-            paintStyle: {
-                strokeStyle: "#7AB02C",
-                fillStyle: "transparent",
-                radius: 7,
-                lineWidth: 3
-            },
-            isSource: true,
-            connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
-            connectorStyle: connectorPaintStyle,
-            hoverPaintStyle: endpointHoverStyle,
-            connectorHoverStyle: connectorHoverStyle,
-            dragOptions: {},
 
-        },
-    // the definition of target endpoints (will appear when the user drags a connection)
-        targetEndpoint = {
-            endpoint: "Dot",
-            paintStyle: { fillStyle: "#7AB02C", radius: 11 },
-            hoverPaintStyle: endpointHoverStyle,
-            maxConnections: -1,
-            dropOptions: { hoverClass: "hover", activeClass: "active" },
-            isTarget: true
-        },
+    // the definition of source endpoints (the small blue ones)
+
         init = function (connection) {
             connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
         };
@@ -142,39 +121,6 @@ jsPlumb.ready(function () {
     //    }
     //};
 
-    var addInputsToModule = function (moduleId, inputs) {
-        for (var i = 0; i < inputs.length; i++) {
-            var anchorId = moduleId + "input" + i.toString;
-            var pos = [0, ((i+1)/(inputs.length +1)), 1, 0];
-            jsPlumbInstance.addEndpoint(moduleId, targetEndpoint, {
-                anchor: pos,
-                overlays: [
-                    [ "Label", {
-                        location: [-1.5, 0.5],
-                        label: inputs[i],
-                        cssClass: "endpointTargetLabel"
-                    } ]
-                ]
-            });
-        }
-    };
-
-    var addOutputsToModule = function(moduleId, outputs) {
-        for (var i = 0; i < outputs.length; i++) {
-            var anchorId = moduleId + "output" + i.toString;
-            var pos = [1, ((i+1)/(outputs.length +1)), 1, 0];
-            jsPlumbInstance.addEndpoint(moduleId, sourceEndpoint, {
-                anchor: pos,
-                overlays: [
-                    [ "Label", {
-                        location: [-1.5, 0.5],
-                        label: outputs[i],
-                        cssClass: "endpointSourceLabel"
-                    } ]
-                ]
-            });
-        }
-    };
 
     // suspend drawing and initialise.
     jsPlumbInstance.batch(function () {
@@ -192,15 +138,6 @@ jsPlumb.ready(function () {
         // THIS DEMO ONLY USES getSelector FOR CONVENIENCE. Use your library's appropriate selector
         // method, or document.querySelectorAll:
         //jsPlumb.draggable(document.querySelectorAll(".window"), { grid: [20, 20] });
-
-        // connect a few up
-        jsPlumbInstance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"], editable: true});
-        jsPlumbInstance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"], editable: true});
-        jsPlumbInstance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"], editable: true});
-        jsPlumbInstance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"], editable: true});
-        jsPlumbInstance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"], editable: true});
-        jsPlumbInstance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"], editable: true});
-        //
 
         //
         // listen for clicks on connections, and offer to delete connections on click.
@@ -227,6 +164,76 @@ jsPlumb.ready(function () {
     jsPlumb.fire("jsPlumbDemoLoaded", jsPlumbInstance);
 
 });
+
+
+function addInputsToModule(moduleId, inputs) {
+    var targetEndpoint = {
+        endpoint: "Dot",
+        paintStyle: { fillStyle: "#7AB02C", radius: 11 },
+        hoverPaintStyle: endpointHoverStyle,
+        maxConnections: -1,
+        dropOptions: { hoverClass: "hover", activeClass: "active" },
+        isTarget: true
+    };
+
+    for (var i = 0; i < inputs.length; i++) {
+        var anchorId = moduleId + "input" + i.toString;
+        var pos = [0, ((i+1)/(inputs.length +1)), -1, 0];
+        jsPlumbInstance.addEndpoint(moduleId, targetEndpoint, {
+            anchor: pos,
+            overlays: [
+                [ "Label", {
+                    location: [-1.5, 0.5],
+                    label: inputs[i].name,
+                    cssClass: "endpointTargetLabel"
+                } ]
+            ]
+        });
+    }
+}
+
+function addOutputsToModule(moduleId, outputs) {
+
+    var sourceEndpoint = {
+        endpoint: "Dot",
+        paintStyle: {
+            strokeStyle: "#7AB02C",
+            fillStyle: "transparent",
+            radius: 7,
+            lineWidth: 3
+        },
+        isSource: true,
+        connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
+        connectorStyle: connectorPaintStyle,
+        hoverPaintStyle: endpointHoverStyle,
+        connectorHoverStyle: connectorHoverStyle,
+        dragOptions: {}
+    };
+
+    for (var i = 0; i < outputs.length; i++) {
+        var anchorId = moduleId + "output" + i.toString;
+        var pos = [1, ((i+1)/(outputs.length +1)), 1, 0];
+        jsPlumbInstance.addEndpoint(moduleId, sourceEndpoint, {
+            anchor: pos,
+            overlays: [
+                [ "Label", {
+                    location: [-1.5, 0.5],
+                    label: outputs[i].name,
+                    cssClass: "endpointSourceLabel"
+                } ]
+            ]
+        });
+    }
+};
+
+function updateModule(event) {
+    var module = getModuleById(this.id);
+    jsPlumbInstance.batch(function() {
+        addInputsToModule(module.id, module.inputs);
+        addOutputsToModule(module.id, module.outputs);
+    });
+    console.log(this.id);
+}
 
 function startDrag(ev) {
     ev = ev.originalEvent;
