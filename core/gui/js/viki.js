@@ -12,7 +12,7 @@ $(document).ready(function(){
     });
 
     $('#updateModules').click(function(){
-        updateStatus('Asking for modules')
+        updateStatus('Asking for modules');
         send('"ask_available_modules"');
         return false;
     });
@@ -22,7 +22,7 @@ $(document).ready(function(){
 function updateStatus(msg) {
     var dt = new Date();
     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    $('#statusLabel').html(msg + " at " + time +")");
+    $('#statusLabel').html(msg + " (at " + time +")");
 }
 
 function updateModules(modulelist) {
