@@ -27,7 +27,7 @@ function updateModules(modulelist) {
     modules = modulelist;
     console.log(modules);
     showModulesInPalette(modules);
-    initPalette()
+    initPalette();
     updateStatus('Updated module panel')
 }
 
@@ -40,11 +40,10 @@ function showModulesInPalette(modules) {
 
 function initPalette() {
     $(".module_palette").attr({
-        "draggable" : "true",
+        "draggable" : "true"
     });
 
     $(".module_palette").on("dragstart", startDrag);
-    $(".module_palette").on("dragend", updateModule);
 
     $(".project-container").attr({
         "ondragover" : "allowDrop(event)",
@@ -101,32 +100,12 @@ jsPlumb.ready(function () {
     };
     jsPlumbInstance.registerConnectionType("basic", basicType);
 
-
-    // the definition of source endpoints (the small blue ones)
-
         init = function (connection) {
             connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
         };
 
-    //var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
-    //    for (var i = 0; i < sourceAnchors.length; i++) {
-    //        var sourceUUID = toId + sourceAnchors[i];
-    //        jsPlumbInstance.addEndpoint("flowchart" + toId, sourceEndpoint, {
-    //            anchor: sourceAnchors[i], uuid: sourceUUID
-    //        });
-    //    }
-    //    for (var j = 0; j < targetAnchors.length; j++) {
-    //        var targetUUID = toId + targetAnchors[j];
-    //        jsPlumbInstance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
-    //    }
-    //};
-
-
     // suspend drawing and initialise.
     jsPlumbInstance.batch(function () {
-
-        addOutputsToModule("flowchartWindow1" , ["Output 1", "Output 2"]);
-        addInputsToModule("flowchartWindow1" , ["Input 1"]);
 
         // listen for new connections; initialise them the same way we initialise the connections at startup.
         jsPlumbInstance.bind("connection", function (connInfo, originalEvent) {
@@ -166,7 +145,7 @@ jsPlumb.ready(function () {
 });
 
 
-function addInputsToModule(moduleId, inputs) {
+function addInputsToWindow(moduleId, inputs) {
     var targetEndpoint = {
         endpoint: "Dot",
         paintStyle: { fillStyle: "#7AB02C", radius: 11 },
@@ -192,7 +171,7 @@ function addInputsToModule(moduleId, inputs) {
     }
 }
 
-function addOutputsToModule(moduleId, outputs) {
+function addOutputsToWindow(moduleId, outputs) {
 
     var sourceEndpoint = {
         endpoint: "Dot",
@@ -228,9 +207,10 @@ function addOutputsToModule(moduleId, outputs) {
 
 function updateModule(event) {
     var module = getModuleById(this.id);
+
     jsPlumbInstance.batch(function() {
-        addInputsToModule(module.id, module.inputs);
-        addOutputsToModule(module.id, module.outputs);
+        addInputsToWindow(module.id, module.inputs);
+        addOutputsToWindow(module.id, module.outputs);
     });
     console.log(this.id);
 }
@@ -280,7 +260,10 @@ function dropModule(ev) {
     modulesInCanvas.push(modToAdd);
    
     // connections
-    
+    jsPlumbInstance.batch(function() {
+        addInputsToWindow(uModId, modToAdd.inputs);
+        addOutputsToWindow(uModId, modToAdd.outputs);
+    });
 }
 
 function getModuleById(Id) {
