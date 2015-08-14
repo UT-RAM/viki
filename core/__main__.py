@@ -76,6 +76,7 @@ def main():
 
     def vikiRun():
         try:
+            # THIS DOES NOT WORK THROUGH INTELLIJ IDEA YET.
             subprocess.call(['roslaunch aeroworks aeroworks.launch'], shell=True)
             # subprocess.Popen(['gnome-terminal', '--title=%s' % "ROS SHELL", '--disable-factory', '-e', "/bin/bash", "-e", "roslaunch %s --disable-title --port %s %s" % ('roslaunch', 'aeroworks', 'aeroworks.launch')])
 
