@@ -125,13 +125,7 @@ jsPlumb.ready(function () {
             hoverPaintStyle: endpointHoverStyle,
             connectorHoverStyle: connectorHoverStyle,
             dragOptions: {},
-            overlays: [
-                [ "Label", {
-                    location: [0.5, 1.5],
-                    label: "Drag",
-                    cssClass: "endpointSourceLabel"
-                } ]
-            ]
+
         },
     // the definition of target endpoints (will appear when the user drags a connection)
         targetEndpoint = {
@@ -149,27 +143,58 @@ jsPlumb.ready(function () {
             connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
         };
 
-    var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
-        for (var i = 0; i < sourceAnchors.length; i++) {
-            var sourceUUID = toId + sourceAnchors[i];
-            jsPlumbInstance.addEndpoint("flowchart" + toId, sourceEndpoint, {
-                anchor: sourceAnchors[i], uuid: sourceUUID
+    //var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
+    //    for (var i = 0; i < sourceAnchors.length; i++) {
+    //        var sourceUUID = toId + sourceAnchors[i];
+    //        jsPlumbInstance.addEndpoint("flowchart" + toId, sourceEndpoint, {
+    //            anchor: sourceAnchors[i], uuid: sourceUUID
+    //        });
+    //    }
+    //    for (var j = 0; j < targetAnchors.length; j++) {
+    //        var targetUUID = toId + targetAnchors[j];
+    //        jsPlumbInstance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
+    //    }
+    //};
+
+    var addInputsToModule = function (moduleId, inputs) {
+        for (var i = 0; i < inputs.length; i++) {
+            var anchorId = moduleId + "input" + i.toString;
+            var pos = [0, ((i+1)/(inputs.length +1)), 1, 0];
+            jsPlumbInstance.addEndpoint(moduleId, sourceEndpoint, {
+                anchor: pos,
+                overlays: [
+                    [ "Label", {
+                        location: [-1.5, 0.5],
+                        label: inputs[i],
+                        cssClass: "endpointTargetLabel"
+                    } ]
+                ]
             });
         }
-        for (var j = 0; j < targetAnchors.length; j++) {
-            var targetUUID = toId + targetAnchors[j];
-            jsPlumbInstance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
+    };
+
+    var addOutputsToModule = function(moduleId, outputs) {
+        for (var i = 0; i < outputs.length; i++) {
+            var anchorId = moduleId + "output" + i.toString;
+            var pos = [1, ((i+1)/(outputs.length +1)), 1, 0];
+            jsPlumbInstance.addEndpoint(moduleId, sourceEndpoint, {
+                anchor: pos,
+                overlays: [
+                    [ "Label", {
+                        location: [-1.5, 0.5],
+                        label: outputs[i],
+                        cssClass: "endpointSourceLabel"
+                    } ]
+                ]
+            });
         }
     };
 
     // suspend drawing and initialise.
     jsPlumbInstance.batch(function () {
 
-        _addEndpoints("Window5", ["TopCenter"], []);
-        _addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
-        _addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
-        _addEndpoints("Window3", ["RightMiddle", "BottomCenter"], ["LeftMiddle", "TopCenter"]);
-        _addEndpoints("Window1", ["LeftMiddle", "RightMiddle"], ["TopCenter", "BottomCenter"]);
+        addOutputsToModule("flowchartWindow1" , ["Output 1", "Output 2"]);
+        addInputsToModule("flowchartWindow1" , ["Input 1"]);
 
         // listen for new connections; initialise them the same way we initialise the connections at startup.
         jsPlumbInstance.bind("connection", function (connInfo, originalEvent) {
