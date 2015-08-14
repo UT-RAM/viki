@@ -81,11 +81,14 @@ def main():
             again = True
 
             # Check if the message starts with lowercase viki. This indicates that there is a matching function with the same name in Python that should be executed.
-            if msg.startswith("viki"):
+            if msg.name.startswith("viki"):
                 try:
-                    locals()[msg]()
+                    if msg.value == False:
+                        locals()[msg.name]()
+                    else:
+                        locals()[msg.name](msg.value)
                 except KeyError:
-                    web_send('updateStatus("Function '+msg+' not found")')
+                    web_send('updateStatus("Function '+msg.name+' not found")')
 
         if again:
             pass
