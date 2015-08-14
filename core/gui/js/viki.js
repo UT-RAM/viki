@@ -3,19 +3,20 @@ var jsPlumbInstance;  // to make instance globally available
 var modulesInCanvas = [];
 
 $(document).ready(function(){
-    $('#connCheck').click(function(){
-        send('"connection_check"');
+    // All links with an id starting with viki are buttons that expect a reaction from python. This process is automated: the python function with name equal to the id will run.
+    $("a[id^=viki]").click(function(){
+        statusmessage = $(this).data("statusmessage");
+        if(typeof(statusmessage) != "undefined")
+        {
+            updateStatus(statusmessage);
+        }
+        send(JSON.stringify($(this).attr('id')));
         return false;
     });
 
-    $('#updateModules').click(function(){
-        updateStatus('Asking for modules');
-        send('"ask_available_modules"');
-        return false;
-    });
-
-    updateStatus('Asking for modules');
-    send('"ask_available_modules"');
+    // Manually request first module list.
+    updateStatus('Asking for initial module list');
+    send(JSON.stringify("vikiRefreshModules"));
 });
 
 function updateStatus(msg) {

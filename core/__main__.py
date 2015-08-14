@@ -52,6 +52,14 @@ def main():
         synchronous_gtk_message(launch_browser)(uri,
                                                 quit_function=Global.set_quit)
 
+    # Predefine functions that react on buttons in GUI
+    def vikiConnCheck():
+        web_send('updateStatus("Communication okay")')
+
+    def vikiRefreshModules():
+        web_send('updateModules(%s)' %
+                 helpers.toJSON(available_mods))
+
     # Finally, here is our personalized main loop, 100% friendly
     # with "select" (although I am not using select here)!:
     clicks = -1
@@ -63,21 +71,17 @@ def main():
             msg = from_json(msg)
             again = True
 
-        if msg == "ask_available_modules":
-            web_send('updateModules(%s)' %
-                     helpers.toJSON(available_mods))
-
-        if "modstostart" in str(msg):
-            print msg
-
-        if msg == "connection_check":
-            web_send('updateStatus("Communication okay")')
+            # Check if the message starts with lowercase viki. This indicates that there is a matching function with the same name in Python that should be executed.
+            if msg.startswith("viki"):
+                try:
+                    locals()[msg]()
+                except KeyError:
+                    web_send('updateStatus("Function '+msg+' not found")')
 
         if again:
             pass
         else:
             time.sleep(0.1)
-
 
 def my_quit_wrapper(fun):
     signal.signal(signal.SIGINT, Global.set_quit)
