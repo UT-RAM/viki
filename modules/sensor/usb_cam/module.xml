@@ -1,0 +1,27 @@
+<!--AEROWORKS-->
+<module type="sensor" id="usb_cam">
+
+    <meta>
+        <name>USB camera</name>
+        <author>Robin Hoogervorst</author>
+        <description>
+            Wrapper for the USB cam package within ros
+            [http://wiki.ros.org/usb_cam]
+        </description>
+    </meta>
+
+    <!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
+    <outputs>
+        <output type="ros_topic" name="image" link="usb_cam/image" message_type="sensor_msgs/Image" required="true" />
+    </outputs>
+
+    <executable id="usb_cam" pkg="usb_cam" exec="usb_cam">
+        <params>
+            <param name="camera_name" type="viki_camera" />
+        </params>
+
+        <outputs>
+            <output type="ros_topic" name="/usb_cam/image" message_type="sensor_msgs/Image" required="false" />
+        </outputs>
+    </executable>
+</module>

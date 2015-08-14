@@ -10,13 +10,17 @@ $(document).ready(function(){
         {
             updateStatus(statusmessage);
         }
-        send(JSON.stringify($(this).attr('id')));
+        send(JSON.stringify({name: $(this).attr('id'), value: false}));
         return false;
+    });
+
+    $("#saveConfigXML").click(function(){
+        writeConfig(getConfig(), "configuration.xml");
     });
 
     // Manually request first module list.
     updateStatus('Asking for initial module list');
-    send(JSON.stringify("vikiRefreshModules"));
+    send(JSON.stringify({name: "vikiRefreshModules", value: false}));
 });
 
 function updateStatus(msg) {
@@ -248,7 +252,7 @@ function dropModule(ev) {
 
     // start module at correct position
     var width = 100;
-    var height = 20 + modToAdd.inputs.length * 20;
+    var height = 20 + Math.max(modToAdd.inputs.length, modToAdd.outputs.length) * 20;
     var X = ev.pageX - 0.5*width;
     var Y = ev.pageY - 0.5*height;
 
@@ -349,4 +353,29 @@ function getConfig() {
         }
     });
     return config;
+}
+
+function writeConfig(config, filename) {
+    // create config XML 
+    var configXML = document.createElement("configuration");
+    configXML.setAttribute("id", "VIKI-imported-config");
+
+    // add modules to the config XML
+    for (var i=0; i<config.modsToAdd.length; i++) {
+        var modXML = document.createElement(config.modsToAdd[i].role);
+        modXML.setAttribute("type", config.modsToAdd[i].type);
+        modXML.setAttribute("id", config.modsToAdd[i].id);
+        configXML.appendChild(modXML);
+    }
+
+    // add connects to the config XML
+    for (var i=0; i<config.connectsToAdd.length; i++){
+        var connectXML = document.createElement("connect");
+        connectXML.setAttribute("publisher", config.connectsToAdd[i].pub);
+        connectXML.setAttribute("subscriber", config.connectsToAdd[i].sub);
+        configXML.appendChild(connectXML);
+    }
+    
+    send(JSON.stringify({name: "vikiConfigXML", value: JSON.stringify(configXML)}));
+
 }
