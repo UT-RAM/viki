@@ -2,7 +2,7 @@
 <module type="vehicle" id="parrot">
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<outputs>
-		<output type="ros_topic" name="front_video" link="ardrone_node/front_video" message_type="video_raw" required="true" />
+		<output type="ros_topic" name="front_video" link="ardrone_node/front_video" message_type="sensor_msgs/Image" required="true" />
 	</outputs>
 
 	<inputs>
@@ -15,11 +15,11 @@
 	
 	<executable id="ardrone_node" pkg="ardrone_autonomy" exec="ardrone_driver">
 		<outputs>
-			<output type="ros_topic" name="front_video" message_type="video_raw" required="false" />
+			<output type="ros_topic" name="front_video" message_type="sensor_msgs/Image" required="false" />
 		</outputs>
 
 		<inputs>
-			<input type="ros_topic" name="cmd_vel" message_type="twist" required="true" />
+			<input type="ros_topic" name="cmd_vel" message_type="geometry_msgs/Twist" required="true" />
             <input type="ros_topic" name="ardrone/reset" message_type="standard_msgs/Empty" required="true" />
             <input type="ros_topic" name="ardrone/land" message_type="standard_msgs/Empty" required="true" />
             <input type="ros_topic" name="ardrone/takeoff" message_type="standard_msgs/Empty" required="true" />
