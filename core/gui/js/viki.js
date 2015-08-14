@@ -1,6 +1,6 @@
 var modules;
 var jsPlumbInstance;  // to make instance globally available
-var modulesInCanvas = {};
+var modulesInCanvas = [];
 
 $(document).ready(function(){
     $('#connCheck').click(function(){
@@ -250,8 +250,9 @@ function dropModule(ev) {
     // TODO: make unique
     var data = ev.dataTransfer.getData("moduleId");
     var modId = data;
+    var uModId = guid();  // generate unique id
     
-    $(".project-container").append('<div class="window" id="'+modId+'"><strong>'+modId+'</strong><br/><br/></div>');
+    $(".project-container").append('<div class="window" id="'+uModId+'"><strong>'+modId+'</strong><br/><br/></div>');
     
     // make draggable
     var instance = jsPlumbInstance;
@@ -264,13 +265,15 @@ function dropModule(ev) {
     var X = ev.pageX - 0.5*width;
     var Y = ev.pageY - 0.5*width;
 
-    $(".project-container #"+modId).offset({
+    $(".project-container #"+uModId).offset({
         top : Y,
         left: X
     });
 
     // add to inCanvasArray
     var modToAdd = getModuleById(modId);
+    modToAdd.uWindowId = uModId;
+    modulesInCanvas.push(modToAdd);
    
     // connections
     
@@ -282,4 +285,15 @@ function getModuleById(Id) {
             return modules[i];
         }
     }
+}
+
+function guid() {
+    // generates a unique number
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
 }
