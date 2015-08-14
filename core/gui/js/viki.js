@@ -149,7 +149,10 @@ function addInputsToWindow(moduleId, inputs) {
                     label: inputs[i].name,
                     cssClass: "endpointTargetLabel"
                 } ]
-            ]
+            ],
+            parameters: {
+                name: inputs[i].name
+            }
         });
     }
 }
@@ -183,7 +186,10 @@ function addOutputsToWindow(moduleId, outputs) {
                     label: outputs[i].name,
                     cssClass: "endpointSourceLabel"
                 } ]
-            ]
+            ],
+            parameters: {
+                name: outputs[i].name
+            }
         });
     }
 };
@@ -288,4 +294,48 @@ function deleteWindowFromCanvas(uId) {
     }
     // update status
     updateStatus("window removed!");
+}
+
+function getConfig() {
+    var config = {};
+    config.modsToAdd = [];
+    config.connectsToAdd = [];
+    $(".project-container").children().each(function() {
+        uId = this.id;  // unique id for this element
+        var mod = {};  // initialize module object
+        
+        // save all modules (only use role, type and id)
+        var tempmod = getModuleByUWindowId(uId);  // get infor from unique id        
+        mod.id = uId;  // save id
+        mod.type = tempmod.id;  // save type
+        mod.role = tempmod.type;  // save unique id
+        config.modsToAdd.push(mod);  // add to list of modules to add
+
+        // all connections for this module
+        var connects = jsPlumbInstance.getAllConnections(uId);
+        for (var i=0; i<connects.length; i++) {
+            var connectionToAdd = {};  // init connect to add object
+            
+            var connect = connects[i];  // this connect
+            if (connect.targetId == uId) {  // only write connection if this module is target (avoids doubles)
+                for (var j=0; j<connect.endpoints.length; j++) {  // loop across the (two) enpoints
+                    endpoint = connect.endpoints[j];
+                    // get source or target, prepend with module id and "/"
+                    if (endpoint.isSource) {
+                        connectionToAdd.pub = endpoint.elementId + "/" + endpoint.getParameter("name");
+                    } else if (endpoint.isTarget) {
+                        connectionToAdd.sub = endpoint.elementId + "/" + endpoint.getParameter("name");
+                    } else {
+                        console.log('Found an enpoint that is not a source, nor a target');
+                        alert('error, please check console.log');
+                    }                
+                }    
+
+                // save to connectionlist
+                config.connectsToAdd.push(connectionToAdd);
+            }
+            
+        }
+    });
+    return config;
 }
