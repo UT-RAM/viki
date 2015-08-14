@@ -18,6 +18,10 @@ $(document).ready(function(){
         writeConfig(getConfig());
     });
 
+    $("#saveConfigLaunch").click(function(){
+           send(JSON.stringify({name: "vikiConfigLaunch", value: false}));
+       });
+
     // Manually request first module list.
     updateStatus('Asking for initial module list');
     send(JSON.stringify({name: "vikiRefreshModules", value: false}));

@@ -7,9 +7,9 @@ Call various other functions to scan for available modules in a file tree to fin
 """
 # import sys
 from aero import scan
-# from aero import config_interpreter
+from aero import config_interpreter
 # from aero import config_matcher
-# from aero import writeLaunch
+from aero import writeLaunch
 from aero import helpers
 
 # imports, directly from:  http://www.aclevername.com/articles/python-webgui/
@@ -78,6 +78,13 @@ def main():
         f.write(configXML)
         f.write('</configurations>')
         f.close()
+
+    def vikiConfigLaunch():
+        print("dit werkt echt wel");
+        configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")        
+        print(configfromfile)
+        print(configfromfile.modules_to_add)
+        writeLaunch.write(configfromfile)
 
     # Finally, here is our personalized main loop, 100% friendly
     # with "select" (although I am not using select here)!:
