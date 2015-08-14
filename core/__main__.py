@@ -71,6 +71,9 @@ def main():
     def vikiStopRosCore():
         web_send('enableStartCore()')
 
+    def vikiConfigXML(configXML):
+        print(configXML)
+
     # Finally, here is our personalized main loop, 100% friendly
     # with "select" (although I am not using select here)!:
     clicks = -1
@@ -83,14 +86,14 @@ def main():
             again = True
 
             # Check if the message starts with lowercase viki. This indicates that there is a matching function with the same name in Python that should be executed.
-            if msg.name.startswith("viki"):
+            if msg['name'].startswith("viki"):
                 try:
-                    if msg.value == False:
-                        locals()[msg.name]()
+                    if msg['value'] == False:
+                        locals()[msg['name']]()
                     else:
-                        locals()[msg.name](msg.value)
+                        locals()[msg['name']](msg['value'])
                 except KeyError:
-                    web_send('updateStatus("Function '+msg.name+' not found")')
+                    web_send('updateStatus("Function '+msg['name']+' not found")')
 
         if again:
             pass
