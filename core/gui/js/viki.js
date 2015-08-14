@@ -1,8 +1,5 @@
 var modules;
 var jsPlumbInstance;  // to make instance globally available
-var settings = {
-    testvar: "hoi"
-};
 var modulesInCanvas = {};
 
 $(document).ready(function(){
@@ -42,16 +39,8 @@ function showModulesInPalette(modules) {
 } 
 
 function initPalette() {
-    // $(".module_palette").draggable({revert: "invalid"});
-    // $(".project-container").droppable({accept: ".module_palette", drop: function(event, ui){
-        // alert('test');
-    // }})
-
-    
     $(".module_palette").attr({
         "draggable" : "true",
-        // "ondragstart" : "startDrag(event)",
-        // "ondragend" : "alert('hey! dit werkt')"
     });
 
     $(".module_palette").on("dragstart", startDrag);
@@ -237,7 +226,6 @@ function dropModule(ev) {
     // TODO: make unique
     var data = ev.dataTransfer.getData("moduleId");
     var modId = data;
-
     
     $(".project-container").append('<div class="window" id="'+modId+'"><strong>'+modId+'</strong><br/><br/></div>');
     
@@ -249,7 +237,6 @@ function dropModule(ev) {
     var width = $(".project-container .window").width();
     var height = $(".project-container .window").height();
     // TODO: adjust for when not gripping in the center
-
     var X = ev.pageX - 0.5*width;
     var Y = ev.pageY - 0.5*width;
 
@@ -258,21 +245,20 @@ function dropModule(ev) {
         left: X
     });
 
-
-    console.log(settings.testvar);
+    // add to inCanvasArray
+    var modToAdd = getModuleById(modId);
+    console.log(modId);
+    console.log(modToAdd);
+   
     // connections
-    var sourceUUID = modId + "TopCenter";
-    // instance.addEndpoint("flowchart" + modId,
-        // sourceEndpoint, {anchor: "TopCenter", uuid: sourceUUID});
+    
+}
 
-    // for (var i = 0; i < sourceAnchors.length; i++) {
-    //         var sourceUUID = toId + sourceAnchors[i];
-    //         instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
-    //             anchor: sourceAnchors[i], uuid: sourceUUID
-    //         });
-    //     }
-    //     for (var j = 0; j < targetAnchors.length; j++) {
-    //         var targetUUID = toId + targetAnchors[j];
-    //         instance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
-    //     }
+function getModuleById(Id) {
+    console.log(modules);
+    for (var i=0; i <modules.length; i++) {
+        if (modules[i].id == Id) {
+            return modules[i];
+        }
+    }
 }
