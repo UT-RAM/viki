@@ -173,6 +173,7 @@ def launch_browser(uri, quit_function=None, echo=True):
 
     window.set_default_size(800, 600)
     window.show_all()
+    window.maximize()
 
     message_queue = Queue.Queue()
 
