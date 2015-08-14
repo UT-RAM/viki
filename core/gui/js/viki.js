@@ -287,6 +287,14 @@ function getModuleById(Id) {
     }
 }
 
+function getModuleByUWindowId(uId) {
+    for (var i=0; i<modulesInCanvas.length; i++) {
+        if (modulesInCanvas[i].uWindowId == uId) {
+            return modulesInCanvas[i];
+        }
+    }
+}
+
 function guid() {
     // generates a unique number
     function s4() {
