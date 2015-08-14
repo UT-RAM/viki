@@ -15,7 +15,7 @@ $(document).ready(function(){
     });
 
     $("#saveConfigXML").click(function(){
-        writeConfig(getConfig(), "configuration.xml");
+        writeConfig(getConfig());
     });
 
     // Manually request first module list.
@@ -355,7 +355,7 @@ function getConfig() {
     return config;
 }
 
-function writeConfig(config, filename) {
+function writeConfig(config) {
     // create config XML 
     var configXML = document.createElement("configuration");
     configXML.setAttribute("id", "VIKI-imported-config");
@@ -377,6 +377,4 @@ function writeConfig(config, filename) {
     }
     
     send(JSON.stringify({name: "vikiConfigXML", value: configXML.outerHTML}));
-    console.log(configXML)
-    console.log(configXML.toString())
 }

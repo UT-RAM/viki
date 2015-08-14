@@ -72,7 +72,12 @@ def main():
         web_send('enableStartCore()')
 
     def vikiConfigXML(configXML):
-        print(configXML)
+        filename = 'configuration.xml'
+        f = open(filename, 'w')
+        f.write('<configurations>')
+        f.write(configXML)
+        f.write('</configurations>')
+        f.close()
 
     # Finally, here is our personalized main loop, 100% friendly
     # with "select" (although I am not using select here)!:
