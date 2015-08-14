@@ -134,10 +134,7 @@ jsPlumb.ready(function () {
             hoverPaintStyle: endpointHoverStyle,
             maxConnections: -1,
             dropOptions: { hoverClass: "hover", activeClass: "active" },
-            isTarget: true,
-            overlays: [
-                [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel" } ]
-            ]
+            isTarget: true
         },
         init = function (connection) {
             connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
@@ -160,7 +157,7 @@ jsPlumb.ready(function () {
         for (var i = 0; i < inputs.length; i++) {
             var anchorId = moduleId + "input" + i.toString;
             var pos = [0, ((i+1)/(inputs.length +1)), 1, 0];
-            jsPlumbInstance.addEndpoint(moduleId, sourceEndpoint, {
+            jsPlumbInstance.addEndpoint(moduleId, targetEndpoint, {
                 anchor: pos,
                 overlays: [
                     [ "Label", {
