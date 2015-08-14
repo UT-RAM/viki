@@ -25,7 +25,6 @@ function updateStatus(msg) {
 function updateModules(modulelist) {
     updateStatus('Received modules');
     modules = modulelist;
-    console.log(modules);
     showModulesInPalette(modules);
     initPalette();
     updateStatus('Updated module panel')
@@ -101,7 +100,6 @@ jsPlumb.ready(function () {
     jsPlumbInstance.registerConnectionType("basic", basicType);
 
         init = function (connection) {
-            connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
         };
 
     // suspend drawing and initialise.
@@ -114,9 +112,6 @@ jsPlumb.ready(function () {
 
         // make all the window divs draggable
         jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
-        // THIS DEMO ONLY USES getSelector FOR CONVENIENCE. Use your library's appropriate selector
-        // method, or document.querySelectorAll:
-        //jsPlumb.draggable(document.querySelectorAll(".window"), { grid: [20, 20] });
 
         //
         // listen for clicks on connections, and offer to delete connections on click.
@@ -124,19 +119,7 @@ jsPlumb.ready(function () {
         jsPlumbInstance.bind("click", function (conn, originalEvent) {
             // if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
             //   instance.detach(conn);
-            conn.toggleType("basic");
-        });
-
-        jsPlumbInstance.bind("connectionDrag", function (connection) {
-            console.log("connection " + connection.id + " is being dragged. suspendedElement is ", connection.suspendedElement, " of type ", connection.suspendedElementType);
-        });
-
-        jsPlumbInstance.bind("connectionDragStop", function (connection) {
-            console.log("connection " + connection.id + " was dragged");
-        });
-
-        jsPlumbInstance.bind("connectionMoved", function (params) {
-            console.log("connection " + params.connection.id + " was moved");
+            //conn.toggleType("basic");
         });
     });
 
