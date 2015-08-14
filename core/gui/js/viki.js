@@ -376,6 +376,7 @@ function writeConfig(config, filename) {
         configXML.appendChild(connectXML);
     }
     
-    send(JSON.stringify({name: "vikiConfigXML", value: JSON.stringify(configXML)}));
-
+    send(JSON.stringify({name: "vikiConfigXML", value: configXML.outerHTML}));
+    console.log(configXML)
+    console.log(configXML.toString())
 }
