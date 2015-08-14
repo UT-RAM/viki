@@ -16,8 +16,6 @@ body {
     border-radius: 0.5em;
     opacity: 0.8;
     filter: alpha(opacity=80);
-    width: 80px;
-    height: 80px;
     line-height: 80px;
     cursor: pointer;
     text-align: center;
@@ -44,6 +42,21 @@ body {
     filter: alpha(opacity=60);
 }
 
+.project-container .window .window_label {
+    position: absolute;
+    font-weight: bold;
+    width: 100%;
+    top: -50px;
+    left: 0;
+    display: block;
+    text-align: center;
+}
+
+.endpoint-label {
+    font-color: black;
+    z-index: 200;
+}
+
 .project-container .active {
     border: 1px dotted green;
 }
@@ -52,35 +65,9 @@ body {
     border: 1px dotted red;
 }
 
-    #flowchartWindow1 {
-top: 34em;
-    left: 5em;
-}
-
-#flowchartWindow2 {
-top: 7em;
-left: 36em;
-}
-
-#flowchartWindow3 {
-top: 27em;
-left: 48em;
-}
-
-#flowchartWindow4 {
-top: 23em;
-left: 22em;
-}
-
 .project-container ._jsPlumb_connector {
-z-index: 4;
+    z-index: 4;
 }
-
-.project-container ._jsPlumb_endpoint, .endpointTargetLabel, .endpointSourceLabel {
-    z-index: 21;
-    cursor: pointer;
-}
-
 .moduleOutputLabel {
     text-align: right;
 }
@@ -127,21 +114,30 @@ p.status {
 
 .module_palette {
     display: block;
-    border: 1px solid black;
     margin: 5px;
     padding: 5px;
-    vertical-align: middle;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    width: 20%;
-    line-height: 100px;
-    text-align: center;
-    float: left;
 }
 
 /* use to highlight the project container with a black line */
 .project-container {
     border: 1px solid black;
-    height: 600px;
+    width: 100%;
+    min-height: 700px;
+}
+
+div#status {
+    font-family: 'Consolas', 'Menlo', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    font-size: 0.8em;
+    height: 4em;
+    vertical-align: bottom;
+    display: block;
+    overflow-y: scroll;
+}
+
+a img, li img {
+    margin: 2px;
+}
+
+.actions {
+    list-style-type: none;
 }
