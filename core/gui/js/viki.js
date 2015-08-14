@@ -3,6 +3,7 @@ var jsPlumbInstance;  // to make instance globally available
 var settings = {
     testvar: "hoi"
 };
+var modulesInCanvas = {};
 
 $(document).ready(function(){
     $('#connCheck').click(function(){
@@ -45,10 +46,16 @@ function initPalette() {
     // $(".project-container").droppable({accept: ".module_palette", drop: function(event, ui){
         // alert('test');
     // }})
+
+    
     $(".module_palette").attr({
         "draggable" : "true",
-        "ondragstart" : "startDrag(event)"
+        // "ondragstart" : "startDrag(event)",
+        // "ondragend" : "alert('hey! dit werkt')"
     });
+
+    $(".module_palette").on("dragstart", startDrag);
+
     $(".project-container").attr({
         "ondragover" : "allowDrop(event)",
         "ondrop" : "dropModule(event)"
@@ -158,6 +165,7 @@ jsPlumb.ready(function () {
     // suspend drawing and initialise.
     jsPlumbInstance.batch(function () {
 
+        _addEndpoints("Window5", ["TopCenter"], []);
         _addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
         _addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
         _addEndpoints("Window3", ["RightMiddle", "BottomCenter"], ["LeftMiddle", "TopCenter"]);
@@ -210,6 +218,8 @@ jsPlumb.ready(function () {
 });
 
 function startDrag(ev) {
+    console.log(ev);
+    ev = ev.originalEvent;
     updateStatus("dragging object: " + ev.target.id);
     ev.dataTransfer.setData("moduleId", ev.target.id);
 }
