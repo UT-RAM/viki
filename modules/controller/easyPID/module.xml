@@ -2,12 +2,12 @@
 <module type="controller" id="easyPID">
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<inputs>
-		<input type="ros_topic" name="setpoint" link="control_node/setpoint" message_type="pose" required="true" />
-		<input type="ros_topic" name="position" link="control_node/position" message_type="pose" required="true" />
+		<input type="ros_topic" name="setpoint" link="control_node/setpoint" message_type="geometry_msgs/Pose" required="true" />
+		<input type="ros_topic" name="position" link="control_node/position" message_type="geometry_msgs/Pose" required="true" />
 	</inputs>
 
 	<outputs>
-		<output type="ros_service" name="command" link="control_node/setpoint" message_type="pose" required="false" />
+		<output type="ros_service" name="command" link="control_node/setpoint" message_type="geometry_msgs/Twist" required="false" />
 	</outputs>
 	
 	<!-- A specific type is defined. These executables represent a controller "block" that can be used from this module. -->
@@ -15,11 +15,11 @@
 	<executable id="control_node" pkg="easyPID" exec="node">
 		<inputs>
 			<!-- The in- and outputs of this specific executable -->
-			<input type="ros_topic" name="setpoint" message_type="pose" required="true" /> <!-- default value required=true; core emits warning when not connected -->
-			<input type="ros_topic" name="position" message_type="pose" required="true" />
+			<input type="ros_topic" name="setpoint" message_type="geometry_msgs/Pose" required="true" /> <!-- default value required=true; core emits warning when not connected -->
+			<input type="ros_topic" name="position" message_type="geometry_msgs/Pose" required="true" />
 		</inputs>
 		<outputs>
-			<output type="ros_service" name="command" message_type="pose" required="false" />
+			<output type="ros_service" name="command" message_type="geometry_msgs/Pose" required="false" />
 		</outputs>
 		<params>
 			<param name="gain" default="2" type="realnumber" />
@@ -28,8 +28,8 @@
 
 	<executable id="log_node" pkg="easyPID" exec="logger">
 		<inputs>
-			<input type="ros_topic" name="logdata" message_type="pose" /> <!-- NOT USABLE FROM THE OUTSIDE (and not used) -->
-			<input type="ros_topic" name="setpoint" message_type="pose" /> <!-- NOT USABLE FROM THE OUTSIDE-->
+			<input type="ros_topic" name="logdata" message_type="geometry_msgs/Pose" /> <!-- NOT USABLE FROM THE OUTSIDE (and not used) -->
+			<input type="ros_topic" name="setpoint" message_type="geometry_msgs/Pose" /> <!-- NOT USABLE FROM THE OUTSIDE-->
 		</inputs>
 		<params>
 			<param name="file" default="default.txt" type="string" />
