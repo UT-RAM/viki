@@ -207,7 +207,6 @@ jsPlumb.ready(function () {
 });
 
 function startDrag(ev) {
-    console.log(ev);
     ev = ev.originalEvent;
     updateStatus("dragging object: " + ev.target.id);
     ev.dataTransfer.setData("moduleId", ev.target.id);
@@ -247,15 +246,12 @@ function dropModule(ev) {
 
     // add to inCanvasArray
     var modToAdd = getModuleById(modId);
-    console.log(modId);
-    console.log(modToAdd);
    
     // connections
     
 }
 
 function getModuleById(Id) {
-    console.log(modules);
     for (var i=0; i <modules.length; i++) {
         if (modules[i].id == Id) {
             return modules[i];
