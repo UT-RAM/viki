@@ -2,12 +2,12 @@
 <module type="sensor" id="optitrack">
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<outputs>
-		<output type="ros_topic" name="position" link="mocap_node/pose" message_type="pose" required="true" />
+		<output type="ros_topic" name="position" link="mocap_node/pose" message_type="geometry_msgs/Pose" required="true" />
 	</outputs>
 
 	<executable id="mocap_node" pkg="mocap_optitrack" exec="mocap_node">
 		<outputs>
-			<output type="ros_topic" name="pose" message_type="pose" required="false" />
+			<output type="ros_topic" name="pose" message_type="geometry_msgs/Pose" required="false" />
 		</outputs>
 	</executable>
 </module>

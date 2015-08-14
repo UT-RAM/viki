@@ -10,7 +10,7 @@
     </meta>
 
     <outputs>
-        <output type="ros_topic" name="cmd_vel" link="turtle_teleop_node/turtle1/cmd_vel" message_type="geometry_msgs/TWist" required="true"/>
+        <output type="ros_topic" name="cmd_vel" link="turtle_teleop_node/turtle1/cmd_vel" message_type="geometry_msgs/Twist" required="true"/>
     </outputs>
 
     <executable id="turtle_teleop_node" pkg="turtlesim" exec="turtle_teleop_key">
