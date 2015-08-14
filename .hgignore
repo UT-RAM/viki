@@ -47,7 +47,6 @@ docs/_build/doctrees/*
 *.asv
 
 # Images
-*.png
 
 *.idea
 *.iml
