@@ -249,6 +249,7 @@ function dropModule(ev) {
         addInputsToWindow(uModId, modToAdd.inputs);
         addOutputsToWindow(uModId, modToAdd.outputs);
     });
+
 }
 
 function getModuleById(Id) {
@@ -276,4 +277,17 @@ function guid() {
     }
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
     s4() + '-' + s4() + s4() + s4();
+}
+
+function deleteWindowFromCanvas(uId) {
+    // remove from jsPlumb
+    jsPlumbInstance.remove(uId);
+    // remove from array
+    for (var i=0; i<modulesInCanvas.length; i++) {
+        if (modulesInCanvas[i].uWindowId == uId) {
+            modulesInCanvas.splice(i, 1);
+        }
+    }
+    // update status
+    updateStatus("window removed!");
 }
