@@ -99,15 +99,21 @@ jsPlumb.ready(function () {
     };
     jsPlumbInstance.registerConnectionType("basic", basicType);
 
-        init = function (connection) {
-        };
-
     // suspend drawing and initialise.
     jsPlumbInstance.batch(function () {
 
         // listen for new connections; initialise them the same way we initialise the connections at startup.
-        jsPlumbInstance.bind("connection", function (connInfo, originalEvent) {
-            init(connInfo.connection);
+        jsPlumbInstance.bind("beforeDrop", function (connInfo) {
+            sourceType = connInfo.connection.endpoints[0].getParameter("type");
+            targetType = connInfo.dropEndpoint.getParameter("type");
+
+            console.log(sourceType, targetType);
+            if (sourceType != targetType) {
+                console.log("Connection endpoints are not of the same type. Removing..");
+                return false;
+            }
+
+            return true;
         });
 
         // make all the window divs draggable
@@ -143,11 +149,14 @@ function addInputsToWindow(moduleId, inputs) {
         var pos = [0, ((i+1)/(inputs.length +1)), -1, 0];
         jsPlumbInstance.addEndpoint(moduleId, targetEndpoint, {
             anchor: pos,
+            parameters: {
+                type: inputs[i].message_type
+            },
             overlays: [
                 [ "Label", {
                     location: [-1.5, 0.5],
                     label: inputs[i].name,
-                    cssClass: "endpointTargetLabel"
+                    cssClass: "endpoint-label"
                 } ]
             ]
         });
@@ -177,26 +186,19 @@ function addOutputsToWindow(moduleId, outputs) {
         var pos = [1, ((i+1)/(outputs.length +1)), 1, 0];
         jsPlumbInstance.addEndpoint(moduleId, sourceEndpoint, {
             anchor: pos,
+            parameters: {
+                type: outputs[i].message_type
+            },
             overlays: [
                 [ "Label", {
                     location: [-1.5, 0.5],
                     label: outputs[i].name,
-                    cssClass: "endpointSourceLabel"
+                    cssClass: "endpoint-label"
                 } ]
             ]
         });
     }
 };
-
-function updateModule(event) {
-    var module = getModuleById(this.id);
-
-    jsPlumbInstance.batch(function() {
-        addInputsToWindow(module.id, module.inputs);
-        addOutputsToWindow(module.id, module.outputs);
-    });
-    console.log(this.id);
-}
 
 function startDrag(ev) {
     ev = ev.originalEvent;
@@ -214,39 +216,35 @@ function dropModule(ev) {
     ev.preventDefault();
 
     // module id:
-    // TODO: make unique
     var data = ev.dataTransfer.getData("moduleId");
     var modId = data;
     var uModId = guid();  // generate unique id
     
-    $(".project-container").append('<div class="window" id="'+uModId+'"><strong>'+modId+'</strong><br/><br/></div>');
-    
-    // make draggable
-    var instance = jsPlumbInstance;
-    instance.draggable($(".project-container .window"), { grid: [20, 20] });
-
-    // start module at correct position
-    var width = $(".project-container .window").width();
-    var height = $(".project-container .window").height();
-    // TODO: adjust for when not gripping in the center
-    var X = ev.pageX - 0.5*width;
-    var Y = ev.pageY - 0.5*width;
-
-    $(".project-container #"+uModId).offset({
-        top : Y,
-        left: X
-    });
+    $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modId+'</span></div>');
 
     // add to inCanvasArray
     var modToAdd = getModuleById(modId);
     modToAdd.uWindowId = uModId;
     modulesInCanvas.push(modToAdd);
-   
+
+    // start module at correct position
+    var width = 100;
+    var height = 20 + modToAdd.inputs.length * 20;
+    var X = ev.pageX - 0.5*width;
+    var Y = ev.pageY - 0.5*height;
+
+    $(".project-container #"+uModId).offset({
+        top : Y,
+        left: X
+    }).width(width)
+        .height(height);
+
+    // make draggable
+    jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
+
     // connections
-    jsPlumbInstance.batch(function() {
-        addInputsToWindow(uModId, modToAdd.inputs);
-        addOutputsToWindow(uModId, modToAdd.outputs);
-    });
+    addInputsToWindow(uModId, modToAdd.inputs);
+    addOutputsToWindow(uModId, modToAdd.outputs);
 }
 
 function getModuleById(Id) {
