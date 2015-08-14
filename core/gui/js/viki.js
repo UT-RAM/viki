@@ -3,19 +3,20 @@ var jsPlumbInstance;  // to make instance globally available
 var modulesInCanvas = [];
 
 $(document).ready(function(){
-    $('#connCheck').click(function(){
-        send('"connection_check"');
+    // All links with an id starting with viki are buttons that expect a reaction from python. This process is automated: the python function with name equal to the id will run.
+    $("a[id^=viki]").click(function(){
+        statusmessage = $(this).data("statusmessage");
+        if(typeof(statusmessage) != "undefined")
+        {
+            updateStatus(statusmessage);
+        }
+        send(JSON.stringify($(this).attr('id')));
         return false;
     });
 
-    $('#updateModules').click(function(){
-        updateStatus('Asking for modules');
-        send('"ask_available_modules"');
-        return false;
-    });
-
-    updateStatus('Asking for modules');
-    send('"ask_available_modules"');
+    // Manually request first module list.
+    updateStatus('Asking for initial module list');
+    send(JSON.stringify("vikiRefreshModules"));
 });
 
 function updateStatus(msg) {
@@ -51,6 +52,16 @@ function initPalette() {
         "ondrop" : "dropModule(event)"
     });
     
+}
+
+function enableStopCore() {
+    $("#vikiStopRosCore").parent().hide();
+    $("#vikiStartRosCore").parent().show();
+}
+
+function enableStartCore() {
+    $("#vikiStopRosCore").parent().show();
+    $("#vikiStartRosCore").parent().hide();
 }
 
 // this is the paint style for the connecting lines..
@@ -160,7 +171,10 @@ function addInputsToWindow(moduleId, inputs) {
                     label: inputs[i].name,
                     cssClass: "endpoint-label"
                 } ]
-            ]
+            ],
+            parameters: {
+                name: inputs[i].name
+            }
         });
     }
 }
@@ -197,7 +211,10 @@ function addOutputsToWindow(moduleId, outputs) {
                     label: outputs[i].name,
                     cssClass: "endpoint-label"
                 } ]
-            ]
+            ],
+            parameters: {
+                name: outputs[i].name
+            }
         });
     }
 };
@@ -288,4 +305,48 @@ function deleteWindowFromCanvas(uId) {
     }
     // update status
     updateStatus("window removed!");
+}
+
+function getConfig() {
+    var config = {};
+    config.modsToAdd = [];
+    config.connectsToAdd = [];
+    $(".project-container").children().each(function() {
+        uId = this.id;  // unique id for this element
+        var mod = {};  // initialize module object
+        
+        // save all modules (only use role, type and id)
+        var tempmod = getModuleByUWindowId(uId);  // get infor from unique id        
+        mod.id = uId;  // save id
+        mod.type = tempmod.id;  // save type
+        mod.role = tempmod.type;  // save unique id
+        config.modsToAdd.push(mod);  // add to list of modules to add
+
+        // all connections for this module
+        var connects = jsPlumbInstance.getAllConnections(uId);
+        for (var i=0; i<connects.length; i++) {
+            var connectionToAdd = {};  // init connect to add object
+            
+            var connect = connects[i];  // this connect
+            if (connect.targetId == uId) {  // only write connection if this module is target (avoids doubles)
+                for (var j=0; j<connect.endpoints.length; j++) {  // loop across the (two) enpoints
+                    endpoint = connect.endpoints[j];
+                    // get source or target, prepend with module id and "/"
+                    if (endpoint.isSource) {
+                        connectionToAdd.pub = endpoint.elementId + "/" + endpoint.getParameter("name");
+                    } else if (endpoint.isTarget) {
+                        connectionToAdd.sub = endpoint.elementId + "/" + endpoint.getParameter("name");
+                    } else {
+                        console.log('Found an enpoint that is not a source, nor a target');
+                        alert('error, please check console.log');
+                    }                
+                }    
+
+                // save to connectionlist
+                config.connectsToAdd.push(connectionToAdd);
+            }
+            
+        }
+    });
+    return config;
 }
