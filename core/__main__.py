@@ -63,7 +63,7 @@ def main():
                  helpers.toJSON(available_mods))
 
     def vikiStartRosCore():
-        sp = subprocess.Popen('roscore',shell=True)
+        sp = subprocess.Popen('/opt/ros/indigo/bin/roscore')
         corePID = sp.pid
         web_send('enableStopCore()')
         web_send('updateStatus("ROS core started (PID: '+str(corePID)+')")')
@@ -73,6 +73,15 @@ def main():
 
     def vikiConfigXML(configXML):
         print(configXML)
+
+    def vikiRun():
+        try:
+            subprocess.call(['roslaunch aeroworks aeroworks.launch'], shell=True)
+            # subprocess.Popen(['gnome-terminal', '--title=%s' % "ROS SHELL", '--disable-factory', '-e', "/bin/bash", "-e", "roslaunch %s --disable-title --port %s %s" % ('roslaunch', 'aeroworks', 'aeroworks.launch')])
+
+        except OSError:
+            web_send('updateStatus("OSError")')
+        web_send('updateStatus("Requested launch of AeroWorks.launch")')
 
     # Finally, here is our personalized main loop, 100% friendly
     # with "select" (although I am not using select here)!:
