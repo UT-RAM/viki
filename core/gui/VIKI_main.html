@@ -20,29 +20,41 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-3"><h1>VIKI</h1></div>
-        <div class="col-lg-9">
-            <p>
-                Status: <span id="statusLabel">HTML front-end loaded</span><br />
-                <a href="#" id="connCheck">Quick connection check</a>
-            </p>
+        <div class="col-lg-2"><h1>VIKI</h1></div>
+        <div class="col-lg-10">
+            <h1>Status</h1>
+            <div id="status">
+                <span id="statusLabel">HTML front-end loaded</span><br />
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3" id="palette">
+        <div class="col-lg-2" id="palette">
             <h1>Palette</h1>
-            <p>List of all avaialable modules.<br />
-                <a href="#" id="updateModules">Update modules</a>
+            <p>List of all available modules.<br />
+                <a href="#" id="updateModules"><img src="img/arrow_refresh.png" /> Update modules</a>
             </p>
 
-            <div id="list"></div>
+            <ul id="list"></ul>
         </div>
-        <div class="col-lg-9" id="project">
+        <div class="col-lg-8" id="project">
             <h1>Project</h1>
             <p>Your project overview</p>
 
             <div class="project-container">
             </div>
+        </div>
+        <div class="col-lg-2" id="propertiesPanel">
+            <h1>Actions</h1>
+            <ul class="actions">
+                <li><a href="#" id="saveConfigXML"><img src="img/page_save.png" /> Export to configuration.xml</a></li>
+                <li><a href="#" id="saveConfigLaunch"><img src="img/page_save.png" /> Export to configuration.launch</a></li>
+                <li><a href="#" id="runApplication"><img src="img/application_go.png" /> Run</a></li>
+                <li><a href="#" id="connCheck"><img src="img/accept.png" /> Quick connection check</a></li>
+                <li><a href="#" id="openRqtGraph"><img src="img/image.png" /> Open rqt_graph</a></li>
+            </ul>
+            <h1>Properties</h1>
+            <p><span id="selectedProperty"></span></p>
         </div>
     </div>
 </div>

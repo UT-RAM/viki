@@ -14,12 +14,14 @@ $(document).ready(function(){
         return false;
     });
 
+    updateStatus('Asking for modules');
+    send('"ask_available_modules"');
 });
 
 function updateStatus(msg) {
     var dt = new Date();
-    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    $('#statusLabel').html(msg + " (at " + time +")");
+    var time =('0'  + dt.getHours()).slice(-2)+':'+('0' + dt.getMinutes()).slice(-2)+':'+('0' + dt.getSeconds()).slice(-2);
+    $('#statusLabel').prepend(time + " - " + msg + "<br />");
 }
 
 function updateModules(modulelist) {
@@ -33,7 +35,7 @@ function updateModules(modulelist) {
 function showModulesInPalette(modules) {
     $('#palette #list').html("");
     modules.forEach(function(module){
-        $('#palette #list').append('<div class="module_palette" id="'+module.id+'">'+module.id+'</div>');
+        $('#palette #list').append('<li class="module_palette" id="'+module.id+'"><img src="img/plugin.png" />'+module.id+'</li>');
     });
 } 
 
