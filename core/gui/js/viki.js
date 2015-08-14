@@ -54,6 +54,16 @@ function initPalette() {
     
 }
 
+function enableStopCore() {
+    $("#vikiStopRosCore").parent().hide();
+    $("#vikiStartRosCore").parent().show();
+}
+
+function enableStartCore() {
+    $("#vikiStopRosCore").parent().show();
+    $("#vikiStartRosCore").parent().hide();
+}
+
 // this is the paint style for the connecting lines..
 var connectorPaintStyle = {
         lineWidth: 4,

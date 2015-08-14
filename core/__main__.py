@@ -17,6 +17,7 @@ import signal
 import os
 import time
 import urllib
+import subprocess
 
 # from simplejson import dumps as to_json
 from simplejson import loads as from_json
@@ -59,6 +60,14 @@ def main():
     def vikiRefreshModules():
         web_send('updateModules(%s)' %
                  helpers.toJSON(available_mods))
+
+    def vikiStartRosCore():
+        #subprocess.popen(['gnome-terminal', '-x', 'roscore'])
+        web_send('enableStopCore()')
+
+    def vikiStopRosCore():
+        #subprocess.call(['gnome-terminal', '-x', 'roscore'])
+        web_send('enableStartCore()')
 
     # Finally, here is our personalized main loop, 100% friendly
     # with "select" (although I am not using select here)!:
