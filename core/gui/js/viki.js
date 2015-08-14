@@ -252,7 +252,7 @@ function dropModule(ev) {
 
     // start module at correct position
     var width = 100;
-    var height = 20 + modToAdd.inputs.length * 20;
+    var height = 20 + Math.max(modToAdd.inputs.length, modToAdd.outputs.length) * 20;
     var X = ev.pageX - 0.5*width;
     var Y = ev.pageY - 0.5*height;
 
