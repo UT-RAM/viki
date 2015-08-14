@@ -77,8 +77,12 @@ z-index: 4;
 }
 
 .project-container ._jsPlumb_endpoint, .endpointTargetLabel, .endpointSourceLabel {
-z-index: 21;
-cursor: pointer;
+    z-index: 21;
+    cursor: pointer;
+}
+
+.moduleOutputLabel {
+    text-align: right;
 }
 
 .project-container .aLabel {
