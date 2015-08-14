@@ -45,6 +45,7 @@ class Global(object):
 
 def main():
     start_gtk_thread()
+    corePID = 0
 
     # Create a proper file:// URL pointing to demo.xhtml:
     file = os.path.abspath('core/gui/VIKI_main.html')
@@ -62,11 +63,12 @@ def main():
                  helpers.toJSON(available_mods))
 
     def vikiStartRosCore():
-        #subprocess.popen(['gnome-terminal', '-x', 'roscore'])
+        sp = subprocess.Popen('roscore',shell=True)
+        corePID = sp.pid
         web_send('enableStopCore()')
+        web_send('updateStatus("ROS core started (PID: '+str(corePID)+')")')
 
     def vikiStopRosCore():
-        #subprocess.call(['gnome-terminal', '-x', 'roscore'])
         web_send('enableStartCore()')
 
     # Finally, here is our personalized main loop, 100% friendly

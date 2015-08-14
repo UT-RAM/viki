@@ -54,12 +54,12 @@ function initPalette() {
     
 }
 
-function enableStopCore() {
+function enableStartCore() {
     $("#vikiStopRosCore").parent().hide();
     $("#vikiStartRosCore").parent().show();
 }
 
-function enableStartCore() {
+function enableStopCore() {
     $("#vikiStopRosCore").parent().show();
     $("#vikiStartRosCore").parent().hide();
 }
