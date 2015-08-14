@@ -118,10 +118,15 @@ def synchronous_gtk_message(fun):
 
     return fun2
 
-def activate_inspector(inspector, target_view, splitter):
-    inspector_view = webkit.WebView()
-    splitter.pack_end(inspector_view)
-    return inspector_view
+def activate_inspector(inspector, target_view):
+    inspectorwindow = gtk.Window()
+    inspectorwindow.set_default_size(800, 600)
+    inspectorbox = gtk.VBox(homogeneous=False, spacing=0)
+    inspectorwindow.add(inspectorbox)
+    inspectorview = webkit.WebView()
+    inspectorbox.pack_end(inspectorview)
+    inspectorwindow.show_all()
+    return inspectorview
 
 
 def launch_browser(uri, quit_function=None, echo=True):
@@ -134,7 +139,7 @@ def launch_browser(uri, quit_function=None, echo=True):
     window.add(box)
 
     inspector = browser.get_web_inspector()
-    inspector.connect("inspect-web-view",activate_inspector, box)
+    inspector.connect("inspect-web-view", activate_inspector)
 
     if quit_function is not None:
             # Obligatory "File: Quit" menu
@@ -168,6 +173,7 @@ def launch_browser(uri, quit_function=None, echo=True):
 
     window.set_default_size(800, 600)
     window.show_all()
+    window.maximize()
 
     message_queue = Queue.Queue()
 

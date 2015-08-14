@@ -3,6 +3,7 @@ var jsPlumbInstance;  // to make instance globally available
 var settings = {
     testvar: "hoi"
 };
+var modulesInCanvas = {};
 
 $(document).ready(function(){
     $('#connCheck').click(function(){
@@ -45,10 +46,16 @@ function initPalette() {
     // $(".project-container").droppable({accept: ".module_palette", drop: function(event, ui){
         // alert('test');
     // }})
+
+    
     $(".module_palette").attr({
         "draggable" : "true",
-        "ondragstart" : "startDrag(event)"
+        // "ondragstart" : "startDrag(event)",
+        // "ondragend" : "alert('hey! dit werkt')"
     });
+
+    $(".module_palette").on("dragstart", startDrag);
+
     $(".project-container").attr({
         "ondragover" : "allowDrop(event)",
         "ondrop" : "dropModule(event)"
@@ -186,7 +193,6 @@ jsPlumb.ready(function () {
     // suspend drawing and initialise.
     jsPlumbInstance.batch(function () {
 
-
         addOutputsToModule("flowchartWindow1" , ["Output 1", "Output 2"]);
         addInputsToModule("flowchartWindow1" , ["Input 1"]);
 
@@ -237,6 +243,8 @@ jsPlumb.ready(function () {
 });
 
 function startDrag(ev) {
+    console.log(ev);
+    ev = ev.originalEvent;
     updateStatus("dragging object: " + ev.target.id);
     ev.dataTransfer.setData("moduleId", ev.target.id);
 }
