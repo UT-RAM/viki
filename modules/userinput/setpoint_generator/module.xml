@@ -1,0 +1,26 @@
+<!--AEROWORKS-->
+<module type="userinput" id="setpoint_generator">
+    <meta>
+        <name>Setpoint generator</name>
+        <description>
+            Generate setpoints in different figures
+        </description>
+        <author>Robin Hoogervorst</author>
+    </meta>
+
+    <outputs>
+        <output type="ros_topic" name="setpoint" link="setpoint_generator/setpoint" message_type="geometry_msgs/Pose" required="true" />
+    </outputs>
+
+    <executable id="setpoint_generator" pkg="ram_viki_setpoint" exec="setpoint_generator">
+        <outputs>
+            <output type="ros_topic" name="viki_setpoint" message_type="pose" required="false" />
+        </outputs>
+
+        <params>
+            <param name="period_time" default="10" type="float" />
+            <param name="period_phase_shift_time" default="0"  type="float"/>
+        </params>
+    </executable>
+
+</module>
