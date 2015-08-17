@@ -63,6 +63,7 @@ function initPalette() {
     
     $(document).on('click', '.window', onWindowClick);
     $(document).on('keydown', keyPressed);
+    $(document).on('module_selected', onModuleSelect);
 }
 
 function enableStartCore() {
@@ -76,30 +77,54 @@ function enableStopCore() {
 }
 
 function onWindowClick(event) {
-    clearSelectedModule();
-    selectedModuleUid = $(this).attr('id');
-    $(this).attr('selected', 'selected');
+    var willSelect = ( selectedModuleUid !== $(this).attr('id') ); // only select if we click a non-selected module
+    clearSelectedModule(); // make sure we only select a single module
+    if (willSelect) {
+        selectedModuleUid = $(this).attr('id');    
+        $(this).attr('selected', 'selected');
+        $(document).trigger("module_selected");
+    }
 }
 
 function clearSelectedModule() {
     selectedModuleUid = null;
     $('.window').removeAttr('selected');
+    // clear the properties pane
+    $('#selectedWindowProperties tbody').empty();
+    $('p#selectedWindowInfo').empty();
 }
 
 function deleteSelectedModule() {
-    console.log(selectedModuleUid);
     if (selectedModuleUid != null) {
-        deleteWindowFromCanvas(selectedModuleUid);    
+        deleteWindowFromCanvas(selectedModuleUid);
+        clearSelectedModule(); 
     }
 }
 
 function keyPressed(event) {
-    console.log(event.which);
     switch (event.which) {
         case 46: // delete
         case 8: //backspace
             deleteSelectedModule();
             break;
+    }
+}
+
+function onModuleSelect(event) {
+    var selectedModule = getModuleByUWindowId(selectedModuleUid);
+    $('p#selectedWindowInfo').html("<h3>"+selectedModule.id+"</h3><br><strong>Uid: </strong>"+selectedModule.uWindowId+"<br/>");
+    var tbody = $('#selectedWindowProperties tbody');
+    tbody.empty();
+
+    for (var i=0; i < selectedModule.executables.length; i++) {
+        var exe = selectedModule.executables[i];
+        for (var j=0; j < exe.params.length; j++) {
+            var param = exe.params[j];
+            tbody.append('<tr><th>'+ param.name +'</th><td><input class="form-control" type="text" value="'+param.default+'"/></td></tr>');
+        }
+    }
+    if (tbody.html() == '') {
+        tbody.append('<tr><td colspan="2"><em>No params</em></td></tr>');
     }
 }
 
@@ -159,9 +184,8 @@ jsPlumb.ready(function () {
             sourceType = connInfo.connection.endpoints[0].getParameter("type");
             targetType = connInfo.dropEndpoint.getParameter("type");
 
-            console.log(sourceType, targetType);
             if (sourceType != targetType) {
-                console.log("Connection endpoints are not of the same type. Removing..");
+                updateStatus("Not able to connect endpoints of different types");
                 return false;
             }
 
