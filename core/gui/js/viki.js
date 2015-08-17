@@ -171,7 +171,8 @@ function addInputsToWindow(moduleId, inputs) {
         jsPlumbInstance.addEndpoint(moduleId, targetEndpoint, {
             anchor: pos,
             parameters: {
-                type: inputs[i].message_type
+                type: inputs[i].message_type,
+                name: inputs[i].name
             },
             overlays: [
                 [ "Label", {
@@ -179,10 +180,7 @@ function addInputsToWindow(moduleId, inputs) {
                     label: inputs[i].name,
                     cssClass: "endpoint-label"
                 } ]
-            ],
-            parameters: {
-                name: inputs[i].name
-            }
+            ]
         });
     }
 }
@@ -211,7 +209,8 @@ function addOutputsToWindow(moduleId, outputs) {
         jsPlumbInstance.addEndpoint(moduleId, sourceEndpoint, {
             anchor: pos,
             parameters: {
-                type: outputs[i].message_type
+                type: outputs[i].message_type,
+                name: outputs[i].name
             },
             overlays: [
                 [ "Label", {
@@ -219,10 +218,7 @@ function addOutputsToWindow(moduleId, outputs) {
                     label: outputs[i].name,
                     cssClass: "endpoint-label"
                 } ]
-            ],
-            parameters: {
-                name: outputs[i].name
-            }
+            ]
         });
     }
 };

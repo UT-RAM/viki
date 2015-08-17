@@ -1,1 +1,1 @@
-<configurations><configuration id="VIKI-imported-config"><vehicle type="turtlesim" id="y6zg"></vehicle><userinput type="turtlekey" id="odhj"></userinput><connect publisher="odhj/cmd_vel" listener="y6zg/cmd_vel"></connect></configuration></configurations>
+<configurations><configuration id="VIKI-imported-config"><sensor type="camera_source" id="wd6j"></sensor></configuration></configurations>
