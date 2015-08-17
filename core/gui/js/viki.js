@@ -1,6 +1,7 @@
 var modules;
 var jsPlumbInstance;  // to make instance globally available
 var modulesInCanvas = [];
+var selectedModuleUid = null;
 
 $(document).ready(function(){
     // All links with an id starting with viki are buttons that expect a reaction from python. This process is automated: the python function with name equal to the id will run.
@@ -60,6 +61,8 @@ function initPalette() {
         "ondrop" : "dropModule(event)"
     });
     
+    $(document).on('click', '.window', onWindowClick);
+    $(document).on('keydown', keyPressed);
 }
 
 function enableStartCore() {
@@ -70,6 +73,34 @@ function enableStartCore() {
 function enableStopCore() {
     $("#vikiStopRosCore").parent().show();
     $("#vikiStartRosCore").parent().hide();
+}
+
+function onWindowClick(event) {
+    clearSelectedModule();
+    selectedModuleUid = $(this).attr('id');
+    $(this).attr('selected', 'selected');
+}
+
+function clearSelectedModule() {
+    selectedModuleUid = null;
+    $('.window').removeAttr('selected');
+}
+
+function deleteSelectedModule() {
+    console.log(selectedModuleUid);
+    if (selectedModuleUid != null) {
+        deleteWindowFromCanvas(selectedModuleUid);    
+    }
+}
+
+function keyPressed(event) {
+    console.log(event.which);
+    switch (event.which) {
+        case 46: // delete
+        case 8: //backspace
+            deleteSelectedModule();
+            break;
+    }
 }
 
 // this is the paint style for the connecting lines..

@@ -32,6 +32,11 @@ body {
     transition: box-shadow 0.15s ease-in;
 }
 
+.window[selected="selected"] {
+    background-color: #001166;
+    font-size: 1.1em;
+}
+
 .project-container .window:hover
 {
     box-shadow: 2px 2px 19px #444;
