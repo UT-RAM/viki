@@ -146,3 +146,13 @@ a img, li img {
 .actions {
     list-style-type: none;
 }
+
+#marioImg {
+    width: 4em;
+    height: auto;
+}
+
+#itaImg {
+    width: 1.15em;
+    height: auto;
+}

@@ -23,6 +23,30 @@ $(document).ready(function(){
            send(JSON.stringify({name: "vikiConfigLaunch", value: false}));
        });
 
+    $("#italian").click(function(){
+        // get size of contair
+        var w = $('.project-container').width();
+        var h = $('.project-container').height();
+        
+        // put image in page
+        $('.project-container').prepend('<img id="marioImg" src="img/mario.png" />')
+
+        // set start position
+        $("#marioImg").css({
+            position: "absolute",
+            top: (0.5*h) + "px",
+            left: 0 + "px"
+            }).show();
+
+        // move to right (calls delete function afterwards)
+        $("#marioImg").animate({left: w + 'px'}, 3000, "linear", removeMario);
+    });
+
+    function removeMario() {
+        // function to remove the mario added when italian language support is used
+        $("#marioImg").remove();
+    }
+
     // Manually request first module list.
     updateStatus('Asking for initial module list');
     send(JSON.stringify({name: "vikiRefreshModules", value: false}));
