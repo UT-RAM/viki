@@ -2,6 +2,7 @@ var modules;
 var jsPlumbInstance;  // to make instance globally available
 var modulesInCanvas = [];
 var selectedModuleUid = null;
+var generatedGUIDs = [];
 
 $(document).ready(function(){
     // All links with an id starting with viki are buttons that expect a reaction from python. This process is automated: the python function with name equal to the id will run.
@@ -15,12 +16,12 @@ $(document).ready(function(){
         return false;
     });
 
-    $("#saveConfigXML").click(function(){
-        writeConfig(getConfig());
+    $("#makeNoRun").click(function(){
+        send(JSON.stringify({name: "vikiMakeNoRun", value: getConfigXML(getConfig())}));
     });
 
-    $("#saveConfigLaunch").click(function(){
-           send(JSON.stringify({name: "vikiConfigLaunch", value: false}));
+    $("#makeAndRun").click(function(){
+        send(JSON.stringify({name: "vikiMakeAndRun", value: getConfigXML(getConfig())}));
        });
 
     $("#italian").click(function(){
@@ -320,7 +321,7 @@ function dropModule(ev) {
     // module id:
     var data = ev.dataTransfer.getData("moduleId");
     var modId = data;
-    var uModId = guid();  // generate unique id
+    var uModId = modId + guid();  // generate unique id
     
     $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modId+'</span></div>');
 
@@ -368,7 +369,17 @@ function getModuleByUWindowId(uId) {
 
 function guid() {
     // generates a unique number
-    return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4);
+
+    // generate until a not-used number has been found    
+    do {
+        var generatedId = "_" + ("" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4);
+    }
+    while(generatedGUIDs.indexOf(generatedId) > -1)
+
+    // save number in list
+    generatedGUIDs.push(generatedId);
+
+    return generatedId;
 }
 
 function deleteWindowFromCanvas(uId) {
@@ -428,7 +439,7 @@ function getConfig() {
     return config;
 }
 
-function writeConfig(config) {
+function getConfigXML(config) {
     // create config XML 
     var configXML = document.createElement("configuration");
     configXML.setAttribute("id", "VIKI-imported-config");
@@ -449,5 +460,7 @@ function writeConfig(config) {
         configXML.appendChild(connectXML);
     }
     
-    send(JSON.stringify({name: "vikiConfigXML", value: configXML.outerHTML}));
+    // return
+    return configXML.outerHTML;
+    // send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));
 }
