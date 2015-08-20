@@ -151,6 +151,20 @@ function onModuleSelect(event) {
     if (tbody.html() == '') {
         tbody.append('<tr><td colspan="2"><em>No params</em></td></tr>');
     }
+
+    // save the params in the modulelist
+    $('.form-control').blur(function (event) {
+        var paramName = $(this).parent().siblings().text();
+        for (var i=0; i<selectedModule.executables.length; i++){
+            var exe = selectedModule.executables[i];
+            for (var j=0; j<exe.params.length; j++) {
+                var p = exe.params[j];
+                if (p.name == paramName) {
+                    p.value = $(this).val();
+                }
+            }
+        }
+    });
 }
 
 // this is the paint style for the connecting lines..
