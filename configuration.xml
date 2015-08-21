@@ -1,8 +1,1 @@
-<configurations>
-    <configuration id="VIKI-imported-config">
-        <controller type="easyPID" id="easyPID_hznj">
-            <param name="gain" value="2"></param>
-            <param name="file" value="default.txt"></param>
-        </controller>
-    </configuration>
-</configurations>
+<configurations><configuration id="VIKI-imported-config"><controller type="easyPID" id="easyPID_zr1b"><param name="gain" value="3"></param></controller></configuration></configurations>

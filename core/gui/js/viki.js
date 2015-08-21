@@ -154,16 +154,34 @@ function onModuleSelect(event) {
 
     // save the params in the modulelist
     $('.form-control').blur(function (event) {
-        var paramName = $(this).parent().siblings().text();
-        for (var i=0; i<selectedModule.executables.length; i++){
-            var exe = selectedModule.executables[i];
-            for (var j=0; j<exe.params.length; j++) {
-                var p = exe.params[j];
-                if (p.name == paramName) {
-                    p.value = $(this).val();
-                }
+        var param = {};  // premake object
+        param.name = $(this).parent().siblings().text(); // set name
+        param.value = $(this).val();  // set value
+
+        // check if the parameter has been set before
+        var parameterWasSetBefore = false;
+        for (var i=0; i<selectedModule.params.length; i++) {
+            var setParam = selectedModule.params[i];
+            if (setParam.name == param.name) {
+                // update value if it has been set
+                setParam.value = param.value;
+                parameterWasSetBefore = true;
             }
         }
+        if (parameterWasSetBefore == false) {
+            // add if it hasnt been set
+            selectedModule.params.push(param);
+        }
+
+        // for (var i=0; i<selectedModule.executables.length; i++){
+        //     var exe = selectedModule.executables[i];
+        //     for (var j=0; j<exe.params.length; j++) {
+        //         var p = exe.params[j];
+        //         if (p.name == paramName) {
+        //             p.value = $(this).val();
+        //         }
+        //     }
+        // }
     });
 }
 
@@ -342,6 +360,7 @@ function dropModule(ev) {
     // add to inCanvasArray
     var modToAdd = getModuleById(modId);
     modToAdd.uWindowId = uModId;
+    modToAdd.params = [];  // premake list for parameters
     modulesInCanvas.push(modToAdd);
 
     // start module at correct position
@@ -422,24 +441,8 @@ function getConfig() {
         mod.id = uId;  // save id
         mod.type = tempmod.id;  // save type
         mod.role = tempmod.type;  // save unique id
-        mod.params = [];  // add parameter list
+        mod.params = tempmod.params;  // add parameter list
 
-        // get parameters (set at module level, not executabel level)
-        for (var i=0; i<tempmod.executables.length; i++) {
-            for (var j=0; j<tempmod.executables[i].params.length; j++) {
-                var param = {};
-                param.name = tempmod.executables[i].params[j].name;
-
-                var tempParam = tempmod.executables[i].params[j];
-                if (tempParam.value === null) {
-                    param.value = tempParam.default;
-                }
-                else {
-                    param.value = tempParam.value;
-                }
-                mod.params.push(param);
-            }
-        }
         config.modsToAdd.push(mod);  // add to list of modules to add
 
         // all connections for this module
@@ -499,8 +502,10 @@ function getConfigXML(config) {
             // this comment does nothing other then force create a closing tag.
             paramXML.innerHTML = "<!-- comment -->";
             modXML.appendChild(paramXML);
+            // console.log(paramXML);
 
         }
+        // console.log(modXML);
         configXML.appendChild(modXML);
     }
 

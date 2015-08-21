@@ -69,12 +69,20 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
             # Check if one of the parameters that are to be set are present in this executable
             # Todo/problem: params are not defined at executable level, but at module level.
             for paramSearch in mod.parameters_to_add[:]:
+                print len(executable.params)
                 for paramList in executable.params[:]:
+                    print "mathcing parameters:"
+                    print paramSearch.name
+                    print paramList.name
                     if paramSearch.name == paramList.name:
+                        print "found a mathcing parameter!!"
                         param = ET.SubElement(node, "param", name=paramSearch.name, value=paramSearch.value)
                         # Remove found param from both lists
                         mod.parameters_to_add.remove(paramSearch)
                         executable.params.remove(paramList)
+                    else:
+                        print "params did not match"
+
             # At this point, we also have the default parameters we should fill. loop again.
             for paramList in executable.params:
                 param = ET.SubElement(node, "param", name=paramList.name, value=paramList.default)
