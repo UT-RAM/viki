@@ -422,6 +422,24 @@ function getConfig() {
         mod.id = uId;  // save id
         mod.type = tempmod.id;  // save type
         mod.role = tempmod.type;  // save unique id
+        mod.params = [];  // add parameter list
+
+        // get parameters (set at module level, not executabel level)
+        for (var i=0; i<tempmod.executables.length; i++) {
+            for (var j=0; j<tempmod.executables[i].params.length; j++) {
+                var param = {};
+                param.name = tempmod.executables[i].params[j].name;
+
+                var tempParam = tempmod.executables[i].params[j];
+                if (tempParam.value === null) {
+                    param.value = tempParam.default;
+                }
+                else {
+                    param.value = tempParam.value;
+                }
+                mod.params.push(param);
+            }
+        }
         config.modsToAdd.push(mod);  // add to list of modules to add
 
         // all connections for this module
@@ -460,9 +478,29 @@ function getConfigXML(config) {
 
     // add modules to the config XML
     for (var i=0; i<config.modsToAdd.length; i++) {
-        var modXML = document.createElement(config.modsToAdd[i].role);
-        modXML.setAttribute("type", config.modsToAdd[i].type);
-        modXML.setAttribute("id", config.modsToAdd[i].id);
+        var tempMod = config.modsToAdd[i];
+        var modXML = document.createElement(tempMod.role);
+        modXML.setAttribute("type", tempMod.type);
+        modXML.setAttribute("id", tempMod.id);
+
+        // loop through parameters
+        for (var j=0; j<tempMod.params.length; j++) {
+            // method 1: creates <param ... />
+            // var paramXML = '<param name="'+tempMod.params[j].name+'" value="'+tempMod.params[j].value+'" //>';
+            // modXML.innerHTML = paramXML;
+            // console.log(modXML);
+
+
+            // method 2: creates <param ...></param>
+            var paramXML = document.createElement("param");
+            paramXML.setAttribute("name", tempMod.params[j].name);
+            paramXML.setAttribute("value", tempMod.params[j].value);
+            // automatically no closing tag is created. We need to force create one, because python wants a nicely closed tag.
+            // this comment does nothing other then force create a closing tag.
+            paramXML.innerHTML = "<!-- comment -->";
+            modXML.appendChild(paramXML);
+
+        }
         configXML.appendChild(modXML);
     }
 
