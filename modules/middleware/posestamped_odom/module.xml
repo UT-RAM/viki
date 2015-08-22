@@ -1,0 +1,32 @@
+<!-- AEROWORKS -->
+<module type="middleware" id="middle_posestamped_odom">
+    <meta>
+        <name>PoseStamped -> Odom</name>
+        <description>Estimates the total odom nav msg, from a pose</description>
+        <author>Robin Hoogervorst (modified from Cees Trouwborst)</author>
+    </meta>
+
+    <inputs>
+    	<input type="ros_topic" name="pose" link="velocity_estimator/input_pose" message_type="geometry_msgs/PoseStamped" required="true" />
+    </inputs>
+
+    <outputs>
+    	<output type="ros_topic" name="odom" link="velocity_estimator/output_odom" message_type="nav_msgs/Odometry" required="false" />
+    </outputs>
+
+    <executable id="velocity_estimator" pkg="pose_velocity" exec="velocity_estimator">
+    	<inputs>
+    		<input type="ros_topic" name="pose" message_type="geometry_msgs/PoseStamped" required="true" />
+    	</inputs>
+
+    	<outputs>
+    		<output type="ros_topic" name="output_odom" message_type="nav_msgs/Odometry" required="false" />
+    	</outputs>
+
+    	<params>
+    		<param name="pose_memory" type="int" default="15" />
+    		<param name="uncertainty_band" type="double" default=".1" />
+    	</params>
+    </executable>
+
+</module>
