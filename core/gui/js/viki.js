@@ -70,7 +70,10 @@ function updateModules(modulelist) {
 function showModulesInPalette(modules) {
     $('#palette #list').html("");
     modules.forEach(function(module){
-        $('#palette #list').append('<li class="module_palette" id="'+module.id+'"><img src="img/plugin.png" />'+module.id+'</li>');
+        $('#palette #list').append('<li class="module_palette" id="'+module.id+'">'+
+            '<img src="img/plugin.png" /><h3>'+module.id+'</h3>'+
+            '<p class="description">'+module.meta.description+'</p>'+
+            '</li>');
     });
 } 
 

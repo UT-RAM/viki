@@ -47,6 +47,34 @@ body {
     filter: alpha(opacity=60);
 }
 
+.module_palette h3 {
+    display: inline-block;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.module_palette .description {
+    font-style: italic;
+    font-size: 1em;
+}
+
+#palette #list {
+    width: 100%;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 700px;
+}
+
+.module_palette {
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    border: 1px black solid;
+    border-radius: 2px;
+    width: 90%;
+}
+
 .project-container .window .window_label {
     position: absolute;
     font-weight: bold;
@@ -115,12 +143,6 @@ p.status {
 .warning {
     color: red;
     font-weight: bold;
-}
-
-.module_palette {
-    display: block;
-    margin: 5px;
-    padding: 5px;
 }
 
 /* use to highlight the project container with a black line */
