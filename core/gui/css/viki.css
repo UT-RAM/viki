@@ -85,6 +85,20 @@ body {
     text-align: center;
 }
 
+ul {
+    padding-left: 0;
+}
+
+.actions .btn {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+.btn {
+    margin-bottom: .1em;
+}
+
 .endpoint-label {
     font-color: black;
     z-index: 200;

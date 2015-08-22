@@ -47,14 +47,24 @@
         <div class="col-lg-2" id="propertiesPanel">
             <h1>Actions</h1>
             <ul class="actions">
-                <li><a href="#" id="italian"><img id="itaImg" src="img/ita.gif" /> 0. Italian</a></li>
-                <li><a href="#" id="makeAndRun"><img src="img/page_save.png" /> 1. make and run</a></li>
-                <li><a href="#" id="makeNoRun"><img src="img/page_save.png" /> 2. make (config and launch)</a></li>
-                <li><a href="#" id="vikiRun" data-statusmessage="Sent request for system launch"><img src="img/application_go.png" /> 3. Run</a></li>
-                <li><a href="#" id="vikiConnCheck" data-statusmessage="Sent request for connection check"><img src="img/accept.png" /> Quick connection check</a></li>
-                <li><a href="#" id="vikiStartRosCore" data-statusmessage="Sent request for starting ROS core"><img src="img/cog.png" /> Start ROS core</a></li>
-                <li style="display: none;"><a href="#" id="vikiStopRosCore" data-statusmessage="Sent request for stopping the ROS core"><img src="img/cog_delete.png" /> Stop ROS core</a></li>
-                <li><a href="#" id="vikiOpenRqtGraph" data-statusmessage="Invoked rqt_graph"><img src="img/image.png" /> Open rqt_graph</a></li>
+                <li><a href="#" id="italian" class="btn btn-default"><img id="itaImg" src="img/ita.gif" /> 0. Italian</a></li>
+                <li><a href="#" id="makeAndRun" class="btn btn-success"><i class="glyphicon glyphicon-play"></i> Run</a></li>
+                <li><a href="#" id="makeNoRun" class="btn btn-default"><i class="glyphicon glyphicon-duplicate"></i> Make</a></li>
+                <!-- <li><a href="#" id="vikiRun" data-statusmessage="Sent request for system launch"><img src="img/application_go.png" /> 3. Run</a></li> -->
+                <li><a href="#" id="vikiConnCheck" class="btn btn-default" data-statusmessage="Sent request for connection check">
+                    <i class="glyphicon glyphicon-ok"></i> Quick connection check</a>
+                </li>
+                <li>
+                    <a href="#" id="vikiStartRosCore" class="btn btn-default" data-statusmessage="Sent request for starting ROS core">
+                    <img src="img/cog.png" /> Start ROS core</a>
+                </li>
+                <li style="display: none;">
+                    <a href="#" id="vikiStopRosCore" class="btn btn-default" data-statusmessage="Sent request for stopping the ROS core">
+                    <img src="img/cog_delete.png" /> Stop ROS core</a>
+                </li>
+                <li>
+                    <a href="#" id="vikiOpenRqtGraph" class="btn btn-default" data-statusmessage="Invoked rqt_graph"><img src="img/image.png" /> Open rqt_graph</a>
+                </li>
             </ul>
             <h1>Properties</h1>
             <p id="selectedWindowInfo"></p>
