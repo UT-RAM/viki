@@ -14,8 +14,6 @@
 
 class VelEstimator {
 private:
-	ros::NodeHandle nh;
-
 	ros::Subscriber pose_subscriber_;
 	ros::Publisher odom_publisher_;
 
@@ -26,16 +24,16 @@ private:
 public:
 
 	VelEstimator() {
-		ros::NodeHandle nh("~");
+		ros::NodeHandle* nh = new ros::NodeHandle("~");
 
 		pose_memory_ = 15;
-		nh.getParam("pose_memory", pose_memory_);
+		nh->getParam("pose_memory", pose_memory_);
 
 		uncertainty_band_ = .1;	
-		nh.getParam("uncertainty_band", uncertainty_band_);
+		nh->getParam("uncertainty_band", uncertainty_band_);
 
-		pose_subscriber_ = nh.subscribe("/pose2odom/pose", 1, &VelEstimator::poseCallback, this);
-		odom_publisher_ = nh.advertise<nav_msgs::Odometry>("/pose2odom/odom_output", 1);
+		pose_subscriber_ = nh->subscribe("pose", 1, &VelEstimator::poseCallback, this);
+		odom_publisher_ = nh->advertise<nav_msgs::Odometry>("odom_output", 1);
 	}
 
 	void poseCallback(const geometry_msgs::PoseStamped pose_msg)
