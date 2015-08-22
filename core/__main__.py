@@ -80,21 +80,30 @@ def main():
         f.close()
 
     def vikiConfigLaunch():
-        configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")
-        config_matcher.matchConfig(configfromfile, available_mods)      
-        writeLaunch.write(configfromfile)
+        configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")     
+        config_matcher.matchConfig(configfromfile, available_mods)
+
+        riteLaunch.write(configfromfile)
         web_send('updateStatus("Written launch file")');
 
     def vikiRun():
         try:
             # THIS DOES NOT WORK THROUGH INTELLIJ IDEA YET.
-            # launchfile = os.path.abspath('core/gui/VIKI_main.html')
             subprocess.call(['roslaunch aeroworks.launch'], shell=True)
             # subprocess.Popen(['gnome-terminal', '--title=%s' % "ROS SHELL", '--disable-factory', '-e', "/bin/bash", "-e", "roslaunch %s --disable-title --port %s %s" % ('roslaunch', 'aeroworks', 'aeroworks.launch')])
 
         except OSError:
             web_send('updateStatus("OSError")')
         web_send('updateStatus("Requested launch of AeroWorks.launch")')
+
+    def vikiMakeAndRun(configXML):
+        vikiConfigXML(configXML)
+        vikiConfigLaunch()
+        vikiRun()
+
+    def vikiMakeNoRun(configXML):
+        vikiConfigXML(configXML)
+        vikiConfigLaunch()
 
     # Finally, here is our personalized main loop, 100% friendly
     # with "select" (although I am not using select here)!:
