@@ -24,6 +24,8 @@ $(document).ready(function(){
         send(JSON.stringify({name: "vikiMakeAndRun", value: getConfigXML(getConfig())}));
        });
 
+    $('#module-filter-text').on('keydown change', filterModules);
+
     $("#italian").click(function(){
         // get size of contair
         var w = $('.project-container').width();
@@ -76,6 +78,15 @@ function showModulesInPalette(modules) {
             '</li>');
     });
 } 
+
+function filterModules(event) {
+    var filter = $(this).val();
+    if (filter == '') {
+        $('.module_palette').slideDown(200);
+    }
+    $('.module_palette').filter(':not(:contains('+filter+'))').slideUp(200);
+    $('.module_palette').filter(':contains('+filter+')').slideDown(200);
+}
 
 function initPalette() {
     $(".module_palette").attr({
