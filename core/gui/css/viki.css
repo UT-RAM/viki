@@ -58,6 +58,30 @@ body {
     font-size: 1em;
 }
 
+#list .vehicle {
+    background-color: #FFDCDC;
+}
+
+#list .userinput {
+    background-color: #F5D6FF;
+}
+
+#list .sensor {
+    background-color: #EBFFE0;
+}
+
+#list .controller {
+    background-color: #FFF0D1
+}
+
+#list .view {
+    background-color: #CCCCFF;
+}
+
+#list .estimator {
+    background-color: #CCFFF5;
+}
+
 #palette #list {
     width: 100%;
     padding: 0;

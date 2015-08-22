@@ -72,9 +72,10 @@ function updateModules(modulelist) {
 function showModulesInPalette(modules) {
     $('#palette #list').html("");
     modules.forEach(function(module){
-        $('#palette #list').append('<li class="module_palette" id="'+module.id+'">'+
-            '<img src="img/plugin.png" /><h3>'+module.id+'</h3>'+
+        $('#palette #list').append('<li class="module_palette '+module.type+'" id="'+module.id+'">'+
+            '<img src="img/plugin.png" /><h3>'+module.meta.name+'</h3>'+
             '<p class="description">'+module.meta.description+'</p>'+
+            '<p class="type">type: '+module.type+'</p>'+
             '</li>');
     });
 } 

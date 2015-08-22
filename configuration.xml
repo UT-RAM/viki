@@ -1,1 +1,1 @@
-<configurations><configuration id="VIKI-imported-config"></configuration></configurations>
+<configurations><configuration id="VIKI-imported-config"><view type="image_view" id="image_view_2ste"></view><sensor type="camera_source" id="camera_source_q37o"></sensor><connect publisher="camera_source_q37o/image" listener="image_view_2ste/image_view_input"></connect></configuration></configurations>
