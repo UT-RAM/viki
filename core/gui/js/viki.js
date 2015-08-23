@@ -158,9 +158,13 @@ function keyPressed(event) {
 
 function onModuleSelect(event) {
     var selectedModule = getModuleByUWindowId(selectedModuleUid);
-    $('p#selectedWindowInfo').html("<h3>"+selectedModule.id+"</h3><br><strong>Uid: </strong>"+selectedModule.uWindowId+"<br/>");
+    $('p#selectedWindowInfo').html("<h3>"+selectedModule.id+"</h3><a id='cmdlineButton'>edit/add cmd-line args.</a><br><strong>Uid: </strong>"+selectedModule.uWindowId+"<br/>");
     var tbody = $('#selectedWindowProperties tbody');
     tbody.empty();
+
+    $('#cmdlineButton').click(function () {
+        addEditCmdLineArgument(selectedModuleUid);
+    });
 
     for (var i=0; i < selectedModule.executables.length; i++) {
         var exe = selectedModule.executables[i];
@@ -204,6 +208,23 @@ function onModuleSelect(event) {
         //     }
         // }
     });
+}
+
+function addEditCmdLineArgument(modUid) {
+    var argSet = getModuleByUWindowId(modUid).args;
+    var argInput = prompt('Insert/edit the list of arguments.',argSet);
+    getModuleByUWindowId(modUid).args = argInput;
+    if (argInput == '') {
+        if (argSet == '') {
+            updateStatus('Aborted setting argument');
+        }
+        else {
+            alert('Removed argument.');
+        }
+    }
+    else {
+        updateStatus('For module: '+modUid+' set argument: '+argInput);
+    }
 }
 
 // this is the paint style for the connecting lines..
@@ -389,7 +410,7 @@ function dropModule(ev) {
     var modToAdd = getModuleById(modId);
     modToAdd.uWindowId = uModId;
     modToAdd.params = [];  // premake list for parameters
-    modToAdd.args = [];  // placeholder for command line arguments
+    modToAdd.args = '';  // placeholder for command line arguments
     modulesInCanvas.push(modToAdd);
 
     // start module at correct position
