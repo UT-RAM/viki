@@ -59,7 +59,7 @@ body {
     margin-bottom: -15px;
     /*-webkit-transform: translate(-100px,0);*/
     -webkit-animation-delay: 4s;
-    -webkit-animation: logo_fly_in 3s ease-out;
+    -webkit-animation: logo_fly_in 1.5s ease-out;
 }
 
 .module_palette h3 {
