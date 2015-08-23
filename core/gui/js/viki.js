@@ -246,6 +246,13 @@ jsPlumb.ready(function () {
             return true;
         });
 
+        jsPlumbInstance.bind("connectionDrag", function (connection) {
+            var sourceType = connection.endpoints[0].getParameter("type");
+            var connections = jsPlumbInstance.selectEndpoints({scope:'.project-container'}).each(function(endpoint) {
+                console.log(endpoint.getParameter('type'));
+            });
+        });
+
         // make all the window divs draggable
         jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
 
