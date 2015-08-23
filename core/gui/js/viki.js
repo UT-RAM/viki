@@ -462,10 +462,26 @@ function getConfig() {
         var mod = {};  // initialize module object
         
         // save all modules (only use role, type and id)
-        var tempmod = getModuleByUWindowId(uId);  // get infor from unique id        
+        var tempmod = getModuleByUWindowId(uId);  // get infor from unique id   
+        console.log(tempmod);     
         mod.id = uId;  // save id
         mod.type = tempmod.id;  // save type
         mod.role = tempmod.type;  // save unique id
+        mod.params = [];
+        // add all parameters and values
+        for (var i=0; i<tempmod.executables.length; i++) {
+            var exec_i = tempmod.executables[i];
+            for (var j=0; j<exec_i.params.length; j++) {
+                var param = exec_i.params[j];
+                var pval = param.default;
+                if (param.value != null) {
+                    pval = param.value;
+                }
+                console.log(pval);
+                mod.params.push({'name': param.name, 'value':pval});
+            }
+        }
+
         config.modsToAdd.push(mod);  // add to list of modules to add
 
         // all connections for this module
@@ -507,8 +523,26 @@ function getConfigXML(config) {
         var modXML = document.createElement(config.modsToAdd[i].role);
         modXML.setAttribute("type", config.modsToAdd[i].type);
         modXML.setAttribute("id", config.modsToAdd[i].id);
+
+        for (var j=0; j < config.modsToAdd[i].params.length; j++) {
+            var param = config.modsToAdd[i].params[j];
+            var paramXML = document.createElement('param');
+            paramXML.setAttribute('name', param.name);
+            paramXML.setAttribute('value', param.value);
+            
+            /** UGLY HACK WARNING
+            This works, but I don't know why... 
+            The documkent.createElement does not support forcing a close tag, 
+            so actually we should write the generation of xml ourselves.
+            Here I add an element to the parameter XML, so it will close
+            */
+            var subX = document.createElement('x');
+            paramXML.appendChild(subX);
+
+            modXML.appendChild(paramXML);
+        }
         configXML.appendChild(modXML);
-    }
+    } 
 
     // add connects to the config XML
     for (var i=0; i<config.connectsToAdd.length; i++){
