@@ -12,12 +12,12 @@
 
     <!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
     <outputs>
-        <output type="ros_topic" name="image" link="usb_cam/image" message_type="sensor_msgs/Image" required="true" />
+        <output type="ros_topic" name="image" link="usb_cam/image_raw" message_type="sensor_msgs/Image" required="true" />
     </outputs>
 
-    <executable id="usb_cam" pkg="usb_cam" exec="usb_cam_node">
+    <executable id="usb_cam" pkg="libuvc_camera" exec="camera_node">
         <params>
-            <param name="camera_name" type="viki_camera" default="xx" />
+            <param name="camera_name" type="viki_camera" default="/dev/video0" />
         </params>
 
         <outputs>
