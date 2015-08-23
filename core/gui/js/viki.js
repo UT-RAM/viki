@@ -90,7 +90,21 @@ function filterModules(event) {
         $('.module_palette').slideDown(200);
     }
     $('.module_palette').filter(':not(:contains('+filter+'))').slideUp(200);
-    $('.module_palette').filter(':contains('+filter+')').slideDown(200);
+    var filtered_modules = $('.module_palette').filter(':contains('+filter+')').slideDown(200);
+
+    if (filtered_modules.length == 1) {
+        $('#help-text-single-module-filter').show();
+    } else {
+        $('#help-text-single-module-filter').hide();
+    }
+
+    if (event.which == 13) {
+        if (filtered_modules.length == 1) {
+            var x = 50 + $('.project-container').offset().left + Math.random() * ($('.project-container').width() - 100);
+            var y = 50 + $('.project-container').offset().top + Math.random() * ($('.project-container').height() - 100);
+            addModuleToContainer(filtered_modules[0].id, x, y);
+        }
+    } 
 }
 
 function initPalette() {
@@ -152,6 +166,11 @@ function keyPressed(event) {
         case 46: // delete
         case 8: //backspace
             deleteSelectedModule();
+            break;
+        case 77:
+            if (event.ctrlKey) {
+                $('#module-filter-text').focus();
+            }
             break;
     }
 }
@@ -399,12 +418,12 @@ function dropModule(ev) {
     updateStatus("dropped a module to the project-container");
     ev.preventDefault();
 
-    // module id:
-    var data = ev.dataTransfer.getData("moduleId");
-    var modId = data;
+    var modId = ev.dataTransfer.getData('moduleId');
+    addModuleToContainer(modId, ev.pageX, ev.pageY);
+}
+
+function addModuleToContainer(modId, _x, _y) {
     var uModId = modId + guid();  // generate unique id
-    
-    $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modId+'</span></div>');
 
     // add to inCanvasArray
     var modToAdd = getModuleById(modId);
@@ -412,12 +431,14 @@ function dropModule(ev) {
     modToAdd.params = [];  // premake list for parameters
     modToAdd.args = '';  // placeholder for command line arguments
     modulesInCanvas.push(modToAdd);
+    
+    $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modToAdd.meta.name+'</span></div>');
 
     // start module at correct position
     var width = 100;
     var height = 20 + Math.max(modToAdd.inputs.length, modToAdd.outputs.length) * 20;
-    var X = ev.pageX - 0.5*width;
-    var Y = ev.pageY - 0.5*height;
+    var X = _x - 0.5*width;
+    var Y = _y - 0.5*height;
 
     $(".project-container #"+uModId).offset({
         top : Y,
@@ -431,7 +452,6 @@ function dropModule(ev) {
     // connections
     addInputsToWindow(uModId, modToAdd.inputs);
     addOutputsToWindow(uModId, modToAdd.outputs);
-
 }
 
 function getModuleById(Id) {

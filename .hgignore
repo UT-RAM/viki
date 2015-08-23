@@ -1,5 +1,9 @@
 syntax: glob
 
+# config file that is rebuild often during testing
+configuration.xml
+aeroworks.launch
+
 #Sphinx build folder
 docs/_build/doctrees/*
 
