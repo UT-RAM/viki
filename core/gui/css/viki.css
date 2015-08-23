@@ -114,6 +114,13 @@ body {
     width: 90%;
 }
 
+.module_palette img {
+    height: 1.4em;
+    margin-top: -.5em;
+    margin-right: .5em;
+    vertical-align: middle;
+}
+
 .project-container .window .window_label {
     position: absolute;
     font-weight: bold;

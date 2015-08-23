@@ -4,6 +4,7 @@
     <meta>
         <name>USB camera</name>
         <author>Robin Hoogervorst</author>
+        <icon>icon.png</icon>
         <description>
             Wrapper for the USB cam package within ros
         </description>

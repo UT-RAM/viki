@@ -72,11 +72,15 @@ function updateModules(modulelist) {
 function showModulesInPalette(modules) {
     $('#palette #list').html("");
     modules.forEach(function(module){
+        var icon_path = 'img/plugin.png';
+        if (module.meta.icon != null) {
+            var icon_path = '../../' + module.path.substring(0, module.path.lastIndexOf("/")) + '/' + module.meta.icon;
+        }
         $('#palette #list').append('<li class="module_palette '+module.type+'" id="'+module.id+'">'+
-            '<img src="img/plugin.png" /><h3>'+module.meta.name+'</h3>'+
+            '<img src="'+icon_path+'" /><h3>'+module.meta.name+'</h3>'+
             '<p class="description">'+module.meta.description+'</p>'+
             '<p class="type">type: '+module.type+'</p>'+
-            '</li>');
+            '</li>');        
     });
 } 
 
