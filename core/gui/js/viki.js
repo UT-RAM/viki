@@ -136,6 +136,8 @@ function clearSelectedModule() {
     // clear the properties pane
     $('#selectedWindowProperties tbody').empty();
     $('p#selectedWindowInfo').empty();
+    // set text instead
+    $('#selectedWindowProperties tbody').append('<tr><td>No module selected.</td></tr>');
 }
 
 function deleteSelectedModule() {
