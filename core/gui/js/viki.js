@@ -137,7 +137,7 @@ function clearSelectedModule() {
     $('#selectedWindowProperties tbody').empty();
     $('p#selectedWindowInfo').empty();
     // set text instead
-    $('#selectedWindowProperties tbody').append('<tr><td>No module selected.</td></tr>');
+    $('#selectedWindowProperties tbody').append('<tr><td colspan="2">No module selected.</td></tr>');
 }
 
 function deleteSelectedModule() {
@@ -389,6 +389,7 @@ function dropModule(ev) {
     var modToAdd = getModuleById(modId);
     modToAdd.uWindowId = uModId;
     modToAdd.params = [];  // premake list for parameters
+    modToAdd.args = [];  // placeholder for command line arguments
     modulesInCanvas.push(modToAdd);
 
     // start module at correct position
