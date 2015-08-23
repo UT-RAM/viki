@@ -80,9 +80,11 @@ def main():
         f.close()
 
     def vikiConfigLaunch():
-        configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")
+        configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")     
         config_matcher.matchConfig(configfromfile, available_mods)
+
         writeLaunch.write(configfromfile)
+        web_send('updateStatus("Written launch file")');
 
     def vikiRun():
         try:

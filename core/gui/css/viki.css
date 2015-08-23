@@ -47,6 +47,80 @@ body {
     filter: alpha(opacity=60);
 }
 
+/* logo animation */
+@-webkit-keyframes logo_fly_in {
+    0%   {-webkit-transform: translate(-300px,0);}
+    80%     {-webkit-transform: translate(-30px,0) rotate(-20deg);}
+    100%   {-webkit-transform: translate(0px,0) rotate(0deg);}
+}
+
+#logo {
+    margin-top: 15px;
+    margin-bottom: -15px;
+    /*-webkit-transform: translate(-100px,0);*/
+    -webkit-animation-delay: 4s;
+    -webkit-animation: logo_fly_in 1.5s ease-out;
+}
+
+.module_palette h3 {
+    display: inline-block;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.module_palette .description {
+    font-style: italic;
+    font-size: 1em;
+}
+
+#list .vehicle {
+    background-color: #FFDCDC;
+}
+
+#list .userinput {
+    background-color: #F5D6FF;
+}
+
+#list .sensor {
+    background-color: #EBFFE0;
+}
+
+#list .controller {
+    background-color: #FFF0D1
+}
+
+#list .view {
+    background-color: #CCCCFF;
+}
+
+#list .estimator {
+    background-color: #CCFFF5;
+}
+
+#palette #list {
+    width: 100%;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 700px;
+}
+
+.module_palette {
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    border: 1px black solid;
+    border-radius: 5px;
+    width: 90%;
+}
+
+.module_palette img {
+    height: 1.4em;
+    margin-top: -.5em;
+    margin-right: .5em;
+    vertical-align: middle;
+}
+
 .project-container .window .window_label {
     position: absolute;
     font-weight: bold;
@@ -55,6 +129,20 @@ body {
     left: 0;
     display: block;
     text-align: center;
+}
+
+ul {
+    padding-left: 0;
+}
+
+.actions .btn {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+.btn {
+    margin-bottom: .1em;
 }
 
 .endpoint-label {
@@ -115,12 +203,6 @@ p.status {
 .warning {
     color: red;
     font-weight: bold;
-}
-
-.module_palette {
-    display: block;
-    margin: 5px;
-    padding: 5px;
 }
 
 /* use to highlight the project container with a black line */

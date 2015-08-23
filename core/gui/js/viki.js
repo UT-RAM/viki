@@ -24,6 +24,8 @@ $(document).ready(function(){
         send(JSON.stringify({name: "vikiMakeAndRun", value: getConfigXML(getConfig())}));
        });
 
+    $('#module-filter-text').on('keydown change', filterModules);
+
     $("#italian").click(function(){
         // get size of contair
         var w = $('.project-container').width();
@@ -70,9 +72,26 @@ function updateModules(modulelist) {
 function showModulesInPalette(modules) {
     $('#palette #list').html("");
     modules.forEach(function(module){
-        $('#palette #list').append('<li class="module_palette" id="'+module.id+'"><img src="img/plugin.png" />'+module.id+'</li>');
+        var icon_path = 'img/plugin.png';
+        if (module.meta.icon != null) {
+            var icon_path = '../../' + module.path.substring(0, module.path.lastIndexOf("/")) + '/' + module.meta.icon;
+        }
+        $('#palette #list').append('<li class="module_palette '+module.type+'" id="'+module.id+'">'+
+            '<img src="'+icon_path+'" /><h3>'+module.meta.name+'</h3>'+
+            '<p class="description">'+module.meta.description+'</p>'+
+            '<p class="type">type: '+module.type+'</p>'+
+            '</li>');        
     });
 } 
+
+function filterModules(event) {
+    var filter = $(this).val();
+    if (filter == '') {
+        $('.module_palette').slideDown(200);
+    }
+    $('.module_palette').filter(':not(:contains('+filter+'))').slideUp(200);
+    $('.module_palette').filter(':contains('+filter+')').slideDown(200);
+}
 
 function initPalette() {
     $(".module_palette").attr({
@@ -249,6 +268,13 @@ jsPlumb.ready(function () {
             return true;
         });
 
+        jsPlumbInstance.bind("connectionDrag", function (connection) {
+            var sourceType = connection.endpoints[0].getParameter("type");
+            var connections = jsPlumbInstance.selectEndpoints({scope:'.project-container'}).each(function(endpoint) {
+                console.log(endpoint.getParameter('type'));
+            });
+        });
+
         // make all the window divs draggable
         jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
 
@@ -401,8 +427,6 @@ function getModuleByUWindowId(uId) {
 }
 
 function guid() {
-    // generates a unique number
-
     // generate until a not-used number has been found    
     do {
         var generatedId = "_" + ("" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4);

@@ -4,6 +4,7 @@
     <meta>
         <name>USB camera</name>
         <author>Robin Hoogervorst</author>
+        <icon>icon.png</icon>
         <description>
             Wrapper for the USB cam package within ros
         </description>
@@ -16,11 +17,11 @@
 
     <executable id="usb_cam" pkg="usb_cam" exec="usb_cam_node">
         <params>
-            <param name="camera_name" type="viki_camera" value="/dev/video0" />
+            <param name="camera_name" type="viki_camera" default="xx" />
         </params>
 
         <outputs>
-            <output type="ros_topic" name="usb_cam/image" message_type="sensor_msgs/Image" required="false" />
+            <output type="ros_topic" name="image" message_type="sensor_msgs/Image" required="false" />
         </outputs>
     </executable>
 </module>

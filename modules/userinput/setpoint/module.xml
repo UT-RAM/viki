@@ -1,5 +1,10 @@
 <!--AEROWORKS-->
 <module type="userinput" id="setpoint">
+	<meta>
+		<name>Setpoint</name>
+		<description>A not working setpoint node</description>
+	</meta>
+
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<outputs>
 		<output type="ros_topic" name="setpoint" link="setpoint_node/setpoint" message_type="geometry_msgs/Pose" required="true" />

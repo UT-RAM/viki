@@ -10,24 +10,20 @@
 
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
 	<outputs>
-		<output type="ros_topic" name="pose1" link="mocap_node/pose1" message_type="geometry_msgs/PoseStamped" required="true" />
-		<output type="ros_topic" name="pose2" link="mocap_node/pose2" message_type="geometry_msgs/PoseStamped" required="true" />
-		<output type="ros_topic" name="pose3" link="mocap_node/pose3" message_type="geometry_msgs/PoseStamped" required="true" />
-		<output type="ros_topic" name="pose4" link="mocap_node/pose4" message_type="geometry_msgs/PoseStamped" required="true" />
-		<output type="ros_topic" name="pose5" link="mocap_node/pose5" message_type="geometry_msgs/PoseStamped" required="true" />
+		<output type="ros_topic" name="pose1" link="/optitrack/pose1" message_type="geometry_msgs/PoseStamped" required="true" />
+		<output type="ros_topic" name="pose2" link="/optitrack/pose2" message_type="geometry_msgs/PoseStamped" required="true" />
+		<output type="ros_topic" name="pose3" link="/optitrack/pose3" message_type="geometry_msgs/PoseStamped" required="true" />
+		<output type="ros_topic" name="pose4" link="/optitrack/pose4" message_type="geometry_msgs/PoseStamped" required="true" />
+		<output type="ros_topic" name="pose5" link="/optitrack/pose5" message_type="geometry_msgs/PoseStamped" required="true" />
 	</outputs>
 
 	<executable id="mocap_node" pkg="mocap_optitrack" exec="mocap_node">
 		<params>
-			<param name="rigid_bodies/1/pose" type="string" value="/optitrack/pose1" />
-			<param name="rigid_bodies/2/pose" type="string" value="/optitrack/pose2" />
-			<param name="rigid_bodies/3/pose" type="string" value="/optitrack/pose3" />
-			<param name="rigid_bodies/4/pose" type="string" value="/optitrack/pose4" />
-			<param name="rigid_bodies/5/pose" type="string" value="/optitrack/pose5" />
+			<param name="rigid_bodies/1/pose" type="string" default="/optitrack/pose1" />
+			<param name="rigid_bodies/2/pose" type="string" default="/optitrack/pose2" />
+			<param name="rigid_bodies/3/pose" type="string" default="/optitrack/pose3" />
+			<param name="rigid_bodies/4/pose" type="string" default="/optitrack/pose4" />
+			<param name="rigid_bodies/5/pose" type="string" default="/optitrack/pose5" />
 		</params>
-
-		<outputs>
-			<output type="ros_topic" name="/optitrack/pose1" message_type="geometry_msgs/PoseStamped" required="false" />
-		</outputs>
 	</executable>
 </module>
