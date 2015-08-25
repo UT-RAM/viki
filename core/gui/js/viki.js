@@ -138,13 +138,13 @@ function initPalette() {
 }
 
 function enableStartCore() {
-    $("#vikiStopRosCore").parent().hide();
-    $("#vikiStartRosCore").parent().show();
+    $("#vikiStopRosCore").hide();
+    $("#vikiStartRosCore").show();
 }
 
 function enableStopCore() {
-    $("#vikiStopRosCore").parent().show();
-    $("#vikiStartRosCore").parent().hide();
+    $("#vikiStopRosCore").show();
+    $("#vikiStartRosCore").hide();
 }
 
 function onWindowClick(event) {

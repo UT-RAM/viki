@@ -212,8 +212,9 @@ p.status {
 /* use to highlight the project container with a black line */
 .project-container {
     border: 1px solid black;
+    border-radius: 4px;
     width: 100%;
-    min-height: 700px;
+    min-height: 800px;
 }
 
 div#status {
@@ -239,7 +240,7 @@ a img, li img {
 }
 
 #itaImg {
-    width: 1.15em;
+    width: 30px;
     height: auto;
 }
 
@@ -249,4 +250,10 @@ a img, li img {
 
 .invalidDropPoint svg circle {
     fill: red !important;
+}
+
+#actions {
+    vertical-align: bottom;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
