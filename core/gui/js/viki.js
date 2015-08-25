@@ -45,6 +45,14 @@ $(document).ready(function(){
         $("#marioImg").animate({left: w + 'px'}, 3000, "linear", removeMario);
     });
 
+    $("#logo").on('click', function() {   
+         var el     = $(this),  
+             newone = el.clone(true);
+                   
+         el.before(newone);
+         el.remove();
+    });
+
     function removeMario() {
         // function to remove the mario added when italian language support is used
         $("#marioImg").remove();
@@ -64,6 +72,11 @@ function updateStatus(msg) {
 function updateModules(modulelist) {
     updateStatus('Received modules');
     modules = modulelist;
+    modules.sort(function(x, y) {
+        if (x.type < y.type) return -1;
+        if (y.type < x.type) return 1;
+        return 0;
+    })
     showModulesInPalette(modules);
     initPalette();
     updateStatus('Updated module panel')

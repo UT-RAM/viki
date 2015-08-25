@@ -57,9 +57,13 @@ body {
 #logo {
     margin-top: 15px;
     margin-bottom: -15px;
-    /*-webkit-transform: translate(-100px,0);*/
+
     -webkit-animation-delay: 4s;
     -webkit-animation: logo_fly_in 1.5s ease-out;
+}
+
+#logo:hover {
+    cursor: pointer;
 }
 
 .module_palette h3 {
