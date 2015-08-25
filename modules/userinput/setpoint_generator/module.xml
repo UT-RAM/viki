@@ -6,6 +6,7 @@
             Generate setpoints in different figures
         </description>
         <author>Robin Hoogervorst</author>
+        <icon>glyphicon-pushpin</icon>
     </meta>
 
     <outputs>

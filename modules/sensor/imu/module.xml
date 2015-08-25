@@ -5,6 +5,7 @@
 		<description>
 			A not working IMU module
 		</description>
+		<icon>glyphicon-dashboard</icon>
 	</meta>
 
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->

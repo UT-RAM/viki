@@ -3,6 +3,7 @@
 	<meta>
 		<name>Setpoint</name>
 		<description>A not working setpoint node</description>
+		<icon>glyphicon-pushpin</icon>
 	</meta>
 
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->

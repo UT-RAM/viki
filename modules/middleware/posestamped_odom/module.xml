@@ -4,6 +4,7 @@
         <name>PoseStamped -> Odom</name>
         <description>Estimates the total odom nav msg, from a pose</description>
         <author>Robin Hoogervorst (modified from Cees Trouwborst)</author>
+        <icon>glyphicon-arrow-right</icon>
     </meta>
 
     <inputs>

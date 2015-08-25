@@ -97,7 +97,7 @@ body {
     background-color: #CCCCFF;
 }
 
-#list .estimator {
+#list .middleware {
     background-color: #CCFFF5;
 }
 
@@ -118,7 +118,7 @@ body {
     width: 90%;
 }
 
-.module_palette img {
+.module_palette img, i {
     height: 1.4em;
     margin-top: -.5em;
     margin-right: .5em;
@@ -228,10 +228,6 @@ div#status {
 
 a img, li img {
     margin: 2px;
-}
-
-.actions {
-    list-style-type: none;
 }
 
 #marioImg {

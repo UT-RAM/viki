@@ -3,6 +3,7 @@
     <meta>
         <name>Image view</name>
         <author>Robin Hoogervorst</author>
+        <icon>glyphicon-picture</icon>
         <description>
             Wrapper for the Image view package within ROS
         </description>

@@ -85,12 +85,23 @@ function updateModules(modulelist) {
 function showModulesInPalette(modules) {
     $('#palette #list').html("");
     modules.forEach(function(module){
+        // Get a fancy image for the module, with a lot of fallbacks
         var icon_path = 'img/plugin.png';
+        var image_html;
         if (module.meta.icon != null) {
-            var icon_path = '../../' + module.path.substring(0, module.path.lastIndexOf("/")) + '/' + module.meta.icon;
+            console.log(module.meta.icon);
+            if (module.meta.icon.indexOf("glyphicon") == 0) {
+                image_html = "<i class='glyphicon "+module.meta.icon+"'></i>"
+            } else {
+                var icon_path = '../../' + module.path.substring(0, module.path.lastIndexOf("/")) + '/' + module.meta.icon;    
+            }
         }
+        if (image_html == null) {
+            image_html = '<img src="'+icon_path+'" />';
+        }
+
         $('#palette #list').append('<li class="module_palette '+module.type+'" id="'+module.id+'">'+
-            '<img src="'+icon_path+'" /><h3>'+module.meta.name+'</h3>'+
+            image_html+'<h3>'+module.meta.name+'</h3>'+
             '<p class="description">'+module.meta.description+'</p>'+
             '<p class="type">type: '+module.type+'</p>'+
             '</li>');        
