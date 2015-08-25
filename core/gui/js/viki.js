@@ -272,20 +272,20 @@ jsPlumb.ready(function () {
         jsPlumbInstance.bind("connectionDrag", function (connection) {
             var sourceType = connection.endpoints[0].getParameter("type");
             var connections = jsPlumbInstance.selectEndpoints({scope:'.project-container'}).each(function(endpoint) {
-                console.log(endpoint.getParameter('type'));
+                // todo: change connection colors
             });
         });
 
         // make all the window divs draggable
         jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
 
-        //
-        // listen for clicks on connections, and offer to delete connections on click.
-        //
+        /*
+        Connection click handler...
+        */
         jsPlumbInstance.bind("click", function (conn, originalEvent) {
-            // if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
-            //   instance.detach(conn);
-            //conn.toggleType("basic");
+            if (originalEvent.ctrlKey) { // delete the connection on ctrl click
+                jsPlumbInstance.detach(conn);
+            }
         });
     });
 
@@ -313,6 +313,7 @@ function addInputsToWindow(moduleId, inputs) {
                 type: inputs[i].message_type,
                 name: inputs[i].name
             },
+            maxConnections: 10,
             overlays: [
                 [ "Label", {
                     location: [-1.5, 0.5],
@@ -351,6 +352,7 @@ function addOutputsToWindow(moduleId, outputs) {
                 type: outputs[i].message_type,
                 name: outputs[i].name
             },
+            maxConnections: 10,
             overlays: [
                 [ "Label", {
                     location: [-1.5, 0.5],
@@ -383,11 +385,13 @@ function dropModule(ev) {
 
 function addModuleToContainer(modId, _x, _y) {
     var uModId = modId + guid();  // generate unique id
+    console.log(uModId);    
 
     // add to inCanvasArray
     var modToAdd = getModuleById(modId);
     modToAdd.uWindowId = uModId;
     modulesInCanvas.push(modToAdd);
+    console.log(modulesInCanvas);
     
     $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modToAdd.meta.name+'</span></div>');
 
@@ -414,7 +418,8 @@ function addModuleToContainer(modId, _x, _y) {
 function getModuleById(Id) {
     for (var i=0; i <modules.length; i++) {
         if (modules[i].id == Id) {
-            return modules[i];
+            // this returns a copy of the object, so we can modify it without mofifying our initial list
+            return $.extend(true, {}, modules[i]); 
         }
     }
 }
@@ -463,7 +468,9 @@ function getConfig() {
         
         // save all modules (only use role, type and id)
         var tempmod = getModuleByUWindowId(uId);  // get infor from unique id   
-        console.log(tempmod);     
+        if (tempmod == undefined) {
+            console.log("Module with uId: '"+uId+"' could not be found.. :(");
+        }
         mod.id = uId;  // save id
         mod.type = tempmod.id;  // save type
         mod.role = tempmod.type;  // save unique id
@@ -477,7 +484,6 @@ function getConfig() {
                 if (param.value != null) {
                     pval = param.value;
                 }
-                console.log(pval);
                 mod.params.push({'name': param.name, 'value':pval});
             }
         }
@@ -499,7 +505,7 @@ function getConfig() {
                     } else if (endpoint.isTarget) {
                         connectionToAdd.sub = endpoint.elementId + "/" + endpoint.getParameter("name");
                     } else {
-                        console.log('Found an enpoint that is not a source, nor a target');
+                        console.log('Found an endpoint that is not a source, nor a target');
                         alert('error, please check console.log');
                     }                
                 }    
