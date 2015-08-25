@@ -89,7 +89,6 @@ function showModulesInPalette(modules) {
         var icon_path = 'img/plugin.png';
         var image_html;
         if (module.meta.icon != null) {
-            console.log(module.meta.icon);
             if (module.meta.icon.indexOf("glyphicon") == 0) {
                 image_html = "<i class='glyphicon "+module.meta.icon+"'></i>"
             } else {
