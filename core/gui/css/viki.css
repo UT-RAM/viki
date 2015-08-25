@@ -242,3 +242,11 @@ a img, li img {
     width: 1.15em;
     height: auto;
 }
+
+.validDropPoint svg circle {
+    fill: green !important;
+}
+
+.invalidDropPoint svg circle {
+    fill: red !important;
+}

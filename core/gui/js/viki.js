@@ -247,24 +247,9 @@ jsPlumb.ready(function () {
         // case it returns the 'labelText' member that we set on each connection in the 'init' method below.
         ConnectionOverlays: [
             [ "Arrow", { location: 1 } ],
-            [ "Label", {
-                location: 0.1,
-                id: "label",
-                cssClass: "aLabel"
-            }]
         ],
         Container: "project-container"
     });
-
-    var basicType = {
-        connector: "StateMachine",
-        paintStyle: { strokeStyle: "red", lineWidth: 4 },
-        hoverPaintStyle: { strokeStyle: "blue" },
-        overlays: [
-            "Arrow"
-        ]
-    };
-    jsPlumbInstance.registerConnectionType("basic", basicType);
 
     // suspend drawing and initialise.
     jsPlumbInstance.batch(function () {
@@ -282,10 +267,24 @@ jsPlumb.ready(function () {
             return true;
         });
 
+        jsPlumbInstance.bind("connectionDragStop", function(connection) {
+            jsPlumbInstance.selectEndpoints().each(function (endpoint) {
+                endpoint.removeClass('validDropPoint');
+                endpoint.removeClass('invalidDropPoint');
+            });
+        })
+
         jsPlumbInstance.bind("connectionDrag", function (connection) {
             var sourceType = connection.endpoints[0].getParameter("type");
-            var connections = jsPlumbInstance.selectEndpoints({scope:'.project-container'}).each(function(endpoint) {
-                // todo: change connection colors
+            var connections = jsPlumbInstance.selectEndpoints().each(function(endpoint) {
+                // Color code all target endpoints based on the source type
+                if (endpoint.isTarget) {
+                    if (endpoint.getParameter('type') == sourceType) {
+                        endpoint.addClass('validDropPoint');
+                    } else {
+                        endpoint.addClass('invalidDropPoint');
+                    }
+                }
             });
         });
 
@@ -301,9 +300,6 @@ jsPlumb.ready(function () {
             }
         });
     });
-
-    jsPlumb.fire("jsPlumbDemoLoaded", jsPlumbInstance);
-
 });
 
 
@@ -312,7 +308,6 @@ function addInputsToWindow(moduleId, inputs) {
         endpoint: "Dot",
         paintStyle: { fillStyle: "#7AB02C", radius: 11 },
         hoverPaintStyle: endpointHoverStyle,
-        maxConnections: -1,
         dropOptions: { hoverClass: "hover", activeClass: "active" },
         isTarget: true
     };
@@ -333,7 +328,7 @@ function addInputsToWindow(moduleId, inputs) {
                     label: inputs[i].name,
                     cssClass: "endpoint-label"
                 } ]
-            ]
+            ],
         });
     }
 }
@@ -398,13 +393,11 @@ function dropModule(ev) {
 
 function addModuleToContainer(modId, _x, _y) {
     var uModId = modId + guid();  // generate unique id
-    console.log(uModId);    
 
     // add to inCanvasArray
     var modToAdd = getModuleById(modId);
     modToAdd.uWindowId = uModId;
     modulesInCanvas.push(modToAdd);
-    console.log(modulesInCanvas);
     
     $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modToAdd.meta.name+'</span></div>');
 
