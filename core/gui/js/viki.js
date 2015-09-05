@@ -45,6 +45,14 @@ $(document).ready(function(){
         $("#marioImg").animate({left: w + 'px'}, 3000, "linear", removeMario);
     });
 
+    $("#logo").on('click', function() {   
+         var el     = $(this),  
+             newone = el.clone(true);
+                   
+         el.before(newone);
+         el.remove();
+    });
+
     function removeMario() {
         // function to remove the mario added when italian language support is used
         $("#marioImg").remove();
@@ -64,6 +72,11 @@ function updateStatus(msg) {
 function updateModules(modulelist) {
     updateStatus('Received modules');
     modules = modulelist;
+    modules.sort(function(x, y) {
+        if (x.type < y.type) return -1;
+        if (y.type < x.type) return 1;
+        return 0;
+    })
     showModulesInPalette(modules);
     initPalette();
     updateStatus('Updated module panel')
@@ -72,12 +85,22 @@ function updateModules(modulelist) {
 function showModulesInPalette(modules) {
     $('#palette #list').html("");
     modules.forEach(function(module){
+        // Get a fancy image for the module, with a lot of fallbacks
         var icon_path = 'img/plugin.png';
+        var image_html;
         if (module.meta.icon != null) {
-            var icon_path = '../../' + module.path.substring(0, module.path.lastIndexOf("/")) + '/' + module.meta.icon;
+            if (module.meta.icon.indexOf("glyphicon") == 0) {
+                image_html = "<i class='glyphicon "+module.meta.icon+"'></i>"
+            } else {
+                var icon_path = '../../' + module.path.substring(0, module.path.lastIndexOf("/")) + '/' + module.meta.icon;    
+            }
         }
+        if (image_html == null) {
+            image_html = '<img src="'+icon_path+'" />';
+        }
+
         $('#palette #list').append('<li class="module_palette '+module.type+'" id="'+module.id+'">'+
-            '<img src="'+icon_path+'" /><h3>'+module.meta.name+'</h3>'+
+            image_html+'<h3>'+module.meta.name+'</h3>'+
             '<p class="description">'+module.meta.description+'</p>'+
             '<p class="type">type: '+module.type+'</p>'+
             '</li>');        
@@ -125,13 +148,13 @@ function initPalette() {
 }
 
 function enableStartCore() {
-    $("#vikiStopRosCore").parent().hide();
-    $("#vikiStartRosCore").parent().show();
+    $("#vikiStopRosCore").hide();
+    $("#vikiStartRosCore").show();
 }
 
 function enableStopCore() {
-    $("#vikiStopRosCore").parent().show();
-    $("#vikiStartRosCore").parent().hide();
+    $("#vikiStopRosCore").show();
+    $("#vikiStartRosCore").hide();
 }
 
 function onWindowClick(event) {
@@ -281,24 +304,9 @@ jsPlumb.ready(function () {
         // case it returns the 'labelText' member that we set on each connection in the 'init' method below.
         ConnectionOverlays: [
             [ "Arrow", { location: 1 } ],
-            [ "Label", {
-                location: 0.1,
-                id: "label",
-                cssClass: "aLabel"
-            }]
         ],
         Container: "project-container"
     });
-
-    var basicType = {
-        connector: "StateMachine",
-        paintStyle: { strokeStyle: "red", lineWidth: 4 },
-        hoverPaintStyle: { strokeStyle: "blue" },
-        overlays: [
-            "Arrow"
-        ]
-    };
-    jsPlumbInstance.registerConnectionType("basic", basicType);
 
     // suspend drawing and initialise.
     jsPlumbInstance.batch(function () {
@@ -316,28 +324,39 @@ jsPlumb.ready(function () {
             return true;
         });
 
+        jsPlumbInstance.bind("connectionDragStop", function(connection) {
+            jsPlumbInstance.selectEndpoints().each(function (endpoint) {
+                endpoint.removeClass('validDropPoint');
+                endpoint.removeClass('invalidDropPoint');
+            });
+        })
+
         jsPlumbInstance.bind("connectionDrag", function (connection) {
             var sourceType = connection.endpoints[0].getParameter("type");
-            var connections = jsPlumbInstance.selectEndpoints({scope:'.project-container'}).each(function(endpoint) {
-                console.log(endpoint.getParameter('type'));
+            var connections = jsPlumbInstance.selectEndpoints().each(function(endpoint) {
+                // Color code all target endpoints based on the source type
+                if (endpoint.isTarget) {
+                    if (endpoint.getParameter('type') == sourceType) {
+                        endpoint.addClass('validDropPoint');
+                    } else {
+                        endpoint.addClass('invalidDropPoint');
+                    }
+                }
             });
         });
 
         // make all the window divs draggable
         jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
 
-        //
-        // listen for clicks on connections, and offer to delete connections on click.
-        //
+        /*
+        Connection click handler...
+        */
         jsPlumbInstance.bind("click", function (conn, originalEvent) {
-            // if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
-            //   instance.detach(conn);
-            //conn.toggleType("basic");
+            if (originalEvent.ctrlKey) { // delete the connection on ctrl click
+                jsPlumbInstance.detach(conn);
+            }
         });
     });
-
-    jsPlumb.fire("jsPlumbDemoLoaded", jsPlumbInstance);
-
 });
 
 
@@ -346,7 +365,6 @@ function addInputsToWindow(moduleId, inputs) {
         endpoint: "Dot",
         paintStyle: { fillStyle: "#7AB02C", radius: 11 },
         hoverPaintStyle: endpointHoverStyle,
-        maxConnections: -1,
         dropOptions: { hoverClass: "hover", activeClass: "active" },
         isTarget: true
     };
@@ -360,13 +378,14 @@ function addInputsToWindow(moduleId, inputs) {
                 type: inputs[i].message_type,
                 name: inputs[i].name
             },
+            maxConnections: 10,
             overlays: [
                 [ "Label", {
                     location: [-1.5, 0.5],
                     label: inputs[i].name,
                     cssClass: "endpoint-label"
                 } ]
-            ]
+            ],
         });
     }
 }
@@ -398,6 +417,7 @@ function addOutputsToWindow(moduleId, outputs) {
                 type: outputs[i].message_type,
                 name: outputs[i].name
             },
+            maxConnections: 10,
             overlays: [
                 [ "Label", {
                     location: [-1.5, 0.5],
@@ -463,7 +483,8 @@ function addModuleToContainer(modId, _x, _y) {
 function getModuleById(Id) {
     for (var i=0; i <modules.length; i++) {
         if (modules[i].id == Id) {
-            return modules[i];
+            // this returns a copy of the object, so we can modify it without mofifying our initial list
+            return $.extend(true, {}, modules[i]); 
         }
     }
 }
@@ -511,12 +532,26 @@ function getConfig() {
         var mod = {};  // initialize module object
         
         // save all modules (only use role, type and id)
-        var tempmod = getModuleByUWindowId(uId);  // get infor from unique id        
+        var tempmod = getModuleByUWindowId(uId);  // get infor from unique id   
+        if (tempmod == undefined) {
+            console.log("Module with uId: '"+uId+"' could not be found.. :(");
+        }
         mod.id = uId;  // save id
         mod.type = tempmod.id;  // save type
         mod.role = tempmod.type;  // save unique id
-        mod.params = tempmod.params;  // add parameter list
-        mod.args = tempmod.args;  // add argumentstring
+        mod.params = [];
+        // add all parameters and values
+        for (var i=0; i<tempmod.executables.length; i++) {
+            var exec_i = tempmod.executables[i];
+            for (var j=0; j<exec_i.params.length; j++) {
+                var param = exec_i.params[j];
+                var pval = param.default;
+                if (param.value != null) {
+                    pval = param.value;
+                }
+                mod.params.push({'name': param.name, 'value':pval});
+            }
+        }
 
         config.modsToAdd.push(mod);  // add to list of modules to add
 
@@ -535,7 +570,7 @@ function getConfig() {
                     } else if (endpoint.isTarget) {
                         connectionToAdd.sub = endpoint.elementId + "/" + endpoint.getParameter("name");
                     } else {
-                        console.log('Found an enpoint that is not a source, nor a target');
+                        console.log('Found an endpoint that is not a source, nor a target');
                         alert('error, please check console.log');
                     }                
                 }    
@@ -559,24 +594,24 @@ function getConfigXML(config) {
         var tempMod = config.modsToAdd[i];
         var modXML = document.createElement(tempMod.role);
         modXML.setAttribute("type", tempMod.type);
-        modXML.setAttribute("id", tempMod.id);
 
-        // loop through parameters
-        for (var j=0; j<tempMod.params.length; j++) {
-            // method 1: creates <param ... />
-            // var paramXML = '<param name="'+tempMod.params[j].name+'" value="'+tempMod.params[j].value+'" //>';
-            // modXML.innerHTML = paramXML;
-            // console.log(modXML);
+        for (var j=0; j < config.modsToAdd[i].params.length; j++) {
+            var param = config.modsToAdd[i].params[j];
+            var paramXML = document.createElement('param');
+            paramXML.setAttribute('name', param.name);
+            paramXML.setAttribute('value', param.value);
+            
+            /** UGLY HACK WARNING
+            This works, but I don't know why... 
+            The documkent.createElement does not support forcing a close tag, 
+            so actually we should write the generation of xml ourselves.
+            Here I add an element to the parameter XML, so it will close
+            */
+            var subX = document.createElement('x');
+            paramXML.appendChild(subX);
 
-
-            // method 2: creates <param ...></param>
-            var paramXML = document.createElement("param");
-            paramXML.setAttribute("name", tempMod.params[j].name);
-            paramXML.setAttribute("value", tempMod.params[j].value);
-            // automatically no closing tag is created. We need to force create one, because python wants a nicely closed tag.
-            // this comment does nothing other then force create a closing tag.
-            paramXML.innerHTML = "<!-- comment -->";
             modXML.appendChild(paramXML);
+        }
             // console.log(paramXML);
 
         }
@@ -585,7 +620,7 @@ function getConfigXML(config) {
 
         // console.log(modXML);
         configXML.appendChild(modXML);
-    }
+    } 
 
     // add connects to the config XML
     for (var i=0; i<config.connectsToAdd.length; i++){

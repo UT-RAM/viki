@@ -57,9 +57,13 @@ body {
 #logo {
     margin-top: 15px;
     margin-bottom: -15px;
-    /*-webkit-transform: translate(-100px,0);*/
+
     -webkit-animation-delay: 4s;
     -webkit-animation: logo_fly_in 1.5s ease-out;
+}
+
+#logo:hover {
+    cursor: pointer;
 }
 
 .module_palette h3 {
@@ -93,7 +97,7 @@ body {
     background-color: #CCCCFF;
 }
 
-#list .estimator {
+#list .middleware {
     background-color: #CCFFF5;
 }
 
@@ -114,7 +118,7 @@ body {
     width: 90%;
 }
 
-.module_palette img {
+.module_palette img, i {
     height: 1.4em;
     margin-top: -.5em;
     margin-right: .5em;
@@ -208,8 +212,9 @@ p.status {
 /* use to highlight the project container with a black line */
 .project-container {
     border: 1px solid black;
+    border-radius: 4px;
     width: 100%;
-    min-height: 700px;
+    min-height: 800px;
 }
 
 div#status {
@@ -225,16 +230,26 @@ a img, li img {
     margin: 2px;
 }
 
-.actions {
-    list-style-type: none;
-}
-
 #marioImg {
     width: 4em;
     height: auto;
 }
 
 #itaImg {
-    width: 1.15em;
+    width: 30px;
     height: auto;
+}
+
+.validDropPoint svg circle {
+    fill: green !important;
+}
+
+.invalidDropPoint svg circle {
+    fill: red !important;
+}
+
+#actions {
+    vertical-align: bottom;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

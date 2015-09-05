@@ -63,12 +63,15 @@ def main():
                  helpers.toJSON(available_mods))
 
     def vikiStartRosCore():
-        sp = subprocess.Popen('/opt/ros/indigo/bin/roscore')
+        # sp = subprocess.Popen('/opt/ros/indigo/bin/roscore')
+        sp = subprocess.Popen(['gnome-terminal', '-x', '/opt/ros/indigo/bin/roscore'])
         corePID = sp.pid
         web_send('enableStopCore()')
         web_send('updateStatus("ROS core started (PID: '+str(corePID)+')")')
 
     def vikiStopRosCore():
+        if corePID > 0:
+            os.kill(corePID, signal.SIGQUIT)
         web_send('enableStartCore()')
 
     def vikiConfigXML(configXML):
@@ -90,7 +93,9 @@ def main():
         try:
             # THIS DOES NOT WORK THROUGH INTELLIJ IDEA YET.
             subprocess.call(['roslaunch aeroworks.launch'], shell=True)
-            # subprocess.Popen(['gnome-terminal', '--title=%s' % "ROS SHELL", '--disable-factory', '-e', "/bin/bash", "-e", "roslaunch %s --disable-title --port %s %s" % ('roslaunch', 'aeroworks', 'aeroworks.launch')])
+            # subprocess.Popen(['gnome-terminal', '--title=%s' % "ROS SHELL", '-e', "/bin/bash", "-x", "roslaunch aeroworks.launch"])
+            # sp = subprocess.Popen(['gnome-terminal', '-e', '/bin/#bash'], stdin=subprocess.PIPE, stderr=)
+            # sp.communicate('roslaunch aeroworks.launch');
 
         except OSError:
             web_send('updateStatus("OSError")')

@@ -22,75 +22,85 @@
     <div class="row">
         <div class="col-lg-2">
             <img src="img/viki_logo.png" id="logo">
+
+            <div id="palette">
+                <h1>Palette</h1>
+                <p>List of all available modules.<br />
+                    <a href="#" id="vikiRefreshModules" data-statusmessage="Sent request for module list"><img src="img/arrow_refresh.png" /> Update modules</a>
+                </p>
+
+                <input type="text" class="form-control" id="module-filter-text" placeholder="Filter modules (Ctrl+M)">
+                <ul id="list"></ul>
+
+                <p id="help-text-single-module-filter" style="display: none;"><i class="glyphicon glyphicon-info-sign"></i> Press 'Enter' to add this module</p>
+            </div>       
         </div>
         <div class="col-lg-10">
-            <h1>Status</h1>
-            <div id="status">
-                <span id="statusLabel">HTML front-end loaded</span><br />
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-2" id="palette">
-            <h1>Palette</h1>
-            <p>List of all available modules.<br />
-                <a href="#" id="vikiRefreshModules" data-statusmessage="Sent request for module list"><img src="img/arrow_refresh.png" /> Update modules</a>
-            </p>
-
-            <input type="text" class="form-control" id="module-filter-text" placeholder="Filter modules (Ctrl+M)">
-            <ul id="list"></ul>
-
-            <p id="help-text-single-module-filter" style="display: none;"><i class="glyphicon glyphicon-info-sign"></i> Press 'Enter' to add this module</p>
-        </div>
-        <div class="col-lg-8" id="project">
-            <h1>Project</h1>
-            <p>Your project overview</p>
-
-            <div class="project-container">
-            </div>
-        </div>
-        <div class="col-lg-2" id="propertiesPanel">
-            <h1>Actions</h1>
-            <ul class="actions">
-                <li><a href="#" id="italian" class="btn btn-default"><img id="itaImg" src="img/ita.gif" /> 0. Italian</a></li>
-                <li><a href="#" id="makeAndRun" class="btn btn-success"><i class="glyphicon glyphicon-play"></i> Run</a></li>
-                <li><a href="#" id="makeNoRun" class="btn btn-default"><i class="glyphicon glyphicon-duplicate"></i> Make</a></li>
-                <!-- <li><a href="#" id="vikiRun" data-statusmessage="Sent request for system launch"><img src="img/application_go.png" /> 3. Run</a></li> -->
-                <li><a href="#" id="vikiConnCheck" class="btn btn-default" data-statusmessage="Sent request for connection check">
-                    <i class="glyphicon glyphicon-ok"></i> Quick connection check</a>
-                </li>
-                <li>
-                    <a href="#" id="vikiStartRosCore" class="btn btn-default" data-statusmessage="Sent request for starting ROS core">
-                    <img src="img/cog.png" /> Start ROS core</a>
-                </li>
-                <li style="display: none;">
-                    <a href="#" id="vikiStopRosCore" class="btn btn-default" data-statusmessage="Sent request for stopping the ROS core">
-                    <img src="img/cog_delete.png" /> Stop ROS core</a>
-                </li>
-                <li>
-                    <a href="#" id="vikiOpenRqtGraph" class="btn btn-default" data-statusmessage="Invoked rqt_graph"><img src="img/image.png" /> Open rqt_graph</a>
-                </li>
-            </ul>
-            <h1>Properties</h1>
-            <p id="selectedWindowInfo"></p>
-            <p>
-                <table id="selectedWindowProperties" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Property</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
+            <div class="row">
+                <div class="col-lg-9">
+                    
+                    <div id="actions">
+                        <a href="#" id="makeNoRun" class="btn btn-default" title="Generate build files (configuration and launch)"><i class="glyphicon glyphicon-duplicate"></i></a>
                         
-                    <tbody>
+                        <a href="#" id="vikiConnCheck" class="btn btn-default" title="Quick connection check" data-statusmessage="Sent request for connection check">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </a>
+                
+                        <a href="#" id="vikiStartRosCore" class="btn btn-default" data-statusmessage="Sent request for starting ROS core" style="display: none;" title="Start ROS core">
+                            <img src="img/cog.png" />
+                        </a>
+                        <a href="#" id="vikiStopRosCore" class="btn btn-default" data-statusmessage="Sent request for stopping the ROS core" title="Stop ROS core">
+                            <img src="img/cog_delete.png" />
+                        </a>
+                
+                        <a href="#" id="vikiOpenRqtGraph" class="btn btn-default" data-statusmessage="Invoked rqt_graph" title="Open rqt_graph"><img src="img/image.png" /> </a>
+                        
+                        <div id="right-buttons" style="float: right;">
+                            <button id="makeAndRun" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-play"></i> Run</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12" id="project">
+                            <div class="project-container">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="status-container row">
+                        <div class="col-lg-12">
+                        <h1>Status</h1>
+                            <div id="status">
+                                <span id="statusLabel">HTML front-end loaded</span><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="text-right">
+                        <a href="#" id="italian"><img id="itaImg" src="img/ita.gif" /></a>
+                    </div>
+                    <h1>Properties</h1>
+                    <p id="selectedWindowInfo"></p>
+                    <p>
+                        <table id="selectedWindowProperties" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                        
+                            <tbody>
                         <tr>
                             <td colspan="2">No module selected.</td>
                         </tr>
-                    </tbody>
-                </table>
-            </p>
-        </div>
-    </div>
+                            </tbody>
+                        </table>
+                    </p>
+                </div>
+            </div>
 </div>
 
 <!-- dialog for command line arguments -->
@@ -115,11 +125,22 @@
       </div>
     </div>
   </div>
+        </div>
+    </div>
+    <div class="row">
+
+<!--         <div class="col-lg-2" id="propertiesPanel">
+            <h1>Actions</h1>
+            
+            
+        </div> -->
+    </div>
+            
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.jsPlumb-1.7.5-min.js"></script>

@@ -17,7 +17,11 @@
 
     <executable id="usb_cam" pkg="libuvc_camera" exec="camera_node">
         <params>
-            <param name="camera_name" type="viki_camera" default="/dev/video0" />
+            <param name="vendor" type="string" default="null" />
+            <param name="product" type="string" default="null" />
+            <param name="width" type="string" default="640" />
+            <param name="height" type="string" default="480" />
+            <param name="frame_rate" type="string" default="15.0" />
         </params>
 
         <outputs>

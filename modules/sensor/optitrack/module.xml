@@ -6,6 +6,7 @@
 		<description>
 			Wrapper for the OptiTrack node
 		</description>
+		<icon>glyphicon-globe</icon>
 	</meta>
 
 	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->

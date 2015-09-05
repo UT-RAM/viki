@@ -4,6 +4,7 @@
 	<meta>
 		<name>PoseStamped to Pose</name>
 		<description>Strips the stamp from a pose stamped</description>
+		<icon>glyphicon-arrow-right</icon>
 	</meta>
 
 	<inputs>
