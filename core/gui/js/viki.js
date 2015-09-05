@@ -207,7 +207,18 @@ function onModuleSelect(event) {
     tbody.empty();
 
     $('#argButton').click(function() {
-        console.log($('#argPopupBody'));
+        // clear list of executables
+        $("#argPopupBody > table > tbody").not(":first").remove();
+
+        // make list of executables
+        for(var i=0; i<selectedModule.executables.length; i++){
+            var texec = selectedModule.executables[i];
+            var tc = "<tr><td>"+texec.id+"</td><td><input type='text'></input></td></tr>";
+            $("#argPopupBody > table > tbody").append(tc);
+        }
+
+        console.log(selectedModule);
+        // console.log($('#argPopupBody'));
     });
 
     $('#cmdlineButton').click(function () {
@@ -584,53 +595,54 @@ function getConfig() {
     return config;
 }
 
-function getConfigXML(config) {
-    // create config XML 
-    var configXML = document.createElement("configuration");
-    configXML.setAttribute("id", "VIKI-imported-config");
+// function getConfigXML(config) {
+//     // create config XML 
+//     var configXML = document.createElement("configuration");
+//     configXML.setAttribute("id", "VIKI-imported-config");
 
-    // add modules to the config XML
-    for (var i=0; i<config.modsToAdd.length; i++) {
-        var tempMod = config.modsToAdd[i];
-        var modXML = document.createElement(tempMod.role);
-        modXML.setAttribute("type", tempMod.type);
+//     // add modules to the config XML
+//     for (var i=0; i<config.modsToAdd.length; i++) {
+//         var tempMod = config.modsToAdd[i];
+//         var modXML = document.createElement(tempMod.role);
+//         modXML.setAttribute("type", tempMod.type);
 
-        for (var j=0; j < config.modsToAdd[i].params.length; j++) {
-            var param = config.modsToAdd[i].params[j];
-            var paramXML = document.createElement('param');
-            paramXML.setAttribute('name', param.name);
-            paramXML.setAttribute('value', param.value);
+//         for (var j=0; j < config.modsToAdd[i].params.length; j++) {
+//             var param = config.modsToAdd[i].params[j];
+//             var paramXML = document.createElement('param');
+//             paramXML.setAttribute('name', param.name);
+//             paramXML.setAttribute('value', param.value);
             
-            /** UGLY HACK WARNING
-            This works, but I don't know why... 
-            The documkent.createElement does not support forcing a close tag, 
-            so actually we should write the generation of xml ourselves.
-            Here I add an element to the parameter XML, so it will close
-            */
-            var subX = document.createElement('x');
-            paramXML.appendChild(subX);
+//             * UGLY HACK WARNING
+//             This works, but I don't know why... 
+//             The documkent.createElement does not support forcing a close tag, 
+//             so actually we should write the generation of xml ourselves.
+//             Here I add an element to the parameter XML, so it will close
+            
+//             var subX = document.createElement('x');
+//             paramXML.appendChild(subX);
 
-            modXML.appendChild(paramXML);
-        }
-            // console.log(paramXML);
+//             modXML.appendChild(paramXML);
+//         }
 
-        }
+//     }
 
-        // add the argumentstring
+//         // add the argumentstring
 
-        // console.log(modXML);
-        configXML.appendChild(modXML);
-    } 
+//         // console.log(modXML);
+//         configXML.appendChild(modXML);
 
-    // add connects to the config XML
-    for (var i=0; i<config.connectsToAdd.length; i++){
-        var connectXML = document.createElement("connect");
-        connectXML.setAttribute("publisher", config.connectsToAdd[i].pub);
-        connectXML.setAttribute("listener", config.connectsToAdd[i].sub);
-        configXML.appendChild(connectXML);
-    }
+//         // add connects to the config XML
+//         // for (var i=0; i<config.connectsToAdd.length; i++){
+//         //     var connectXML = document.createElement("connect");
+//         //     connectXML.setAttribute("publisher", config.connectsToAdd[i].pub);
+//         //     connectXML.setAttribute("listener", config.connectsToAdd[i].sub);
+//         //     configXML.appendChild(connectXML);
+//         // }
+        
+//         // // return
+//         // return configXML.outerHTML;
+//         // send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));
+//     } 
+
     
-    // return
-    return configXML.outerHTML;
-    // send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));
-}
+// }
