@@ -177,9 +177,15 @@ function keyPressed(event) {
 
 function onModuleSelect(event) {
     var selectedModule = getModuleByUWindowId(selectedModuleUid);
-    $('p#selectedWindowInfo').html("<h3>"+selectedModule.id+"</h3><a id='cmdlineButton'>edit/add cmd-line args.</a><br><strong>Uid: </strong>"+selectedModule.uWindowId+"<br/>");
+    $('p#selectedWindowInfo').html("<h3>"+selectedModule.id+"</h3>"+
+            "<button class='btn btn-default' id='argButton' data-toggle='modal' data-target='#argPopup'>Add/edit arguments</button>"+
+            "<br><strong>Uid: </strong>"+selectedModule.uWindowId+"<br/>");
     var tbody = $('#selectedWindowProperties tbody');
     tbody.empty();
+
+    $('#argButton').click(function() {
+        console.log($('#argPopupBody'));
+    });
 
     $('#cmdlineButton').click(function () {
         addEditCmdLineArgument(selectedModuleUid);
@@ -510,6 +516,7 @@ function getConfig() {
         mod.type = tempmod.id;  // save type
         mod.role = tempmod.type;  // save unique id
         mod.params = tempmod.params;  // add parameter list
+        mod.args = tempmod.args;  // add argumentstring
 
         config.modsToAdd.push(mod);  // add to list of modules to add
 
@@ -573,6 +580,9 @@ function getConfigXML(config) {
             // console.log(paramXML);
 
         }
+
+        // add the argumentstring
+
         // console.log(modXML);
         configXML.appendChild(modXML);
     }
