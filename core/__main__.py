@@ -108,6 +108,14 @@ def main():
         vikiConfigXML(configXML)
         vikiConfigLaunch()
 
+    def vikiShowLaunch():
+        web_send('updateStatus("Opening generated launch file...")')
+        subprocess.Popen(args=["xdg-open", "aeroworks.launch"])
+
+    def vikiShowConfig():
+        web_send('updateStatus("Opening generated config file...")')
+        subprocess.Popen(args=["xdg-open", "configuration.xml"])
+
     # Finally, here is our personalized main loop, 100% friendly
     # with "select" (although I am not using select here)!:
     clicks = -1
