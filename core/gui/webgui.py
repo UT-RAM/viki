@@ -4,6 +4,7 @@ import thread
 import urllib
 
 import gtk
+import os
 import gobject
 
 try:
@@ -132,6 +133,9 @@ def activate_inspector(inspector, target_view):
 def launch_browser(uri, quit_function=None, echo=True):
 
     window = gtk.Window()
+
+    file = os.path.abspath('core/gui/img/viki_logo.png')
+    window.set_icon_from_file(file)
     browser = implementation.create_browser()
     browser.get_settings().set_property("enable-developer-extras", True)
 
