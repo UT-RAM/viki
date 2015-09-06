@@ -91,6 +91,12 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
             for argSearch in mod.args:
                 if argSearch.execid == executable.id:
                     node.attrib['args'] = argSearch.argument
+
+            # find any prefixes for this executable
+            for prefixSearch in mod.prefixes:
+                if prefixSearch.execid == executable.id:
+                    node.attrib['launch-prefix'] = prefixSearch.prefix
+
         # At this point, we end up with some parameters that are not "connected". Echo those.
         for paramSearch in mod.parameters_to_add:
             print 'Parameter "' + paramSearch.name + '", valued "' + paramSearch.value + '", could not be connected.'

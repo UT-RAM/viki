@@ -88,6 +88,16 @@ def recursiveGet(domparent, parent):
                         print("found a cmd line argument and added it to module to add")
                         mod.add_cmdline_arg(arg)
 
+                pfs = getElementsOnFirstLevel(dommod, 'launch-prefix')
+                if pfs:
+                    for dompf in pfs:
+                        pf = Launch_prefix(
+                            dompf.attributes['exec_id'].value,
+                            dompf.attributes['prefix'].value
+                            )
+                        print("Adding prefix")
+                        mod.add_prefix(pf)
+
                 parent.modules_to_add.append(mod)
     namespacesInParent = getElementsOnFirstLevel(domparent, 'namespace')
     if namespacesInParent:

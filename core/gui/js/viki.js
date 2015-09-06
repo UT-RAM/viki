@@ -202,10 +202,12 @@ function onModuleSelect(event) {
     var selectedModule = getModuleByUWindowId(selectedModuleUid);
     $('p#selectedWindowInfo').html("<h3>"+selectedModule.id+"</h3>"+
             "<button class='btn btn-default' id='argButton' data-toggle='modal' data-target='#argPopup'>Add/edit arguments</button>"+
+            "<br><button class='btn btn-default' id='prefixButton' data-toggle='modal' data-target='#prefixPopup'>Add/edit prefixes</button></br>"+
             "<br><strong>Uid: </strong>"+selectedModule.uWindowId+"<br/>");
     var tbody = $('#selectedWindowProperties tbody');
     tbody.empty();
 
+    // for command line arguments (open the modal, edit it's content)
     $('#argButton').click(function() {
         // clear list of executables
         $("#argPopupBody > table > tbody > tr").not(":first").remove();
@@ -239,10 +241,41 @@ function onModuleSelect(event) {
         });
     });
 
-    $('#cmdlineButton').click(function () {
-        addEditCmdLineArgument(selectedModuleUid);
+    // for launch-prefixes
+    $('#prefixButton').click(function() {
+        // clear list of executables
+        $("#prefixPopupBody > table > tbody >tr").not(":first").remove();
+
+        // make list of executables
+        for(var i=0; i<selectedModule.executables.length; i++){
+            var texec = selectedModule.executables[i];
+            var originalPrefix;
+            if (typeof selectedModule.prefixes[i] === "undefined") {
+                originalPrefix = "";
+            } 
+            else {
+                originalPrefix = selectedModule.prefixes[i].prefix;
+            }
+            var tc = "<tr><td>"+texec.id+"</td><td><input type='text' value=" + originalPrefix + "></input></td></tr>";
+            $("#prefixPopupBody > table > tbody").append(tc);
+        }
+
+        $("#savePrefixButton").click(function() {
+            // hide dialog
+            $("#prefixPopup").modal("hide");
+
+            // save arguments
+            selectedModule.prefixes = [];  // empty list
+            for (var i=0; i< $('#prefixPopupBody > table > tbody > tr').not(":first").length; i++) {
+                var prefix = {};
+                prefix.execId = $($('#prefixPopupBody > table > tbody > tr')[i+1].children[0]).text();
+                prefix.prefix = $($('#prefixPopupBody > table > tbody > tr')[i+1].children[1].children[0]).val();
+                selectedModule.prefixes.push(prefix);
+            }
+        });
     });
 
+    // for parameters
     for (var i=0; i < selectedModule.executables.length; i++) {
         var exe = selectedModule.executables[i];
         for (var j=0; j < exe.params.length; j++) {
@@ -485,6 +518,7 @@ function addModuleToContainer(modId, _x, _y) {
     modToAdd.uWindowId = uModId;
     modToAdd.params = [];  // premake list for parameters
     modToAdd.args = [];  // placeholder for command line arguments
+    modToAdd.prefixes = [];  // placeholder for launch-prefixes
     modulesInCanvas.push(modToAdd);
     
     $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modToAdd.meta.name+'</span></div>');
@@ -589,6 +623,12 @@ function getConfig() {
             mod.args.push(tempmod.args[i]);
         }
 
+        // launch prefixes
+        mod.prefixes = [];
+        for (var i=0; i<tempmod.prefixes.length; i++) {
+            mod.prefixes.push(tempmod.prefixes[i]);
+        }
+
         config.modsToAdd.push(mod);  // add to list of modules to add
 
         // all connections for this module
@@ -661,7 +701,16 @@ function getConfigXML(config) {
             argXML.setAttribute('argument',arg.cmd);
             modXML.appendChild(argXML);
         }
-        
+
+        // launch prefixes
+        for (var j=0; j<config.modsToAdd[i].prefixes.length; j++) {
+            var prefix = config.modsToAdd[i].prefixes[j];
+            var prefixXML = document.createElement('launch-prefix');
+            prefixXML.setAttribute('exec_id',prefix.execId);
+            prefixXML.setAttribute('prefix',prefix.prefix);
+            modXML.appendChild(prefixXML);
+        }
+
         // add module to XML
         configXML.appendChild(modXML);
     }

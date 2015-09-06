@@ -209,6 +209,7 @@ class Module_to_add:
         self.supress_warning = supress_warning
         self.parameters_to_add = []
         self.args = []
+        self.prefixes = []
 
         # here we put Module classes used for implementation
         self.implementation = None
@@ -219,6 +220,13 @@ class Module_to_add:
         :param arg: The command line argument object to add
         """
         self.args.append(arg)
+
+    def add_prefix(self, pf):
+        """Add a launch-prefix object *pf* to the list of prefixes desired to run
+
+        :param pf: prefix object
+        """
+        self.prefixes.append(pf)
 
 
 class Connection_to_add:
@@ -253,3 +261,15 @@ class Cmdline_argument:
     def __init__(self, executable_id, argument):
         self.execid = executable_id
         self.argument = argument
+
+
+class Launch_prefix:
+    """A launch prefix that will be run before the actual ROSnode.
+    Can be very useful to for instance start a node in debug mode.
+
+    :param executable_id: id of the executable this prefix is used for
+    :param prefix: string of the prefix
+    """
+    def __init__(self, executable_id, prefix):
+        self.execid = executable_id
+        self.prefix = prefix
