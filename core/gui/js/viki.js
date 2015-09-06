@@ -208,17 +208,35 @@ function onModuleSelect(event) {
 
     $('#argButton').click(function() {
         // clear list of executables
-        $("#argPopupBody > table > tbody").not(":first").remove();
+        $("#argPopupBody > table > tbody > tr").not(":first").remove();
 
         // make list of executables
         for(var i=0; i<selectedModule.executables.length; i++){
             var texec = selectedModule.executables[i];
-            var tc = "<tr><td>"+texec.id+"</td><td><input type='text'></input></td></tr>";
+            var originalCmd;
+            if (typeof selectedModule.args[i] === "undefined") {
+                originalCmd = "";
+            } 
+            else {
+                originalCmd = selectedModule.args[i].cmd;
+            }
+            var tc = "<tr><td>"+texec.id+"</td><td><input type='text' value=" + originalCmd + "></input></td></tr>";
             $("#argPopupBody > table > tbody").append(tc);
         }
 
-        console.log(selectedModule);
-        // console.log($('#argPopupBody'));
+        $("#saveArgButton").click(function() {
+            // hide dialog
+            $("#argPopup").modal("hide");
+
+            // save arguments
+            selectedModule.args = [];  // empty list
+            for (var i=0; i< $('#argPopupBody > table > tbody > tr').not(":first").length; i++) {
+                var arg = {};
+                arg.execId = $($('#argPopupBody > table > tbody > tr')[i+1].children[0]).text();
+                arg.cmd =    $($('#argPopupBody > table > tbody > tr')[i+1].children[1].children[0]).val();
+                selectedModule.args.push(arg);
+            }
+        });
     });
 
     $('#cmdlineButton').click(function () {
@@ -466,7 +484,7 @@ function addModuleToContainer(modId, _x, _y) {
     var modToAdd = getModuleById(modId);
     modToAdd.uWindowId = uModId;
     modToAdd.params = [];  // premake list for parameters
-    modToAdd.args = '';  // placeholder for command line arguments
+    modToAdd.args = [];  // placeholder for command line arguments
     modulesInCanvas.push(modToAdd);
     
     $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modToAdd.meta.name+'</span></div>');
@@ -547,6 +565,7 @@ function getConfig() {
         if (tempmod == undefined) {
             console.log("Module with uId: '"+uId+"' could not be found.. :(");
         }
+
         mod.id = uId;  // save id
         mod.type = tempmod.id;  // save type
         mod.role = tempmod.type;  // save unique id
@@ -562,6 +581,12 @@ function getConfig() {
                 }
                 mod.params.push({'name': param.name, 'value':pval});
             }
+        }
+
+        // arguments
+        mod.args = [];
+        for (var i=0; i<tempmod.args.length; i++) {
+            mod.args.push(tempmod.args[i]);
         }
 
         config.modsToAdd.push(mod);  // add to list of modules to add
@@ -595,54 +620,61 @@ function getConfig() {
     return config;
 }
 
-// function getConfigXML(config) {
-//     // create config XML 
-//     var configXML = document.createElement("configuration");
-//     configXML.setAttribute("id", "VIKI-imported-config");
+function getConfigXML(config) {
+    // create config XML 
+    var configXML = document.createElement("configuration");
+    configXML.setAttribute("id", "VIKI-imported-config");
 
-//     // add modules to the config XML
-//     for (var i=0; i<config.modsToAdd.length; i++) {
-//         var tempMod = config.modsToAdd[i];
-//         var modXML = document.createElement(tempMod.role);
-//         modXML.setAttribute("type", tempMod.type);
+    // add modules to the config XML
+    for (var i=0; i<config.modsToAdd.length; i++) {
+        var tempMod = config.modsToAdd[i];
+        var modXML = document.createElement(tempMod.role);
+        modXML.setAttribute("type", tempMod.type);
+        // console.log(tempMod);
+        modXML.setAttribute("id", tempMod.id);
 
-//         for (var j=0; j < config.modsToAdd[i].params.length; j++) {
-//             var param = config.modsToAdd[i].params[j];
-//             var paramXML = document.createElement('param');
-//             paramXML.setAttribute('name', param.name);
-//             paramXML.setAttribute('value', param.value);
+        // parameters
+        for (var j=0; j < config.modsToAdd[i].params.length; j++) {
+            var param = config.modsToAdd[i].params[j];
+            var paramXML = document.createElement('param');
+            paramXML.setAttribute('name', param.name);
+            paramXML.setAttribute('value', param.value);
             
-//             * UGLY HACK WARNING
-//             This works, but I don't know why... 
-//             The documkent.createElement does not support forcing a close tag, 
-//             so actually we should write the generation of xml ourselves.
-//             Here I add an element to the parameter XML, so it will close
+            /* UGLY HACK WARNING
+            This works, but I don't know why... 
+            The documkent.createElement does not support forcing a close tag, 
+            so actually we should write the generation of xml ourselves.
+            Here I add an element to the parameter XML, so it will close
+            */
             
-//             var subX = document.createElement('x');
-//             paramXML.appendChild(subX);
+            var subX = document.createElement('x');
+            paramXML.appendChild(subX);
 
-//             modXML.appendChild(paramXML);
-//         }
+            modXML.appendChild(paramXML);
+        }
 
-//     }
-
-//         // add the argumentstring
-
-//         // console.log(modXML);
-//         configXML.appendChild(modXML);
-
-//         // add connects to the config XML
-//         // for (var i=0; i<config.connectsToAdd.length; i++){
-//         //     var connectXML = document.createElement("connect");
-//         //     connectXML.setAttribute("publisher", config.connectsToAdd[i].pub);
-//         //     connectXML.setAttribute("listener", config.connectsToAdd[i].sub);
-//         //     configXML.appendChild(connectXML);
-//         // }
+        // arguments
+        for (var j=0; j<config.modsToAdd[i].args.length; j++) {
+            var arg = config.modsToAdd[i].args[j];
+            var argXML = document.createElement('arg');
+            argXML.setAttribute('exec_id',arg.execId);
+            argXML.setAttribute('argument',arg.cmd);
+            modXML.appendChild(argXML);
+        }
         
-//         // // return
-//         // return configXML.outerHTML;
-//         // send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));
-//     } 
+        // add module to XML
+        configXML.appendChild(modXML);
+    }
 
-    
-// }
+    // add connects to the config XML
+    for (var i=0; i<config.connectsToAdd.length; i++){
+        var connectXML = document.createElement("connect");
+        connectXML.setAttribute("publisher", config.connectsToAdd[i].pub);
+        connectXML.setAttribute("listener", config.connectsToAdd[i].sub);
+        configXML.appendChild(connectXML);
+    }
+        
+    // return
+    return configXML.outerHTML;
+    send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));    
+}
