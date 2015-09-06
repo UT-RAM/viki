@@ -1,7 +1,7 @@
 <!--AEROWORKS-->
-<module type="sensor" id="optitrack">
+<module type="sensor" id="optitrack_multi">
 	<meta>
-		<name>OptiTrack</name>
+		<name>OptiTrack (5 outputs)</name>
 		<author>Robin Hoogervorst</author>
 		<description>
 			Wrapper for the OptiTrack node

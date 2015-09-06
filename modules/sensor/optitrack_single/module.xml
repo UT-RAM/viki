@@ -1,0 +1,22 @@
+<!--AEROWORKS-->
+<module type="sensor" id="optitrack_single">
+	<meta>
+		<name>OptiTrack</name>
+		<author>Robin Hoogervorst</author>
+		<description>
+			Wrapper for the OptiTrack node
+		</description>
+		<icon>glyphicon-globe</icon>
+	</meta>
+
+	<!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
+	<outputs>
+		<output type="ros_topic" name="pose1" link="/optitrack/pose1" message_type="geometry_msgs/PoseStamped" required="true" />
+	</outputs>
+
+	<executable id="mocap_node" pkg="mocap_optitrack" exec="mocap_node">
+		<params>
+			<param name="rigid_bodies/1/pose" type="string" default="/optitrack/pose1" />
+		</params>
+	</executable>
+</module>
