@@ -29,7 +29,8 @@
         <params>
             <param name="detector" type="string" default="APRIL" />
             <param name="camera_calibration" type="string" default="/mnt/data/RAM/workspace/src/aeroworks/modules/middleware/marker_detection/calibration/20150401_buildin_hp.xml" />
-            <param name="camera_offset_x" type="double" default="0.21"  />
+            <param name="camera_offset_x" type="double" default="0"  />
+            <param name="tagsize" type="double" default="0.0456" />
         </params>
     </executable>
 

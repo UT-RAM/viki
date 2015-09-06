@@ -36,6 +36,8 @@ public:
     delete(calibration);
   }
 
+    virtual void setDouble(std::string name, double value) {};
+
   /**
     * Find the position of a marker, using a openCV Mat image.
     * This position is relative to the camera (z forward, x right, y down) (Same as openCV solvePnP)

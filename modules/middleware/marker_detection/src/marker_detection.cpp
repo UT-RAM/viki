@@ -101,7 +101,7 @@ public:
         window_name = "Camera pose estimator";
 
         if (!n.getParam("camera_offset_x", camera_offset_x)) {
-            camera_offset_x = .21;
+            camera_offset_x = 0;
         };
 
         // Get the calibration file setting
@@ -120,7 +120,13 @@ public:
                 ROS_WARN("We could not generate a valid detector with name %s", detector_name.c_str());
                 ros::shutdown();
             }
+
+            double tagsize;
+            if (n.getParam("tagsize", tagsize)) {
+                detector->setDouble("tagsize", tagsize);
+            }
         }
+
 
         image_time = ros::Time::now();
 
@@ -190,7 +196,6 @@ public:
       */
     void publishPose(Eigen::Vector3f position, Eigen::Quaternionf orientation, geometry_msgs::Pose optiPose) {
         // Initialize messages
-        ROS_WARN("Calculating a pose");
         geometry_msgs::Pose   pose_msg;
 
         /**
@@ -266,7 +271,6 @@ public:
       * Uses the detector to find a position (marker dependent on the type of detector), then publishes the new found pose
       */
     void imageCallback(const sensor_msgs::ImageConstPtr& msg) {
-        ROS_WARN("Recieved an image");
         image_time = ros::Time::now() - ros::Duration(delay);
 
         // Convert ROS image message to OpenCV Mat
@@ -375,8 +379,6 @@ public:
 int main(int argc, char** argv) {
     ros::init(argc, argv, "marker_detection_node");
     PoseEstimator pe;
-
-    ROS_INFO("Started marker detection");
 
     /**
       * Start the spinner. Use a multithreaded one,

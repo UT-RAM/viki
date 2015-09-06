@@ -113,6 +113,11 @@ private:
 
 };
 
+//void DotsDetector::setDouble(std::string name, double value)
+//{
+//    return ;
+//}
+
 
 /**
   * HSV Dots detector, original created by Jort Baarsma for the duavracv vision project within RAM,

@@ -28,9 +28,15 @@ public:
     AprilTags::TagCodes m_tagCodes = AprilTags::tagCodes36h11;
     tagDetector = boost::shared_ptr<AprilTags::TagDetector>(new AprilTags::TagDetector(m_tagCodes));
 
-    tagSize = 0.0614;
+    tagSize = 0;
     debug = true;
   }
+
+    void setDouble(std::string name, double value) {
+        if (name == "tagsize") {
+            tagSize = value;
+        }
+    }
 
   /**
     * Find a position and populate the right values in this class.
