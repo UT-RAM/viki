@@ -4,7 +4,7 @@
         <name>Empty output module</name>
         <description>An empty module with one output, can be used during building a canvas.</description>
         <author>Alex Kamphuis</author>
-        <icon>glyphicon-vector-path-circle</icon>
+        <icon>glyphicon-record</icon>
     </meta>
 
     <inputs>
