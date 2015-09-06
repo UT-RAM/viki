@@ -65,13 +65,13 @@ def main():
     def vikiStartRosCore():
         # sp = subprocess.Popen('/opt/ros/indigo/bin/roscore')
         sp = subprocess.Popen(['gnome-terminal', '-x', '/opt/ros/indigo/bin/roscore'])
-        corePID = sp.pid
+        main.corePID = sp.pid # This PID is not the right one!
         web_send('enableStopCore()')
-        web_send('updateStatus("ROS core started (PID: '+str(corePID)+')")')
+        web_send('updateStatus("ROS core started (PID: '+str(main.corePID)+')")')
 
     def vikiStopRosCore():
-        if corePID > 0:
-            os.kill(corePID, signal.SIGQUIT)
+        # if main.corePID > 0: 
+        #     os.kill(main.corePID, signal.SIGKILL)
         web_send('enableStartCore()')
 
     def vikiConfigXML(configXML):
