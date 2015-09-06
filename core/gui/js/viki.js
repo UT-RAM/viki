@@ -17,10 +17,12 @@ $(document).ready(function(){
     });
 
     $("#makeNoRun").click(function(){
+        updateStatus("Reqesting make...");
         send(JSON.stringify({name: "vikiMakeNoRun", value: getConfigXML(getConfig())}));
     });
 
     $("#makeAndRun").click(function(){
+        updateStatus("Requesting make and run...");
         send(JSON.stringify({name: "vikiMakeAndRun", value: getConfigXML(getConfig())}));
        });
 
@@ -43,20 +45,23 @@ $(document).ready(function(){
 
         // move to right (calls delete function afterwards)
         $("#marioImg").animate({left: w + 'px'}, 3000, "linear", removeMario);
-    });
 
-    $("#logo").on('click', function() {   
-         var el     = $(this),  
-             newone = el.clone(true);
-                   
-         el.before(newone);
-         el.remove();
+        updateStatus("Got you! Of course there is no Italian language support.");
     });
 
     function removeMario() {
         // function to remove the mario added when italian language support is used
         $("#marioImg").remove();
     }
+
+    $("#logo").on('click', function() {
+    // Makes the logo re-fly in when clicking on it 
+         var el     = $(this),  
+             newone = el.clone(true);
+                   
+         el.before(newone);
+         el.remove();
+    });
 
     // Manually request first module list.
     updateStatus('Asking for initial module list');
@@ -70,7 +75,7 @@ function updateStatus(msg) {
 }
 
 function updateModules(modulelist) {
-    updateStatus('Received modules');
+    updateStatus('Received modules.');
     modules = modulelist;
     modules.sort(function(x, y) {
         if (x.type < y.type) return -1;
@@ -79,7 +84,7 @@ function updateModules(modulelist) {
     })
     showModulesInPalette(modules);
     initPalette();
-    updateStatus('Updated module panel')
+    updateStatus('Updated module panel.')
 }
 
 function showModulesInPalette(modules) {
@@ -182,6 +187,7 @@ function deleteSelectedModule() {
         deleteWindowFromCanvas(selectedModuleUid);
         clearSelectedModule(); 
     }
+    updateStatus("Deleted module from canvas.");
 }
 
 function keyPressed(event) {
@@ -238,6 +244,8 @@ function onModuleSelect(event) {
                 arg.cmd =    $($('#argPopupBody > table > tbody > tr')[i+1].children[1].children[0]).val();
                 selectedModule.args.push(arg);
             }
+
+            updateStatus("Saved arguments");
         });
     });
 
@@ -272,6 +280,8 @@ function onModuleSelect(event) {
                 prefix.prefix = $($('#prefixPopupBody > table > tbody > tr')[i+1].children[1].children[0]).val();
                 selectedModule.prefixes.push(prefix);
             }
+
+            updateStatus("Saved prefixes.");
         });
     });
 
@@ -307,34 +317,7 @@ function onModuleSelect(event) {
             // add if it hasnt been set
             selectedModule.params.push(param);
         }
-
-        // for (var i=0; i<selectedModule.executables.length; i++){
-        //     var exe = selectedModule.executables[i];
-        //     for (var j=0; j<exe.params.length; j++) {
-        //         var p = exe.params[j];
-        //         if (p.name == paramName) {
-        //             p.value = $(this).val();
-        //         }
-        //     }
-        // }
     });
-}
-
-function addEditCmdLineArgument(modUid) {
-    var argSet = getModuleByUWindowId(modUid).args;
-    var argInput = prompt('Insert/edit the list of arguments.',argSet);
-    getModuleByUWindowId(modUid).args = argInput;
-    if (argInput == '') {
-        if (argSet == '') {
-            updateStatus('Aborted setting argument');
-        }
-        else {
-            alert('Removed argument.');
-        }
-    }
-    else {
-        updateStatus('For module: '+modUid+' set argument: '+argInput);
-    }
 }
 
 // this is the paint style for the connecting lines..
@@ -493,17 +476,16 @@ function addOutputsToWindow(moduleId, outputs) {
 
 function startDrag(ev) {
     ev = ev.originalEvent;
-    updateStatus("dragging object: " + ev.target.id);
+    updateStatus("Dragging module: " + ev.target.id + ".");
     ev.dataTransfer.setData("moduleId", ev.target.id);
 }
 
 function allowDrop(ev) {
-    // updateStatus("allowing drop now..");
     ev.preventDefault();
 }
 
 function dropModule(ev) {
-    updateStatus("dropped a module to the project-container");
+    updateStatus("Dropped a module to the project-container.");
     ev.preventDefault();
 
     var modId = ev.dataTransfer.getData('moduleId');
@@ -541,6 +523,8 @@ function addModuleToContainer(modId, _x, _y) {
     // connections
     addInputsToWindow(uModId, modToAdd.inputs);
     addOutputsToWindow(uModId, modToAdd.outputs);
+
+    updateStatus("Module added succesfully.");
 }
 
 function getModuleById(Id) {
@@ -583,10 +567,12 @@ function deleteWindowFromCanvas(uId) {
         }
     }
     // update status
-    updateStatus("window removed!");
+    updateStatus("Module removed!");
 }
 
 function getConfig() {
+    updateStatus("Getting config...");
+
     var config = {};
     config.modsToAdd = [];
     config.connectsToAdd = [];
@@ -657,10 +643,13 @@ function getConfig() {
             
         }
     });
+
+    updateStatus("done.");
     return config;
 }
 
 function getConfigXML(config) {
+    updateStatus("Generating XML...");
     // create config XML 
     var configXML = document.createElement("configuration");
     configXML.setAttribute("id", "VIKI-imported-config");
@@ -723,6 +712,7 @@ function getConfigXML(config) {
         configXML.appendChild(connectXML);
     }
         
+    updateStatus("Done!");
     // return
     return configXML.outerHTML;
     send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));    
