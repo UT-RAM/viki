@@ -91,11 +91,9 @@ def main():
 
     def vikiRun():
         try:
-            # THIS DOES NOT WORK THROUGH INTELLIJ IDEA YET.
-            subprocess.call(['roslaunch aeroworks.launch'], shell=True)
-            # subprocess.Popen(['gnome-terminal', '--title=%s' % "ROS SHELL", '-e', "/bin/bash", "-x", "roslaunch aeroworks.launch"])
-            # sp = subprocess.Popen(['gnome-terminal', '-e', '/bin/#bash'], stdin=subprocess.PIPE, stderr=)
-            # sp.communicate('roslaunch aeroworks.launch');
+            # run in new gnome terminal
+            # don't know if this works with intellijIDEA, find out yourself if you use it.
+            pid = subprocess.Popen(args=["gnome-terminal", "--command=roslaunch aeroworks.launch"]).pid  
 
         except OSError:
             web_send('updateStatus("OSError")')
