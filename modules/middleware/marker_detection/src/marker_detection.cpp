@@ -95,6 +95,8 @@ public:
         ros::NodeHandle n("~");
         seqId = 0;
 
+        string ns = ros::this_node::getNamespace();
+
         // Start reading parameters
         window_name = "Camera pose estimator";
 
@@ -138,10 +140,10 @@ public:
         camera_roll   = 0 ;
 
         // ROS subscribers / publishers
-        image_sub     = n.subscribe("/image", 1, &PoseEstimator::imageCallback, this);
-        pos_sub       = n.subscribe("/pose", 1, &PoseEstimator::poseCallback, this);
+        image_sub     = n.subscribe(ns+"/image", 1, &PoseEstimator::imageCallback, this);
+        pos_sub       = n.subscribe(ns+"/pose", 1, &PoseEstimator::poseCallback, this);
 
-        pose_pub      = n.advertise<geometry_msgs::PoseStamped>("/output_pose", 1);
+        pose_pub      = n.advertise<geometry_msgs::PoseStamped>(ns+"/output_pose", 1);
 
         // Dynamic reconfigure settings
         f = boost::bind(&PoseEstimator::reconfigure, this, _1, _2);
@@ -188,6 +190,7 @@ public:
       */
     void publishPose(Eigen::Vector3f position, Eigen::Quaternionf orientation, geometry_msgs::Pose optiPose) {
         // Initialize messages
+        ROS_WARN("Calculating a pose");
         geometry_msgs::Pose   pose_msg;
 
         /**
@@ -263,6 +266,7 @@ public:
       * Uses the detector to find a position (marker dependent on the type of detector), then publishes the new found pose
       */
     void imageCallback(const sensor_msgs::ImageConstPtr& msg) {
+        ROS_WARN("Recieved an image");
         image_time = ros::Time::now() - ros::Duration(delay);
 
         // Convert ROS image message to OpenCV Mat
@@ -275,13 +279,14 @@ public:
         // Delay can be calibrated using exposure_time. Maybe a look into further delay here can help
         geometry_msgs::PoseStamped* temppose = getPoseAtTime(image_time);
         // If we have no valid position, we can not make an accurate position estimate
-        if (temppose == NULL) {
-          return;
+        geometry_msgs::Pose cameraPose;
+        if (temppose != NULL) {
+            cameraPose = temppose->pose;
         }
 
         // Find and publish position
         if (detector->findPosition(image)) {
-            publishPose(detector->getPosition(), detector->getOrientation(), temppose->pose);
+            publishPose(detector->getPosition(), detector->getOrientation(), cameraPose);
         }
 
         imshow(window_name, image); // OpenCV call
@@ -368,8 +373,10 @@ public:
 };
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "marker_detection");
+    ros::init(argc, argv, "marker_detection_node");
     PoseEstimator pe;
+
+    ROS_INFO("Started marker detection");
 
     /**
       * Start the spinner. Use a multithreaded one,
