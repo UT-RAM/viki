@@ -361,9 +361,19 @@ jsPlumb.ready(function () {
             sourceType = connInfo.connection.endpoints[0].getParameter("type");
             targetType = connInfo.dropEndpoint.getParameter("type");
 
+            console.log(sourceType);
+            console.log(targetType);
             if (sourceType != targetType) {
-                updateStatus("Not able to connect endpoints of different types");
-                return false;
+                if (sourceType == "ANY") {
+                    return true;
+                }
+                else if (targetType == "ANY") {
+                    return true;
+                }
+                else{
+                    updateStatus("Not able to connect endpoints of different types");
+                    return false;
+                }
             }
 
             return true;
@@ -381,8 +391,12 @@ jsPlumb.ready(function () {
             var connections = jsPlumbInstance.selectEndpoints().each(function(endpoint) {
                 // Color code all target endpoints based on the source type
                 if (endpoint.isTarget) {
-                    if (endpoint.getParameter('type') == sourceType) {
+                    if (sourceType == "ANY") {
                         endpoint.addClass('validDropPoint');
+                    } else if (endpoint.getParameter('type') == sourceType) {
+                        endpoint.addClass('validDropPoint');
+                    } else if (endpoint.getParameter('type') == "ANY") {
+                        endpoint.addClass('validDropPoint')
                     } else {
                         endpoint.addClass('invalidDropPoint');
                     }
