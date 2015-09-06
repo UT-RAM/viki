@@ -1,12 +1,21 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(middleware_posestamped_odom)
+project(marker_detection)
+
+find_package(OpenCV)
+find_package(cmake_modules REQUIRED)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  std_msgs
+    apriltags
+    rospy
+    roscpp
+    std_msgs
+    dynamic_reconfigure
+    image_transport
+    cv_bridge
+    tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -43,9 +52,8 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
+#add_message_files(
 #   FILES
-#   Message1.msg
 #   Message2.msg
 # )
 
@@ -69,6 +77,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   std_msgs
 # )
 
+generate_dynamic_reconfigure_options(
+  cfg/MarkerDetection.cfg
+)
+
 ###################################
 ## catkin specific configuration ##
 ###################################
@@ -80,7 +92,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES pose_velocity
+#  LIBRARIES marker_detection
 #  CATKIN_DEPENDS roscpp std_msgs
 #  DEPENDS system_lib
 )
@@ -93,25 +105,31 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
-  ${catkin_INCLUDE_DIRS}
+  	${catkin_INCLUDE_DIRS}
+    ${OpenCV_INCLUDE_DIRS}
+    include
 )
 
+add_executable(marker_detection_node src/marker_detection.cpp)
+add_dependencies(marker_detection_node marker_detection_generate_messages_cpp marker_detection_gencfg)
+target_link_libraries(marker_detection_node ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+
 ## Declare a cpp library
-# add_library(pose_velocity
-#   src/${PROJECT_NAME}/pose_velocity.cpp
+# add_library(marker_detection
+#   src/${PROJECT_NAME}/marker_detection.cpp
 # )
 
 ## Declare a cpp executable
-add_executable(velocity_estimator src/vel_estimator.cpp)
+# add_executable(marker_detection_node src/marker_detection_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-add_dependencies(velocity_estimator pose_velocity_generate_messages_cpp)
+# add_dependencies(marker_detection_node marker_detection_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(velocity_estimator
-  ${catkin_LIBRARIES}
-)
+# target_link_libraries(marker_detection_node
+#   ${catkin_LIBRARIES}
+# )
 
 #############
 ## Install ##
@@ -128,7 +146,7 @@ target_link_libraries(velocity_estimator
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS pose_velocity pose_velocity_node
+# install(TARGETS marker_detection marker_detection_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -153,7 +171,7 @@ target_link_libraries(velocity_estimator
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_pose_velocity.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_marker_detection.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
