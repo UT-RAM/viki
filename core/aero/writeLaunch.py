@@ -63,29 +63,28 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
             remap.set('to', to_attr)
             remap.set('from', from_attr)
 
+        added_params = []
         for executable in mod.implementation.executables:
             nodens = ET.SubElement(configElem, "group", ns=mod.id+'_'+executable.id)
             node = ET.SubElement(nodens, "node", pkg=executable.pkg, name=mod.id+'_'+executable.id, type=executable.executable)
             # Check if one of the parameters that are to be set are present in this executable
             # Todo/problem: params are not defined at executable level, but at module level.
             for paramSearch in mod.parameters_to_add[:]:
-                print len(executable.params)
                 for paramList in executable.params[:]:
-                    print "mathcing parameters:"
-                    print paramSearch.name
-                    print paramList.name
-                    if paramSearch.name == paramList.name:
-                        print "found a mathcing parameter!!"
+                    if paramSearch.name == paramList.name and not paramList.name in added_params:
                         param = ET.SubElement(node, "param", name=paramSearch.name, value=paramSearch.value)
                         # Remove found param from both lists
                         mod.parameters_to_add.remove(paramSearch)
-                        executable.params.remove(paramList)
+                        added_params.append(paramList.name)
+                        # executable.params.remove(paramList)
                     else:
                         print "params did not match"
 
             # At this point, we also have the default parameters we should fill. loop again.
             for paramList in executable.params:
-                param = ET.SubElement(node, "param", name=paramList.name, value=paramList.default)
+                if not paramList.name in added_params:
+                    added_params.append(paramList.name)
+                    param = ET.SubElement(node, "param", name=paramList.name, value=paramList.default)
 
             # find any command line arguments that belong to this executable
             for argSearch in mod.args:
