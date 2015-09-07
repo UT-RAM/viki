@@ -85,7 +85,6 @@ def main():
     def vikiConfigLaunch():
         configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")     
         config_matcher.matchConfig(configfromfile, available_mods)
-
         writeLaunch.write(configfromfile)
         web_send('updateStatus("Written launch file")');
 
@@ -94,7 +93,6 @@ def main():
             # run in new gnome terminal
             # don't know if this works with intellijIDEA, find out yourself if you use it.
             pid = subprocess.Popen(args=["gnome-terminal", "--command=roslaunch aeroworks.launch"]).pid  
-
         except OSError:
             web_send('updateStatus("OSError")')
         web_send('updateStatus("Requested launch of AeroWorks.launch")')
