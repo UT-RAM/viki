@@ -80,7 +80,6 @@ def main():
         f.close()
 
     def vikiConfigLaunch():
-        print("dit werkt echt wel");
         configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")
         config_matcher.matchConfig(configfromfile, available_mods)        
         print(configfromfile)
@@ -90,7 +89,7 @@ def main():
     def vikiRun():
         try:
             # THIS DOES NOT WORK THROUGH INTELLIJ IDEA YET.
-            subprocess.call(['roslaunch aeroworks aeroworks.launch'], shell=True)
+            subprocess.call('roslaunch aeroworks.launch', shell=True)
             # subprocess.Popen(['gnome-terminal', '--title=%s' % "ROS SHELL", '--disable-factory', '-e', "/bin/bash", "-e", "roslaunch %s --disable-title --port %s %s" % ('roslaunch', 'aeroworks', 'aeroworks.launch')])
 
         except OSError:
