@@ -3,6 +3,7 @@ var jsPlumbInstance;  // to make instance globally available
 var modulesInCanvas = [];
 var selectedModuleUid = null;
 var generatedGUIDs = [];
+var projectJSON;
 
 $(document).ready(function(){
     // All links with an id starting with viki are buttons that expect a reaction from python. This process is automated: the python function with name equal to the id will run.
@@ -12,7 +13,18 @@ $(document).ready(function(){
         {
             updateStatus(statusmessage);
         }
-        send(JSON.stringify({name: $(this).attr('id'), value: false}));
+
+        datafunction = $(this).data("function");
+        if(typeof(datafunction) != "undefined")
+        {
+            value = window[datafunction]();
+        }
+        else
+        {
+            value = false;
+        }
+
+        send(JSON.stringify({name: $(this).attr('id'), value: value}));
         return false;
     });
 
@@ -67,6 +79,25 @@ $(document).ready(function(){
     updateStatus('Asking for initial module list');
     send(JSON.stringify({name: "vikiRefreshModules", value: false}));
 });
+
+function getProject() {
+    project = {
+        dom: $("#project").html(),
+        modulesInCanvas: modulesInCanvas,
+        generatedGUIDs: generatedGUIDs,
+        plumbInstance: jsPlumbInstance
+    }
+    return JSON.stringify(project);
+}
+
+function openFromJSON(project) {
+    $("#project").html(project.dom);
+    modulesInCanvas = project.modulesInCanvas;
+    generatedGUIDs = project.generatedGUIDs;
+    jsPlumbInstance = project.plumbInstance;
+    initPlumb();
+    updateStatus('End of open.')
+}
 
 function updateStatus(msg) {
     var dt = new Date();
@@ -340,8 +371,7 @@ var connectorPaintStyle = {
         strokeStyle: "#216477"
     };
 
-jsPlumb.ready(function () {
-
+function initPlumb() {
     jsPlumbInstance = jsPlumb.getInstance({
         // default drag options
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
@@ -408,15 +438,17 @@ jsPlumb.ready(function () {
         jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
 
         /*
-        Connection click handler...
-        */
+         Connection click handler...
+         */
         jsPlumbInstance.bind("click", function (conn, originalEvent) {
             if (originalEvent.ctrlKey) { // delete the connection on ctrl click
                 jsPlumbInstance.detach(conn);
             }
         });
     });
-});
+}
+
+jsPlumb.ready(initPlumb);
 
 
 function addInputsToWindow(moduleId, inputs) {

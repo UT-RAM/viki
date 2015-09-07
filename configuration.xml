@@ -1,1 +1,1 @@
-<configurations><configuration id="VIKI-imported-config"><vehicle type="turtlesim" id="tjlb"></vehicle><userinput type="turtlekey" id="rmgm"></userinput><connect publisher="rmgm/cmd_vel" listener="tjlb/cmd_vel"></connect></configuration></configurations>
+<configurations><configuration id="VIKI-imported-config"><userinput type="turtlekey" id="turtlekey_ykrq"></userinput><vehicle type="turtlesim" id="turtlesim_bvjv"></vehicle><connect publisher="turtlekey_ykrq/cmd_vel" listener="turtlesim_bvjv/cmd_vel"></connect></configuration></configurations>
