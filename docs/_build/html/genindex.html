@@ -6,6 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Index &mdash; AeroWorks 1.0 documentation</title>
@@ -15,7 +16,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -34,7 +34,7 @@
     <link rel="top" title="AeroWorks 1.0 documentation" href="index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -46,8 +46,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="index.html" class="fa fa-home"> AeroWorks</a>
+
         
+          <a href="index.html" class="icon icon-home"> AeroWorks
+        
+
+        
+        </a>
+
         
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -56,6 +62,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -72,8 +80,36 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#for-using-the-framework">For using the framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#ubuntu-operating-system">Ubuntu operating system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#ros">ROS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#python">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#the-code">The code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#some-more-useful-links">Some more useful links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#help">Help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#for-development">For development</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#quickstarting-a-turtle">Quickstarting a turtle</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#preparing-ros">Preparing ROS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#run-the-aeroworks-core">Run the Aeroworks core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#what-have-you-done">What have you done?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#quickstarting-an-ar-drone">Quickstarting an AR.Drone</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#additional-requirements">Additional requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#catkin-and-source">Catkin and source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#connecting-to-the-drone">Connecting to the drone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#starting-the-framework">Starting the framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#go-fly">Go fly</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute-and-get-to-work">How to contribute and get to work</a></li>
 </ul>
 </li>
@@ -83,21 +119,52 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="howtoconfig.html">Configuration writing guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="howtoconfig.html#simple-tutorial">Simple tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="howtoconfig.html#advanced-tutorial">Advanced tutorial</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="howtomod.html">Module writing guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#tutorial-on-module-xml-writing">Tutorial on module.xml writing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtomod.html#introduction-to-modules">Introduction to modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="howtomod.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="howtomod.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="howtomod.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="howtomod.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="howtomod.html#executables">Executables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="howtomod.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="howtomod.html#tutorial-on-module-xml-writing">Tutorial on module.xml writing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="howtomod.html#simple-tutorial">Simple tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="howtomod.html#advanced-examples">Advanced examples</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="howtomod.html#description-of-module-attributes-and-tags">description of module attributes and tags</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">core</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="core.html">core package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">core package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="core.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.aero.html">core.aero package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.gui.html">core.gui package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#module-core">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtualbox.html">Difficulties with virtualbox</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="virtualbox.html#joystick-related">Joystick related</a></li>
-<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#connecting-to-a-wireless-network">Connecting to a wireless network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#connecting-to-a-wireless-network">Connecting to a wireless network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="virtualbox.html#via-an-extra-adapter">Via an extra adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtualbox.html#via-your-host-pc-s-wireless-card">Via your host pc&#8217;s wireless card</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -127,6 +194,8 @@
     <li></li>
       <li class="wy-breadcrumbs-aside">
         
+          
+        
       </li>
   </ul>
   <hr/>
@@ -143,19 +212,34 @@
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.gui.html#core.gui.webgui.activate_inspector">activate_inspector() (in module core.gui.webgui)</a>
+  </dt>
+
+      
+  <dt><a href="core.aero.html#core.aero.objects.Module_to_add.add_cmdline_arg">add_cmdline_arg() (core.aero.objects.Module_to_add method)</a>
+  </dt>
+
+      
+  <dt><a href="core.aero.html#core.aero.objects.Module_to_add.add_prefix">add_prefix() (core.aero.objects.Module_to_add method)</a>
+  </dt>
+
       
   <dt><a href="core.aero.html#core.aero.objects.Module.addExecutable">addExecutable() (core.aero.objects.Module method)</a>
   </dt>
@@ -170,12 +254,12 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.objects.Module.addIntConnect">addIntConnect() (core.aero.objects.Module method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.objects.Module.addMeta">addMeta() (core.aero.objects.Module method)</a>
   </dt>
@@ -194,12 +278,20 @@
   <dt><a href="core.aero.html#core.aero.objects.Executable.addParameter">addParameter() (core.aero.objects.Executable method)</a>
   </dt>
 
+      
+  <dt><a href="core.gui.html#core.gui.webgui.asynchronous_gtk_message">asynchronous_gtk_message() (in module core.gui.webgui)</a>
+  </dt>
+
   </dl></td>
 </tr></table>
 
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.aero.html#core.aero.objects.Cmdline_argument">Cmdline_argument (class in core.aero.objects)</a>
+  </dt>
+
       
   <dt><a href="core.aero.html#core.aero.objects.Module.config">config (core.aero.objects.Module attribute)</a>
   </dt>
@@ -208,6 +300,16 @@
   <dt><a href="core.aero.html#core.aero.objects.Configuration">Configuration (class in core.aero.objects)</a>
   </dt>
 
+      
+  <dt><a href="core.gui.html#core.gui.webgui.GtkMozEmbedMethods.connect_title_changed">connect_title_changed() (core.gui.webgui.GtkMozEmbedMethods static method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="core.gui.html#core.gui.webgui.WebKitMethods.connect_title_changed">(core.gui.webgui.WebKitMethods static method)</a>
+  </dt>
+
+      </dl></dd>
       
   <dt><a href="core.aero.html#core.aero.objects.Connection_to_add">Connection_to_add (class in core.aero.objects)</a>
   </dt>
@@ -246,6 +348,24 @@
   <dt><a href="core.aero.html#module-core.aero.writeLaunch">core.aero.writeLaunch (module)</a>
   </dt>
 
+      
+  <dt><a href="core.gui.html#module-core.gui">core.gui (module)</a>
+  </dt>
+
+      
+  <dt><a href="core.gui.html#module-core.gui.webgui">core.gui.webgui (module)</a>
+  </dt>
+
+      
+  <dt><a href="core.gui.html#core.gui.webgui.GtkMozEmbedMethods.create_browser">create_browser() (core.gui.webgui.GtkMozEmbedMethods static method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="core.gui.html#core.gui.webgui.WebKitMethods.create_browser">(core.gui.webgui.WebKitMethods static method)</a>
+  </dt>
+
+      </dl></dd>
   </dl></td>
 </tr></table>
 
@@ -294,18 +414,22 @@
   <dt><a href="core.aero.html#core.aero.helpers.getElements">getElements() (in module core.aero.helpers)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.helpers.getElementsOnFirstLevel">getElementsOnFirstLevel() (in module core.aero.helpers)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.helpers.getElementsOnFirstLevelExceptTag">getElementsOnFirstLevelExceptTag() (in module core.aero.helpers)</a>
   </dt>
 
       
   <dt><a href="core.aero.html#core.aero.helpers.getOptionalAttribute">getOptionalAttribute() (in module core.aero.helpers)</a>
+  </dt>
+
+      
+  <dt><a href="core.gui.html#core.gui.webgui.GtkMozEmbedMethods">GtkMozEmbedMethods (class in core.gui.webgui)</a>
   </dt>
 
   </dl></td>
@@ -325,6 +449,22 @@
 
       </dl></dd>
       
+  <dt><a href="core.gui.html#core.gui.webgui.implementation">implementation (in module core.gui.webgui)</a>
+  </dt>
+
+      
+  <dt><a href="core.gui.html#core.gui.webgui.GtkMozEmbedMethods.inject_javascript">inject_javascript() (core.gui.webgui.GtkMozEmbedMethods static method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="core.gui.html#core.gui.webgui.WebKitMethods.inject_javascript">(core.gui.webgui.WebKitMethods static method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
   <dt><a href="core.aero.html#core.aero.objects.Executable.inputs">inputs (core.aero.objects.Executable attribute)</a>
   </dt>
 
@@ -334,8 +474,6 @@
   </dt>
 
       </dl></dd>
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.objects.Interface">Interface (class in core.aero.objects)</a>
   </dt>
@@ -347,9 +485,27 @@
   </dl></td>
 </tr></table>
 
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.gui.html#core.gui.webgui.kill_gtk_thread">kill_gtk_thread() (in module core.gui.webgui)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.gui.html#core.gui.webgui.launch_browser">launch_browser() (in module core.gui.webgui)</a>
+  </dt>
+
+      
+  <dt><a href="core.aero.html#core.aero.objects.Launch_prefix">Launch_prefix (class in core.aero.objects)</a>
+  </dt>
+
       
   <dt><a href="core.aero.html#core.aero.objects.Interface.link">link (core.aero.objects.Interface attribute)</a>
   </dt>
@@ -358,12 +514,12 @@
   <dt><a href="core.aero.html#core.aero.objects.Internal_Interface.listener">listener (core.aero.objects.Internal_Interface attribute)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.writeLaunch.lookup">lookup() (in module core.aero.writeLaunch)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.writeLaunch.lookupInternal">lookupInternal() (in module core.aero.writeLaunch)</a>
   </dt>
@@ -423,6 +579,18 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="core.gui.html#core.gui.webgui.GtkMozEmbedMethods.open_uri">open_uri() (core.gui.webgui.GtkMozEmbedMethods static method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="core.gui.html#core.gui.webgui.WebKitMethods.open_uri">(core.gui.webgui.WebKitMethods static method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
   <dt><a href="core.aero.html#core.aero.objects.Executable.outputs">outputs (core.aero.objects.Executable attribute)</a>
   </dt>
 
@@ -448,6 +616,10 @@
 
       
   <dt><a href="core.aero.html#core.aero.objects.Executable.params">params (core.aero.objects.Executable attribute)</a>
+  </dt>
+
+      
+  <dt><a href="core.aero.html#core.aero.objects.Module.path">path (core.aero.objects.Module attribute)</a>
   </dt>
 
   </dl></td>
@@ -491,8 +663,34 @@
   </dl></td>
 </tr></table>
 
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.aero.html#core.aero.objects.Module.setPath">setPath() (core.aero.objects.Module method)</a>
+  </dt>
+
+      
+  <dt><a href="core.gui.html#core.gui.webgui.start_gtk_thread">start_gtk_thread() (in module core.gui.webgui)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.gui.html#core.gui.webgui.synchronous_gtk_message">synchronous_gtk_message() (in module core.gui.webgui)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.aero.html#core.aero.helpers.toJSON">toJSON() (in module core.aero.helpers)</a>
+  </dt>
+
+  </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.objects.Interface.type">type (core.aero.objects.Interface attribute)</a>
@@ -507,8 +705,34 @@
   </dl></td>
 </tr></table>
 
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.gui.html#core.gui.webgui.use">use (in module core.gui.webgui)</a>
+  </dt>
+
+      
+  <dt><a href="core.gui.html#core.gui.webgui.UseGtkMozEmbed">UseGtkMozEmbed (class in core.gui.webgui)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.gui.html#core.gui.webgui.UseWebKit">UseWebKit (class in core.gui.webgui)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.gui.html#core.gui.webgui.WebKitMethods">WebKitMethods (class in core.gui.webgui)</a>
+  </dt>
+
+  </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.writeLaunch.write">write() (in module core.aero.writeLaunch)</a>
@@ -530,10 +754,10 @@
         &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst.
     </p>
   </div>
-
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
+
 </footer>
+
         </div>
       </div>
 

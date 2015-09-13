@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>core.aero.writeLaunch &mdash; AeroWorks 1.0 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -34,7 +34,7 @@
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -46,8 +46,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="../../../index.html" class="fa fa-home"> AeroWorks</a>
+
         
+          <a href="../../../index.html" class="icon icon-home"> AeroWorks
+        
+
+        
+        </a>
+
         
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -56,6 +62,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -72,8 +80,36 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api.html">API documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../userguide.html">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#system-setup">System setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#system-setup">System setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../userguide.html#for-using-the-framework">For using the framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#ubuntu-operating-system">Ubuntu operating system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#ros">ROS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#python">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#the-code">The code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#some-more-useful-links">Some more useful links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#help">Help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../userguide.html#for-development">For development</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#quick-start-guide">Quick start guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../userguide.html#quickstarting-a-turtle">Quickstarting a turtle</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#preparing-ros">Preparing ROS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#run-the-aeroworks-core">Run the Aeroworks core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#what-have-you-done">What have you done?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../userguide.html#quickstarting-an-ar-drone">Quickstarting an AR.Drone</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#additional-requirements">Additional requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#catkin-and-source">Catkin and source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#connecting-to-the-drone">Connecting to the drone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#starting-the-framework">Starting the framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../userguide.html#go-fly">Go fly</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../userguide.html#how-to-contribute-and-get-to-work">How to contribute and get to work</a></li>
 </ul>
 </li>
@@ -83,21 +119,52 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../howtoconfig.html">Configuration writing guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../howtoconfig.html#simple-tutorial">Simple tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../howtoconfig.html#advanced-tutorial">Advanced tutorial</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../howtomod.html">Module writing guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../howtomod.html#tutorial-on-module-xml-writing">Tutorial on module.xml writing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../howtomod.html#introduction-to-modules">Introduction to modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../howtomod.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../howtomod.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../howtomod.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../howtomod.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../howtomod.html#executables">Executables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../howtomod.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../howtomod.html#tutorial-on-module-xml-writing">Tutorial on module.xml writing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../howtomod.html#simple-tutorial">Simple tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../howtomod.html#advanced-examples">Advanced examples</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../howtomod.html#description-of-module-attributes-and-tags">description of module attributes and tags</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">core</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../core.html">core package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core.html">core package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../core.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../core.aero.html">core.aero package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../core.gui.html">core.gui package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../core.html#module-core">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../virtualbox.html">Difficulties with virtualbox</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../virtualbox.html#joystick-related">Joystick related</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../virtualbox.html#connecting-to-a-wireless-network">Connecting to a wireless network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../virtualbox.html#connecting-to-a-wireless-network">Connecting to a wireless network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../virtualbox.html#via-an-extra-adapter">Via an extra adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../virtualbox.html#via-your-host-pc-s-wireless-card">Via your host pc&#8217;s wireless card</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -129,6 +196,8 @@
     <li>core.aero.writeLaunch</li>
       <li class="wy-breadcrumbs-aside">
         
+          
+        
       </li>
   </ul>
   <hr/>
@@ -139,6 +208,8 @@
 <span class="kn">import</span> <span class="nn">xml.etree.cElementTree</span> <span class="kn">as</span> <span class="nn">ET</span>
 <span class="kn">import</span> <span class="nn">xml.dom.minidom</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">objects</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -164,19 +235,42 @@
     <span class="k">for</span> <span class="n">con</span> <span class="ow">in</span> <span class="n">configPart</span><span class="o">.</span><span class="n">connections_to_add</span><span class="p">:</span>
         <span class="n">from_attr</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">(</span><span class="n">configPart</span><span class="p">,</span> <span class="n">con</span><span class="o">.</span><span class="n">listener</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
         <span class="n">to_attr</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">(</span><span class="n">configPart</span><span class="p">,</span> <span class="n">con</span><span class="o">.</span><span class="n">publisher</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
-        <span class="n">remap</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">rootElem</span><span class="p">,</span> <span class="s">&quot;remap&quot;</span><span class="p">)</span>
-        <span class="n">remap</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;to&#39;</span><span class="p">,</span> <span class="n">to_attr</span><span class="p">)</span>
-        <span class="n">remap</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;from&#39;</span><span class="p">,</span> <span class="n">from_attr</span><span class="p">)</span>
+
+        <span class="c"># NEW REMAP</span>
+        <span class="k">if</span> <span class="n">from_attr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">to_attr</span><span class="p">:</span>
+            <span class="n">relayElement</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">rootElem</span><span class="p">,</span> <span class="s">&#39;node&#39;</span><span class="p">)</span>
+            <span class="n">relayElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;$(anon remap_&#39;</span>
+                             <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span> <span class="o">+</span> <span class="s">&#39;)&#39;</span><span class="p">)</span>
+            <span class="n">relayElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;pkg&#39;</span><span class="p">,</span> <span class="s">&#39;topic_tools&#39;</span><span class="p">)</span>
+            <span class="n">relayElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">,</span> <span class="s">&#39;relay&#39;</span><span class="p">)</span>
+            <span class="n">relayElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;args&#39;</span><span class="p">,</span> <span class="n">to_attr</span> <span class="o">+</span> <span class="s">&#39; &#39;</span> <span class="o">+</span> <span class="n">from_attr</span><span class="p">)</span>
+            <span class="n">relayElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;ns&#39;</span><span class="p">,</span> <span class="s">&#39;remaps&#39;</span><span class="p">)</span>
+
+        <span class="c"># OLD REMAP</span>
+        <span class="c"># remap = ET.SubElement(rootElem, &quot;remap&quot;)</span>
+        <span class="c"># remap.set(&#39;to&#39;, to_attr)</span>
+        <span class="c"># remap.set(&#39;from&#39;, from_attr)</span>
 
     <span class="k">for</span> <span class="n">mod</span> <span class="ow">in</span> <span class="n">configPart</span><span class="o">.</span><span class="n">modules_to_add</span><span class="p">:</span>
         <span class="c"># Loop through executables for specific module</span>
         <span class="k">for</span> <span class="n">ic</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
             <span class="n">from_attr</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="n">lookupInternal</span><span class="p">(</span><span class="n">ic</span><span class="o">.</span><span class="n">listener</span><span class="p">,</span> <span class="n">mod</span><span class="p">)</span>
             <span class="n">to_attr</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="n">lookupInternal</span><span class="p">(</span><span class="n">ic</span><span class="o">.</span><span class="n">publisher</span><span class="p">,</span> <span class="n">mod</span><span class="p">)</span>
+
+            <span class="c"># THIS IS THE NEW REMAP</span>
+            <span class="c"># relayElement = ET.SubElement(rootElem, &#39;node&#39;)</span>
+            <span class="c"># relayElement.set(&#39;name&#39;, &#39;$(anon remap_&#39; +  str(random.random()) + &#39;)&#39;)</span>
+            <span class="c"># relayElement.set(&#39;pkg&#39;, &#39;topic_tools&#39;)</span>
+            <span class="c"># relayElement.set(&#39;type&#39;, &#39;relay&#39;)</span>
+            <span class="c"># relayElement.set(&#39;args&#39;, to_attr + &#39; &#39; + from_attr)</span>
+            <span class="c"># relayElement.set(&#39;ns&#39;, &#39;remaps&#39;)</span>
+
+            <span class="c"># THIS IS THE OLD REMAP</span>
             <span class="n">remap</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">rootElem</span><span class="p">,</span> <span class="s">&quot;remap&quot;</span><span class="p">)</span>
             <span class="n">remap</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;to&#39;</span><span class="p">,</span> <span class="n">to_attr</span><span class="p">)</span>
             <span class="n">remap</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;from&#39;</span><span class="p">,</span> <span class="n">from_attr</span><span class="p">)</span>
 
+        <span class="n">added_params</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">executable</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">executables</span><span class="p">:</span>
             <span class="n">nodens</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">configElem</span><span class="p">,</span> <span class="s">&quot;group&quot;</span><span class="p">,</span> <span class="n">ns</span><span class="o">=</span><span class="n">mod</span><span class="o">.</span><span class="n">id</span><span class="o">+</span><span class="s">&#39;_&#39;</span><span class="o">+</span><span class="n">executable</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
             <span class="n">node</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">nodens</span><span class="p">,</span> <span class="s">&quot;node&quot;</span><span class="p">,</span> <span class="n">pkg</span><span class="o">=</span><span class="n">executable</span><span class="o">.</span><span class="n">pkg</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">mod</span><span class="o">.</span><span class="n">id</span><span class="o">+</span><span class="s">&#39;_&#39;</span><span class="o">+</span><span class="n">executable</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">executable</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>
@@ -184,14 +278,31 @@
             <span class="c"># Todo/problem: params are not defined at executable level, but at module level.</span>
             <span class="k">for</span> <span class="n">paramSearch</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">parameters_to_add</span><span class="p">[:]:</span>
                 <span class="k">for</span> <span class="n">paramList</span> <span class="ow">in</span> <span class="n">executable</span><span class="o">.</span><span class="n">params</span><span class="p">[:]:</span>
-                    <span class="k">if</span> <span class="n">paramSearch</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">paramList</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">paramSearch</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">paramList</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">paramList</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">added_params</span><span class="p">:</span>
                         <span class="n">param</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s">&quot;param&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">paramSearch</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">paramSearch</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
                         <span class="c"># Remove found param from both lists</span>
                         <span class="n">mod</span><span class="o">.</span><span class="n">parameters_to_add</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">paramSearch</span><span class="p">)</span>
-                        <span class="n">executable</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">paramList</span><span class="p">)</span>
+                        <span class="n">added_params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">paramList</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                        <span class="c"># executable.params.remove(paramList)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&quot;params did not match&quot;</span>
+
             <span class="c"># At this point, we also have the default parameters we should fill. loop again.</span>
             <span class="k">for</span> <span class="n">paramList</span> <span class="ow">in</span> <span class="n">executable</span><span class="o">.</span><span class="n">params</span><span class="p">:</span>
-                <span class="n">param</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s">&quot;param&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">paramList</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">paramList</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">paramList</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">added_params</span><span class="p">:</span>
+                    <span class="n">added_params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">paramList</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">param</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s">&quot;param&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">paramList</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">paramList</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+
+            <span class="c"># find any command line arguments that belong to this executable</span>
+            <span class="k">for</span> <span class="n">argSearch</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">argSearch</span><span class="o">.</span><span class="n">execid</span> <span class="o">==</span> <span class="n">executable</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="n">node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s">&#39;args&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">argSearch</span><span class="o">.</span><span class="n">argument</span>
+
+            <span class="c"># find any prefixes for this executable</span>
+            <span class="k">for</span> <span class="n">prefixSearch</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">prefixes</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">prefixSearch</span><span class="o">.</span><span class="n">execid</span> <span class="o">==</span> <span class="n">executable</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="n">node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s">&#39;launch-prefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefixSearch</span><span class="o">.</span><span class="n">prefix</span>
+
         <span class="c"># At this point, we end up with some parameters that are not &quot;connected&quot;. Echo those.</span>
         <span class="k">for</span> <span class="n">paramSearch</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">parameters_to_add</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&#39;Parameter &quot;&#39;</span> <span class="o">+</span> <span class="n">paramSearch</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;&quot;, valued &quot;&#39;</span> <span class="o">+</span> <span class="n">paramSearch</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="s">&#39;&quot;, could not be connected.&#39;</span>
@@ -256,10 +367,10 @@
         &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst.
     </p>
   </div>
-
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
+
 </footer>
+
         </div>
       </div>
 
