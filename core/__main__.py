@@ -28,6 +28,7 @@ from gui.webgui import synchronous_gtk_message
 # from gui.webgui import asynchronous_gtk_message
 from gui.webgui import kill_gtk_thread
 # end of imports from internet
+import gtk
 
 
 available_mods = scan.getAvailableModules()
@@ -85,7 +86,6 @@ def main():
     def vikiConfigLaunch():
         configfromfile = config_interpreter.getConfig(config_id_to_use="VIKI-imported-config")     
         config_matcher.matchConfig(configfromfile, available_mods)
-
         writeLaunch.write(configfromfile)
         web_send('updateStatus("Written launch file")');
 
@@ -94,7 +94,6 @@ def main():
             # run in new gnome terminal
             # don't know if this works with intellijIDEA, find out yourself if you use it.
             pid = subprocess.Popen(args=["gnome-terminal", "--command=roslaunch aeroworks.launch"]).pid  
-
         except OSError:
             web_send('updateStatus("OSError")')
         web_send('updateStatus("Requested launch of AeroWorks.launch")')
@@ -115,6 +114,55 @@ def main():
     def vikiShowConfig():
         web_send('updateStatus("Opening generated config file...")')
         subprocess.Popen(args=["xdg-open", "configuration.xml"])
+
+    def add_filters(dialog):
+        filter_text = gtk.FileFilter()
+        filter_text.set_name("Text files")
+        filter_text.add_mime_type("text/plain")
+        dialog.add_filter(filter_text)
+
+        filter_any = gtk.FileFilter()
+        filter_any.set_name("Any files")
+        filter_any.add_pattern("*")
+        dialog.add_filter(filter_any)
+
+    def vikiSave(project):
+        dialog = gtk.FileChooserDialog("Please enter a file name",None,
+                                       gtk.FILE_CHOOSER_ACTION_SAVE,
+                                       (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_SAVE, gtk.RESPONSE_OK))
+
+        #add_filters(dialog)
+
+        gtk.gdk.threads_enter()
+        response = dialog.run()
+        if response == gtk.RESPONSE_OK:
+            f = open(dialog.get_filename(), mode='w+')
+            f.write(project)
+            web_send('updateStatus("Save finished")')
+        elif response == gtk.RESPONSE_CANCEL:
+            web_send('updateStatus("Save cancelled")')
+        dialog.destroy()
+        gtk.gdk.threads_leave()
+
+    def vikiOpen():
+        dialog = gtk.FileChooserDialog("Please choose a file",None,
+                                       gtk.FILE_CHOOSER_ACTION_OPEN,
+                                       (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+
+        #add_filters(dialog)
+
+        gtk.gdk.threads_enter()
+        response = dialog.run()
+        if response == gtk.RESPONSE_OK:
+            f = open(dialog.get_filename(), mode='r')
+            web_send('openFromJSON('+f.read()+')')
+            web_send('updateStatus("Open finished")')
+        elif response == gtk.RESPONSE_CANCEL:
+            web_send('updateStatus("Open cancelled")')
+        dialog.destroy()
+        gtk.gdk.threads_leave()
 
     # Finally, here is our personalized main loop, 100% friendly
     # with "select" (although I am not using select here)!:

@@ -1,1 +1,0 @@
-<configurations><configuration id="VIKI-imported-config"><userinput type="turtlekey" id="turtlekey_q386"></userinput><vehicle type="turtlesim" id="turtlesim_zd3e"></vehicle><connect publisher="turtlekey_q386/cmd_vel" listener="turtlesim_zd3e/cmd_vel"></connect></configuration></configurations>
