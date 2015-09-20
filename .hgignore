@@ -1,5 +1,9 @@
 syntax: glob
 
+# config file that is rebuild often during testing
+configuration.xml
+aeroworks.launch
+
 #Sphinx build folder
 docs/_build/doctrees/*
 
@@ -47,10 +51,16 @@ docs/_build/doctrees/*
 *.asv
 
 # Images
-*.png
 
 *.idea
-*.DS_Store
 *.iml
+*.DS_Store
+
+# sublime files
+*.sublime-project
+*.sublime-workspace
+
+# module subdirectory (is another repository)
+modules/**
 
 syntax: regexp
