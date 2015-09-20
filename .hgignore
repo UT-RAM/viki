@@ -60,5 +60,7 @@ docs/_build/doctrees/*
 *.sublime-project
 *.sublime-workspace
 
+# module subdirectory (is another repository)
+modules/**
 
 syntax: regexp
