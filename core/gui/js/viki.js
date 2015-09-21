@@ -308,7 +308,10 @@ function keyPressed(event) {
     switch (event.which) {
         case 46: // delete
         case 8: //backspace
-            deleteSelectedModule();
+            if(document.activeElement.type != 'text')
+            {
+                deleteSelectedModule();
+            }
             break;
         case 77:
             if (event.ctrlKey) {
