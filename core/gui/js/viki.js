@@ -315,6 +315,15 @@ function keyPressed(event) {
                 $('#module-filter-text').focus();
             }
             break;
+        case 90: // z
+            if (event.ctrlKey) {
+                stepBack();
+            }
+            break;
+        case 89: // y
+            if (event.ctrlKey) {
+                stepForward();
+            }
     }
 }
 
