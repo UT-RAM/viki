@@ -537,7 +537,7 @@ jsPlumb.ready(function() {
         });
 
         // make all the window divs draggable
-        jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20], start: saveState});
+        jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20], start: saveState, containment: "parent"});
 
         /*
          Connection click handler...
@@ -680,7 +680,7 @@ function addModuleToContainer(modId, _x, _y, uModId) {
         .height(height);
 
     // make draggable
-    jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20], start: saveState });
+    jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20], start: saveState, containment: "parent" });
 
     // connections
     addInputsToWindow(uModId, modToAdd.inputs);
