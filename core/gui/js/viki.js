@@ -3,6 +3,8 @@ var jsPlumbInstance;  // to make instance globally available
 var modulesInCanvas = [];
 var selectedModuleUid = null;
 var generatedGUIDs = [];
+var history = [];
+var future = [];
 var projectJSON;
 
 $(document).ready(function(){
@@ -29,6 +31,8 @@ $(document).ready(function(){
     });
 
     $("#reset").click(canvasReset);
+    $("#stepBack").click(stepBack);
+    $("#stepForward").click(stepForward);
 
     $("#makeNoRun").click(function(){
         updateStatus("Reqesting make...");
@@ -81,6 +85,32 @@ $(document).ready(function(){
     updateStatus('Asking for initial module list');
     send(JSON.stringify({name: "vikiRefreshModules", value: false}));
 });
+
+
+function saveState() {
+    history.push(getProject());
+    if(history.length > 10) {
+        history.shift();
+    }
+}
+
+function stepBack() {
+    if(history.length > 0)
+    {
+        savedState = history.pop();
+        future.splice(0, 0, savedState);
+        openFromJSON(JSON.parse(savedState));
+    }
+}
+
+function stepForward() {
+    if(future.length > 0)
+    {
+        savedState = future.shift();
+        history.push(savedState);
+        openFromJSON(JSON.parse(savedState));
+    }
+}
 
 function getProject() {
     var nodes = []
@@ -149,7 +179,7 @@ function openFromJSON(project) {
     modulesInCanvas = project.modulesInCanvas;
     generatedGUIDs = project.generatedGUIDs;
     jsPlumbInstance.repaintEverything();
-    updateStatus('End of open.')
+    updateStatus('End of open / restore.')
 }
 
 function updateStatus(msg) {
@@ -267,6 +297,7 @@ function clearSelectedModule() {
 }
 
 function deleteSelectedModule() {
+    saveState();
     if (selectedModuleUid != null) {
         deleteWindowFromCanvas(selectedModuleUid);
         clearSelectedModule(); 
@@ -299,6 +330,7 @@ function onModuleSelect(event) {
 
     // for command line arguments (open the modal, edit it's content)
     $('#argButton').click(function() {
+        saveState();
         // clear list of executables
         $("#argPopupBody > table > tbody > tr").not(":first").remove();
 
@@ -335,6 +367,7 @@ function onModuleSelect(event) {
 
     // for launch-prefixes
     $('#prefixButton').click(function() {
+        saveState();
         // clear list of executables
         $("#prefixPopupBody > table > tbody >tr").not(":first").remove();
 
@@ -441,6 +474,7 @@ jsPlumb.ready(function() {
 
         // listen for new connections; initialise them the same way we initialise the connections at startup.
         jsPlumbInstance.bind("beforeDrop", function (connInfo) {
+            saveState();
             sourceType = connInfo.connection.endpoints[0].getParameter("type");
             targetType = connInfo.dropEndpoint.getParameter("type");
 
@@ -460,6 +494,10 @@ jsPlumb.ready(function() {
             }
 
             return true;
+        });
+
+        jsPlumbInstance.bind("beforeDetach", function(e){
+            saveState();
         });
 
         jsPlumbInstance.bind("connectionDragStop", function(connection) {
@@ -488,7 +526,7 @@ jsPlumb.ready(function() {
         });
 
         // make all the window divs draggable
-        jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
+        jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20], start: saveState});
 
         /*
          Connection click handler...
@@ -574,6 +612,7 @@ function addOutputsToWindow(moduleId, outputs) {
 };
 
 function startDrag(ev) {
+    saveState();
     ev = ev.originalEvent;
     updateStatus("Dragging module: " + ev.target.id + ".");
     ev.dataTransfer.setData("moduleId", ev.target.id);
@@ -587,6 +626,7 @@ function dropModule(ev) {
     updateStatus("Dropped a module to the project-container.");
     ev.preventDefault();
 
+    saveState();
     var modId = ev.dataTransfer.getData('moduleId');
     addModuleToContainer(modId, ev.pageX, ev.pageY);
 }
@@ -629,7 +669,7 @@ function addModuleToContainer(modId, _x, _y, uModId) {
         .height(height);
 
     // make draggable
-    jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20] });
+    jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20], start: saveState });
 
     // connections
     addInputsToWindow(uModId, modToAdd.inputs);

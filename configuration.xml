@@ -1,3 +1,1 @@
-<<<<<<< local
-<configurations><configuration id="VIKI-imported-config"><userinput type="turtlekey" id="turtlekey_4dup"></userinput><vehicle type="turtlesim" id="turtlesim_2ie9"></vehicle><connect publisher="undefined" listener="undefined"></connect></configuration></configurations>=======
->>>>>>> other
+<configurations><configuration id="VIKI-imported-config"><vehicle type="turtlesim" id="turtlesim_h76x"></vehicle><userinput type="turtlekey" id="turtlekey_cy90"></userinput><connect publisher="turtlekey_cy90/cmd_vel" listener="turtlesim_h76x/cmd_vel"></connect></configuration></configurations>

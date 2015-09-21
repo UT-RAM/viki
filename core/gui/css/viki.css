@@ -125,6 +125,12 @@ body {
     vertical-align: middle;
 }
 
+.actions img, i {
+    height: 1.1em;
+    margin: 0;
+    vertical-align: middle;
+}
+
 .project-container .window .window_label {
     position: absolute;
     font-weight: bold;
