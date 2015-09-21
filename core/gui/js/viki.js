@@ -92,16 +92,15 @@ function getProject() {
         nodes.push({
             blockId: $elem.attr('id'),
             nodetype: $elem.attr('data-nodetype'),
-            positionX: parseInt($elem.css("left"), 10),
-            positionY: parseInt($elem.css("top"), 10)
+            positionX: parseInt($elem.offset().left, 10),
+            positionY: parseInt($elem.offset().top, 10)
         });
     });
     var connections = [];
     $.each(jsPlumbInstance.getConnections(), function (idx, connection) {
         connections.push({
-            connectionId: connection.id,
-            pageSourceId: connection.sourceId,
-            pageTargetId: connection.targetId
+            sourceUuid: connection.endpoints[0].getUuid(),
+            targetUuid: connection.endpoints[1].getUuid()
         });
     });
 
@@ -141,18 +140,15 @@ function openFromJSON(project) {
 
     var connections = flowChart.connections;
     $.each(connections, function( index, elem ) {
-        var connection1 = jsPlumbInstance.connect({
-            source: elem.pageSourceId,
-            target: elem.pageTargetId,
-
-
+        console.log(elem);
+        jsPlumbInstance.connect({
+            uuids: [elem.sourceUuid, elem.targetUuid]
         });
     });
 
-    //$("#project").html(project.dom);
     modulesInCanvas = project.modulesInCanvas;
     generatedGUIDs = project.generatedGUIDs;
-    //jsPlumbInstance = project.plumbInstance;
+    jsPlumbInstance.repaintEverything();
     updateStatus('End of open.')
 }
 
@@ -519,6 +515,7 @@ function addInputsToWindow(moduleId, inputs) {
         var anchorId = moduleId + "input" + i.toString;
         var pos = [0, ((i+1)/(inputs.length +1)), -1, 0];
         jsPlumbInstance.addEndpoint(moduleId, targetEndpoint, {
+            uuid: moduleId + "/" + inputs[i].name,
             anchor: pos,
             parameters: {
                 type: inputs[i].message_type,
@@ -558,6 +555,7 @@ function addOutputsToWindow(moduleId, outputs) {
         var anchorId = moduleId + "output" + i.toString;
         var pos = [1, ((i+1)/(outputs.length +1)), 1, 0];
         jsPlumbInstance.addEndpoint(moduleId, sourceEndpoint, {
+            uuid: moduleId + "/" + outputs[i].name,
             anchor: pos,
             parameters: {
                 type: outputs[i].message_type,
