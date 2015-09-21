@@ -28,6 +28,8 @@ $(document).ready(function(){
         return false;
     });
 
+    $("#reset").click(canvasReset);
+
     $("#makeNoRun").click(function(){
         updateStatus("Reqesting make...");
         send(JSON.stringify({name: "vikiMakeNoRun", value: getConfigXML(getConfig())}));
@@ -81,21 +83,76 @@ $(document).ready(function(){
 });
 
 function getProject() {
+    var nodes = []
+    $(".window").each(function (idx, elem) {
+        var $elem = $(elem);
+        var endpoints = jsPlumbInstance.getEndpoints($elem.attr('id'));
+        console.log('endpoints of '+$elem.attr('id'));
+        console.log(endpoints);
+        nodes.push({
+            blockId: $elem.attr('id'),
+            nodetype: $elem.attr('data-nodetype'),
+            positionX: parseInt($elem.css("left"), 10),
+            positionY: parseInt($elem.css("top"), 10)
+        });
+    });
+    var connections = [];
+    $.each(jsPlumbInstance.getConnections(), function (idx, connection) {
+        connections.push({
+            connectionId: connection.id,
+            pageSourceId: connection.sourceId,
+            pageTargetId: connection.targetId
+        });
+    });
+
+    var jsp = {};
+    jsp.nodes = nodes;
+    jsp.connections = connections;
+
     project = {
-        dom: $("#project").html(),
         modulesInCanvas: modulesInCanvas,
         generatedGUIDs: generatedGUIDs,
-        plumbInstance: jsPlumbInstance
+        modules: jsp
     }
     return JSON.stringify(project);
 }
 
+
+function repositionElement(id, posX, posY){
+    $('#'+id).css('left', posX);
+    $('#'+id).css('top', posY);
+    jsPlumb.repaint(id);
+}
+
+function canvasReset() {
+    $('.window').remove();
+    jsPlumbInstance.reset();
+    modulesInCanvas = [];
+    generatedGUIDs = [];
+}
+
 function openFromJSON(project) {
-    $("#project").html(project.dom);
+    canvasReset()
+    var flowChart = project.modules;
+    var nodes = flowChart.nodes;
+    $.each(nodes, function( index, elem ) {
+        addModuleToContainer(elem.blockId, elem.positionX, elem.positionY, elem.blockId);
+    });
+
+    var connections = flowChart.connections;
+    $.each(connections, function( index, elem ) {
+        var connection1 = jsPlumbInstance.connect({
+            source: elem.pageSourceId,
+            target: elem.pageTargetId,
+
+
+        });
+    });
+
+    //$("#project").html(project.dom);
     modulesInCanvas = project.modulesInCanvas;
     generatedGUIDs = project.generatedGUIDs;
-    jsPlumbInstance = project.plumbInstance;
-    initPlumb();
+    //jsPlumbInstance = project.plumbInstance;
     updateStatus('End of open.')
 }
 
@@ -371,7 +428,7 @@ var connectorPaintStyle = {
         strokeStyle: "#216477"
     };
 
-function initPlumb() {
+jsPlumb.ready(function() {
     jsPlumbInstance = jsPlumb.getInstance({
         // default drag options
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
@@ -446,9 +503,7 @@ function initPlumb() {
             }
         });
     });
-}
-
-jsPlumb.ready(initPlumb);
+});
 
 
 function addInputsToWindow(moduleId, inputs) {
@@ -538,11 +593,23 @@ function dropModule(ev) {
     addModuleToContainer(modId, ev.pageX, ev.pageY);
 }
 
-function addModuleToContainer(modId, _x, _y) {
-    var uModId = modId + guid();  // generate unique id
+function addModuleToContainer(modId, _x, _y, uModId) {
+    var modToAdd;
+    if (typeof(uModId) == 'undefined' || uModId == null)
+    {
+        // uModId is not set, generate.
+        uModId = modId + guid();  // generate unique id
+        modToAdd = getModuleById(modId);
+    }
+    else
+    {
+        // uModId is set, so find original module name
+        strippedModId = uModId.substring(0, uModId.length - 5);
+        modToAdd = getModuleById(strippedModId);
+    }
 
     // add to inCanvasArray
-    var modToAdd = getModuleById(modId);
+
     modToAdd.uWindowId = uModId;
     modToAdd.params = [];  // premake list for parameters
     modToAdd.args = [];  // placeholder for command line arguments
