@@ -92,5 +92,4 @@ Your module is now finished and runnable. Find out how and confirm as described 
 
 Advanced examples
 ^^^^^^^^^^^^^^^^^
-.. todo::
-    create advance module examples
+.. todo:: reate advanced module examples

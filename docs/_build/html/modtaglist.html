@@ -63,7 +63,7 @@
           
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
@@ -86,14 +86,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="howtoconfig.html">Configuration writing guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="howtomod.html">Introduction to modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#general-outline">General outline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#meta">Meta</a></li>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#inputs-and-outputs">Inputs and Outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#executables">Executables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#best-practices-for-writing-modules">Best practices for writing modules</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">core</a><ul>
@@ -142,6 +134,77 @@
             
   <div class="section" id="description-of-module-attributes-and-tags">
 <span id="modtaglist"></span><h1>description of module attributes and tags<a class="headerlink" href="#description-of-module-attributes-and-tags" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>AEROWORKS (comment, not a tag)</dt>
+<dd>comment at the beginning of module.xml file telling VIKI that this is a file she can work with</dd>
+<dt>MODULE</dt>
+<dd>Top level tag for the module
+attributes:
+- type: the kind of module this is, for instance userinput or sensor
+- id: unique identifier for this module (no modules can have the same name)</dd>
+<dt>META</dt>
+<dd>Container for metadata</dd>
+<dt>NAME</dt>
+<dd>Short name for the module</dd>
+<dt>AUTHOR</dt>
+<dd>Module author/creator</dd>
+<dt>DESCRIPTION</dt>
+<dd>Explains what the module does</dd>
+<dt>ICON</dt>
+<dd>Icon used in VIKI&#8217;s gui when displaying this module</dd>
+<dt>INPUTS</dt>
+<dd>Container for module-wide inputs (when not inside <strong>executable</strong>-tag)</dd>
+<dt>INPUT</dt>
+<dd>Description of module-wide input
+attributes:
+- type: (at this stage always ros_topic)
+- name: name for this input
+- link: connect to <a href="#id1"><span class="problematic" id="id2">*</span></a>thisexecutable/withthisinput/
+- message_type: ros message type
+- required: tag to identify importance, for now unused</dd>
+<dt>OUTPUTS</dt>
+<dd>Container for module-wide outputs (when not inside <strong>executable</strong>-tag)</dd>
+<dt>OUTPUT</dt>
+<dd>Description of module-wide output
+attributes:
+- type: (at this stage always ros_topic)
+- name: name for this output
+- link: connect to <a href="#id3"><span class="problematic" id="id4">*</span></a>thisexecutable/withthisoutput/
+- message_type: ros message type
+- required: tag to identify importance, for now unused</dd>
+<dt>EXECUTABLE</dt>
+<dd>rosnode to be added
+attributes:
+- id: unique identifier inside this module
+- pkg: package this node can be found in
+- exec: rosnode to be run</dd>
+<dt>INPUTS</dt>
+<dd>container for topics this executable can subscribe to (when inside <strong>executable</strong> tag)</dd>
+<dt>INPUT</dt>
+<dd>topic this executable can subscribe to
+attributes:
+- type: (at this stage always ros_topic)
+- name: name for this input
+- message_type: ros message type
+- required: tag to identify importance, for now unused</dd>
+<dt>OUTPUTS</dt>
+<dd>container for topics this executable can publish to (when inside <strong>executable</strong> tag)</dd>
+<dt>OUTPUT</dt>
+<dd>topic this executable can publish to
+attributes:
+- type: (at this stage always ros_topic)
+- name: name for this output
+- message_type: ros message type
+- required: tag to identify importance, for now unused</dd>
+<dt>PARAMS</dt>
+<dd>container for parameters</dd>
+<dt>PARAM</dt>
+<dd>Parameter for this executable
+attributes:
+- name: name for this parameter (must be unique inside this module)
+- type: datatype ofthis parameter (unused)
+- default: default value of this parameter</dd>
+</dl>
 </div>
 
 

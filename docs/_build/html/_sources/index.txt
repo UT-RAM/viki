@@ -17,6 +17,9 @@ This is the VIKI robotics framework documentation. It is split up in three parts
 
 .. todolist::
 
+
+.. todo:: delete old stuff here
+.. todo:: delete old rst files from repo
 Old stuff
 ---------
 
@@ -39,6 +42,7 @@ The developers will also update the documentation in the repository when importa
 
 Contents
 --------
+.. todo:: update this list
 
 .. toctree::
    :maxdepth: 2
