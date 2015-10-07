@@ -1,9 +1,0 @@
-<launch>
-
-
-	<group ns="/John">
-		<node pkg="ram_vo" name="VO_controller" type="VO_controller" launch-prefix="xterm -e gdb --args"/>
-		<node pkg="ram_vo" name="dummy_publisher" type="dummy_publisher"/>
-	</group>
-
-</launch>

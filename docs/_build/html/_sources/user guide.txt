@@ -1,4 +1,0 @@
-User guide
-==========
-
-* :ref:`search`
