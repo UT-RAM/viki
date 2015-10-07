@@ -16,7 +16,7 @@ Contact for questions concerning purpose, license and scientific work.
 Core developers
 ---------------
 
-Contact for any problems concerning the framework (try using the :ref:`userguide` first), technical issues and request for addition of modules.
+Contact for any problems concerning the framework (try using one the the userguides first, they are listed on the :ref:`home`-page), technical issues and request for addition of modules.
 
 ::
 
@@ -29,3 +29,9 @@ Contact for any problems concerning the framework (try using the :ref:`userguide
     Alex Kamphuis
     a.kamphuis-1@student.utwente.nl
     +316 1020 1776
+
+::
+
+    Robin Hoogervorst
+    robin9975@gmail.com
+    +316 4600 3629
