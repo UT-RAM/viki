@@ -899,6 +899,12 @@ function getConfig() {
             mod.prefixes.push(tempmod.prefixes[i]);
         }
 
+        // machine selections
+        mod.selectedMachines = [];
+        for (var i=0; i<tempmod.selectedMachines.length; i++) {
+            mod.selectedMachines.push(tempmod.selectedMachines[i]);
+        }
+
         config.modsToAdd.push(mod);  // add to list of modules to add
 
         // all connections for this module
@@ -937,6 +943,15 @@ function getConfigXML(config) {
     // create config XML 
     var configXML = document.createElement("configuration");
     configXML.setAttribute("id", "VIKI-imported-config");
+
+    $.each(machines, function(){
+        var machineXML = document.createElement('machine');
+        machineXML.setAttribute('name', this.name);
+        machineXML.setAttribute('hostname', this.hostname);
+        machineXML.setAttribute('username', this.username);
+        machineXML.setAttribute('password', this.password);
+        configXML.appendChild(machineXML);
+    });
 
     // add modules to the config XML
     for (var i=0; i<config.modsToAdd.length; i++) {
@@ -982,6 +997,15 @@ function getConfigXML(config) {
             prefixXML.setAttribute('exec_id',prefix.execId);
             prefixXML.setAttribute('prefix',prefix.prefix);
             modXML.appendChild(prefixXML);
+        }
+
+        // selected machines
+        for (var j=0; j<config.modsToAdd[i].selectedMachines.length; j++) {
+            var selection = config.modsToAdd[i].selectedMachines[j];
+            var selectionXML = document.createElement('selected-machine');
+            selectionXML.setAttribute('exec_id',selection.execId);
+            selectionXML.setAttribute('machine_name',selection.machineName);
+            modXML.appendChild(selectionXML);
         }
 
         // add module to XML
