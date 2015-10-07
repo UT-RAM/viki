@@ -48,19 +48,19 @@ Contents
    :maxdepth: 2
 
    user
+   - Installation <installation>
+   - Quickstart <quickstart>
+   - Features <features>
    contributor
+   - Module introduction <modintroduction>
+   - Module tutorial <modtutorial>
+   - Tag list <modtaglist>
    developer
+   - Framework description <framework_description>
+   - Framework overview <system_overview>
+   - API documentation <apidoc>
 
    developers
-
-   framework_description
-
-   api
-   userguide
-   howtoconfig
-   howtomod
-   modules
-   virtualbox
 
 Automatically generated pages
 -----------------------------

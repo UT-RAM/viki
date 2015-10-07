@@ -66,7 +66,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer&#8217;s tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
@@ -76,7 +76,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#core">Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
@@ -136,23 +135,21 @@
             
   <div class="section" id="framework-description">
 <span id="id1"></span><h1>Framework description<a class="headerlink" href="#framework-description" title="Permalink to this headline">¶</a></h1>
-<p>The AeroWorks robotics framework is software aiming to enable the quick and easy start up of experiments involving ROS. It can help a student that is new to a experimental setup to quickly start where the previous contributor stopped. For example: if you are designing a position-controlled quadrotor, based on on-board camera and IMU info, you can immediately start a position-controlled drone based on external cameras (OptiTrack), redo/validate the experiments of the researcher who created that setup, and focus on your research.</p>
+<p>The AeroWorks robotics framework is software aiming to enable the quick and easy start up of experiments involving ROS. It can help a student that is new to a experimental setup to quickly start where the previous contributor stopped. For example: if you are designing a position-controlled quadrotor, based on on-board camera and IMU info, you can immediately start a position-controlled drone based on external cameras (OptiTrack), redo/validate the experiments of the researcher who created that setup, and focus on your research in stead of on peripherals.</p>
 <p>There are a few parts to the framework:</p>
 <div class="section" id="core">
 <h2>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h2>
-<p>The core of the framework is the actual part doing the work. The core provides functionality and ease but is rather stupid: it knows of no ROS nodes, executables or anything else you actually want to run. To create a useful experience the core needs the following additions.</p>
+<p>The core of the framework is the actual part doing the work. The core provides functionality and a GUI but is rather stupid: it knows of no ROS nodes, executables or anything else you actually want to run. To create a useful experience the core needs the following additions.</p>
 </div>
 <div class="section" id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
-<p>Documentation consists of technical information and a user guide. This page is also part of the documentation and you have probably already seen <a class="reference internal" href="index.html#home"><span>VIKI documentation home</span></a>.</p>
+<p>Documentation consists of technical information and user guides. This page is also part of the documentation and you have probably already seen <a class="reference internal" href="index.html#home"><span>VIKI documentation home</span></a>.</p>
 </div>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
-<p>A module is a collection of ROS nodes, with some configuration added so that it provides one simple function. A module is the smallest building block of the framework. You can write your own modules and put it in the dedicated contrib folder so that you and others can use it. Some modules are provided by the maintainers already to get you started quickly.</p>
-</div>
-<div class="section" id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>Configurations are basically experimental set ups. It is a description of a combination of modules and how they interact with each other and with you, the user. For an experiment you are probably going to write your very own configuration files (though simple examples are provided).</p>
+<p>A module is a collection of ROS packages or nodes, with some configuration added so that it provides one simple function. A module is the smallest building block of the framework. You can write your own modules and put it in a dedicated folder so that you and others can use it. If you are a RAM member the developers provide a list of useful modules in an actively maintained repository at <a class="reference external" href="http://trac.ram.ewi.utwente.nl/viki_modules">http://trac.ram.ewi.utwente.nl/viki_modules</a> .</p>
+<p>A more elaborate description (much more technical) can be found in
+.. todo:: add link to overview here</p>
 </div>
 </div>
 
