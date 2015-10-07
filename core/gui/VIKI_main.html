@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/viki.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+            <img src="img/viki_logo.png" id="logo">
+
+            <div id="palette">
+                <h1>Palette</h1>
+                <p>List of all available modules.<br />
+                    <a href="#" id="vikiRefreshModules" data-statusmessage="Sent request for module list"><img src="img/arrow_refresh.png" /> Update modules</a>
+                </p>
+
+                <input type="text" class="form-control" id="module-filter-text" placeholder="Filter modules (Ctrl+M)">
+                <ul id="list"></ul>
+
+                <p id="help-text-single-module-filter" style="display: none;"><i class="glyphicon glyphicon-info-sign"></i> Press 'Enter' to add this module</p>
+            </div>       
+        </div>
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-lg-9">
+                    
+                    <div id="actions">
+                        <a href="#" id="makeNoRun" class="btn btn-default" title="Generate build files (configuration and launch)"><i class="glyphicon glyphicon-duplicate"></i></a>
+                        
+                        <a href="#" id="vikiConnCheck" class="btn btn-default" title="Quick connection check" data-statusmessage="Sent request for connection check">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </a>
+                
+                        <a href="#" id="vikiStartRosCore" class="btn btn-default" data-statusmessage="Sent request for starting ROS core" title="Start ROS core">
+                            <img src="img/cog.png" />
+                        </a>
+                        <a href="#" id="vikiStopRosCore" class="btn btn-default" data-statusmessage="Sent request for stopping the ROS core" style="display: none;" title="Stop ROS core">
+                            <img src="img/cog_delete.png" />
+                        </a>
+                
+                        <a href="#" id="vikiOpenRqtGraph" class="btn btn-default" data-statusmessage="Invoked rqt_graph" title="Open rqt_graph"><img src="img/image.png" /> </a>
+                        
+                        <a href="#" id="vikiShowLaunch" class="btn btn-default" data-statusmessage="Showing generated launch file" title="Show generated launch file"><img src="img/xml_green.png" /> </a>
+
+                        <a href="#" id="vikiShowConfig" class="btn btn-default" data-statusmessage="Showing generated configfile" title="Show generated config file"><img src="img/xml_blue.png" /> </a>
+
+                        <a href="#" id="vikiSave" class="btn btn-default" data-function="getProject" data-statusmessage="Starting save procedure" title="Save"><i class="glyphicon glyphicon-save-file"> </i> </a>
+
+                        <a href="#" id="vikiOpen" class="btn btn-default" data-statusmessage="Starting open procedure" title="Open"><i class="glyphicon glyphicon-open-file"> </i> </a>
+
+                        <a href="#" id="stepBack" class="btn btn-default" title="Undo"><i class="glyphicon glyphicon-backward"></i></a>
+
+                        <a href="#" id="stepForward" class="btn btn-default" title="Redo"><i class="glyphicon glyphicon-forward"></i></a>
+
+                        <a href="#" id="reset" class="btn btn-default" data-statusmessage="Reset canvas" title="Open"><i class="glyphicon glyphicon-erase"> </i> </a>
+
+                        <div id="right-buttons" style="float: right;">
+                            <button id="makeAndRun" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-play"></i> Run</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12" id="project">
+                            <div class="project-container">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="status-container row">
+                        <div class="col-lg-12">
+                        <h1>Status</h1>
+                            <div id="status">
+                                <span id="statusLabel">HTML front-end loaded</span><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="text-right">
+                        <a href="#" id="italian"><img id="itaImg" src="img/ita.gif" /></a>
+                    </div>
+                    <h1>Properties</h1>
+                    <p id="selectedWindowInfo"></p>
+                    <p>
+                        <table id="selectedWindowProperties" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                        
+                            <tbody>
+                        <tr>
+                            <td colspan="2">No module selected.</td>
+                        </tr>
+                            </tbody>
+                        </table>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    </div>            
+</div>
+
+<!-- dialog for command line arguments -->
+<div class="modal fade" id="argPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add/edit arguments</h4>
+      </div>
+      <div class="modal-body" id="argPopupBody">
+        <table>
+            <tr>
+                <th>Executable</th>
+                <th>Argument</th>
+            </tr>
+            
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveArgButton">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- dialog for launch prefixes -->
+<div class="modal fade" id="prefixPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add/edit launch-prefix</h4>
+      </div>
+      <div class="modal-body" id="prefixPopupBody">
+        <table>
+            <tr>
+                <th>Executable</th>
+                <th>Launch-prefix</th>
+            </tr>
+            
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="savePrefixButton">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.jsPlumb-1.7.5-min.js"></script>
+<script src="ipc.js" type="text/javascript"></script>
+<script src="js/viki.js"></script>
+</body>
+</html>

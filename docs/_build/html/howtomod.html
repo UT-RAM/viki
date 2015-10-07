@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Module writing guide &mdash; AeroWorks 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="AeroWorks 1.0 documentation" href="index.html"/>
+        <link rel="next" title="core" href="modules.html"/>
+        <link rel="prev" title="Configuration writing guide" href="howtoconfig.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> AeroWorks
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#for-using-the-framework">For using the framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#ubuntu-operating-system">Ubuntu operating system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#ros">ROS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#python">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#the-code">The code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#some-more-useful-links">Some more useful links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#help">Help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#for-development">For development</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#quickstarting-a-turtle">Quickstarting a turtle</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#preparing-ros">Preparing ROS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#run-the-aeroworks-core">Run the Aeroworks core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#what-have-you-done">What have you done?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="userguide.html#quickstarting-an-ar-drone">Quickstarting an AR.Drone</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#additional-requirements">Additional requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#catkin-and-source">Catkin and source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#connecting-to-the-drone">Connecting to the drone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#starting-the-framework">Starting the framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="userguide.html#go-fly">Go fly</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute-and-get-to-work">How to contribute and get to work</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howtoconfig.html">Configuration writing guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="howtoconfig.html#simple-tutorial">Simple tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="howtoconfig.html#advanced-tutorial">Advanced tutorial</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Module writing guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-modules">Introduction to modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executables">Executables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-on-module-xml-writing">Tutorial on module.xml writing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simple-tutorial">Simple tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-examples">Advanced examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#description-of-module-attributes-and-tags">description of module attributes and tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core.html">core package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="core.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.aero.html">core.aero package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.gui.html">core.gui package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#module-core">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="virtualbox.html">Difficulties with virtualbox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#joystick-related">Joystick related</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#connecting-to-a-wireless-network">Connecting to a wireless network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="virtualbox.html#via-an-extra-adapter">Via an extra adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtualbox.html#via-your-host-pc-s-wireless-card">Via your host pc&#8217;s wireless card</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">AeroWorks</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Module writing guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/howtomod.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="module-writing-guide">
+<span id="howtomod"></span><h1>Module writing guide<a class="headerlink" href="#module-writing-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide consists of:</p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#modintroduction"><span>Introduction to modules</span></a></li>
+<li><a class="reference internal" href="#modtutorial"><span>Tutorial on module.xml writing</span></a></li>
+<li><a class="reference internal" href="#modtaglist"><span>description of module attributes and tags</span></a></li>
+</ol>
+<div class="section" id="introduction-to-modules">
+<span id="modintroduction"></span><h2>Introduction to modules<a class="headerlink" href="#introduction-to-modules" title="Permalink to this headline">¶</a></h2>
+<p>VIKI comes with (a currently not so) wide range of modules. To be able to use your own ROS packages within VIKI you need to create a module description for your package. This description is a module.xml file which describes the inputs and outputs and meta data. Besides that, you can combine different ROS packages into one module to make your life easier!</p>
+<p>A module file is standard XML and generally looks like this:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+<span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;sensor&quot;</span> <span class="na">id=</span><span class="s">&quot;camera_source&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;meta&gt;</span>
+        <span class="nt">&lt;name&gt;</span>USB camera<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;author&gt;</span>Robin Hoogervorst<span class="nt">&lt;/author&gt;</span>
+        <span class="nt">&lt;icon&gt;</span>icon.png<span class="nt">&lt;/icon&gt;</span>
+        <span class="nt">&lt;description&gt;</span>
+            Wrapper for the USB cam package within ros
+        <span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;/meta&gt;</span>
+
+    <span class="c">&lt;!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module --&gt;</span>
+    <span class="nt">&lt;outputs&gt;</span>
+        <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image&quot;</span> <span class="na">link=</span><span class="s">&quot;usb_cam/image_raw&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/outputs&gt;</span>
+
+    <span class="nt">&lt;executable</span> <span class="na">id=</span><span class="s">&quot;usb_cam&quot;</span> <span class="na">pkg=</span><span class="s">&quot;libuvc_camera&quot;</span> <span class="na">exec=</span><span class="s">&quot;camera_node&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;params&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;vendor&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;null&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;product&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;null&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;width&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;640&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;height&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;480&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;frame_rate&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;15.0&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/params&gt;</span>
+
+        <span class="nt">&lt;outputs&gt;</span>
+            <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/outputs&gt;</span>
+    <span class="nt">&lt;/executable&gt;</span>
+<span class="nt">&lt;/module&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="general-outline">
+<h3>General outline<a class="headerlink" href="#general-outline" title="Permalink to this headline">¶</a></h3>
+<p>Every module file starts out with:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!--AEROWORKS--&gt;</span>
+</pre></div>
+</div>
+<p>This line makes sure the module is found by VIKI during the scan of files. Not implementing this line makes your module invisible to VIKI. The second line starts the module description:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;sensor&quot;</span> <span class="na">id=</span><span class="s">&quot;camera_source&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+<p>This line specifies the type and id of the module. The type is a string on which VIKI groups its modules. You are free to choose anything you like here, but to be able to ingerate with VIKI better it is recommended to choose one of the following:</p>
+<ul class="simple">
+<li>Controller</li>
+<li>Middleware</li>
+<li>Rosdefaults</li>
+<li>Sensor</li>
+<li>Userinput</li>
+<li>Vehicle</li>
+<li>Views</li>
+</ul>
+<p>The id is a string that is unique for every module. <strong>Make sure it is not too generic!</strong>. If you make a module called &#8216;camera&#8217;, the chance is big that such a module already exists and causes conflicts with other modules. Preferably, use a prefix for your specific project modules.</p>
+<p>After the opening lines, the important stuff happens. There are 5 types of XML nodes you can add here:</p>
+<ul class="simple">
+<li>meta</li>
+<li>inputs</li>
+<li>outputs</li>
+<li>executable</li>
+<li>configuration</li>
+</ul>
+</div>
+<div class="section" id="meta">
+<h3>Meta<a class="headerlink" href="#meta" title="Permalink to this headline">¶</a></h3>
+<p>As the name suggests, this is the place to add the meta information of your package.  This looks like</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;name&gt;</span>USB camera<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;author&gt;</span>Robin Hoogervorst<span class="nt">&lt;/author&gt;</span>
+    <span class="nt">&lt;icon&gt;</span>icon.png<span class="nt">&lt;/icon&gt;</span>
+    <span class="nt">&lt;description&gt;</span>
+        Wrapper for the USB cam package within ros
+    <span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
+<p>These tags basically speak for themselves, but for completeness sake:</p>
+<ul class="simple">
+<li><em>name:</em> This is the name of the module as VIKI shows it in the list</li>
+<li><em>author:</em> This is the name of the Author of the module. If you&#8217;re writing it, it would be you.</li>
+<li><em>icon:</em> The icon that VIKI uses to show it in the list. For more options, see below</li>
+<li><em>description:</em> The description shown in the interface of VIKI</li>
+</ul>
+<div class="section" id="icon">
+<h4>Icon<a class="headerlink" href="#icon" title="Permalink to this headline">¶</a></h4>
+<p>For specifying the icon, you have three options:</p>
+<ul class="simple">
+<li>Specify nothing: The default VIKI icon will be used.</li>
+<li>Specify a filename: VIKI will look for a image with this filename in the same folder as the module.xml file. If you add icon.png here, make sure you add a icon.png file as well.</li>
+<li>Specify a bootstrap icon: If you provide an icon name which starts with &#8216;glyphicon-&#8216; (e.g. glyphicon-star), VIKI will look for a bootstrap icon. This is an easy way to quickly add fancy icons. An overview of icons can be found at <a class="reference external" href="http://getbootstrap.com/components/">bootstrap icons</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="inputs-and-outputs">
+<h3>Inputs and Outputs<a class="headerlink" href="#inputs-and-outputs" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;inputs&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image_view_input&quot;</span> <span class="na">link=</span><span class="s">&quot;image_view/image&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/inputs&gt;</span>
+
+<span class="nt">&lt;outputs&gt;</span>
+    <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image&quot;</span> <span class="na">link=</span><span class="s">&quot;usb_cam/image_raw&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image2&quot;</span> <span class="na">link=</span><span class="s">&quot;usb_cam_2/image_raw&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;&lt;name&gt;&quot;</span> <span class="na">link=</span><span class="s">&quot;&lt;executable_id&gt;/&lt;topic_name&gt;&quot;</span> <span class="na">message_type=</span><span class="s">&quot;&lt;ros_type&gt;&quot;</span> <span class="na">required=</span><span class="s">&quot;&lt;boolean&gt;&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/outputs&gt;</span>
+</pre></div>
+</div>
+<p>The inputs and outputs come after the meta information. These specify the <em>module</em> in- and outputs, not executable specific ones. As can be seen, these blocks consist of a group XML node and (a set of) XML node(s) for each in/output. Attributes available for each specific in/output:</p>
+<ul class="simple">
+<li><em>type</em>: This is the type of input for the module. Currently, only &#8216;ros_topic&#8217; is supported.</li>
+<li><em>name</em>: This is the name of the output, which will be shown in VIKI.</li>
+<li><em>link</em>: This specifies to which ROS executable topic this links. It is of the format &#8216;&lt;executable_id&gt;/&lt;topic_name&gt;&#8217;.</li>
+<li><em>message_type</em>: A ROS topic type: (e.g. sensor_msgs/Image, geometry_msgs/PoseStamped, std_msgs/Empty). VIKI makes sure you only can connect topics of the same type. So it&#8217;s important to specify!</li>
+<li><em>required</em>: Indicates whether the topic is required to be connected. Is currently not used in the interface, but will probably be implemented in the future.</li>
+</ul>
+</div>
+<div class="section" id="executables">
+<h3>Executables<a class="headerlink" href="#executables" title="Permalink to this headline">¶</a></h3>
+<p>An executable in a ROS node specifies a ROS node that is to be executed.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;executable</span> <span class="na">id=</span><span class="s">&quot;usb_cam&quot;</span> <span class="na">pkg=</span><span class="s">&quot;libuvc_camera&quot;</span> <span class="na">exec=</span><span class="s">&quot;camera_node&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;params&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;vendor&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;null&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;product&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;null&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;width&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;640&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;height&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;480&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;frame_rate&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;15.0&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/params&gt;</span>
+
+    <span class="nt">&lt;outputs&gt;</span>
+        <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/outputs&gt;</span>
+<span class="nt">&lt;/executable&gt;</span>
+</pre></div>
+</div>
+<p>The first line has three parameters:</p>
+<ul class="simple">
+<li><em>id</em>: This is the id used in the configuration to specify this executable. The module inputs and outputs are linked to executable inputs and outputs using this id.</li>
+<li><em>pkg</em>: The package from which to run the node</li>
+<li><em>exec</em>: The node that is to be run</li>
+</ul>
+<p>The pkg and exec parameters correspond to running the node with</p>
+<div class="highlight-bash"><div class="highlight"><pre>rosrun &lt;package&gt; &lt;executable&gt;
+</pre></div>
+</div>
+<p>T</p>
+</div>
+<div class="section" id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<p>TODO: Cees + Alex?</p>
+</div>
+</div>
+<div class="section" id="tutorial-on-module-xml-writing">
+<span id="modtutorial"></span><h2>Tutorial on module.xml writing<a class="headerlink" href="#tutorial-on-module-xml-writing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple-tutorial">
+<span id="simplemoduletutorial"></span><h3>Simple tutorial<a class="headerlink" href="#simple-tutorial" title="Permalink to this headline">¶</a></h3>
+<p>In this tutorial we will create a module. The module in this tutorial will start the ros_rqt_graph (which is already installed in ROS), which is a nice graph of ROS nodes and topics active on your PC.</p>
+<p>Now since you are here it means you are probably not one of the maintainers of the framework. Therefore I kindly request that you only place your module in the &#8216;contrib&#8217; folder of the framework. Go there and create a folder for youself with a usefull name, for instance <em>YourNameMSC</em>. Let us assume that your name is Doutzen Kroes and you name your folder <em>DoutzenMSC</em>. If you have installed the framework in the default location then running this should do the job for you:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws/src/aeroworks/contrib <span class="o">&amp;&amp;</span> mkdir DoutzenMSC
+</pre></div>
+</div>
+<p>Inside there create your very first module definition file. You have no choice for name here, it must be named <em>module.xml</em>. Open it to start defining your module. This should help you:</p>
+<div class="highlight-bash"><div class="highlight"><pre>gedit module.xml
+</pre></div>
+</div>
+<p>Write, on the first line of the file</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+</pre></div>
+</div>
+<p>and save the file. Congratulations, you have just defined your first module! Nevertheless you did not do a good job, yet. Try running the aeroworks core (you should know how by now). You should see that there is something wrong with the file you have just created because the terminal tells you something like:</p>
+<div class="highlight-bash"><div class="highlight"><pre>Skipped adding <span class="s1">&#39;../aeroworks/contrib/DoutzenMSC/module.xml&#39;</span> because it is a broken file. Error thrown was:
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">&quot;core/aero/scan.py&quot;</span>, line 33, in getAvailableModules
+    <span class="nv">dom</span> <span class="o">=</span> xml.dom.minidom.parse<span class="o">(</span>fPath<span class="o">)</span>
+  File <span class="s2">&quot;/usr/lib/python2.7/xml/dom/minidom.py&quot;</span>, line 1918, in parse
+    <span class="k">return</span> expatbuilder.parse<span class="o">(</span>file<span class="o">)</span>
+  File <span class="s2">&quot;/usr/lib/python2.7/xml/dom/expatbuilder.py&quot;</span>, line 924, in parse
+    <span class="nv">result</span> <span class="o">=</span> builder.parseFile<span class="o">(</span>fp<span class="o">)</span>
+  File <span class="s2">&quot;/usr/lib/python2.7/xml/dom/expatbuilder.py&quot;</span>, line 211, in parseFile
+    parser.Parse<span class="o">(</span><span class="s2">&quot;&quot;</span>, True<span class="o">)</span>
+ExpatError: no element found: line 2, column 0
+</pre></div>
+</div>
+<p>As you can see that is quite a lot of text. The framework does not crash, and other modules are still available, but you can imagine that this kind of feedback is undesireable. Therefore <strong>only commit modules that are complete</strong>.</p>
+<p>Now open your gedit with module.xml again, and we will create something more useful.</p>
+<p>Add this to your module file and save:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;feedback_to_user&quot;</span> <span class="na">id=</span><span class="s">&quot;rqtmodule&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/module&gt;</span>
+</pre></div>
+</div>
+<p>To help you and others increase the re-useability of the module please add metadata to all your module files, between the module tags, in this format:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;name&gt;</span>rqt module<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Created using a tutorial, this modules starts the ros_rqt_graph<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;author&gt;</span>Doutzen Kroes<span class="nt">&lt;/author&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
+<p>Your module is now no longer broken (confirm by running the core if you like) but it has not got any functionality either. You will need to add a reference to an <em>executable</em> which is a rosnode for us. Add this below your meta data, between the module tags, and save:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;executable</span> <span class="na">id=</span><span class="s">&quot;graphnode&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rqt_graph&quot;</span> <span class="na">exec=</span><span class="s">&quot;rqt_graph&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/executable&gt;</span>
+</pre></div>
+</div>
+<p>For your convenience, this is how your module.xml file should look now:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+<span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;feedback_to_user&quot;</span> <span class="na">id=</span><span class="s">&quot;rqtmodule&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta&gt;</span>
+        <span class="nt">&lt;name&gt;</span>rqt module<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;description&gt;</span>Created using a tutorial, this modules starts the ros_rqt_graph<span class="nt">&lt;/description&gt;</span>
+        <span class="nt">&lt;author&gt;</span>Doutzen Kroes<span class="nt">&lt;/author&gt;</span>
+    <span class="nt">&lt;/meta&gt;</span>
+
+    <span class="nt">&lt;executable</span> <span class="na">id=</span><span class="s">&quot;graphnode&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rqt_graph&quot;</span> <span class="na">exec=</span><span class="s">&quot;rqt_graph&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/executable&gt;</span>
+<span class="nt">&lt;/module&gt;</span>
+</pre></div>
+</div>
+<p>Your module is now finished and runnable. Find out how and confirm as described in <a class="reference internal" href="howtoconfig.html#simpleconfigtutorial"><span>Simple tutorial</span></a> or read on for more on module writing.</p>
+</div>
+<div class="section" id="advanced-examples">
+<h3>Advanced examples<a class="headerlink" href="#advanced-examples" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="description-of-module-attributes-and-tags">
+<span id="modtaglist"></span><h2>description of module attributes and tags<a class="headerlink" href="#description-of-module-attributes-and-tags" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules.html" class="btn btn-neutral float-right" title="core" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="howtoconfig.html" class="btn btn-neutral" title="Configuration writing guide" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
