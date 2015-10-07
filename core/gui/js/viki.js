@@ -394,7 +394,8 @@ function onModuleSelect(event) {
     var selectedModule = getModuleByUWindowId(selectedModuleUid);
     $('p#selectedWindowInfo').html("<h3>"+selectedModule.id+"</h3>"+
             "<button class='btn btn-default' id='argButton' data-toggle='modal' data-target='#argPopup'>Add/edit arguments</button>"+
-            "<br><button class='btn btn-default' id='prefixButton' data-toggle='modal' data-target='#prefixPopup'>Add/edit prefixes</button></br>"+
+            "<br><button class='btn btn-default' id='prefixButton' data-toggle='modal' data-target='#prefixPopup'>Add/edit prefixes</button>"+
+            "<br><button class='btn btn-default' id='machineSelectButton' data-toggle='modal' data-target='#machineSelectPopup'>Select machine</button></br>"+
             "<br><strong>Uid: </strong>"+selectedModule.uWindowId+"<br/>");
     var tbody = $('#selectedWindowProperties tbody');
     tbody.empty();
@@ -506,6 +507,60 @@ function onModuleSelect(event) {
             selectedModule.params.push(param);
         }
     });
+
+    // for machine selection
+    $('#machineSelectButton').click(function() {
+        var dropdownOptions = '<option value="">Default (localhost)</option>';
+        $.each(machines, function(){
+           dropdownOptions += '<option value='+this.name+'>'+this.name+'</option>';
+        });
+
+        saveState();
+        // clear list of executables
+        $("#machineSelectPopupBody > table > tbody >tr").not(":first").remove();
+
+        // make list of executables
+        for(var i=0; i<selectedModule.executables.length; i++){
+            var texec = selectedModule.executables[i];
+            var selectedMachine;
+            if (typeof selectedModule.selectedMachines[i] === "undefined") {
+                selectedMachine = false;
+            }
+            else {
+                selectedMachine = selectedModule.selectedMachines[i].machineName;
+            }
+
+            var dropdownOptions = '<option value="">Default (localhost)</option>';
+            $.each(machines, function(){
+                dropdownOptions += '<option';
+                if(this.name == selectedMachine)
+                {
+                    dropdownOptions += ' selected="selected"';
+                }
+                dropdownOptions += ' value='+this.name+'>'+this.name+'</option>';
+            });
+
+            var tc = "<tr><td>"+texec.id+'</td><td><select data-exec="'+texec.id+'">' + dropdownOptions + "></select></td></tr>";
+            $("#machineSelectPopupBody > table > tbody").append(tc);
+        }
+
+        $("#saveMachineSelectButton").click(function() {
+            // hide dialog
+            $("#machineSelectPopup").modal("hide");
+
+            // save arguments
+            selectedModule.selectedMachines = [];  // empty list
+            for (var i=0; i< $('#machineSelectPopupBody > table > tbody > tr').not(":first").length; i++) {
+                var selection = {};
+                selection.execId = $($('#machineSelectPopupBody > table > tbody > tr > td > select')[i]).data('exec');
+                selection.machineName = $($('#machineSelectPopupBody > table > tbody > tr > td > select')[i]).val();
+                selectedModule.selectedMachines.push(selection);
+            }
+
+            updateStatus("Saved machine selection.");
+        });
+    });
+
 }
 
 // this is the paint style for the connecting lines..
@@ -723,6 +778,7 @@ function addModuleToContainer(modId, _x, _y, uModId) {
     modToAdd.params = [];  // premake list for parameters
     modToAdd.args = [];  // placeholder for command line arguments
     modToAdd.prefixes = [];  // placeholder for launch-prefixes
+    modToAdd.selectedMachines = [];
     modulesInCanvas.push(modToAdd);
     
     $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modToAdd.meta.name+'</span></div>');
