@@ -199,6 +199,8 @@ function getProject() {
 
     project = {
         modulesInCanvas: modulesInCanvas,
+        machines: machines,
+        localHostName: localHostName,
         generatedGUIDs: generatedGUIDs,
         modules: jsp
     }
@@ -237,6 +239,10 @@ function openFromJSON(project) {
 
     modulesInCanvas = project.modulesInCanvas;
     generatedGUIDs = project.generatedGUIDs;
+    machines = project.machines;
+    syncMachineList(machines);
+    localHostName = project.localHostName;
+    setLocalHostName(localHostName);
     jsPlumbInstance.repaintEverything();
     updateStatus('End of open / restore.')
 }
