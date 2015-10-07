@@ -58,7 +58,7 @@ Contents
    developer
    - Framework description <framework_description>
    - Framework overview <system_overview>
-   - API documentation <apidoc>
+   - API documentation <api>
 
    developers
 
