@@ -1,4 +1,4 @@
 .. _developer:
 
-Developer
-=========
+Developer's tutorial
+====================

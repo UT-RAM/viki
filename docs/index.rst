@@ -11,8 +11,8 @@ VIKI documentation home
 This is the VIKI robotics framework documentation. It is split up in three parts:
 
 #. :ref:`User` which includes :ref:`Installation` and :ref:`Quick start guide`
-#. :ref:`Contributor`-part which includes :ref:`Module writing guide`
-#. :ref:`Developer`-part Which includes for instance :ref:`apidoc` and :ref:`System overview`
+#. :ref:`Contributor` which includes :ref:`Module writing guide`
+#. :ref:`Developer` Which includes for instance :ref:`apidoc` and :ref:`System overview`
 
 
 .. todolist::
@@ -50,9 +50,11 @@ Contents
    user
    contributor
    developer
+
    developers
 
    framework_description
+
    api
    userguide
    howtoconfig
