@@ -52,7 +52,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'AeroWorks'
+project = u'VIKI'
 copyright = u'2015, Alex Kamphuis, Cees Trouwborst'
 author = u'Alex Kamphuis, Cees Trouwborst'
 

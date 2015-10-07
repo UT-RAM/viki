@@ -5,12 +5,20 @@
 
 .. _home:
 
-AeroWorks documentation home
+VIKI documentation home
 ============================
 
-Welcome to AeroWorks's documentation!
+This is the VIKI robotics framework documentation. It is split up in three parts:
 
-This documentation consists of three parts:
+#. :ref:`User` which includes :ref:`Installation` and :ref:`Quick start guide`
+#. :ref:`Contributor`-part which includes :ref:`Module writing guide`
+#. :ref:`Developer`-part Which includes for instance :ref:`apidoc` and :ref:`System overview`
+
+
+.. todolist::
+
+Old stuff
+---------
 
 #. :ref:`Framework description` (what is the framework, what does it do and what for)
 #. A :ref:`userguide`
@@ -35,10 +43,14 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   user
+   contributor
+   developer
+   developers
+
    framework_description
    api
    userguide
-   developers
    howtoconfig
    howtomod
    modules
