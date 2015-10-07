@@ -44,6 +44,16 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
         # remap.set('to', to_attr)
         # remap.set('from', from_attr)
 
+    for machine in configPart.machines_to_add:
+        machineElement = ET.SubElement(rootElem, 'machine')
+        machineElement.set('name', machine.name)
+        machineElement.set('hostname', machine.hostname)
+        machineElement.set('username', machine.username)
+        machineElement.set('password', machine.password)
+        # machineElement.set('ros-root', '/opt/ros/')
+        # machineElement.set('ros-package-path', '~/catkin_ws/')
+        # machineElement.set('default', 'false')
+
     for mod in configPart.modules_to_add:
         # Loop through executables for specific module
         for ic in mod.implementation.config:
@@ -95,6 +105,13 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
             for prefixSearch in mod.prefixes:
                 if prefixSearch.execid == executable.id:
                     node.attrib['launch-prefix'] = prefixSearch.prefix
+
+            # find any machine selections
+            print 'lullo'
+            for selectionSearch in mod.machine_selections:
+                print selectionSearch.execid
+                if selectionSearch.execid == executable.id:
+                    node.attrib['machine'] = selectionSearch.machine_name
 
         # At this point, we end up with some parameters that are not "connected". Echo those.
         for paramSearch in mod.parameters_to_add:

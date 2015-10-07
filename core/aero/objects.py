@@ -171,6 +171,7 @@ class Configuration:
         self.id = id
         self.modules_to_add = []
         self.connections_to_add = []
+        self.machines_to_add = []
         self.namespaces = []
 
 
@@ -210,6 +211,7 @@ class Module_to_add:
         self.parameters_to_add = []
         self.args = []
         self.prefixes = []
+        self.machine_selections = []
 
         # here we put Module classes used for implementation
         self.implementation = None
@@ -227,6 +229,13 @@ class Module_to_add:
         :param pf: prefix object
         """
         self.prefixes.append(pf)
+
+    def add_machine_selection(self, selection):
+        """Add a machine selection object *selection* to the list of machine selections desired to run
+
+        :param selection: machine selection object
+        """
+        self.machine_selections.append(selection)
 
 
 class Connection_to_add:
@@ -273,3 +282,21 @@ class Launch_prefix:
     def __init__(self, executable_id, prefix):
         self.execid = executable_id
         self.prefix = prefix
+
+class Selected_machine:
+    """A machine selection defines at what machine the ros_node will run.
+
+    :param executable_id: id of the executable this selection is used for
+    :param machine_name: name of the machine
+    """
+    def __init__(self, executable_id, machine_name):
+        self.execid = executable_id
+        self.machine_name = machine_name
+
+class Machine:
+
+    def __init__(self, name, hostname, username, password):
+        self.name = name
+        self.hostname = hostname
+        self.username = username
+        self.password = password

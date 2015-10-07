@@ -1002,10 +1002,13 @@ function getConfigXML(config) {
         // selected machines
         for (var j=0; j<config.modsToAdd[i].selectedMachines.length; j++) {
             var selection = config.modsToAdd[i].selectedMachines[j];
-            var selectionXML = document.createElement('selected-machine');
-            selectionXML.setAttribute('exec_id',selection.execId);
-            selectionXML.setAttribute('machine_name',selection.machineName);
-            modXML.appendChild(selectionXML);
+            if(selection.machineName != '')
+            {
+                var selectionXML = document.createElement('selected-machine');
+                selectionXML.setAttribute('exec_id',selection.execId);
+                selectionXML.setAttribute('machine_name',selection.machineName);
+                modXML.appendChild(selectionXML);
+            }
         }
 
         // add module to XML
