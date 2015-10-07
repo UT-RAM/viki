@@ -69,6 +69,8 @@
 
                         <a href="#" id="reset" class="btn btn-default" data-statusmessage="Reset canvas" title="Open"><i class="glyphicon glyphicon-erase"> </i> </a>
 
+                        <a href="#" id="openMachineList" class="btn btn-default" data-statusmessage="Opening machine list" title="Open machine list" data-toggle="modal" data-target="#machinePopup"><i class="glyphicon glyphicon-hdd"> </i> </a>
+
                         <div id="right-buttons" style="float: right;">
                             <button id="makeAndRun" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-play"></i> Run</button>
                         </div>
@@ -171,6 +173,92 @@
   </div>
 </div>
 
+
+<!-- dialog for machines -->
+<div class="modal fade" id="machinePopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add/edit machines</h4>
+            </div>
+            <div class="modal-body" id="machinePopupBody">
+
+                <p>
+                    <a class="btn btn-default pull-right" id="editLocalHostName" href><i class="glyphicon glyphicon-edit"></i></a>
+                    <strong>Current local hostname:</strong> <em id="localHostName">localhost</em><br />
+                    Please enter the hostname only. Do not add a port or protocol, since this hostname is used for multiple purposes.
+                </p>
+
+                <table style="width: 100%" id="machineList">
+                    <tr>
+                        <th>Machine name</th>
+                        <th>Hostname</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Actions</th>
+                    </tr>
+                </table>
+                <a href id="addMachine" class="btn btn-default" data-toggle="modal" data-target="#machineAddPopup" ><i class="glyphicon glyphicon-plus"></i></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- dialog for adding / editing machines -->
+<div class="modal fade" id="machineAddPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add/edit machines</h4>
+            </div>
+            <div class="modal-body" id="machineAddPopupBody">
+                <form id="machineForm">
+                    <dd>
+                        <dt>
+                            Previous name:
+                        </dt>
+                        <dd>
+                            <input type="text" disabled="disabled" name="prevname" />
+                        </dd>
+                        <dt>
+                            Name:
+                        </dt>
+                        <dd>
+                            <input type="text" name="name" />
+                        </dd>
+                        <dt>
+                            Hostname:
+                        </dt>
+                        <dd>
+                            <input type="text" name="username" />
+                        </dd>
+                        <dt>
+                            Username:
+                        </dt>
+                        <dd>
+                            <input type="text" name="hostname" />
+                        </dd>
+                        <dt>
+                            Password:
+                        </dt>
+                        <dd>
+                            <input type="text" name="password" />
+                        </dd>
+                    </dl>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="saveMachine">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>

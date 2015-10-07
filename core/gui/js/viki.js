@@ -5,6 +5,15 @@ var selectedModuleUid = null;
 var generatedGUIDs = [];
 var history = [];
 var future = [];
+var localHostName = "localhost";
+var machines = {
+    test: {
+        name: "test",
+        hostname: "test",
+        username: "un",
+        password: "pw"
+    }
+};
 
 $(document).ready(function(){
     // All links with an id starting with viki are buttons that expect a reaction from python. This process is automated: the python function with name equal to the id will run.
@@ -79,6 +88,64 @@ $(document).ready(function(){
          el.before(newone);
          el.remove();
     });
+
+    $("#editLocalHostName").click(function() {
+        var hostName = window.prompt("Please enter the new local hostname.","localhost");
+        if(hostName  != null) {
+            setLocalHostName(hostName);
+        }
+        return false;
+    });
+
+    $("#addMachine").click(function() {
+        $("#machineForm input[name='prevname']").val('');
+        $("#machineForm input[name='name']").val('');
+        $("#machineForm input[name='hostname']").val('');
+        $("#machineForm input[name='username']").val('');
+        $("#machineForm input[name='password']").val('');
+    });
+
+    $("#saveMachine").click(function(){
+        oldName = $("#machineForm input[name='prevname']").val();
+        name = $("#machineForm input[name='name']").val();
+        hostname = $("#machineForm input[name='hostname']").val();
+        username = $("#machineForm input[name='username']").val();
+        password = $("#machineForm input[name='password']").val();
+
+        if(oldName != name && oldName != '')
+        {
+            delete machines[oldName];
+        }
+        // Update existing
+        machines[name] = {
+            name: name,
+            hostname: hostname,
+            username: username,
+            password: password
+        };
+
+        syncMachineList(machines);
+    });
+
+    $("#machineList").on("click",".editMachine",function(event){
+        key = event.currentTarget.dataset.key;
+        $("#machineForm input[name='prevname']").val(machines[key].name);
+        $("#machineForm input[name='name']").val(machines[key].name);
+        $("#machineForm input[name='hostname']").val(machines[key].hostname);
+        $("#machineForm input[name='username']").val(machines[key].username);
+        $("#machineForm input[name='password']").val(machines[key].password);
+        $('#machineAddPopup').modal('show');
+        return false;
+    });
+
+    $("#machineList").on("click",".deleteMachine",function(event){
+        delete machines[event.currentTarget.dataset.key];
+        syncMachineList(machines);
+        return false;
+    });
+
+    // Set machine list
+    syncMachineList(machines);
 
     // Manually request first module list.
     updateStatus('Asking for initial module list');
@@ -878,4 +945,23 @@ function getConfigXML(config) {
     // return
     return configXML.outerHTML;
     send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));    
+}
+
+function setLocalHostName(hostName) {
+    localHostName = hostName;
+    $("#localHostName").html(localHostName);
+}
+
+function syncMachineList(machines) {
+    $("#machineList").find("tr:gt(0)").remove();
+    $.each(machines,function(){
+        $("#machineList").append(
+            '<tr><td>'+this.name+'</td><td>'+this.hostname+'</td><td>'+this.username+'</td><td>'+this.password+'</td>' +
+            '<td>' +
+            '<a data-key="'+this.name+'" href class="btn btn-default editMachine"><i class="glyphicon glyphicon-edit"></i></a>' +
+            '<a data-key="'+this.name+'" href class="btn btn-default deleteMachine"><i class="glyphicon glyphicon-remove"></i></a>' +
+            '</td>' +
+            '</tr>'
+        );
+    });
 }
