@@ -6,14 +6,7 @@ var generatedGUIDs = [];
 var history = [];
 var future = [];
 var localHostName = "localhost";
-var machines = {
-    test: {
-        name: "test",
-        hostname: "test",
-        username: "un",
-        password: "pw"
-    }
-};
+var machines = {};
 
 $(document).ready(function(){
     // All links with an id starting with viki are buttons that expect a reaction from python. This process is automated: the python function with name equal to the id will run.
