@@ -47,8 +47,8 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
     for machine in configPart.machines_to_add:
         machineElement = ET.SubElement(rootElem, 'machine')
         machineElement.set('name', machine.name)
-        machineElement.set('hostname', machine.hostname)
-        machineElement.set('username', machine.username)
+        machineElement.set('address', machine.hostname)
+        machineElement.set('user', machine.username)
         machineElement.set('password', machine.password)
         # machineElement.set('ros-root', '/opt/ros/')
         # machineElement.set('ros-package-path', '~/catkin_ws/')

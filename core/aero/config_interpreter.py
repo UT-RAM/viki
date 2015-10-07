@@ -61,7 +61,7 @@ def recursiveGet(domparent, parent):
                     dommod.attributes['listener'].value
                 )
                 parent.connections_to_add.append(connection)
-            if tagtype == 'machine':
+            elif tagtype == 'machine':
                 machine = Machine(
                     dommod.attributes['name'].value,
                     dommod.attributes['hostname'].value,
