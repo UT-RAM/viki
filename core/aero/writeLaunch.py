@@ -50,6 +50,7 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
         machineElement.set('address', machine.hostname)
         machineElement.set('user', machine.username)
         machineElement.set('password', machine.password)
+        machineElement.set('env-loader', '~/.viki_env')
         # machineElement.set('ros-root', '/opt/ros/')
         # machineElement.set('ros-package-path', '~/catkin_ws/')
         # machineElement.set('default', 'false')
