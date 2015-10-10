@@ -43,10 +43,10 @@ class Global(object):
     def set_quit(cls, *args, **kwargs):
         cls.quit = True
 
-
 def main():
     start_gtk_thread()
     corePID = 0
+    ros_master_hostname = "localhost"
 
     # Create a proper file:// URL pointing to demo.xhtml:
     file = os.path.abspath('core/gui/VIKI_main.html')
@@ -93,10 +93,17 @@ def main():
         try:
             # run in new gnome terminal
             # don't know if this works with intellijIDEA, find out yourself if you use it.
-            pid = subprocess.Popen(args=["gnome-terminal", "--command=roslaunch aeroworks.launch"]).pid  
+            global ros_master_hostname
+            env = "http://"+ros_master_hostname+":11311"
+            pid = subprocess.Popen(args=["gnome-terminal", "--command=roslaunch aeroworks.launch"], env=dict(os.environ, **{"ROS_MASTER_URI":env})).pid
         except OSError:
             web_send('updateStatus("OSError")')
         web_send('updateStatus("Requested launch of AeroWorks.launch")')
+
+    def vikiSetMasterUri(master_hostname):
+        global ros_master_hostname
+        ros_master_hostname= master_hostname
+        web_send('updateStatus("Updated ROS_MASTER_URI to '+ros_master_hostname+'")')
 
     def vikiMakeAndRun(configXML):
         vikiConfigXML(configXML)
@@ -174,6 +181,7 @@ def main():
         if msg:
             msg = from_json(msg)
             again = True
+            print msg['value']
 
             # Check if the message starts with lowercase viki. This indicates that there is a matching function with the same name in Python that should be executed.
             if msg['name'].startswith("viki"):

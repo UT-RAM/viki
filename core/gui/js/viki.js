@@ -83,7 +83,7 @@ $(document).ready(function(){
     });
 
     $("#editLocalHostName").click(function() {
-        var hostName = window.prompt("Please enter the new local hostname.","localhost");
+        var hostName = window.prompt("Please enter the new local hostname.",localHostName);
         if(hostName  != null) {
             setLocalHostName(hostName);
         }
@@ -1037,6 +1037,7 @@ function getConfigXML(config) {
 
 function setLocalHostName(hostName) {
     localHostName = hostName;
+    send(JSON.stringify({name: 'vikiSetMasterUri', value: hostName}));
     $("#localHostName").html(localHostName);
 }
 

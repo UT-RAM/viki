@@ -108,7 +108,6 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
                     node.attrib['launch-prefix'] = prefixSearch.prefix
 
             # find any machine selections
-            print 'lullo'
             for selectionSearch in mod.machine_selections:
                 print selectionSearch.execid
                 if selectionSearch.execid == executable.id:
