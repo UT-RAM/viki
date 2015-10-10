@@ -426,6 +426,9 @@ function onModuleSelect(event) {
             $("#argPopupBody > table > tbody").append(tc);
         }
 
+
+        // Remove old click bind first
+        $("#saveArgButton").unbind('click');
         $("#saveArgButton").click(function() {
             // hide dialog
             $("#argPopup").modal("hide");
@@ -463,6 +466,9 @@ function onModuleSelect(event) {
             $("#prefixPopupBody > table > tbody").append(tc);
         }
 
+
+        // Remove old click bind first
+        $("#savePrefixButton").unbind('click');
         $("#savePrefixButton").click(function() {
             // hide dialog
             $("#prefixPopup").modal("hide");
@@ -536,7 +542,7 @@ function onModuleSelect(event) {
                 selectedMachine = selectedModule.selectedMachines[i].machineName;
             }
 
-            var dropdownOptions = '<option value="">Default (localhost)</option>';
+            var dropdownOptions = '<option value="">Default (local)</option>';
             $.each(machines, function(){
                 dropdownOptions += '<option';
                 if(this.name == selectedMachine)
@@ -550,6 +556,8 @@ function onModuleSelect(event) {
             $("#machineSelectPopupBody > table > tbody").append(tc);
         }
 
+        // Remove old click bind first
+        $("#saveMachineSelectButton").unbind('click');
         $("#saveMachineSelectButton").click(function() {
             // hide dialog
             $("#machineSelectPopup").modal("hide");
@@ -610,8 +618,6 @@ jsPlumb.ready(function() {
             sourceType = connInfo.connection.endpoints[0].getParameter("type");
             targetType = connInfo.dropEndpoint.getParameter("type");
 
-            console.log(sourceType);
-            console.log(targetType);
             if (sourceType != targetType) {
                 if (sourceType == "ANY") {
                     return true;
