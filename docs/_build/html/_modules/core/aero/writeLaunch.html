@@ -196,6 +196,17 @@
         <span class="c"># remap.set(&#39;to&#39;, to_attr)</span>
         <span class="c"># remap.set(&#39;from&#39;, from_attr)</span>
 
+    <span class="k">for</span> <span class="n">machine</span> <span class="ow">in</span> <span class="n">configPart</span><span class="o">.</span><span class="n">machines_to_add</span><span class="p">:</span>
+        <span class="n">machineElement</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">rootElem</span><span class="p">,</span> <span class="s">&#39;machine&#39;</span><span class="p">)</span>
+        <span class="n">machineElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">machineElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;address&#39;</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">hostname</span><span class="p">)</span>
+        <span class="n">machineElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;user&#39;</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+        <span class="n">machineElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;password&#39;</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+        <span class="n">machineElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;env-loader&#39;</span><span class="p">,</span> <span class="s">&#39;~/.viki_env&#39;</span><span class="p">)</span>
+        <span class="c"># machineElement.set(&#39;ros-root&#39;, &#39;/opt/ros/&#39;)</span>
+        <span class="c"># machineElement.set(&#39;ros-package-path&#39;, &#39;~/catkin_ws/&#39;)</span>
+        <span class="c"># machineElement.set(&#39;default&#39;, &#39;false&#39;)</span>
+
     <span class="k">for</span> <span class="n">mod</span> <span class="ow">in</span> <span class="n">configPart</span><span class="o">.</span><span class="n">modules_to_add</span><span class="p">:</span>
         <span class="c"># Loop through executables for specific module</span>
         <span class="k">for</span> <span class="n">ic</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
@@ -247,6 +258,12 @@
             <span class="k">for</span> <span class="n">prefixSearch</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">prefixes</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">prefixSearch</span><span class="o">.</span><span class="n">execid</span> <span class="o">==</span> <span class="n">executable</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
                     <span class="n">node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s">&#39;launch-prefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefixSearch</span><span class="o">.</span><span class="n">prefix</span>
+
+            <span class="c"># find any machine selections</span>
+            <span class="k">for</span> <span class="n">selectionSearch</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">machine_selections</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">selectionSearch</span><span class="o">.</span><span class="n">execid</span>
+                <span class="k">if</span> <span class="n">selectionSearch</span><span class="o">.</span><span class="n">execid</span> <span class="o">==</span> <span class="n">executable</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="n">node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s">&#39;machine&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selectionSearch</span><span class="o">.</span><span class="n">machine_name</span>
 
         <span class="c"># At this point, we end up with some parameters that are not &quot;connected&quot;. Echo those.</span>
         <span class="k">for</span> <span class="n">paramSearch</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">parameters_to_add</span><span class="p">:</span>

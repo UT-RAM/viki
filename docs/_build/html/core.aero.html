@@ -572,6 +572,11 @@ Can be very useful to for instance start a node in debug mode.</p>
 </dd></dl>
 
 <dl class="class">
+<dt id="core.aero.objects.Machine">
+<em class="property">class </em><code class="descclassname">core.aero.objects.</code><code class="descname">Machine</code><span class="sig-paren">(</span><em>name</em>, <em>hostname</em>, <em>username</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Machine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
 <dt id="core.aero.objects.Module">
 <em class="property">class </em><code class="descclassname">core.aero.objects.</code><code class="descname">Module</code><span class="sig-paren">(</span><em>type</em>, <em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Module" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <em>module</em> represents a separately distributable piece of software, that is able to work within the AeroWorks infrastructure.</p>
@@ -750,6 +755,20 @@ and contains an <em>implementation</em> where the :class:Module can be placed.</
 </dd></dl>
 
 <dl class="method">
+<dt id="core.aero.objects.Module_to_add.add_machine_selection">
+<code class="descname">add_machine_selection</code><span class="sig-paren">(</span><em>selection</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Module_to_add.add_machine_selection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Module_to_add.add_machine_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a machine selection object <em>selection</em> to the list of machine selections desired to run</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>selection</strong> &#8211; machine selection object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="core.aero.objects.Module_to_add.add_prefix">
 <code class="descname">add_prefix</code><span class="sig-paren">(</span><em>pf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Module_to_add.add_prefix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Module_to_add.add_prefix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a launch-prefix object <em>pf</em> to the list of prefixes desired to run</p>
@@ -817,6 +836,24 @@ which can in turn contain multiple namespaces.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> &#8211; name of the parameter</li>
 <li><strong>value</strong> &#8211; value of the parameter</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="core.aero.objects.Selected_machine">
+<em class="property">class </em><code class="descclassname">core.aero.objects.</code><code class="descname">Selected_machine</code><span class="sig-paren">(</span><em>executable_id</em>, <em>machine_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Selected_machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Selected_machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>A machine selection defines at what machine the ros_node will run.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>executable_id</strong> &#8211; id of the executable this selection is used for</li>
+<li><strong>machine_name</strong> &#8211; name of the machine</li>
 </ul>
 </td>
 </tr>
