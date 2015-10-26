@@ -422,7 +422,7 @@ function onModuleSelect(event) {
             else {
                 originalCmd = selectedModule.args[i].cmd;
             }
-            var tc = "<tr><td>"+texec.id+"</td><td><input type='text' value=" + originalCmd + "></input></td></tr>";
+            var tc = "<tr><td>"+texec.id+"</td><td><input type='text' class='form-control' value=" + originalCmd + "></input></td></tr>";
             $("#argPopupBody > table > tbody").append(tc);
         }
 
@@ -462,7 +462,7 @@ function onModuleSelect(event) {
             else {
                 originalPrefix = selectedModule.prefixes[i].prefix;
             }
-            var tc = "<tr><td>"+texec.id+"</td><td><input type='text' value=" + originalPrefix + "></input></td></tr>";
+            var tc = "<tr><td>"+texec.id+"</td><td><input type='text' class='form-control' value=" + originalPrefix + "></input></td></tr>";
             $("#prefixPopupBody > table > tbody").append(tc);
         }
 
