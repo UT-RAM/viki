@@ -29,6 +29,7 @@ Contents
    - Installation <installation>
    - Quickstart <quickstart>
    - Features <features>
+   - Distributed systems (ssh doc) <sshdoc>
    contributor
    - Module introduction <modintroduction>
    - Module tutorial <modtutorial>
