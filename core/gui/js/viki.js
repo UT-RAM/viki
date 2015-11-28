@@ -749,11 +749,12 @@ function addOutputsToWindow(moduleId, outputs) {
     }
 };
 
+var current_dragging_module_id;
 function startDrag(ev) {
     saveState();
     ev = ev.originalEvent;
     updateStatus("Dragging module: " + ev.target.id + ".");
-    ev.dataTransfer.setData("moduleId", ev.target.id);
+    current_dragging_module_id = ev.target.id;
 }
 
 function allowDrop(ev) {
@@ -761,11 +762,12 @@ function allowDrop(ev) {
 }
 
 function dropModule(ev) {
+    console.log(current_dragging_module_id);
     updateStatus("Dropped a module to the project-container.");
     ev.preventDefault();
 
     saveState();
-    var modId = ev.dataTransfer.getData('moduleId');
+    modId = current_dragging_module_id;
     addModuleToContainer(modId, ev.pageX, ev.pageY);
 }
 
