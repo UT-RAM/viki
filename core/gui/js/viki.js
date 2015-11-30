@@ -176,8 +176,6 @@ function getProject() {
     $(".window").each(function (idx, elem) {
         var $elem = $(elem);
         var endpoints = jsPlumbInstance.getEndpoints($elem.attr('id'));
-        console.log('endpoints of '+$elem.attr('id'));
-        console.log(endpoints);
         nodes.push({
             blockId: $elem.attr('id'),
             nodetype: $elem.attr('data-nodetype'),
@@ -231,7 +229,6 @@ function openFromJSON(project) {
 
     var connections = flowChart.connections;
     $.each(connections, function( index, elem ) {
-        console.log(elem);
         jsPlumbInstance.connect({
             uuids: [elem.sourceUuid, elem.targetUuid]
         });
@@ -499,7 +496,7 @@ function onModuleSelect(event) {
     }
 
     // save the params in the modulelist
-    $('.form-control').blur(function (event) {
+    $(document).on('blur', 'input.form-control', function (event) {
         var param = {};  // premake object
         param.name = $(this).parent().siblings().text(); // set name
         param.value = $(this).val();  // set value
@@ -885,13 +882,13 @@ function getConfig() {
         // add all parameters and values
         for (var i=0; i<tempmod.executables.length; i++) {
             var exec_i = tempmod.executables[i];
-            for (var j=0; j<exec_i.params.length; j++) {
-                var param = exec_i.params[j];
+            for (var j = 0; j < tempmod.params.length; j++) {
+                var param = tempmod.params[j];
                 var pval = param.default;
                 if (param.value != null) {
                     pval = param.value;
                 }
-                mod.params.push({'name': param.name, 'value':pval});
+                mod.params.push({'name': param.name, 'value': pval});
             }
         }
 
@@ -966,7 +963,6 @@ function getConfigXML(config) {
         var tempMod = config.modsToAdd[i];
         var modXML = document.createElement(tempMod.role);
         modXML.setAttribute("type", tempMod.type);
-        // console.log(tempMod);
         modXML.setAttribute("id", tempMod.id);
 
         // parameters
@@ -975,14 +971,14 @@ function getConfigXML(config) {
             var paramXML = document.createElement('param');
             paramXML.setAttribute('name', param.name);
             paramXML.setAttribute('value', param.value);
-            
+
             /* UGLY HACK WARNING
-            This works, but I don't know why... 
-            The documkent.createElement does not support forcing a close tag, 
+            This works, but I don't know why...
+            The document.createElement does not support forcing a close tag,
             so actually we should write the generation of xml ourselves.
             Here I add an element to the parameter XML, so it will close
             */
-            
+
             var subX = document.createElement('x');
             paramXML.appendChild(subX);
 

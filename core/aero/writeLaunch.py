@@ -23,6 +23,9 @@ def prettify(elem):
     return reparsed.toprettyxml(indent="\t")
 
 
+def getName(obj):
+    return obj.name
+
 def recursiveWrite(configPart, configElem, rootElem, path=''):
     # Loop through modules at current level
     for con in configPart.connections_to_add:
@@ -81,15 +84,19 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
             # Check if one of the parameters that are to be set are present in this executable
             # Todo/problem: params are not defined at executable level, but at module level.
             for paramSearch in mod.parameters_to_add[:]:
+                paramFound = False
                 for paramList in executable.params[:]:
-                    if paramSearch.name == paramList.name and not paramList.name in added_params:
+                    if paramSearch.name == paramList.name:
                         param = ET.SubElement(node, "param", name=paramSearch.name, value=paramSearch.value)
                         # Remove found param from both lists
                         mod.parameters_to_add.remove(paramSearch)
                         added_params.append(paramList.name)
-                        # executable.params.remove(paramList)
-                    else:
-                        print "params did not match"
+                        paramFound = True
+                        break
+                if not paramFound:
+                    print "Error during parameter config: could not find {}".format(paramSearch.name)
+
+            print "Added parameters: {}".format(added_params)
 
             # At this point, we also have the default parameters we should fill. loop again.
             for paramList in executable.params:
