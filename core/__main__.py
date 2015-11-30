@@ -47,7 +47,6 @@ class Global(object):
 def main():
     start_gtk_thread()
     corePID = 0
-    # ros_master_hostname = "localhost"
 
     # Create a proper file:// URL pointing to demo.xhtml:
     file = os.path.abspath('core/gui/VIKI_main.html')
