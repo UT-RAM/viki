@@ -139,13 +139,18 @@ def launch_browser(uri, quit_function=None, echo=True):
     browser = implementation.create_browser()
     browser.get_settings().set_property("enable-developer-extras", True)
 
-    box = gtk.VBox(homogeneous=False, spacing=0)
-    window.add(box)
+    sw = gtk.ScrolledWindow()
+    sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_NEVER)
+    sw.add(browser)
+
+    # box = gtk.VBox(homogeneous=False, spacing=0)
+    window.add(sw)
 
     inspector = browser.get_web_inspector()
     inspector.connect("inspect-web-view", activate_inspector)
 
     if quit_function is not None:
+            # TODO: Fix this for the scrollable window, since the Box function isn't being used anymore
             # Obligatory "File: Quit" menu
             # {
             file_menu = gtk.Menu()
@@ -168,12 +173,12 @@ def launch_browser(uri, quit_function=None, echo=True):
             file_item.set_submenu(file_menu)
             menu_bar.append(file_item)
             # }
-            box.pack_start(menu_bar, expand=False, fill=True, padding=0)
+            # box.pack_start(menu_bar, expand=False, fill=True, padding=0)
 
     if quit_function is not None:
         window.connect('destroy', quit_function)
 
-    box.pack_start(browser, expand=False, fill=False, padding=0)
+    # box.pack_start(browser, expand=False, fill=False, padding=0)
 
     window.set_default_size(800, 600)
     window.show_all()
