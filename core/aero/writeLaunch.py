@@ -5,6 +5,7 @@ import time
 import random
 from objects import *
 from helpers import *
+import pprint
 
 
 def write(configuration, filename="aeroworks.launch"):
@@ -65,17 +66,17 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
             to_attr = path + '/' + lookupInternal(ic.publisher, mod)
 
             # THIS IS THE NEW REMAP
-            # relayElement = ET.SubElement(rootElem, 'node')
-            # relayElement.set('name', '$(anon remap_' +  str(random.random()) + ')')
-            # relayElement.set('pkg', 'topic_tools')
-            # relayElement.set('type', 'relay')
-            # relayElement.set('args', to_attr + ' ' + from_attr)
-            # relayElement.set('ns', 'remaps')
+            relayElement = ET.SubElement(rootElem, 'node')
+            relayElement.set('name', '$(anon remap_{})'.format(str(random.random())))
+            relayElement.set('pkg', 'topic_tools')
+            relayElement.set('type', 'relay')
+            relayElement.set('args', to_attr + ' ' + from_attr)
+            relayElement.set('ns', 'remaps')
 
             # THIS IS THE OLD REMAP
-            remap = ET.SubElement(rootElem, "remap")
-            remap.set('to', to_attr)
-            remap.set('from', from_attr)
+            # remap = ET.SubElement(rootElem, "remap")
+            # remap.set('to', to_attr)
+            # remap.set('from', from_attr)
 
         added_params = []
         for executable in mod.implementation.executables:
@@ -133,13 +134,18 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
 
 
 def lookup(configPart, string, path):
-    print 'Lookup started'
+    pprint.pprint(configPart.namespaces)
+    pprint.pprint(configPart.modules_to_add)
+    pprint.pprint(string)
+    pprint.pprint(path)
+
     # Split string in parts (basically the address)
     parts = string.split('/')
     # If the number of parts is smaller than two, something is wrong. More is possible (but not recommended)
     if len(parts) < 2:
         raise Exception("Incorrect connect-statement")
     connectionString = ''
+
     # Keep checking if the first part of the connection string matches a namespace. If so: add it to the final connection string and pop it off.
     at_end = False
     while at_end is False:
@@ -152,6 +158,7 @@ def lookup(configPart, string, path):
                 parts.pop(0)
         if matchFound is False:
             at_end = True
+
     # Correct namespace is found, now find node name
     for mod in configPart.modules_to_add:
         if mod.id == parts[0]:
@@ -160,7 +167,7 @@ def lookup(configPart, string, path):
                 if con.name == parts[1]:
                     linkparts = con.link.split('/')
                     linkparts[0] = mod.id + '_' + linkparts[0]
-                    connectionString += linkparts[0] + '/' + "/".join(linkparts[1:])
+                    connectionString += linkparts[0] + '/' + linkparts[0] + '/' + "/".join(linkparts[1:])
                     break
             break
     return path + '/' + connectionString
@@ -169,5 +176,10 @@ def lookupInternal(string, mod):
     parts = string.split('/')
     if len(parts) < 2:
         raise Exception("Incorrect connect-statement")
-    parts[-len(parts)] = mod.id + "_" + parts[-len(parts)]
+
+    exec_id = parts[0]
+    parts[0] = ''
+    if exec_id != 'joystick_node': #TODO: This is an ugly hack, somehow we should make it possible to use 'root' namespaces
+        parts[0] = '{}_{}/'.format(mod.id, exec_id)
+    parts[0] += mod.id + "_" + exec_id
     return "/".join(parts)
