@@ -257,7 +257,7 @@ function updateModules(modulelist) {
         if (x.type < y.type) return -1;
         if (y.type < x.type) return 1;
         return 0;
-    })
+    });
     showModulesInPalette(modules);
     initPalette();
     updateStatus('Updated module panel.')
