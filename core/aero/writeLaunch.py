@@ -166,8 +166,12 @@ def lookup(configPart, string, path):
             for con in interfaces:
                 if con.name == parts[1]:
                     linkparts = con.link.split('/')
-                    linkparts[0] = mod.id + '_' + linkparts[0]
-                    connectionString += linkparts[0] + '/' + linkparts[0] + '/' + "/".join(linkparts[1:])
+                    exec_id = linkparts[0]
+
+                    linkparts[0] = ''
+                    if exec_id not in ['usb_cam']:
+                        connectionString += mod.id + '_' + exec_id + '/'
+                    connectionString += mod.id + '_' + exec_id + '/' + "/".join(linkparts[1:])
                     break
             break
     return path + '/' + connectionString
@@ -179,7 +183,7 @@ def lookupInternal(string, mod):
 
     exec_id = parts[0]
     parts[0] = ''
-    if exec_id != 'joystick_node': #TODO: This is an ugly hack, somehow we should make it possible to use 'root' namespaces
+    if exec_id not in ['joystick_node', 'image_raw']: #TODO: This is an ugly hack, somehow we should make it possible to use 'root' namespaces
         parts[0] = '{}_{}/'.format(mod.id, exec_id)
     parts[0] += mod.id + "_" + exec_id
     return "/".join(parts)
