@@ -488,7 +488,13 @@ function onModuleSelect(event) {
         var exe = selectedModule.executables[i];
         for (var j=0; j < exe.params.length; j++) {
             var param = exe.params[j];
-            tbody.append('<tr><th>'+ param.name +'</th><td><input class="form-control" type="text" value="'+param.default+'"/></td></tr>');
+            var default_value = param.default;
+            for (set_param in selectedModule.params) {
+                if (selectedModule.params[set_param].name == param.name) {
+                    default_value = selectedModule.params[set_param].value;
+                }
+            }
+            tbody.append('<tr><th>'+ param.name +'</th><td><input class="form-control" type="text" value="'+default_value+'"/></td></tr>');
         }
     }
     if (tbody.html() == '') {
