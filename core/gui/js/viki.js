@@ -395,7 +395,7 @@ function keyPressed(event) {
 
 function onModuleSelect(event) {
     var selectedModule = getModuleByUWindowId(selectedModuleUid);
-    $('p#selectedWindowInfo').html("<h3>"+selectedModule.id+"</h3>"+
+    $('p#selectedWindowInfo').html("<h3>"+selectedModule.meta.name+"</h3>"+
             "<button class='btn btn-default' id='argButton' data-toggle='modal' data-target='#argPopup'>Add/edit arguments</button>"+
             "<br><button class='btn btn-default' id='prefixButton' data-toggle='modal' data-target='#prefixPopup'>Add/edit prefixes</button>"+
             "<br><button class='btn btn-default' id='machineSelectButton' data-toggle='modal' data-target='#machineSelectPopup'>Select machine</button></br>"+
@@ -555,7 +555,7 @@ function onModuleSelect(event) {
                 dropdownOptions += ' value='+this.name+'>'+this.name+'</option>';
             });
 
-            var tc = "<tr><td>"+texec.id+'</td><td><select data-exec="'+texec.id+'">' + dropdownOptions + "></select></td></tr>";
+            var tc = "<tr><td>"+texec.id+'</td><td><select data-exec="'+texec.id+'" class="form-control">' + dropdownOptions + "></select></td></tr>";
             $("#machineSelectPopupBody > table > tbody").append(tc);
         }
 

@@ -170,7 +170,7 @@ def lookup(configPart, string, path):
 
                     linkparts[0] = ''
                     #TODO: invert this, use root as the default topic root, and provide possibility to define namespace in the module.xml
-                    if exec_id not in ['usb_cam', 'cmd_vel_merge', 'cmd_vel_lin_invert']:
+                    if exec_id not in ['usb_cam', 'cmd_vel_merge', 'cmd_vel_lin_invert', 'turtle_teleop_node', 'turtlenode']:
                         connectionString += mod.id + '_' + exec_id + '/'
                     connectionString += mod.id + '_' + exec_id + '/' + "/".join(linkparts[1:])
                     break
