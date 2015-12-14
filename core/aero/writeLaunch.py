@@ -169,7 +169,8 @@ def lookup(configPart, string, path):
                     exec_id = linkparts[0]
 
                     linkparts[0] = ''
-                    if exec_id not in ['usb_cam']:
+                    #TODO: invert this, use root as the default topic root, and provide possibility to define namespace in the module.xml
+                    if exec_id not in ['usb_cam', 'cmd_vel_merge', 'cmd_vel_lin_invert']:
                         connectionString += mod.id + '_' + exec_id + '/'
                     connectionString += mod.id + '_' + exec_id + '/' + "/".join(linkparts[1:])
                     break
@@ -183,7 +184,7 @@ def lookupInternal(string, mod):
 
     exec_id = parts[0]
     parts[0] = ''
-    if exec_id not in ['joystick_node', 'image_raw']: #TODO: This is an ugly hack, somehow we should make it possible to use 'root' namespaces
+    if exec_id not in ['joystick_node']: #TODO: This is an ugly hack, somehow we should make it possible to use 'root' namespaces
         parts[0] = '{}_{}/'.format(mod.id, exec_id)
     parts[0] += mod.id + "_" + exec_id
     return "/".join(parts)
