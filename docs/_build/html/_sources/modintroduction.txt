@@ -3,7 +3,7 @@
 Introduction to modules
 =======================
 
-VIKI comes with (a currently not so) wide range of modules. To be able to use your own ROS packages within VIKI you need to create a module description for your package. This description is a module.xml file which describes the inputs and outputs and meta data. Besides that, you can combine different ROS packages into one module to make your life easier!
+VIKI comes with (a currently not so) wide range of modules. As an engineer, you probably want to use your own functionality within VIKI. To do this, you will have to write a ROS package and enable it for VIKI by creating a *module.xml* file. This file is a module description for your package which describes the inputs, outputs, executables and meta data. This guide assumes you already have a ROS package (or multiple of them) that you want to use within VIKI. For creating new ROS packages for use in VIKI, it is useful to follow some guidelines, which can be found at :ref:`package_guidelines`.
 
 A module file is standard XML and generally looks like this:
 
@@ -178,7 +178,8 @@ Modules can be split up into two categories:
 Of course, the bigger the first category, the more useful VIKI will be. We highly encourage user modules to be included in the ram module list. When you have made something cool let us know, and we might add it. 
 
 guidelines
-^^^^^^^^^^
+""""""""""
+
 When writing a (ROS package for a) VIKI module you **must**:
 
 * Use catkin for building your package
@@ -190,11 +191,14 @@ User modules can be written anwhere you like on your system. You can then add th
 Since VIKI is really modular, it is encouraged to use multiple ROS packages for your project. These are no hard guidelines, but to be useful they should be followed:
 
 Your module **must**:
+
 * Publish its topics in its own namespace (so no '/' at the start of your topic name). 
 
 Your module **should**
+
 * Have a clear (and preferably short) answer to the question: 'What is the task of this module?'
 
 Your ROS package/node **should**:
+
 * Live in the same folder as the module.xml file
 * Have clear documentation within the code

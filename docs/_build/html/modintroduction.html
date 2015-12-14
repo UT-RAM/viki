@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Introduction to modules &mdash; VIKI 1.0 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,10 +30,12 @@
   
 
   
-    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/> 
+    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Tutorial on module.xml writing" href="modtutorial.html"/>
+        <link rel="prev" title="Contributor’s documentation" href="contributor.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -45,8 +47,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="index.html" class="fa fa-home"> VIKI</a>
+
         
+          <a href="index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
         
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -55,46 +63,91 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
           
           
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">- Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-using-install-script">Install using install script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">- Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">- Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#supported">Supported</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#currently-unsopported">Currently unsopported</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sshdoc.html">- Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">- Module introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-outline">General outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#meta">Meta</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#executables">Executables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#guidelines">guidelines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modtutorial.html">- Module tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modtutorial.html#advanced-examples">Advanced examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer&#8217;s guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#updating-documentation">Updating documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="framework_description.html">- Framework description</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="framework_description.html#configuration">Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute-and-get-to-work">How to contribute and get to work</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="howtoconfig.html">Configuration writing guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">core</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="core.html">core package</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="virtualbox.html">Difficulties with virtualbox</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#joystick-related">Joystick related</a></li>
-<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#connecting-to-a-wireless-network">Connecting to a wireless network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">- System overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">- API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
 </ul>
 </li>
 </ul>
@@ -124,7 +177,9 @@
     <li>Introduction to modules</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/modintroduction.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/modintroduction.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -134,7 +189,7 @@
             
   <div class="section" id="introduction-to-modules">
 <span id="modintroduction"></span><h1>Introduction to modules<a class="headerlink" href="#introduction-to-modules" title="Permalink to this headline">¶</a></h1>
-<p>VIKI comes with (a currently not so) wide range of modules. To be able to use your own ROS packages within VIKI you need to create a module description for your package. This description is a module.xml file which describes the inputs and outputs and meta data. Besides that, you can combine different ROS packages into one module to make your life easier!</p>
+<p>VIKI comes with (a currently not so) wide range of modules. As an engineer, you probably want to use your own functionality within VIKI. To do this, you will have to write a ROS package and enable it for VIKI by creating a <em>module.xml</em> file. This file is a module description for your package which describes the inputs, outputs, executables and meta data. This guide assumes you already have a ROS package (or multiple of them) that you want to use within VIKI. For creating new ROS packages for use in VIKI, it is useful to follow some guidelines, which can be found at <a class="reference internal" href="package_guidelines.html#package-guidelines"><span>ROS package guidelines</span></a>.</p>
 <p>A module file is standard XML and generally looks like this:</p>
 <div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- AEROWORKS --&gt;</span>
 <span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;sensor&quot;</span> <span class="na">id=</span><span class="s">&quot;camera_source&quot;</span><span class="nt">&gt;</span>
@@ -288,6 +343,8 @@
 <li><strong>User modules</strong>: These modules are created by users, like you. These modules are project specific and should live only on your own filesystem. These modules should live in the &#8216;contrib&#8217; folder within aeroworks. These are used for your own testing and will probably contain bugs until you finished your assignment.</li>
 </ul>
 <p>Of course, the bigger the first category, the more useful VIKI will be. We highly encourage user modules to be included in the ram module list. When you have made something cool let us know, and we might add it.</p>
+<div class="section" id="guidelines">
+<h3>guidelines<a class="headerlink" href="#guidelines" title="Permalink to this headline">¶</a></h3>
 <p>When writing a (ROS package for a) VIKI module you <strong>must</strong>:</p>
 <ul class="simple">
 <li>Use catkin for building your package</li>
@@ -296,13 +353,20 @@
 </ul>
 <p>User modules can be written anwhere you like on your system. You can then add them to the module-directory in the VIKI-root via for instance a symbolic link. You can also chose to make them directly in the modules folder.</p>
 <p>Since VIKI is really modular, it is encouraged to use multiple ROS packages for your project. These are no hard guidelines, but to be useful they should be followed:</p>
-<p>Your module <strong>must</strong>:
-* Publish its topics in its own namespace (so no &#8216;/&#8217; at the start of your topic name).</p>
-<p>Your module <strong>should</strong>
-* Have a clear (and preferably short) answer to the question: &#8216;What is the task of this module?&#8217;</p>
-<p>Your ROS package/node <strong>should</strong>:
-* Live in the same folder as the module.xml file
-* Have clear documentation within the code</p>
+<p>Your module <strong>must</strong>:</p>
+<ul class="simple">
+<li>Publish its topics in its own namespace (so no &#8216;/&#8217; at the start of your topic name).</li>
+</ul>
+<p>Your module <strong>should</strong></p>
+<ul class="simple">
+<li>Have a clear (and preferably short) answer to the question: &#8216;What is the task of this module?&#8217;</li>
+</ul>
+<p>Your ROS package/node <strong>should</strong>:</p>
+<ul class="simple">
+<li>Live in the same folder as the module.xml file</li>
+<li>Have clear documentation within the code</li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -310,18 +374,27 @@
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modtutorial.html" class="btn btn-neutral float-right" title="Tutorial on module.xml writing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="contributor.html" class="btn btn-neutral" title="Contributor’s documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst.
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
     </p>
   </div>
-
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
+
 </footer>
+
         </div>
       </div>
 

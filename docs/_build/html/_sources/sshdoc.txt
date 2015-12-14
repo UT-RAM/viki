@@ -3,17 +3,17 @@
 Distributed systems (SSH documentation)
 =======================================
 
-VIKI allows you to run nodes on several computers, it does not even be installed on the other systems. There are however some network requirements that can be tedious to setup. Below there is one way to set up your distributed system, there are however more possibilities (if you are an advanced user).
+VIKI allows you to run nodes on several computers, it does not even be installed on the other systems. Since VIKI builds on top of ROS, the distributed functionality of ROS can be used. For this to work, there are some network requirements that can be tedious to setup. This guide helps you in setting up these requirements in order for the network to work. Below there is one way to set up your distributed system, there are however more possibilities (if you are an advanced user).
 
 Setting up the network
 ----------------------
-Ros works by running a ros master, or roscore, on one system. All other systems connect to it via it's location that is saved in the *ROS_MASTER_URI* environment variable. Other computers on the network are found by using there name. Furthermore all ports need to be open as ROS opens a new connection for every topic on a random port.
+ROS works by running a ros master, or roscore, on one system. All other systems connect to it via it's location that is saved in the *ROS_MASTER_URI* environment variable. Other computers on the network are found by using their name. Furthermore all ports need to be open as ROS opens a new connection for every topic on a random port.
 
-First we make sure we can communicate bidirectionally between systems. As an example take a computer named Ash and a computer named Pikachu. Ash will be the main computer where we run VIKI. Pikachu will be the remote computer (with ros, but without VIKI). There can be more computers like Pikachu (with different names!) but in this guide we will describe just one.
+First we make sure we can communicate bidirectionally between systems. As an example take a computer named Ash and a computer named Pikachu. Ash will be the main computer where we run VIKI. Pikachu will be the remote computer (with ROS, but without VIKI). There can be more computers like Pikachu (with different names!) but in this guide we will describe just one.
 
 Network connection
 ******************
-Make sure your computers are connected to the same network. This can be done by connecting to the same wireless or wired network. In virtualbox this can be achieved by adding an extra 'internal' network adapter.
+Make sure your computers are connected to the same network. This can be done by connecting to the same wireless or wired network. If you're running ROS in a VM, like VirtualBox, this can be achieved by adding an extra 'internal' network adapter.
 
 Finding computer names
 **********************
@@ -33,17 +33,21 @@ Now we need to find the IP adresses of both computers. Open a terminal and run
 	
 	ifconfig
 
-You will get some feedback on the network connections that you have open. Find the adapter that is connected to the network you are going to use and look for *inet addr:*. Behind it will be a number that looks like *192.168.1.10*. Remember this for both computers.
+You will get some feedback on the network connections that you have open. Find the adapter that is connected to the network you are going to use and look for *inet addr:*. Behind it will be a number that looks like *192.168.1.10*. Keep these values in mind, since we will need them for configuration later on.
 
-You might also want to make both systems have a static IP adress so that you do not have to reconfigere after a computer loses network connection (because most of the time IP adresses are redistributed by a DHCP server, and so it might change over time). A google search on *set static IP-adress* will help you with this.
+Note: IP addressses of computers are usually dynamic, meaning they will change over time. To keep yourself from reconfiguring this all the time, you might also want to make both systems have a static IP address. For ubuntu, some more information can be found `here <https://help.ubuntu.com/lts/serverguide/network-configuration.html>`_.
 
 Setting hostnames
 *****************
-Open a new terminal and run
+To make sure the computers can find each other, they need to be able to resolve the hostname to an IP address. When there is a DNS running on your network, you might use this to resolve the hostnames. If not, you will have to add records to the hosts file of each computer. To do this:
+
+Open a new terminal and start editing the hosts file, e.g. run
 
 .. code-block:: bash
 
 	sudo gedit /etc/hosts
+
+to edit the file with gedit.
 
 The top line of this file says something like
 
@@ -51,7 +55,7 @@ The top line of this file says something like
 
 	127.0.0.1      localhost
 
-For every computer in the distributed setup you are going to use add a line that has the IP-adress of the computer, some space separation, and it's name. In our case the first three lines of the file will look like this
+This line resolves the 'localhost' to 127.0.0.1. For every computer, we will need such an entry as well. For each computer in the network that you want to use, add a line that has the IP address of the computer, some space separation, and it's hostname. In our case the first three lines of the file will look like this
 
 .. code-block:: bash
 
@@ -61,7 +65,7 @@ For every computer in the distributed setup you are going to use add a line that
 
 Testing
 *******
-You can test if you found the right IP adress and if communication is possible by running
+When these steps are defined, the computers should be able to find each other. You can test if you found the right IP adress and if communication is possible by running
 
 .. code-block:: bash
 
@@ -117,7 +121,7 @@ Your computer keeps a list of computers you can connect to called *known_hosts*.
 
 This will add both the username and the ip adress and the combination ot the known_hosts file, so that you can acces it either way.
 
-At this point you should be able to run anything you want on the remote computer by using VIKI. However by default SSH session are not 'visible' on the remote PC. They just sort of run on the background. To for instance open a screen on the remote machine you need to run things in it's X server. VIKI uses an environment loader for this.
+At this point you should be able to run anything you want on the remote computer by using VIKI. However by default SSH session are not 'visible' on the remote PC. They just run in the background. To for instance open a screen on the remote machine you need to run nodes in it's X server. VIKI uses an environment loader for this.
 
 Creating the environment file
 *****************************

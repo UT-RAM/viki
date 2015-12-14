@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Installation &mdash; VIKI 1.0 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,10 +30,12 @@
   
 
   
-    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/> 
+    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Quick start guide" href="quickstart.html"/>
+        <link rel="prev" title="User’s documentation" href="user.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -45,8 +47,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="index.html" class="fa fa-home"> VIKI</a>
+
         
+          <a href="index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
         
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -55,53 +63,91 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
           
           
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">- Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-using-install-script">Install using install script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-repositories">Module repositories</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">- Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">- Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#supported">Supported</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#currently-unsopported">Currently unsopported</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sshdoc.html">- Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modintroduction.html">- Module introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#guidelines">guidelines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modtutorial.html">- Module tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modtutorial.html#advanced-examples">Advanced examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer&#8217;s guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#updating-documentation">Updating documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="framework_description.html">- Framework description</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="framework_description.html#configuration">Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="userguide.html">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#system-setup">System setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#quick-start-guide">Quick start guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="userguide.html#how-to-contribute-and-get-to-work">How to contribute and get to work</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="howtoconfig.html">Configuration writing guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="howtoconfig.html#writing-configuration-tutorials">Writing configuration tutorials</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="howtomod.html">Module writing guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#introduction-to-modules">Introduction to modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#best-practices-for-writing-modules">Best practices for writing modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#tutorial-on-module-xml-writing">Tutorial on module.xml writing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="howtomod.html#description-of-module-attributes-and-tags">description of module attributes and tags</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">core</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="core.html">core package</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="virtualbox.html">Difficulties with virtualbox</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#joystick-related">Joystick related</a></li>
-<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#connecting-to-a-wireless-network">Connecting to a wireless network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">- System overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">- API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
 </ul>
 </li>
 </ul>
@@ -131,7 +177,9 @@
     <li>Installation</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/installation.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/installation.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -141,18 +189,48 @@
             
   <div class="section" id="installation">
 <span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>You can get VIKI either by using the installscript, or manually. For manual installation you can scroll down to <a class="reference internal" href="#manual-installation">Manual Installation</a>. Either way though, you need the requirements listed below.</p>
+<p>You can get VIKI either by using the installscript, or manually. For manual installation you can scroll down to <a class="reference internal" href="#manual-installation">Manual Installation</a>. Either way though, you need the requirements listed below. This installation guide assumes you have installed ROS already. If you have not done this, follow <a class="reference external" href="http://wiki.ros.org/jade/Installation/Ubuntu">this guide</a> to install it.</p>
+<p>If you have already a catkin workspace, VIKI could be installed under that workspace. However, we recommend to install VIKI in its own <strong>seperate workspace</strong>. ROS packages that are not defined as a module can not be used anyway in VIKI and setting up a new workspace allows for a clean installation with up-to-date package versions. If you just want some functionality from the modules of VIKI, while not using the GUI, you can also just get a module repository and use ROS packages directly in your base workspace.</p>
+<p>VIKI consists of a core and at least one module repository. Right now, there is only one main repository, but this design makes it easy to create your own repository of modules for use easy sharing. This installation will setup the core and the main module repository for you. Adding extra module respositories is quite easy and discussed in <a class="reference internal" href="#module-repositories">Module repositories</a>.</p>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>VIKI uses ROS for all its main functionality and therefore builds on top of those dependencies. In line with ROS, VIKI only supports Ubuntu as its platform and is tested on 12.04 and 14.04. Other Ubuntu (and even Linux) distributions might work just as well, but are not supported.</p>
 </div>
-<div class="section" id="install-using-installscript">
-<h2>Install using installscript<a class="headerlink" href="#install-using-installscript" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-using-install-script">
+<h2>Install using install script<a class="headerlink" href="#install-using-install-script" title="Permalink to this headline">¶</a></h2>
+<p>You can easily install VIKI by running this script. This script will also create its own workspace. This will automatically install dependency packages for VIKI itself and install the basic set of modules. To be able to use these modules, some extra ROS packages are needed as well, which will also be installed.</p>
 </div>
 <div class="section" id="manual-installation">
 <h2>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this headline">¶</a></h2>
+<p>You can manually install VIKI by pulling the coderepository of the core into your catkin workspace. First, make sure to install the dependencies of VIKI</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Finish this part about the manual installation</p>
 </div>
-<div class="section" id="getting-modules">
-<h2>Getting modules<a class="headerlink" href="#getting-modules" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install python python-webkit python-gtk2 python-wstool python-rosinstall
+</pre></div>
+</div>
+<p>The VIKI repository can be found at:</p>
+<div class="highlight-python"><div class="highlight"><pre>https://hg.ram.ewi.utwente.nl/viki
+</pre></div>
+</div>
+<p>Pull this repository in by executing</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd </span>catkin_ws/src
+hg clone https://hg.ram.ewi.utwente.nl/viki
+</pre></div>
+</div>
+<p>This main module repository can be found at:</p>
+<div class="highlight-python"><div class="highlight"><pre>https://hg.ram.ewi.utwente.nl/viki_modules
+</pre></div>
+</div>
+<p>Clone the VIKI repository and the VIKI modules repository in the src folder of your workspace. Then create a symbolic link from src/viki/modules to src/viki_modules. This link allowes you to easily change the set of modules, while not touching the VIKI core repository.</p>
+</div>
+<div class="section" id="module-repositories">
+<h2>Module repositories<a class="headerlink" href="#module-repositories" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">Module repositories, explanation, how to add new ones</p>
+</div>
 </div>
 </div>
 
@@ -160,18 +238,27 @@
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quick start guide" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user.html" class="btn btn-neutral" title="User’s documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst.
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
     </p>
   </div>
-
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
+
 </footer>
+
         </div>
       </div>
 
