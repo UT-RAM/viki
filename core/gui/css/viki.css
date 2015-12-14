@@ -16,7 +16,6 @@ body {
     border-radius: 0.5em;
     opacity: 0.8;
     filter: alpha(opacity=80);
-    line-height: 80px;
     cursor: pointer;
     text-align: center;
     z-index: 20;
@@ -132,13 +131,13 @@ body {
 }
 
 .project-container .window .window_label {
-    position: absolute;
     font-weight: bold;
-    width: 100%;
-    top: -50px;
-    left: 0;
     display: block;
     text-align: center;
+    position:absolute;
+    top: 100%;
+    left: -100%;
+    width: 300%;
 }
 
 ul {
