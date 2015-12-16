@@ -494,7 +494,7 @@ function onModuleSelect(event) {
                     default_value = selectedModule.params[set_param].value;
                 }
             }
-            tbody.append('<tr><th>'+ param.name +'</th><td><input class="form-control" type="text" value="'+default_value+'"/></td></tr>');
+            tbody.append('<tr><th>'+ param.name +'</th><td><input class="form-control" type="text" value="'+default_value+'" data-targetmoduleuid="'+selectedModuleUid+'"/></td></tr>');
         }
     }
     if (tbody.html() == '') {
@@ -503,14 +503,16 @@ function onModuleSelect(event) {
 
     // save the params in the modulelist
     $(document).on('blur', 'input.form-control', function (event) {
+        var targetModule = getModuleByUWindowId($(this).data('targetmoduleuid'));
+
         var param = {};  // premake object
         param.name = $(this).parent().siblings().text(); // set name
         param.value = $(this).val();  // set value
 
         // check if the parameter has been set before
         var parameterWasSetBefore = false;
-        for (var i=0; i<selectedModule.params.length; i++) {
-            var setParam = selectedModule.params[i];
+        for (var i=0; i<targetModule.params.length; i++) {
+            var setParam = targetModule.params[i];
             if (setParam.name == param.name) {
                 // update value if it has been set
                 setParam.value = param.value;
@@ -519,7 +521,7 @@ function onModuleSelect(event) {
         }
         if (parameterWasSetBefore == false) {
             // add if it hasnt been set
-            selectedModule.params.push(param);
+            targetModule.params.push(param);
         }
     });
 
@@ -765,7 +767,6 @@ function allowDrop(ev) {
 }
 
 function dropModule(ev) {
-    console.log(current_dragging_module_id);
     updateStatus("Dropped a module to the project-container.");
     ev.preventDefault();
 
