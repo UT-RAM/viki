@@ -776,7 +776,7 @@ function addOutputsToWindow(moduleId, outputs) {
     }
 };
 
-var current_dragging_module_id;
+var current_dragging_module_id = null;
 function startDrag(ev) {
     saveState();
     ev = ev.originalEvent;
@@ -789,12 +789,17 @@ function allowDrop(ev) {
 }
 
 function dropModule(ev) {
+    // first check if we started dragging a module
+    if (current_dragging_module_id == null) {
+        return null;
+    }
+
     updateStatus("Dropped a module to the project-container.");
     ev.preventDefault();
 
     saveState();
-    modId = current_dragging_module_id;
-    addModuleToContainer(modId, ev.pageX, ev.pageY);
+    addModuleToContainer(current_dragging_module_id, ev.pageX, ev.pageY);
+    current_dragging_module_id = null;
 }
 
 function addModuleToContainer(modId, _x, _y, uModId) {
@@ -1059,7 +1064,8 @@ function getConfigXML(config) {
     updateStatus("Done!");
     // return
     return configXML.outerHTML;
-    send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));    
+    // TODO: Should the line below be there?
+    //send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));
 }
 
 function setLocalHostName(hostName) {
