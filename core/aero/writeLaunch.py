@@ -159,7 +159,8 @@ def lookup(configPart, string, path):
         if matchFound is False:
             at_end = True
 
-    # Correct namespace is found, now find node name
+    # Correct namespace is found, now find node name,
+    # basiaclly replacing <executable_id> with <running namespace of executable>
     for mod in configPart.modules_to_add:
         if mod.id == parts[0]:
             interfaces = mod.implementation.outputs+mod.implementation.inputs
@@ -168,9 +169,16 @@ def lookup(configPart, string, path):
                     linkparts = con.link.split('/')
                     exec_id = linkparts[0]
 
+                    if len(linkparts) > 1:
+                        print "The link name is longer than expected, VIKI has not yet full support for this. Please check your module file: {}".format(mod.id)
+
+                    executable = mod.implementation.getExecutable(exec_id)
+                    executable_interface = executable.getInterface(linkparts[1])
+
                     linkparts[0] = ''
-                    #TODO: invert this, use root as the default topic root, and provide possibility to define namespace in the module.xml
-                    if exec_id not in ['usb_cam', 'cmd_vel_merge', 'cmd_vel_lin_invert', 'turtle_teleop_node', 'turtlenode']:
+
+                    # Fallback to extend namespace if the ROS topic is defined private
+                    if executable_interface.namespace == "private":
                         connectionString += mod.id + '_' + exec_id + '/'
                     connectionString += mod.id + '_' + exec_id + '/' + "/".join(linkparts[1:])
                     break
@@ -183,8 +191,11 @@ def lookupInternal(string, mod):
         raise Exception("Incorrect connect-statement")
 
     exec_id = parts[0]
+    executable = mod.implementation.getExecutable(exec_id)
+    executable_interface = executable.getInterface("/".join(parts[1:]))
+
     parts[0] = ''
-    if exec_id not in ['joystick_node']: #TODO: This is an ugly hack, somehow we should make it possible to use 'root' namespaces
+    if executable_interface.namespace == "private":
         parts[0] = '{}_{}/'.format(mod.id, exec_id)
     parts[0] += mod.id + "_" + exec_id
     return "/".join(parts)

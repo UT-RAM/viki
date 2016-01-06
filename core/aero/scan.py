@@ -102,7 +102,10 @@ def getAvailableModules():
                                     oName = gInput.attributes['name'].value
                                     oMessageType = gInput.attributes['message_type'].value
                                     oRequired = getOptionalAttribute(gInput, 'required')
-                                    interface = Interface(oType, oName, oMessageType, oRequired)
+                                    oNamespace = "base"
+                                    if gInput.hasAttribute('namespace'):
+                                        oNamespace = gInput.attributes['namespace'].value
+                                    interface = Interface(oType, oName, oMessageType, oRequired, namespace=oNamespace)
                                     executableObject.addInput(interface)
 
                             # EXECUTABLE OUTPUTS
@@ -114,7 +117,10 @@ def getAvailableModules():
                                     oName = gOutput.attributes['name'].value
                                     oMessageType = gOutput.attributes['message_type'].value
                                     oRequired = getOptionalAttribute(gOutput, 'required')
-                                    interface = Interface(oType, oName, oMessageType, oRequired)
+                                    oNamespace = "base"
+                                    if gOutput.hasAttribute('namespace'):
+                                        oNamespace = gOutput.attributes['namespace'].value
+                                    interface = Interface(oType, oName, oMessageType, oRequired, namespace=oNamespace)
                                     executableObject.addOutput(interface)
 
                             # PARAMS
