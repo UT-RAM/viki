@@ -286,27 +286,49 @@ function showModulesInPalette(modules) {
             '<p class="type">type: '+module.type+'</p>'+
             '</li>');        
     });
-} 
 
+    var module_els = $(".module_palette");
+    module_els.attr({"draggable" : "true"});
+    module_els.on("dragstart", startDrag);
+}
+
+/**
+ * Filter modules in a smart way,
+ * @param event
+ */
 function filterModules(event) {
-    var filter = $(this).val();
-    if (filter == '') {
-        $('.module_palette').slideDown(200);
-    }
-    $('.module_palette').filter(':not(:contains('+filter+'))').slideUp(200);
-    var filtered_modules = $('.module_palette').filter(':contains('+filter+')').slideDown(200);
+    showModulesInPalette([]);
 
-    if (filtered_modules.length == 1) {
-        $('#help-text-single-module-filter').show();
-    } else {
-        $('#help-text-single-module-filter').hide();
+    var filter = $(this).val().toLowerCase();
+    if (filter == '') {
+        $('.module_palette').slideDown(modules);
     }
+
+    filtered_modules = [[], [], [], []];
+
+    // check for each module if it maches the searching criteria,
+    // and sort these in the right array, based on priority of the search field
+    modules.forEach(function(module) {
+        search_fields = [module.meta.name, module.id, module.meta.description, module.type];
+        for (var i=0; i<search_fields.length; i++) {
+            sfield = search_fields[i];
+            if (sfield == undefined) continue;
+            if (sfield.toLowerCase().indexOf(filter) != -1) {
+                filtered_modules[i].push(module);
+                break;
+            }
+        }
+    });
+
+    modules_to_show = filtered_modules[0].concat(filtered_modules[1], filtered_modules[2], filtered_modules[3]);
+    showModulesInPalette(modules_to_show);
 
     if (event.which == 13) {
-        if (filtered_modules.length == 1) {
+
+        if (modules.length == 1) {
             var x = 50 + $('.project-container').offset().left + Math.random() * ($('.project-container').width() - 100);
             var y = 50 + $('.project-container').offset().top + Math.random() * ($('.project-container').height() - 100);
-            addModuleToContainer(filtered_modules[0].id, x, y);
+            addModuleToContainer(modules_to_show[0].id, x, y);
         }
     } 
 }
