@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+from core import __main__ as viki_core
+
+import argparse
+parser = argparse.ArgumentParser()
+
+parser.add_argument('method', nargs='?', default='run', choices=['run', 'configure'], help="Command for VIKI to run")
+args = parser.parse_args()
+
+method = args.method
+
+if method == 'run':
+    viki_core.run()
+elif method == 'cofigure':
+    print "Configuring VIKI..."

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 """Start the Aeroworks robot-framework core.
 
 Call various other functions to scan for available modules in a file tree to finally build a launch file for a specific configuration.
@@ -32,10 +34,6 @@ import gtk
 
 ros_master_hostname = "localhost"
 
-available_mods = scan.getAvailableModules()
-print "Got all the modules"
-
-
 # from: http://www.aclevername.com/articles/python-webgui/
 class Global(object):
     quit = False
@@ -45,6 +43,9 @@ class Global(object):
         cls.quit = True
 
 def main():
+    available_mods = scan.getAvailableModules()
+    print "Got all the modules"
+
     start_gtk_thread()
     corePID = 0
 
@@ -210,6 +211,5 @@ def my_quit_wrapper(fun):
         return x
     return fun2
 
-
-if __name__ == '__main__':  # <-- this line is optional
+def run():
     my_quit_wrapper(main)()
