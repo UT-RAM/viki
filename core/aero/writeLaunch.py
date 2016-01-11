@@ -1,10 +1,6 @@
 import xml.etree.cElementTree as ET
 import xml.dom.minidom
-import os
-import time
 import random
-from objects import *
-from helpers import *
 import pprint
 
 

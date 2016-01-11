@@ -3,14 +3,18 @@
 from core import __main__ as viki_core
 
 import argparse
+from core.cli import dependencies
+
 parser = argparse.ArgumentParser()
 
-parser.add_argument('method', nargs='?', default='run', choices=['run', 'configure'], help="Command for VIKI to run")
+parser.add_argument('method', nargs='?', default='run', choices=['run', 'configure', 'check-packages'], help="Command for VIKI to run")
 args = parser.parse_args()
 
 method = args.method
 
 if method == 'run':
     viki_core.run()
-elif method == 'cofigure':
+elif method == 'configure':
     print "Configuring VIKI..."
+elif method == 'check-packages':
+    dependencies.check_installed_packages()

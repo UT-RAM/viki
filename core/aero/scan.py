@@ -16,7 +16,6 @@ def getAvailableModules():
     #. Put abstraction in a list
     #. Return list when done.
     """
-    print "Scanning for modules in file tree..."
     available_mods = []
 
     # START FILE LOOP
@@ -55,6 +54,13 @@ def getAvailableModules():
                                         mod.addMeta(metachild.tagName.lower(), metachild.firstChild.nodeValue)
                                 else:
                                     print "Empty meta data section in document"
+
+                        # DEPENDENCIES
+                        dependencies = dom.getElementsByTagName('dependencies')
+                        if len(dependencies) == 1:
+                            for depchild in getElements(dependencies[0]):
+                                if depchild.tagName == "depends":
+                                    mod.addPackageDependency(depchild.firstChild.nodeValue)
 
                         # MODULE PATH
                         mod.setPath(fPath)
@@ -148,12 +154,10 @@ def getAvailableModules():
                                         mod.addIntConnect(internal_interface)
 
                         available_mods.append(mod)
-                        print mod.id, ' added!'
 
                 except Exception as e:
                     print "Skipped adding '" + fPath + "' because it is a broken file. Error thrown was:"
                     print traceback.format_exc()
 
     # END FILE LOOP
-    print "Got all available modules."
     return available_mods

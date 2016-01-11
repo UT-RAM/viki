@@ -52,6 +52,10 @@ class Module:
         self.config = []
         #: Contains the path to the module config
         self.path = ''
+        #: List with names of dependent ROS packages
+        self.package_dependencies = []
+        #: List with missing packages, initially empty
+        self.missing_packages = []
 
     def addMeta(self, key, value):
         """Adds metadata to :attr:`meta`.
@@ -62,6 +66,12 @@ class Module:
         :type value: string
         """
         self.meta[key] = value
+
+    def addPackageDependency(self, package_name):
+        self.package_dependencies.append(package_name)
+
+    def addMissingPackage(self, package_name):
+        self.missing_packages.add(package_name)
 
     def addInput(self, interface):
         """Adds an input to the list of module inputs (:attr:`inputs`).
