@@ -3,6 +3,21 @@ __author__ = 'robin'
 from core.aero import scan
 import subprocess
 
+def check_installed_packages():
+    """
+    Checks for every module that is available,
+    if the ROS packages needed for it are installed on the system
+
+    :return:
+    """
+    missing_packages = get_missing_packages()
+
+    if len(missing_packages) > 0:
+        print "[WARNING] - There are missing packages for full VIKI support:"
+        print "\n".join(missing_packages)
+    else:
+        print "[OK] - All ROS package dependencies are met!"
+
 def get_installed_packages():
     """
     Gets the currently installed ROS packages and returns the names as an array
@@ -31,17 +46,39 @@ def get_missing_packages():
 
     return missing_packages
 
-def check_installed_packages():
+
+
+def get_package_locations():
     """
-    Checks for every module that is available,
-    if the ROS packages needed for it are installed on the system
+    Uses 'rosdep db' and parsing to get the packages that we can install
 
     :return:
     """
-    missing_packages = get_missing_packages()
+    p = subprocess.Popen(['rosdep', 'db'], stdout=subprocess.PIPE)
+    package_lines = p.stdout.read().splitlines()
+    package_map = map((lambda x: x.split(' -> ')), package_lines)
+    return package_map
 
-    if len(missing_packages) > 0:
-        print "[WARNING] - There are missing packages: {}".format(missing_packages)
-    else:
-        print "[OK] - All ROS package dependencies are met!"
+def get_aptget_packages(ros_package_names):
+    apt_packages = get_package_locations()
+    return filter((lambda x: x[0] in ros_package_names), apt_packages)
 
+
+def start_installation(installation_candidates):
+    if (len(installation_candidates) == 0): return
+
+    print   "VIKI is going to install the following missing packages using apt-get" \
+            ",".join(map((lambda x: x[0]+" ("+x[1]+")"), installation_candidates))
+    print   "It may ask for your sudo password, to be able to execute apt-get"
+    input = None
+
+    while input not in ["y", "n", "Y", "N", ""]:
+        print "Are you OK with that?"
+        input = raw_input("[Y/n]: ")
+
+    if input == "n" or input == "N":
+        print "Aborting installation..."
+        return
+
+    command = ["sudo", "apt-get", "install"] + map((lambda x: x[1]), installation_candidates)
+    subprocess.call(command)

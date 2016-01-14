@@ -1,20 +1,27 @@
 #!/usr/bin/python
 
-from core import __main__ as viki_core
+"""
+    Entry point for the VIKI command line,
+    parses the arguments and uses a mapping to execute the right stuff
+"""
 
 import argparse
-from core.cli import dependencies
+from core.cli import runnables
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('method', nargs='?', default='run', choices=['run', 'configure', 'check-packages'], help="Command for VIKI to run")
-args = parser.parse_args()
+# Mapping: option -> function, to add extra functions
+run_functions = {
+    'run': runnables.run,
+    'configure':  runnables.configure,
+    'check-packages': runnables.check_packages,
+    'install-packages': runnables.install_packages,
+    'add-module-repository': runnables.add_module_repository
+}
 
+parser.add_argument('method', nargs='?', default='run', choices=run_functions.keys(), help="Command for VIKI to run")
+
+args = parser.parse_args()
 method = args.method
 
-if method == 'run':
-    viki_core.run()
-elif method == 'configure':
-    print "Configuring VIKI..."
-elif method == 'check-packages':
-    dependencies.check_installed_packages()
+run_functions[method]()
