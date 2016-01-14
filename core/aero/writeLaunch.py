@@ -165,7 +165,8 @@ def lookup(configPart, string, path):
                     linkparts = con.link.split('/')
                     exec_id = linkparts[0]
 
-                    if len(linkparts) > 1:
+                    # TODO: Check this!
+                    if len(linkparts) > 2:
                         print "The link name is longer than expected, VIKI has not yet full support for this. Please check your module file: {}".format(mod.id)
 
                     executable = mod.implementation.getExecutable(exec_id)

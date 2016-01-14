@@ -30,14 +30,16 @@ def get_installed_packages():
 
 def get_missing_packages():
     """
-    Looks for missing packages and returnes the names of those, if found
-    :return:
+    Looks for missing ROS packages that are defined as dependency in a module
+    :return: List with names of the missing ROS packages
     """
     installed_packages = get_installed_packages()
     modules_on_system = scan.getAvailableModules()
 
     missing_packages = []
 
+    # TODO: Make the missing packages unique, now one missing package can occur more than once in the list,
+    # if multiple modules use that package
     for module in modules_on_system:
         for package in module.package_dependencies:
             if not package in installed_packages:
@@ -67,9 +69,9 @@ def get_aptget_packages(ros_package_names):
 def start_installation(installation_candidates):
     if (len(installation_candidates) == 0): return
 
-    print   "VIKI is going to install the following missing packages using apt-get" \
-            ",".join(map((lambda x: x[0]+" ("+x[1]+")"), installation_candidates))
-    print   "It may ask for your sudo password, to be able to execute apt-get"
+    print "VIKI is going to install the following missing packages using apt-get: \n"
+    print ",".join(map((lambda x: x[0]+" ("+x[1]+")"), installation_candidates))
+    print "It may ask for your sudo password, to be able to execute apt-get"
     input = None
 
     while input not in ["y", "n", "Y", "N", ""]:
@@ -82,3 +84,6 @@ def start_installation(installation_candidates):
 
     command = ["sudo", "apt-get", "install"] + map((lambda x: x[1]), installation_candidates)
     subprocess.call(command)
+
+def fix_system_dependencies():
+    subprocess.call(['rosdep', 'install', '--all', '-r'])

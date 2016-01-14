@@ -1,5 +1,7 @@
 __author__ = 'robin'
 
+import subprocess
+
 from core import __main__ as viki_core
 
 import  dependencies
@@ -10,6 +12,8 @@ def run():
 
 def configure():
     # Install the right dependencies
+    to_install_packages = ['python-webkit', 'python-gtk2', 'python-simplejson']
+    subprocess.call(['sudo', 'apt-get', 'install']+to_install_packages)
 
     # Create fancy desktop entry
 
@@ -28,4 +32,4 @@ def install_packages():
     dependencies.start_installation(installation_candidates)
 
 def add_module_repository():
-    repositories.clone_module_repository('default')
+    repositories.clone_module_repository('core')
