@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=VIKI
+Exec=/mnt/data/RAM/workspace/src/viki/viki run
+Path=/mnt/data/RAM/workspace/src/viki
+Icon=/mnt/data/RAM/workspace/src/viki/viki_logo.png
+Type=Application
+Terminal=True
