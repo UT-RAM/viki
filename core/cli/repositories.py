@@ -21,3 +21,9 @@ def clone_module_repository(repo):
         command = ['hg', 'clone', repository['url'], '../viki_modules/'+repo, '-r', repository['branch']]
 
     subprocess.call(command)
+
+def catkin_make():
+    # does not work yet!
+    p = subprocess.Popen('cd ../.. && catkin_make', stdout=subprocess.PIPE)
+    print p.stdout.read()
+    p.communicate()

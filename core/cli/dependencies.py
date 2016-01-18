@@ -1,7 +1,18 @@
 __author__ = 'robin'
 
+"""
+    Python file with a set of functions that handles basically all dependency management concerning ROS for viki
+
+    A couple of kinds of dependencies:
+    - First level dependencies are the dependencies of ROS packages that are needed directly for modules
+    - Second level dependencies are dependencies of ROS packages, these can be
+        - System level, to be installed with rosdep
+        - ROS package leven, to be installed (parsed, pulled, etc.) with rospack
+"""
+
 from core.aero import scan
 import subprocess
+
 
 def check_installed_packages():
     """
@@ -17,6 +28,7 @@ def check_installed_packages():
         print "\n".join(missing_packages)
     else:
         print "[OK] - All ROS package dependencies are met!"
+        print "Note: only second level dependencies of already installed packages have been checked"
 
 def get_installed_packages():
     """
@@ -34,7 +46,7 @@ def get_missing_packages():
     :return: List with names of the missing ROS packages
     """
     installed_packages = get_installed_packages()
-    modules_on_system = scan.getAvailableModules()
+    modules_on_system = get_modules()
 
     missing_packages = []
 
@@ -49,7 +61,14 @@ def get_missing_packages():
 
     return missing_packages
 
+def get_second_level_dependencies():
+    p = subprocess.Popen(['rosdep', 'check', '--from-paths', '../'], stdout=subprocess.PIPE)
+    print p.stdout.read()
 
+def install_second_level_dependencies():
+    p = subprocess.Popen(['rosdep', 'install', '--from-paths', '../'], stdout=subprocess.PIPE)
+    print p.stdout.read()
+    p.communicate()
 
 def get_package_locations():
     """
@@ -63,11 +82,22 @@ def get_package_locations():
     return package_map
 
 def get_aptget_packages(ros_package_names):
+    """
+        Returns installation candidates in a list [[ros_package_name, aptget_package], ...]
+        This is based on the package names provided as the parameter
+    :param ros_package_names:
+    :return:
+    """
     apt_packages = get_package_locations()
     return filter((lambda x: x[0] in ros_package_names), apt_packages)
 
 
 def start_installation(installation_candidates):
+    """
+    Installs the packages that are provided in aa package list
+    :param installation_candidates:
+    :return:
+    """
     if (len(installation_candidates) == 0): return
 
     print "VIKI is going to install the following missing packages using apt-get: \n"
@@ -75,6 +105,7 @@ def start_installation(installation_candidates):
     print "It may ask for your sudo password, to be able to execute apt-get"
     input = None
 
+    # Ask for confirmation, pressing enter yields Y as default
     while input not in ["y", "n", "Y", "N", ""]:
         print "Are you OK with that?"
         input = raw_input("[Y/n]: ")
@@ -86,5 +117,14 @@ def start_installation(installation_candidates):
     command = ["sudo", "apt-get", "install"] + map((lambda x: x[1]), installation_candidates)
     subprocess.call(command)
 
-def fix_system_dependencies():
-    subprocess.call(['rosdep', 'install', '--all', '-r'])
+def get_modules():
+    # TODO: Cache the module list in here, so that we don't scan all files again and again, and again...
+    # if module_list == None:
+    module_list = scan.getAvailableModules()
+
+    return module_list
+
+def get_distinct_packages(modules):
+    packages_per_module = filter((lambda x: len(x) > 0), map((lambda x: x.package_dependencies), modules))
+    packages_list = reduce((lambda x,y: x+y), packages_per_module)
+    return list(set(packages_list)) # filter out duplicates..
