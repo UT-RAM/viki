@@ -38,12 +38,13 @@ def get_missing_packages():
 
     missing_packages = []
 
-    # TODO: Make the missing packages unique, now one missing package can occur more than once in the list,
     # if multiple modules use that package
     for module in modules_on_system:
         for package in module.package_dependencies:
             if not package in installed_packages:
-                missing_packages.append(package)
+                # Only add the package if it is not yet in the list
+                if not package in missing_packages:
+                    missing_packages.append(package)
                 module.missing_packages.append(package)
 
     return missing_packages
@@ -52,7 +53,7 @@ def get_missing_packages():
 
 def get_package_locations():
     """
-    Uses 'rosdep db' and parsing to get the packages that we can install
+    Uses 'rosdep db' and parsing to get the packages that we can install and the apt-get packages to install it
 
     :return:
     """
