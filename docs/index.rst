@@ -17,7 +17,6 @@ This is the VIKI robotics framework documentation. It is split up in three parts
 
 .. todolist::
 
-.. todo:: create JS documentation using sphinx
 
 Contents
 --------
