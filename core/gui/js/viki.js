@@ -1,16 +1,20 @@
-var modules;
-var jsPlumbInstance;  // to make instance globally available
-var modulesInCanvas = [];
-var selectedModuleUid = null;
-var generatedGUIDs = [];
-var history = [];
-var future = [];
-var localHostName = "localhost";
-var machines = {};
+var modules;  // List of available modules
+var jsPlumbInstance;  // Instance of the JsPlumb state
+var modulesInCanvas = [];  // list of the modules currently on canvas
+var selectedModuleUid = null;  // Unique id of currently selected module
+var generatedGUIDs = [];  // List of used id's. A new one is checked against this
+var history = [];  // List containing max. 10 previous states to ctrl+z to
+var future = [];  // List containing max. 10 future states to ctrl+y to
+var localHostName = "localhost";  // Name of this computer
+var machines = {};  // List of machines
 
 $(document).ready(function(){
+    // prevent dragging event of viki logo
     $('img').on('dragstart', function (event) {event.preventDefault()});
-    // All links with an id starting with viki are buttons that expect a reaction from python. This process is automated: the python function with name equal to the id will run.
+    
+
+    // All links with an id starting with viki are buttons that expect a reaction from python.
+    // This process is automated: the python function with name equal to the id will run.
     $("a[id^=viki]").click(function(){
         statusmessage = $(this).data("statusmessage");
         if(typeof(statusmessage) != "undefined")
@@ -32,50 +36,51 @@ $(document).ready(function(){
         return false;
     });
 
+    // connect buttons to callbacks oustide the aforementioned automated method
     $("#reset").click(canvasReset);
     $("#stepBack").click(stepBack);
     $("#stepForward").click(stepForward);
-
     $("#makeNoRun").click(function(){
         updateStatus("Reqesting make...");
         send(JSON.stringify({name: "vikiMakeNoRun", value: getConfigXML(getConfig())}));
     });
-
     $("#makeAndRun").click(function(){
         updateStatus("Requesting make and run...");
         send(JSON.stringify({name: "vikiMakeAndRun", value: getConfigXML(getConfig())}));
        });
-
     $('#module-filter-text').on('keydown change', filterModules);
 
     $("#italian").click(function(){
-        // get size of contair
+        // Italian language support:
+        // runs a supermario image across the screen as a joke for Matteo
+        
+        // get size of container
         var w = $('.project-container').width();
         var h = $('.project-container').height();
-        
         // put image in page
         $('.project-container').prepend('<img id="marioImg" src="img/mario.png" />')
-
         // set start position
         $("#marioImg").css({
             position: "absolute",
             top: (0.5*h) + "px",
             left: 0 + "px"
             }).show();
-
         // move to right (calls delete function afterwards)
         $("#marioImg").animate({left: w + 'px'}, 3000, "linear", removeMario);
-
         updateStatus("Got you! Of course there is no Italian language support.");
     });
-
+    /**
+     * Removes the mario image form the screen
+     * has to be in a separate function to allow the screen to redraw
+     * before removing the mario
+     */
     function removeMario() {
         // function to remove the mario added when italian language support is used
         $("#marioImg").remove();
     }
 
     $("#logo").on('click', function() {
-    // Makes the logo re-fly in when clicking on it 
+    // Makes the VIKI-logo re-fly in when clicking on it 
          var el     = $(this),  
              newone = el.clone(true);
                    
@@ -84,6 +89,7 @@ $(document).ready(function(){
     });
 
     $("#editLocalHostName").click(function() {
+    // Change the hostname of this machine via a dialog
         var hostName = window.prompt("Please enter the new local hostname.",localHostName);
         if(hostName  != null) {
             setLocalHostName(hostName);
@@ -92,6 +98,7 @@ $(document).ready(function(){
     });
 
     $("#addMachine").click(function() {
+    // add a machine to to list of machines
         $("#machineForm input[name='prevname']").val('');
         $("#machineForm input[name='name']").val('');
         $("#machineForm input[name='hostname']").val('');
@@ -100,6 +107,7 @@ $(document).ready(function(){
     });
 
     $("#saveMachine").click(function(){
+    // save changes made to a machine
         oldName = $("#machineForm input[name='prevname']").val();
         name = $("#machineForm input[name='name']").val();
         hostname = $("#machineForm input[name='hostname']").val();
@@ -122,6 +130,7 @@ $(document).ready(function(){
     });
 
     $("#machineList").on("click",".editMachine",function(event){
+    // shows the popup window to change a machine name
         key = event.currentTarget.dataset.key;
         $("#machineForm input[name='prevname']").val(machines[key].name);
         $("#machineForm input[name='name']").val(machines[key].name);
@@ -133,6 +142,7 @@ $(document).ready(function(){
     });
 
     $("#machineList").on("click",".deleteMachine",function(event){
+    // Delete a machine
         delete machines[event.currentTarget.dataset.key];
         syncMachineList(machines);
         return false;
@@ -146,7 +156,9 @@ $(document).ready(function(){
     send(JSON.stringify({name: "vikiRefreshModules", value: false}));
 });
 
-
+/**
+ * Save the current state of the project
+ */
 function saveState() {
     history.push(getProject());
     if(history.length > 10) {
@@ -154,6 +166,9 @@ function saveState() {
     }
 }
 
+/**
+ * Go back one step in the history (this is ctrl+z)
+ */
 function stepBack() {
     if(history.length > 0)
     {
@@ -163,6 +178,9 @@ function stepBack() {
     }
 }
 
+/**
+ * Go forward one step into the future (this is ctrl+y)
+ */
 function stepForward() {
     if(future.length > 0)
     {
@@ -172,6 +190,12 @@ function stepForward() {
     }
 }
 
+/**
+ * Get all information necessary to restore the state of the screen.
+ * this information is sufficient for stepping back in history with ctrl+z
+ * or to save the configuration
+ * @returns JSON stringified state of the window
+ */
 function getProject() {
     var nodes = []
     $(".window").each(function (idx, elem) {
@@ -206,13 +230,22 @@ function getProject() {
     return JSON.stringify(project);
 }
 
-
+/**
+ * Moves an element to a new position on the screen and redraws jsPlumb
+ * @param id id of the element to move
+ * @param posX the new horizontal position of the element
+ * @param posY the new vertical position of the element
+ */
 function repositionElement(id, posX, posY){
     $('#'+id).css('left', posX);
     $('#'+id).css('top', posY);
     jsPlumb.repaint(id);
 }
 
+/**
+ * Clears the canvas and the modulelist
+ * Machines are unchanged
+ */
 function canvasReset() {
     $('.window').remove();
     jsPlumbInstance.reset();
@@ -220,6 +253,11 @@ function canvasReset() {
     generatedGUIDs = [];
 }
 
+/**
+ * Opens a JSON string containing a window state
+ * the JSON string can be generated by getProject()
+ * @param project The JSON string
+ */
 function openFromJSON(project) {
     canvasReset()
     var flowChart = project.modules;
@@ -245,12 +283,21 @@ function openFromJSON(project) {
     updateStatus('End of open / restore.')
 }
 
+/**
+ * Print a status message to screen
+ * including a timestring
+ * @param msg The message to print
+ */
 function updateStatus(msg) {
     var dt = new Date();
     var time =('0'  + dt.getHours()).slice(-2)+':'+('0' + dt.getMinutes()).slice(-2)+':'+('0' + dt.getSeconds()).slice(-2);
     $('#statusLabel').prepend(time + " - " + msg + "<br />");
 }
 
+/**
+ * Updates the palette with a new module list
+ * @param modulelist a list of modules to replace the ones in the palette with
+ */
 function updateModules(modulelist) {
     updateStatus('Received modules.');
     modules = modulelist;
@@ -264,6 +311,10 @@ function updateModules(modulelist) {
     updateStatus('Updated module panel.')
 }
 
+/**
+ * Places modules in the palette and displays them
+ * @param modules modules to show
+ */
 function showModulesInPalette(modules) {
     $('#palette #list').html("");
     modules.forEach(function(module){
@@ -294,8 +345,8 @@ function showModulesInPalette(modules) {
 }
 
 /**
- * Filter modules in a smart way,
- * @param event
+ * Filter modules based in keyboard input
+ * @param event keyboard event
  */
 function filterModules(event) {
     showModulesInPalette([]);
@@ -334,6 +385,11 @@ function filterModules(event) {
     } 
 }
 
+/**
+ * Sets up the palette (which holds the modules)
+ * to allow for dragging of modules, configure the dragstart event
+ * and makes the canvas accept the modules as a drop
+ */
 function initPalette() {
     $(".module_palette").attr({
         "draggable" : "true"
@@ -351,16 +407,28 @@ function initPalette() {
     $(document).on('module_selected', onModuleSelect);
 }
 
+/**
+ * enables the button to start the roscore
+ * disables the button to stop the roscore
+ */
 function enableStartCore() {
     $("#vikiStopRosCore").hide();
     $("#vikiStartRosCore").show();
 }
 
+/**
+ * disables the button to start the roscore
+ * enables the button to stop the roscore
+ */
 function enableStopCore() {
     $("#vikiStopRosCore").show();
     $("#vikiStartRosCore").hide();
 }
 
+/**
+ * Select a module
+ * also clears the currently selected module if a new module is selected
+ */
 function onWindowClick(event) {
     var willSelect = ( selectedModuleUid !== $(this).attr('id') ); // only select if we click a non-selected module
     clearSelectedModule(); // make sure we only select a single module
@@ -371,6 +439,9 @@ function onWindowClick(event) {
     }
 }
 
+/**
+ * Clears the selected module, so that nothing is selected anymore
+ */
 function clearSelectedModule() {
     selectedModuleUid = null;
     $('.window').removeAttr('selected');
@@ -381,6 +452,9 @@ function clearSelectedModule() {
     $('#selectedWindowProperties tbody').append('<tr><td colspan="2">No module selected.</td></tr>');
 }
 
+/** 
+ * Delete the currently selected module from the canvas
+ */
 function deleteSelectedModule() {
     saveState();
     if (selectedModuleUid != null) {
@@ -390,32 +464,40 @@ function deleteSelectedModule() {
     updateStatus("Deleted module from canvas.");
 }
 
+/**
+ * Callback for keypressed events
+ * implements several keyboard shortcuts
+ */
 function keyPressed(event) {
     switch (event.which) {
-        case 46: // delete
-        case 8: //backspace
+        case 46:  // delete
+        case 8:  //backspace
             if(document.activeElement.type != 'text')
             {
                 deleteSelectedModule();
             }
             break;
-        case 77:
+        case 77:  // TODO
             if (event.ctrlKey) {
                 $('#module-filter-text').focus();
             }
             break;
-        case 90: // z
+        case 90:  // z
             if (event.ctrlKey) {
                 stepBack();
             }
             break;
-        case 89: // y
+        case 89:  // y
             if (event.ctrlKey) {
                 stepForward();
             }
     }
 }
 
+/**
+ * Populates the right pane with module properties and settings
+ * such as the parameters, arguments, and machine selection buttons
+ */
 function onModuleSelect(event) {
     var selectedModule = getModuleByUWindowId(selectedModuleUid);
     $('p#selectedWindowInfo').html("<h3>"+selectedModule.meta.name+"</h3>"+
@@ -445,7 +527,6 @@ function onModuleSelect(event) {
             var tc = "<tr><td>"+texec.id+"</td><td><input type='text' class='form-control' value=" + originalCmd + "></input></td></tr>";
             $("#argPopupBody > table > tbody").append(tc);
         }
-
 
         // Remove old click bind first
         $("#saveArgButton").unbind('click');
@@ -486,7 +567,6 @@ function onModuleSelect(event) {
             $("#prefixPopupBody > table > tbody").append(tc);
         }
 
-
         // Remove old click bind first
         $("#savePrefixButton").unbind('click');
         $("#savePrefixButton").click(function() {
@@ -501,7 +581,6 @@ function onModuleSelect(event) {
                 prefix.prefix = $($('#prefixPopupBody > table > tbody > tr')[i+1].children[1].children[0]).val();
                 selectedModule.prefixes.push(prefix);
             }
-
             updateStatus("Saved prefixes.");
         });
     });
@@ -605,6 +684,9 @@ function onModuleSelect(event) {
 
 }
 
+/****************************************
+ * this is where the jsPlumb starts
+ ***************************************/
 // this is the paint style for the connecting lines..
 var connectorPaintStyle = {
         lineWidth: 4,
@@ -704,9 +786,17 @@ jsPlumb.ready(function() {
         });
     });
 });
+/****************************************
+ * this is where the jsPlumb ends
+ ***************************************/
 
-
+/**
+ * Add several input markers (endpoints) to a window (module)
+ * @param moduleId id of the module to add inputs to
+ * @param inputs to add to it
+ */
 function addInputsToWindow(moduleId, inputs) {
+    // creat the enpoint class
     var targetEndpoint = {
         endpoint: "Dot",
         paintStyle: { fillStyle: "#7AB02C", radius: 11 },
@@ -715,6 +805,7 @@ function addInputsToWindow(moduleId, inputs) {
         isTarget: true
     };
 
+    // add enpoints for every input
     for (var i = 0; i < inputs.length; i++) {
         var anchorId = moduleId + "input" + i.toString;
         var pos = [0, ((i+1)/(inputs.length +1)), -1, 0];
@@ -737,8 +828,13 @@ function addInputsToWindow(moduleId, inputs) {
     }
 }
 
+/**
+ * Add several output markers (endpoints) to a window (module)
+ * @param moduleId id of the module to add outputs to
+ * @param outputs outputs to add to it
+ */
 function addOutputsToWindow(moduleId, outputs) {
-
+    // create the endpoint
     var sourceEndpoint = {
         endpoint: "Dot",
         paintStyle: {
@@ -755,6 +851,7 @@ function addOutputsToWindow(moduleId, outputs) {
         dragOptions: {}
     };
 
+    // add an endpoint for every output
     for (var i = 0; i < outputs.length; i++) {
         var anchorId = moduleId + "output" + i.toString;
         var pos = [1, ((i+1)/(outputs.length +1)), 1, 0];
@@ -777,6 +874,12 @@ function addOutputsToWindow(moduleId, outputs) {
     }
 };
 
+/**
+ * This function collects some data when you start dragging a module
+ * first the state of the window is saved, the module id is set to be 
+ * available anywhere, and some feedback is given
+ * @param ev the dragging event
+ */
 var current_dragging_module_id = null;
 function startDrag(ev) {
     saveState();
@@ -785,10 +888,20 @@ function startDrag(ev) {
     current_dragging_module_id = ev.target.id;
 }
 
+/**
+ * Prevents the default drop function so that we can 
+ * more easily access our own
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
+/**
+ * Drops a module onto the canvas
+ * Check if you are indeed dragging a module. If so,
+ * add it to the canvas
+ * @parem ev Drop event
+ */
 function dropModule(ev) {
     // first check if we started dragging a module
     if (current_dragging_module_id == null) {
@@ -803,6 +916,14 @@ function dropModule(ev) {
     current_dragging_module_id = null;
 }
 
+/**
+ * Adds a module to the container (the canvas)
+ * after which it may be connected to others
+ * @param modId module id of the module to add to the canvas
+ * @param _x horizontal position to position the module
+ * @param _y vertical positon to position the module
+ * @param uModId Unique id to give to this module in the canvas
+ */
 function addModuleToContainer(modId, _x, _y, uModId) {
     var modToAdd;
     if (typeof(uModId) == 'undefined' || uModId == null)
@@ -819,7 +940,6 @@ function addModuleToContainer(modId, _x, _y, uModId) {
     }
 
     // add to inCanvasArray
-
     modToAdd.uWindowId = uModId;
     modToAdd.params = [];  // premake list for parameters
     modToAdd.args = [];  // placeholder for command line arguments
@@ -851,6 +971,12 @@ function addModuleToContainer(modId, _x, _y, uModId) {
     updateStatus("Module added succesfully.");
 }
 
+/**
+ * Returns a module from the available module list based 
+ * on only its id
+ * @param Id the id of the module to return
+ * @returns The module you requested
+ */
 function getModuleById(Id) {
     for (var i=0; i <modules.length; i++) {
         if (modules[i].id == Id) {
@@ -860,6 +986,11 @@ function getModuleById(Id) {
     }
 }
 
+/**
+ * returns a module from the canvas, based on its unique id
+ * @param uId unique id of the module to return
+ * @returns the module you requested
+ */
 function getModuleByUWindowId(uId) {
     for (var i=0; i<modulesInCanvas.length; i++) {
         if (modulesInCanvas[i].uWindowId == uId) {
@@ -868,6 +999,11 @@ function getModuleByUWindowId(uId) {
     }
 }
 
+/**
+ * Generate a unique id for a module.
+ * the id is saved in a list, so not even accidentally id's can be the same
+ * @returns a unique id
+ */
 function guid() {
     // generate until a not-used number has been found    
     do {
@@ -881,6 +1017,10 @@ function guid() {
     return generatedId;
 }
 
+/**
+ * deletes a module (window) from the canvas (module container)
+ * @param uId unique id of the module to delete
+ */
 function deleteWindowFromCanvas(uId) {
     // remove from jsPlumb
     jsPlumbInstance.remove(uId);
@@ -894,6 +1034,10 @@ function deleteWindowFromCanvas(uId) {
     updateStatus("Module removed!");
 }
 
+/**
+ * get the configuration you build in the canvas as a javascript object
+ * @returns the config object
+ */
 function getConfig() {
     updateStatus("Getting config...");
 
@@ -978,6 +1122,11 @@ function getConfig() {
     return config;
 }
 
+/**
+ * Get the xml document representation of a config object
+ * @param config the config object
+ * @returns the requested xml as string
+ */
 function getConfigXML(config) {
     updateStatus("Generating XML...");
     // create config XML 
@@ -1069,12 +1218,19 @@ function getConfigXML(config) {
     //send(JSON.stringify({name: "vikiMake", value: configXML.outerHTML}));
 }
 
+/**
+ * Saves the localhostname
+ */
 function setLocalHostName(hostName) {
     localHostName = hostName;
     send(JSON.stringify({name: 'vikiSetMasterUri', value: hostName}));
     $("#localHostName").html(localHostName);
 }
 
+/**
+ * populates the list of machines with machines currently known
+ * @param machines currently known machines
+ */
 function syncMachineList(machines) {
     $("#machineList").find("tr:gt(0)").remove();
     $.each(machines,function(){
