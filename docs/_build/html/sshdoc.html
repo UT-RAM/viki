@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Distributed systems (SSH documentation) &mdash; VIKI 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Contributor’s documentation" href="contributor.html"/>
+        <link rel="prev" title="Features" href="features.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">- Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-using-install-script">Install using install script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">- Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">- Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#supported">Supported</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#currently-unsopported">Currently unsopported</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">- Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#network-connection">Network connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modintroduction.html">- Module introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#guidelines">guidelines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modtutorial.html">- Module tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modtutorial.html#advanced-examples">Advanced examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer&#8217;s guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#updating-documentation">Updating documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="framework_description.html">- Framework description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">- System overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">- API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">VIKI</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Distributed systems (SSH documentation)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/sshdoc.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="distributed-systems-ssh-documentation">
+<span id="sshdoc"></span><h1>Distributed systems (SSH documentation)<a class="headerlink" href="#distributed-systems-ssh-documentation" title="Permalink to this headline">¶</a></h1>
+<p>VIKI allows you to run nodes on several computers, it does not even be installed on the other systems. Since VIKI builds on top of ROS, the distributed functionality of ROS can be used. For this to work, there are some network requirements that can be tedious to setup. This guide helps you in setting up these requirements in order for the network to work. Below there is one way to set up your distributed system, there are however more possibilities (if you are an advanced user).</p>
+<div class="section" id="setting-up-the-network">
+<h2>Setting up the network<a class="headerlink" href="#setting-up-the-network" title="Permalink to this headline">¶</a></h2>
+<p>ROS works by running a ros master, or roscore, on one system. All other systems connect to it via it&#8217;s location that is saved in the <em>ROS_MASTER_URI</em> environment variable. Other computers on the network are found by using their name. Furthermore all ports need to be open as ROS opens a new connection for every topic on a random port.</p>
+<p>First we make sure we can communicate bidirectionally between systems. As an example take a computer named Ash and a computer named Pikachu. Ash will be the main computer where we run VIKI. Pikachu will be the remote computer (with ROS, but without VIKI). There can be more computers like Pikachu (with different names!) but in this guide we will describe just one.</p>
+<div class="section" id="network-connection">
+<h3>Network connection<a class="headerlink" href="#network-connection" title="Permalink to this headline">¶</a></h3>
+<p>Make sure your computers are connected to the same network. This can be done by connecting to the same wireless or wired network. If you&#8217;re running ROS in a VM, like VirtualBox, this can be achieved by adding an extra &#8216;internal&#8217; network adapter.</p>
+</div>
+<div class="section" id="finding-computer-names">
+<h3>Finding computer names<a class="headerlink" href="#finding-computer-names" title="Permalink to this headline">¶</a></h3>
+<p>Find the name of your computers. In this case we know that they are Ash and Pikachu. If you are unsure of your computer name you can find it by typing</p>
+<div class="highlight-bash"><div class="highlight"><pre>hostname
+</pre></div>
+</div>
+<p>in a terminal. It will return the name of your computer.</p>
+</div>
+<div class="section" id="finding-ip-adresses">
+<h3>Finding IP adresses<a class="headerlink" href="#finding-ip-adresses" title="Permalink to this headline">¶</a></h3>
+<p>Now we need to find the IP adresses of both computers. Open a terminal and run</p>
+<div class="highlight-bash"><div class="highlight"><pre>ifconfig
+</pre></div>
+</div>
+<p>You will get some feedback on the network connections that you have open. Find the adapter that is connected to the network you are going to use and look for <em>inet addr:</em>. Behind it will be a number that looks like <em>192.168.1.10</em>. Keep these values in mind, since we will need them for configuration later on.</p>
+<p>Note: IP addressses of computers are usually dynamic, meaning they will change over time. To keep yourself from reconfiguring this all the time, you might also want to make both systems have a static IP address. For ubuntu, some more information can be found <a class="reference external" href="https://help.ubuntu.com/lts/serverguide/network-configuration.html">here</a>.</p>
+</div>
+<div class="section" id="setting-hostnames">
+<h3>Setting hostnames<a class="headerlink" href="#setting-hostnames" title="Permalink to this headline">¶</a></h3>
+<p>To make sure the computers can find each other, they need to be able to resolve the hostname to an IP address. When there is a DNS running on your network, you might use this to resolve the hostnames. If not, you will have to add records to the hosts file of each computer. To do this:</p>
+<p>Open a new terminal and start editing the hosts file, e.g. run</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo gedit /etc/hosts
+</pre></div>
+</div>
+<p>to edit the file with gedit.</p>
+<p>The top line of this file says something like</p>
+<div class="highlight-bash"><div class="highlight"><pre>127.0.0.1      localhost
+</pre></div>
+</div>
+<p>This line resolves the &#8216;localhost&#8217; to 127.0.0.1. For every computer, we will need such an entry as well. For each computer in the network that you want to use, add a line that has the IP address of the computer, some space separation, and it&#8217;s hostname. In our case the first three lines of the file will look like this</p>
+<div class="highlight-bash"><div class="highlight"><pre>127.0.0.1               localhost
+192.168.1.10    Ash
+192.168.1.20    Pikachu
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<p>When these steps are defined, the computers should be able to find each other. You can test if you found the right IP adress and if communication is possible by running</p>
+<div class="highlight-bash"><div class="highlight"><pre>ping 192.168.1.20
+</pre></div>
+</div>
+<p>with <em>192.168.1.20</em> replaced by the IP adress of the computer you want to reach. You can test if your changes to <em>/etc/hosts</em> has worked by running</p>
+<div class="highlight-bash"><div class="highlight"><pre>ping Pikachu
+</pre></div>
+</div>
+<p>from Ash, or the other way around. Both should give you information about succesfully sent packages. If not, recheck your network and make sure you have the right IP&#8217;s.</p>
+</div>
+</div>
+<div class="section" id="setting-up-ssh">
+<h2>Setting up SSH<a class="headerlink" href="#setting-up-ssh" title="Permalink to this headline">¶</a></h2>
+<p>ROS uses the SSH protocol to run things on other systems. For it we need a username and password on the machine on which we want to run things. These are the username and password you would normally use to log in on the computer.</p>
+<p>If it is not yet previously installed you need to install <em>openssh-client</em> on the main PC (Ash) and <em>openssh-server</em> on the remote. You can do this by running one of the following two lines and accepting the questions</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install openssh-client
+sudo apt-get install openssh-server
+</pre></div>
+</div>
+<div class="section" id="testing-ssh">
+<h3>Testing SSH<a class="headerlink" href="#testing-ssh" title="Permalink to this headline">¶</a></h3>
+<p>Now test if you can make an SSH connection to the other machine. Open a terminal on Ash and run</p>
+<div class="highlight-bash"><div class="highlight"><pre>ssh username@Pikachu
+</pre></div>
+</div>
+<p>where you replace <em>username</em> by the username you would normally use to log in on Pikachu. The terminal asks you if you want to connect, reply yes and fill in your password when asked. You should now see <a class="reference external" href="mailto:username&#37;&#52;&#48;Pickachu">username<span>&#64;</span>Pickachu</a> in front of you terminal entry-area in stead of <a class="reference external" href="mailto:anotherusername&#37;&#52;&#48;Ash">anotherusername<span>&#64;</span>Ash</a> (which is the normal situation). This means you are now &#8216;in&#8217; Pikachu. You can exit by typing</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">exit</span>
+</pre></div>
+</div>
+<p>and you will return to the normal terminal (on Ash).</p>
+</div>
+<div class="section" id="adding-to-known-hosts">
+<h3>Adding to known_hosts<a class="headerlink" href="#adding-to-known-hosts" title="Permalink to this headline">¶</a></h3>
+<p>Your computer keeps a list of computers you can connect to called <em>known_hosts</em>. To make ROS able to connect to another computer you need to add it to the list. Open a terminal and run</p>
+<div class="highlight-bash"><div class="highlight"><pre>ssh-keygen -R <span class="o">[</span>hostname<span class="o">]</span>
+ssh-keygen -R <span class="o">[</span>ip_address<span class="o">]</span>
+ssh-keygen -R <span class="o">[</span>hostname<span class="o">]</span>,<span class="o">[</span>ip_address<span class="o">]</span>
+ssh-keyscan -H <span class="o">[</span>hostname<span class="o">]</span>,<span class="o">[</span>ip_address<span class="o">]</span> &gt;&gt; ~/.ssh/known_hosts
+ssh-keyscan -H <span class="o">[</span>ip_address<span class="o">]</span> &gt;&gt; ~/.ssh/known_hosts
+ssh-keyscan -H <span class="o">[</span>hostname<span class="o">]</span> &gt;&gt; ~/.ssh/known_hosts
+</pre></div>
+</div>
+<p>This will add both the username and the ip adress and the combination ot the known_hosts file, so that you can acces it either way.</p>
+<p>At this point you should be able to run anything you want on the remote computer by using VIKI. However by default SSH session are not &#8216;visible&#8217; on the remote PC. They just run in the background. To for instance open a screen on the remote machine you need to run nodes in it&#8217;s X server. VIKI uses an environment loader for this.</p>
+</div>
+<div class="section" id="creating-the-environment-file">
+<h3>Creating the environment file<a class="headerlink" href="#creating-the-environment-file" title="Permalink to this headline">¶</a></h3>
+<p>On Pikachu create a file called <em>.viki_env</em> in the home folder for instance via</p>
+<div class="highlight-bash"><div class="highlight"><pre>gedit ~/.viki_env
+</pre></div>
+</div>
+<p>and add to it the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+. /opt/ros/jade/setup.sh
+<span class="nv">DISPLAY</span><span class="o">=</span>:0<span class="p">;</span> <span class="nb">export </span>DISPLAY
+<span class="nb">exec</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>replace <em>jade</em> by the ros distribution on Pikachu, then save and exit.</p>
+</div>
+</div>
+<div class="section" id="testing-the-setup-tutorial">
+<h2>Testing the setup (tutorial)<a class="headerlink" href="#testing-the-setup-tutorial" title="Permalink to this headline">¶</a></h2>
+<p>Everything should now be set up. We can test the setup with a simple configuration of VIKI. For instance:</p>
+<ol class="arabic simple">
+<li>Start VIKI</li>
+<li>Add a turtle sim node</li>
+<li>Add a turtle teleop node</li>
+<li>Connect them</li>
+<li>Click the &#8216;machin list&#8217; icon (top of screen in VIKI)</li>
+<li>change the localhost to the name of the computer running VIKI (Ash in above example)</li>
+<li>add a machine, give it a name and fill in the adresses/username and password. In our case: name Pikachu, adress Pikachu</li>
+<li>Save and close</li>
+<li>Click the turtlesim node, and in the properties screen (right side) use select screen to make it run on Pikachu rather then default (local)</li>
+<li>Select the teleop node and add a prefix <em>xterm -e</em> to make it open in a new terminal</li>
+<li>Click run</li>
+</ol>
+<p>This setup will open a roscore on the current machine, a turtlesim node on Pikachu, and a teleop node on Ash. Run RQT to see everything works (remember to refresh after the you have sent a few messages) or just run around with your turtle trying to draw a Pikachu.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributor.html" class="btn btn-neutral float-right" title="Contributor’s documentation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="features.html" class="btn btn-neutral" title="Features" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

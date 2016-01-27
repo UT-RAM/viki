@@ -1,0 +1,260 @@
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.project-container .window
+{
+    border: 1px solid #346789;
+    box-shadow: 2px 2px 19px #aaa;
+    -o-box-shadow: 2px 2px 19px #aaa;
+    -webkit-box-shadow: 2px 2px 19px #aaa;
+    -moz-box-shadow: 2px 2px 19px #aaa;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    cursor: pointer;
+    text-align: center;
+    z-index: 20;
+    position: absolute;
+    background-color: #eeeeef;
+    color: black;
+    font-family: helvetica;
+    padding: 0.5em;
+    font-size: 0.9em;
+    -webkit-transition: -webkit-box-shadow 0.15s ease-in;
+    -moz-transition: -moz-box-shadow 0.15s ease-in;
+    -o-transition: -o-box-shadow 0.15s ease-in;
+    transition: box-shadow 0.15s ease-in;
+}
+
+.window[selected="selected"] {
+    background-color: #001166;
+    font-size: 1.1em;
+}
+
+.project-container .window:hover
+{
+    box-shadow: 2px 2px 19px #444;
+    -o-box-shadow: 2px 2px 19px #444;
+    -webkit-box-shadow: 2px 2px 19px #444;
+    -moz-box-shadow: 2px 2px 19px #444;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+/* logo animation */
+@-webkit-keyframes logo_fly_in {
+    0%   {-webkit-transform: translate(-300px,0);}
+    80%     {-webkit-transform: translate(-30px,0) rotate(-20deg);}
+    100%   {-webkit-transform: translate(0px,0) rotate(0deg);}
+}
+
+#logo {
+    margin-top: 15px;
+    margin-bottom: -15px;
+
+    -webkit-animation-delay: 4s;
+    -webkit-animation: logo_fly_in 1.5s ease-out;
+}
+
+#logo:hover {
+    cursor: pointer;
+}
+
+.module_palette h3 {
+    display: inline-block;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.module_palette .description {
+    font-style: italic;
+    font-size: 1em;
+}
+
+#list .vehicle {
+    background-color: #FFDCDC;
+}
+
+#list .userinput {
+    background-color: #F5D6FF;
+}
+
+#list .sensor {
+    background-color: #EBFFE0;
+}
+
+#list .controller {
+    background-color: #FFF0D1
+}
+
+#list .view {
+    background-color: #CCCCFF;
+}
+
+#list .middleware {
+    background-color: #CCFFF5;
+}
+
+#palette #list {
+    width: 100%;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 700px;
+}
+
+.module_palette {
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    border: 1px black solid;
+    border-radius: 5px;
+    width: 90%;
+}
+
+.module_palette img, i {
+    height: 1.4em;
+    margin-top: -.5em;
+    margin-right: .5em;
+    vertical-align: middle;
+}
+
+.actions img, i {
+    height: 1.1em;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.project-container .window .window_label {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    position:absolute;
+    top: 100%;
+    left: -100%;
+    width: 300%;
+}
+
+ul {
+    padding-left: 0;
+}
+
+.actions .btn {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+.btn {
+    margin-bottom: .1em;
+}
+
+.endpoint-label {
+    font-color: black;
+    z-index: 200;
+}
+
+.project-container .active {
+    border: 1px dotted green;
+}
+
+.project-container .hover {
+    border: 1px dotted red;
+}
+
+.project-container ._jsPlumb_connector {
+    z-index: 4;
+}
+.moduleOutputLabel {
+    text-align: right;
+}
+
+.project-container .aLabel {
+background-color: white;
+padding: 0.4em;
+font: 12px sans-serif;
+color: #444;
+z-index: 21;
+border: 1px dotted gray;
+opacity: 0.8;
+filter: alpha(opacity=80);
+cursor: pointer;
+}
+
+.project-container .aLabel._jsPlumb_hover {
+background-color: #5C96BC;
+color: white;
+border: 1px solid white;
+}
+
+.window._jsPlumb_connected {
+border: 2px solid green;
+}
+
+.jsplumb-drag {
+border: 4px solid pink !important;
+}
+
+path, ._jsPlumb_endpoint {
+cursor: pointer;
+}
+
+
+p.status {
+    font-style: italic;
+}
+
+.warning {
+    color: red;
+    font-weight: bold;
+}
+
+/* use to highlight the project container with a black line */
+.project-container {
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 100%;
+    min-height: 800px;
+}
+
+div#status {
+    font-family: 'Consolas', 'Menlo', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    font-size: 0.8em;
+    height: 4em;
+    vertical-align: bottom;
+    display: block;
+    overflow-y: scroll;
+}
+
+a img, li img {
+    margin: 2px;
+}
+
+#marioImg {
+    width: 4em;
+    height: auto;
+}
+
+#itaImg {
+    width: 30px;
+    height: auto;
+}
+
+.validDropPoint svg circle {
+    fill: green !important;
+}
+
+.invalidDropPoint svg circle {
+    fill: red !important;
+}
+
+#actions {
+    vertical-align: bottom;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

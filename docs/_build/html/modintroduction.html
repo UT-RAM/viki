@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction to modules &mdash; VIKI 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Tutorial on module.xml writing" href="modtutorial.html"/>
+        <link rel="prev" title="Contributor’s documentation" href="contributor.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">- Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-using-install-script">Install using install script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">- Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">- Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#supported">Supported</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#currently-unsopported">Currently unsopported</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sshdoc.html">- Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">- Module introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-outline">General outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#meta">Meta</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#executables">Executables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#guidelines">guidelines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modtutorial.html">- Module tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modtutorial.html#advanced-examples">Advanced examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer&#8217;s guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#updating-documentation">Updating documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="framework_description.html">- Framework description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">- System overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">- API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">VIKI</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Introduction to modules</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/modintroduction.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="introduction-to-modules">
+<span id="modintroduction"></span><h1>Introduction to modules<a class="headerlink" href="#introduction-to-modules" title="Permalink to this headline">¶</a></h1>
+<p>VIKI comes with (a currently not so) wide range of modules. As an engineer, you probably want to use your own functionality within VIKI. To do this, you will have to write a ROS package and enable it for VIKI by creating a <em>module.xml</em> file. This file is a module description for your package which describes the inputs, outputs, executables and meta data. This guide assumes you already have a ROS package (or multiple of them) that you want to use within VIKI. For creating new ROS packages for use in VIKI, it is useful to follow some guidelines, which can be found at <a class="reference internal" href="package_guidelines.html#package-guidelines"><span>ROS package guidelines</span></a>.</p>
+<p>A module file is standard XML and generally looks like this:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+<span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;sensor&quot;</span> <span class="na">id=</span><span class="s">&quot;camera_source&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;meta&gt;</span>
+        <span class="nt">&lt;name&gt;</span>USB camera<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;author&gt;</span>Robin Hoogervorst<span class="nt">&lt;/author&gt;</span>
+        <span class="nt">&lt;icon&gt;</span>icon.png<span class="nt">&lt;/icon&gt;</span>
+        <span class="nt">&lt;description&gt;</span>
+            Wrapper for the USB cam package within ros
+        <span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;/meta&gt;</span>
+
+    <span class="c">&lt;!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module --&gt;</span>
+    <span class="nt">&lt;outputs&gt;</span>
+        <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image&quot;</span> <span class="na">link=</span><span class="s">&quot;usb_cam/image_raw&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/outputs&gt;</span>
+
+    <span class="nt">&lt;executable</span> <span class="na">id=</span><span class="s">&quot;usb_cam&quot;</span> <span class="na">pkg=</span><span class="s">&quot;libuvc_camera&quot;</span> <span class="na">exec=</span><span class="s">&quot;camera_node&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;params&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;vendor&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;null&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;product&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;null&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;width&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;640&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;height&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;480&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;frame_rate&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;15.0&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/params&gt;</span>
+
+        <span class="nt">&lt;outputs&gt;</span>
+            <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/outputs&gt;</span>
+    <span class="nt">&lt;/executable&gt;</span>
+<span class="nt">&lt;/module&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="general-outline">
+<h2>General outline<a class="headerlink" href="#general-outline" title="Permalink to this headline">¶</a></h2>
+<p>Every module file starts out with:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!--AEROWORKS--&gt;</span>
+</pre></div>
+</div>
+<p>This line makes sure the module is found by VIKI during the scan of files. Not implementing this line makes your module invisible to VIKI. The second line starts the module description:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;sensor&quot;</span> <span class="na">id=</span><span class="s">&quot;camera_source&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+<p>This line specifies the type and id of the module. The type is a string on which VIKI groups its modules. You are free to choose anything you like here, but to be able to ingerate with VIKI better it is recommended to choose one of the following:</p>
+<ul class="simple">
+<li>Controller</li>
+<li>Middleware</li>
+<li>Rosdefaults</li>
+<li>Sensor</li>
+<li>Userinput</li>
+<li>Vehicle</li>
+<li>Views</li>
+</ul>
+<p>The id is a string that is unique for every module. <strong>Make sure it is not too generic!</strong> If you make a module called &#8216;camera&#8217;, the chance is big that such a module already exists and causes conflicts with other modules. Preferably, use a prefix for your specific project modules.</p>
+<p>After the opening lines, the important stuff happens. There are 5 types of XML nodes you can add here:</p>
+<ul class="simple">
+<li>meta</li>
+<li>inputs</li>
+<li>outputs</li>
+<li>executable</li>
+<li>configuration</li>
+</ul>
+</div>
+<div class="section" id="meta">
+<h2>Meta<a class="headerlink" href="#meta" title="Permalink to this headline">¶</a></h2>
+<p>As the name suggests, this is the place to add the meta information of your package.  This looks like</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;name&gt;</span>USB camera<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;author&gt;</span>Robin Hoogervorst<span class="nt">&lt;/author&gt;</span>
+    <span class="nt">&lt;icon&gt;</span>icon.png<span class="nt">&lt;/icon&gt;</span>
+    <span class="nt">&lt;description&gt;</span>
+        Wrapper for the USB cam package within ros
+    <span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
+<p>These tags basically speak for themselves, but for completeness sake:</p>
+<ul class="simple">
+<li><em>name:</em> This is the name of the module as VIKI shows it in the list</li>
+<li><em>author:</em> This is the name of the Author of the module. If you&#8217;re writing it, it would be you.</li>
+<li><em>icon:</em> The icon that VIKI uses to show it in the list. For more options, see below</li>
+<li><em>description:</em> The description shown in the interface of VIKI</li>
+</ul>
+<div class="section" id="icon">
+<h3>Icon<a class="headerlink" href="#icon" title="Permalink to this headline">¶</a></h3>
+<p>For specifying the icon, you have three options:</p>
+<ul class="simple">
+<li>Specify nothing: The default VIKI icon will be used.</li>
+<li>Specify a filename: VIKI will look for a image with this filename in the same folder as the module.xml file. If you add icon.png here, make sure you add a icon.png file as well.</li>
+<li>Specify a bootstrap icon: If you provide an icon name which starts with &#8216;glyphicon-&#8216; (e.g. glyphicon-star), VIKI will look for a bootstrap icon. This is an easy way to quickly add fancy icons. An overview of icons can be found at <a class="reference external" href="http://getbootstrap.com/components/">bootstrap icons</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="inputs-and-outputs">
+<h2>Inputs and Outputs<a class="headerlink" href="#inputs-and-outputs" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;inputs&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image_view_input&quot;</span> <span class="na">link=</span><span class="s">&quot;image_view/image&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/inputs&gt;</span>
+
+<span class="nt">&lt;outputs&gt;</span>
+    <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image&quot;</span> <span class="na">link=</span><span class="s">&quot;usb_cam/image_raw&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image2&quot;</span> <span class="na">link=</span><span class="s">&quot;usb_cam_2/image_raw&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;&lt;name&gt;&quot;</span> <span class="na">link=</span><span class="s">&quot;&lt;executable_id&gt;/&lt;topic_name&gt;&quot;</span> <span class="na">message_type=</span><span class="s">&quot;&lt;ros_type&gt;&quot;</span> <span class="na">required=</span><span class="s">&quot;&lt;boolean&gt;&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/outputs&gt;</span>
+</pre></div>
+</div>
+<p>The inputs and outputs come after the meta information. These specify the <em>module</em> in- and outputs, not executable specific ones. As can be seen, these blocks consist of a group XML node and (a set of) XML node(s) for each in/output. Attributes available for each specific in/output:</p>
+<ul class="simple">
+<li><em>type</em>: This is the type of input for the module. Currently, only &#8216;ros_topic&#8217; is supported.</li>
+<li><em>name</em>: This is the name of the output, which will be shown in VIKI.</li>
+<li><em>link</em>: This specifies to which ROS executable topic this links. It is of the format &#8216;&lt;executable_id&gt;/&lt;topic_name&gt;&#8217;.</li>
+<li><em>message_type</em>: A ROS topic type: (e.g. sensor_msgs/Image, geometry_msgs/PoseStamped, std_msgs/Empty). VIKI makes sure you only can connect topics of the same type. So it&#8217;s important to specify!</li>
+<li><em>required</em>: Indicates whether the topic is required to be connected. Is currently not used in the interface, but will probably be implemented in the future.</li>
+</ul>
+</div>
+<div class="section" id="executables">
+<h2>Executables<a class="headerlink" href="#executables" title="Permalink to this headline">¶</a></h2>
+<p>An executable in a ROS node specifies a ROS node that is to be executed.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;executable</span> <span class="na">id=</span><span class="s">&quot;usb_cam&quot;</span> <span class="na">pkg=</span><span class="s">&quot;libuvc_camera&quot;</span> <span class="na">exec=</span><span class="s">&quot;camera_node&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;params&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;vendor&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;null&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;product&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;null&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;width&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;640&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;height&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;480&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;frame_rate&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="na">default=</span><span class="s">&quot;15.0&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/params&gt;</span>
+
+    <span class="nt">&lt;outputs&gt;</span>
+        <span class="nt">&lt;output</span> <span class="na">type=</span><span class="s">&quot;ros_topic&quot;</span> <span class="na">name=</span><span class="s">&quot;image&quot;</span> <span class="na">message_type=</span><span class="s">&quot;sensor_msgs/Image&quot;</span> <span class="na">required=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/outputs&gt;</span>
+<span class="nt">&lt;/executable&gt;</span>
+</pre></div>
+</div>
+<p>The first line has three parameters:</p>
+<ul class="simple">
+<li><em>id</em>: This is the id used in the configuration to specify this executable. The module inputs and outputs are linked to executable inputs and outputs using this id.</li>
+<li><em>pkg</em>: The package from which to run the node</li>
+<li><em>exec</em>: The node that is to be run</li>
+</ul>
+<p>The pkg and exec parameters correspond to running the node with</p>
+<div class="highlight-bash"><div class="highlight"><pre>rosrun &lt;package&gt; &lt;executable&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="best-practices-for-writing-modules">
+<h2>Best practices for writing modules<a class="headerlink" href="#best-practices-for-writing-modules" title="Permalink to this headline">¶</a></h2>
+<p>Modules can be split up into two categories:</p>
+<ul class="simple">
+<li><strong>RAM modules</strong>: (called viki_modules repository) These are general modules that are made by RAM members. This is the main set that probabably everyone needs, appended with some specific work conducted at this group. For now, these live in the viki_modules repository at RaM. These modules are tested well and assumed to be stable. Bugs in these modules should be reported to the developers.</li>
+<li><strong>User modules</strong>: These modules are created by users, like you. These modules are project specific and should live only on your own filesystem. These modules should live in the &#8216;contrib&#8217; folder within aeroworks. These are used for your own testing and will probably contain bugs until you finished your assignment.</li>
+</ul>
+<p>Of course, the bigger the first category, the more useful VIKI will be. We highly encourage user modules to be included in the ram module list. When you have made something cool let us know, and we might add it.</p>
+<div class="section" id="guidelines">
+<h3>guidelines<a class="headerlink" href="#guidelines" title="Permalink to this headline">¶</a></h3>
+<p>When writing a (ROS package for a) VIKI module you <strong>must</strong>:</p>
+<ul class="simple">
+<li>Use catkin for building your package</li>
+<li>Specify the right dependencies in the package.xml file (from ROS)</li>
+<li>Specify your name and contact information within the module.xml file</li>
+</ul>
+<p>User modules can be written anwhere you like on your system. You can then add them to the module-directory in the VIKI-root via for instance a symbolic link. You can also chose to make them directly in the modules folder.</p>
+<p>Since VIKI is really modular, it is encouraged to use multiple ROS packages for your project. These are no hard guidelines, but to be useful they should be followed:</p>
+<p>Your module <strong>must</strong>:</p>
+<ul class="simple">
+<li>Publish its topics in its own namespace (so no &#8216;/&#8217; at the start of your topic name).</li>
+</ul>
+<p>Your module <strong>should</strong></p>
+<ul class="simple">
+<li>Have a clear (and preferably short) answer to the question: &#8216;What is the task of this module?&#8217;</li>
+</ul>
+<p>Your ROS package/node <strong>should</strong>:</p>
+<ul class="simple">
+<li>Live in the same folder as the module.xml file</li>
+<li>Have clear documentation within the code</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modtutorial.html" class="btn btn-neutral float-right" title="Tutorial on module.xml writing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="contributor.html" class="btn btn-neutral" title="Contributor’s documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

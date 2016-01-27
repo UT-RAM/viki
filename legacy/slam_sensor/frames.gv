@@ -1,6 +1,0 @@
-digraph G {
-"cam" -> "cam0"[label="Broadcaster: /static_publisher2\nAverage rate: 195.838 Hz\nMost recent transform: 1421244179.362 \nBuffer length: 4.984 sec\n"];
-"imu4" -> "cam"[label="Broadcaster: /static_publisher\nAverage rate: 195.899 Hz\nMost recent transform: 1421244179.365 \nBuffer length: 4.982 sec\n"];
-"imu4" -> "imu"[label="Broadcaster: /static_publisher3\nAverage rate: 195.267 Hz\nMost recent transform: 1421244179.366 \nBuffer length: 4.983 sec\n"];
-"odom_fixed" -> "imu4"[label="Broadcaster: /robot_pose_ekf\nAverage rate: 29.185 Hz\nMost recent transform: 1421244179.196 \nBuffer length: 4.865 sec\n"];
-}

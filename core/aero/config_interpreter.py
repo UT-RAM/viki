@@ -61,6 +61,14 @@ def recursiveGet(domparent, parent):
                     dommod.attributes['listener'].value
                 )
                 parent.connections_to_add.append(connection)
+            elif tagtype == 'machine':
+                machine = Machine(
+                    dommod.attributes['name'].value,
+                    dommod.attributes['hostname'].value,
+                    dommod.attributes['username'].value,
+                    dommod.attributes['password'].value
+                )
+                parent.machines_to_add.append(machine)
             else:
                 mod = Module_to_add(
                     dommod.tagName.lower(),
@@ -87,6 +95,26 @@ def recursiveGet(domparent, parent):
                             )
                         print("found a cmd line argument and added it to module to add")
                         mod.add_cmdline_arg(arg)
+
+                pfs = getElementsOnFirstLevel(dommod, 'launch-prefix')
+                if pfs:
+                    for dompf in pfs:
+                        pf = Launch_prefix(
+                            dompf.attributes['exec_id'].value,
+                            dompf.attributes['prefix'].value
+                            )
+                        print("Adding prefix")
+                        mod.add_prefix(pf)
+
+                selections = getElementsOnFirstLevel(dommod, 'selected-machine')
+                if selections:
+                    for domselection in selections:
+                        selection = Selected_machine(
+                            domselection.attributes['exec_id'].value,
+                            domselection.attributes['machine_name'].value
+                        )
+                        print("Adding machine selection")
+                        mod.add_machine_selection(selection)
 
                 parent.modules_to_add.append(mod)
     namespacesInParent = getElementsOnFirstLevel(domparent, 'namespace')
