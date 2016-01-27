@@ -180,7 +180,12 @@ def main():
         again = False
         msg = web_recv()
         if msg:
-            msg = from_json(msg)
+            try:
+                msg = from_json(msg)
+            except ValueError:
+                print "No valid JSON has been send.."
+                continue
+
             again = True
             print msg['value']
 

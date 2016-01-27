@@ -17,24 +17,32 @@ def configure():
 
     # Create fancy desktop entry
 
+
     return None
 
 
 def check_packages():
     print '\033[1;33m# Checking direct VIKI dependencies\033[1;m'
-    dependencies.check_installed_packages()
+    installed_ok = dependencies.check_installed_packages()
     print '\n\033[1;33m# Checking second level ROS dependencies, using rosdep\033[1;m'
-    dependencies.get_second_level_dependencies()
+    second_level_ok = dependencies.get_second_level_dependencies()
 
-    print '\033[1;32mTry running [viki install-dependencies] to install the dependencies\033[1;m'
+    if installed_ok and second_level_ok:
+        print '\033[1;32mAll dependencies satisfied!\033[1;m'
+    else:
+        print '\033[1;31mTry running [viki install-dependencies] to install the dependencies\033[1;m'
 
 def install_packages():
     missing_ros_packages = dependencies.get_missing_packages()
     if len(missing_ros_packages) == 0:
         print "[OK] - All ROS package dependencies are met, noting to install!"
 
-    installation_candidates = dependencies.get_aptget_packages(missing_ros_packages)
-    dependencies.start_installation(installation_candidates)
+    missing_aptget_packages = map((lambda x: x['name']), filter((lambda x: x['type'] == 'apt-get'), missing_ros_packages))
+    missing_vcs_packages = filter((lambda x: x['type'] == 'git'), missing_ros_packages)
+
+    installation_candidates = dependencies.get_aptget_packages(missing_aptget_packages)
+    dependencies.start_aptget_installation(installation_candidates)
+    dependencies.start_vcs_installation(missing_vcs_packages)
 
 def add_module_repository():
     # does not work yet really...

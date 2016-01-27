@@ -11,6 +11,7 @@ __author__ = 'robin'
 """
 
 from core.aero import scan
+import os
 import subprocess
 
 
@@ -19,16 +20,18 @@ def check_installed_packages():
     Checks for every module that is available,
     if the ROS packages needed for it are installed on the system
 
-    :return:
+    :return: Boolean
     """
     missing_packages = get_missing_packages()
 
     if len(missing_packages) > 0:
         print "[WARNING] - There are missing packages for full VIKI support:"
-        print "\n".join(missing_packages)
+        print "\n".join(map((lambda x: x['name']), missing_packages))
+        return False
     else:
         print "[OK] - All ROS package dependencies are met!"
         print "Note: only second level dependencies of already installed packages have been checked"
+        return True
 
 def get_installed_packages():
     """
@@ -53,7 +56,7 @@ def get_missing_packages():
     # if multiple modules use that package
     for module in modules_on_system:
         for package in module.package_dependencies:
-            if not package in installed_packages:
+            if not package['name'] in installed_packages:
                 # Only add the package if it is not yet in the list
                 if not package in missing_packages:
                     missing_packages.append(package)
@@ -63,7 +66,13 @@ def get_missing_packages():
 
 def get_second_level_dependencies():
     p = subprocess.Popen(['rosdep', 'check', '--from-paths', '../'], stdout=subprocess.PIPE)
-    print p.stdout.read()
+    output_string = p.stdout.read()
+
+    print output_string
+    if "All system dependencies" in output_string:
+        return True
+
+    return False
 
 def install_second_level_dependencies():
     p = subprocess.Popen(['rosdep', 'install', '--from-paths', '../'], stdout=subprocess.PIPE)
@@ -92,7 +101,7 @@ def get_aptget_packages(ros_package_names):
     return filter((lambda x: x[0] in ros_package_names), apt_packages)
 
 
-def start_installation(installation_candidates):
+def start_aptget_installation(installation_candidates):
     """
     Installs the packages that are provided in aa package list
     :param installation_candidates:
@@ -117,6 +126,34 @@ def start_installation(installation_candidates):
     command = ["sudo", "apt-get", "install"] + map((lambda x: x[1]), installation_candidates)
     subprocess.call(command)
 
+def start_vcs_installation(missing_vcs_packages):
+    if (len(missing_vcs_packages) == 0): return
+
+    print "VIKI is going to install the following missing packages using version control: \n"
+    print "\n".join(map((lambda x: x['name']+" ("+x['src']+")"), missing_vcs_packages))
+    input = None
+
+    # Ask for confirmation, pressing enter yields Y as default
+    while input not in ["y", "n", "Y", "N", ""]:
+        print "Are you OK with that?"
+        input = raw_input("[Y/n]: ")
+
+    if input == "n" or input == "N":
+        print "Aborting installation..."
+        return
+
+    if not os.path.exists("../viki_dependencies"):
+        os.makedirs("../viki_dependencies")
+
+    for package in missing_vcs_packages:
+        command = []
+        if package['type'] == 'git':
+            command = ['git', 'clone', package['src'], '../viki_dependencies/'+package['name']]
+
+        if command != []:
+            subprocess.call(command)
+    return None
+
 def get_modules():
     # TODO: Cache the module list in here, so that we don't scan all files again and again, and again...
     # if module_list == None:
@@ -128,3 +165,5 @@ def get_distinct_packages(modules):
     packages_per_module = filter((lambda x: len(x) > 0), map((lambda x: x.package_dependencies), modules))
     packages_list = reduce((lambda x,y: x+y), packages_per_module)
     return list(set(packages_list)) # filter out duplicates..
+
+
