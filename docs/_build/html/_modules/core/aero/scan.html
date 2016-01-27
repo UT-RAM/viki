@@ -74,8 +74,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../user.html">User&#8217;s documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">- Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-using-install-script">Install using install script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#id2">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../installation.html#module-repositories">Module repositories</a></li>
 </ul>
 </li>
@@ -86,6 +86,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commandline.html">- Commandline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../features.html">- Features</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../features.html#supported">Supported</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../features.html#currently-unsopported">Currently unsopported</a></li>
@@ -110,28 +111,25 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributor.html">Contributor&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modintroduction.html">- Module introduction</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modtutorial.html">- Module tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modintroduction.html">- Advanced modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#general-outline">General outline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#meta">Meta</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#icon">Icon</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#executables">Executables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#guidelines">guidelines</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modtutorial.html">- Module tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../modtutorial.html#advanced-examples">Advanced examples</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../package_guidelines.html">- Package Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer&#8217;s guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../developer.html#updating-documentation">Updating documentation</a></li>
 </ul>
@@ -205,10 +203,10 @@
 <span class="sd">    #. Put abstraction in a list</span>
 <span class="sd">    #. Return list when done.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">print</span> <span class="s">&quot;Scanning for modules in file tree...&quot;</span>
     <span class="n">available_mods</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="c"># START FILE LOOP</span>
+    <span class="c"># TODO: Being able to configure this directory, making it able to run viki everywhere, not just in its own directory</span>
     <span class="n">rootDir</span> <span class="o">=</span> <span class="s">&#39;../&#39;</span>
     <span class="k">for</span> <span class="n">dirName</span><span class="p">,</span> <span class="n">subdirList</span><span class="p">,</span> <span class="n">fileList</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">rootDir</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">fName</span> <span class="ow">in</span> <span class="n">fileList</span><span class="p">:</span>
@@ -244,6 +242,19 @@
                                         <span class="n">mod</span><span class="o">.</span><span class="n">addMeta</span><span class="p">(</span><span class="n">metachild</span><span class="o">.</span><span class="n">tagName</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">metachild</span><span class="o">.</span><span class="n">firstChild</span><span class="o">.</span><span class="n">nodeValue</span><span class="p">)</span>
                                 <span class="k">else</span><span class="p">:</span>
                                     <span class="k">print</span> <span class="s">&quot;Empty meta data section in document&quot;</span>
+
+                        <span class="c"># DEPENDENCIES</span>
+                        <span class="n">dependencies</span> <span class="o">=</span> <span class="n">dom</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&#39;dependencies&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dependencies</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="k">for</span> <span class="n">depchild</span> <span class="ow">in</span> <span class="n">getElements</span><span class="p">(</span><span class="n">dependencies</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                                <span class="k">if</span> <span class="n">depchild</span><span class="o">.</span><span class="n">tagName</span> <span class="o">==</span> <span class="s">&quot;depends&quot;</span><span class="p">:</span>
+                                    <span class="n">src</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+                                    <span class="nb">type</span> <span class="o">=</span> <span class="s">&quot;apt-get&quot;</span>
+                                    <span class="k">if</span> <span class="n">depchild</span><span class="o">.</span><span class="n">hasAttribute</span><span class="p">(</span><span class="s">&#39;src&#39;</span><span class="p">):</span>
+                                        <span class="n">src</span> <span class="o">=</span> <span class="n">depchild</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;src&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="k">if</span> <span class="n">depchild</span><span class="o">.</span><span class="n">hasAttribute</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">):</span>
+                                        <span class="nb">type</span> <span class="o">=</span> <span class="n">depchild</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">mod</span><span class="o">.</span><span class="n">addPackageDependency</span><span class="p">(</span><span class="n">depchild</span><span class="o">.</span><span class="n">firstChild</span><span class="o">.</span><span class="n">nodeValue</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">src</span><span class="p">)</span>
 
                         <span class="c"># MODULE PATH</span>
                         <span class="n">mod</span><span class="o">.</span><span class="n">setPath</span><span class="p">(</span><span class="n">fPath</span><span class="p">)</span>
@@ -291,7 +302,10 @@
                                     <span class="n">oName</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
                                     <span class="n">oMessageType</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;message_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
                                     <span class="n">oRequired</span> <span class="o">=</span> <span class="n">getOptionalAttribute</span><span class="p">(</span><span class="n">gInput</span><span class="p">,</span> <span class="s">&#39;required&#39;</span><span class="p">)</span>
-                                    <span class="n">interface</span> <span class="o">=</span> <span class="n">Interface</span><span class="p">(</span><span class="n">oType</span><span class="p">,</span> <span class="n">oName</span><span class="p">,</span> <span class="n">oMessageType</span><span class="p">,</span> <span class="n">oRequired</span><span class="p">)</span>
+                                    <span class="n">oNamespace</span> <span class="o">=</span> <span class="s">&quot;base&quot;</span>
+                                    <span class="k">if</span> <span class="n">gInput</span><span class="o">.</span><span class="n">hasAttribute</span><span class="p">(</span><span class="s">&#39;namespace&#39;</span><span class="p">):</span>
+                                        <span class="n">oNamespace</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;namespace&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">interface</span> <span class="o">=</span> <span class="n">Interface</span><span class="p">(</span><span class="n">oType</span><span class="p">,</span> <span class="n">oName</span><span class="p">,</span> <span class="n">oMessageType</span><span class="p">,</span> <span class="n">oRequired</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">oNamespace</span><span class="p">)</span>
                                     <span class="n">executableObject</span><span class="o">.</span><span class="n">addInput</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
 
                             <span class="c"># EXECUTABLE OUTPUTS</span>
@@ -303,7 +317,10 @@
                                     <span class="n">oName</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
                                     <span class="n">oMessageType</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;message_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
                                     <span class="n">oRequired</span> <span class="o">=</span> <span class="n">getOptionalAttribute</span><span class="p">(</span><span class="n">gOutput</span><span class="p">,</span> <span class="s">&#39;required&#39;</span><span class="p">)</span>
-                                    <span class="n">interface</span> <span class="o">=</span> <span class="n">Interface</span><span class="p">(</span><span class="n">oType</span><span class="p">,</span> <span class="n">oName</span><span class="p">,</span> <span class="n">oMessageType</span><span class="p">,</span> <span class="n">oRequired</span><span class="p">)</span>
+                                    <span class="n">oNamespace</span> <span class="o">=</span> <span class="s">&quot;base&quot;</span>
+                                    <span class="k">if</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">hasAttribute</span><span class="p">(</span><span class="s">&#39;namespace&#39;</span><span class="p">):</span>
+                                        <span class="n">oNamespace</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;namespace&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">interface</span> <span class="o">=</span> <span class="n">Interface</span><span class="p">(</span><span class="n">oType</span><span class="p">,</span> <span class="n">oName</span><span class="p">,</span> <span class="n">oMessageType</span><span class="p">,</span> <span class="n">oRequired</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">oNamespace</span><span class="p">)</span>
                                     <span class="n">executableObject</span><span class="o">.</span><span class="n">addOutput</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
 
                             <span class="c"># PARAMS</span>
@@ -331,14 +348,12 @@
                                         <span class="n">mod</span><span class="o">.</span><span class="n">addIntConnect</span><span class="p">(</span><span class="n">internal_interface</span><span class="p">)</span>
 
                         <span class="n">available_mods</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
-                        <span class="k">print</span> <span class="n">mod</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s">&#39; added!&#39;</span>
 
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                     <span class="k">print</span> <span class="s">&quot;Skipped adding &#39;&quot;</span> <span class="o">+</span> <span class="n">fPath</span> <span class="o">+</span> <span class="s">&quot;&#39; because it is a broken file. Error thrown was:&quot;</span>
                     <span class="k">print</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
 
     <span class="c"># END FILE LOOP</span>
-    <span class="k">print</span> <span class="s">&quot;Got all available modules.&quot;</span>
     <span class="k">return</span> <span class="n">available_mods</span></div>
 </pre></div>
 

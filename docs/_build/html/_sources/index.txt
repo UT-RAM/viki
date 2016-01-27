@@ -6,7 +6,7 @@
 .. _home:
 
 VIKI documentation home
-============================
+=======================
 
 This is the VIKI robotics framework documentation. It is split up in three parts:
 
@@ -28,12 +28,14 @@ Contents
    user
    - Installation <installation>
    - Quickstart <quickstart>
+   - Commandline <commandline>
    - Features <features>
    - Distributed systems (ssh doc) <sshdoc>
    contributor
-   - Module introduction <modintroduction>
    - Module tutorial <modtutorial>
+   - Advanced modules <modintroduction>
    - Tag list <modtaglist>
+   - Package Guidelines <package_guidelines>
    developer
    - Framework description <framework_description>
    - System overview <system_overview>

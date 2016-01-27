@@ -74,8 +74,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../user.html">User&#8217;s documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">- Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-using-install-script">Install using install script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#id2">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../installation.html#module-repositories">Module repositories</a></li>
 </ul>
 </li>
@@ -86,6 +86,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commandline.html">- Commandline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../features.html">- Features</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../features.html#supported">Supported</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../features.html#currently-unsopported">Currently unsopported</a></li>
@@ -110,28 +111,25 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributor.html">Contributor&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modintroduction.html">- Module introduction</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modtutorial.html">- Module tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modintroduction.html">- Advanced modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#general-outline">General outline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#meta">Meta</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#icon">Icon</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#executables">Executables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#guidelines">guidelines</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modtutorial.html">- Module tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../modtutorial.html#advanced-examples">Advanced examples</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../package_guidelines.html">- Package Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer&#8217;s guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../developer.html#updating-documentation">Updating documentation</a></li>
 </ul>
@@ -189,11 +187,7 @@
   <h1>Source code for core.aero.writeLaunch</h1><div class="highlight"><pre>
 <span class="kn">import</span> <span class="nn">xml.etree.cElementTree</span> <span class="kn">as</span> <span class="nn">ET</span>
 <span class="kn">import</span> <span class="nn">xml.dom.minidom</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">from</span> <span class="nn">objects</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">pprint</span>
 
 
@@ -348,7 +342,8 @@
         <span class="k">if</span> <span class="n">matchFound</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
             <span class="n">at_end</span> <span class="o">=</span> <span class="bp">True</span>
 
-    <span class="c"># Correct namespace is found, now find node name</span>
+    <span class="c"># Correct namespace is found, now find node name,</span>
+    <span class="c"># basiaclly replacing &lt;executable_id&gt; with &lt;running namespace of executable&gt;</span>
     <span class="k">for</span> <span class="n">mod</span> <span class="ow">in</span> <span class="n">configPart</span><span class="o">.</span><span class="n">modules_to_add</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">mod</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="n">interfaces</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">outputs</span><span class="o">+</span><span class="n">mod</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">inputs</span>
@@ -357,9 +352,17 @@
                     <span class="n">linkparts</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
                     <span class="n">exec_id</span> <span class="o">=</span> <span class="n">linkparts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
+                    <span class="c"># TODO: Check this!</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">linkparts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&quot;The link name is longer than expected, VIKI has not yet full support for this. Please check your module file: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mod</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+                    <span class="n">executable</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">getExecutable</span><span class="p">(</span><span class="n">exec_id</span><span class="p">)</span>
+                    <span class="n">executable_interface</span> <span class="o">=</span> <span class="n">executable</span><span class="o">.</span><span class="n">getInterface</span><span class="p">(</span><span class="n">linkparts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
                     <span class="n">linkparts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-                    <span class="c">#TODO: invert this, use root as the default topic root, and provide possibility to define namespace in the module.xml</span>
-                    <span class="k">if</span> <span class="n">exec_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;usb_cam&#39;</span><span class="p">,</span> <span class="s">&#39;cmd_vel_merge&#39;</span><span class="p">,</span> <span class="s">&#39;cmd_vel_lin_invert&#39;</span><span class="p">,</span> <span class="s">&#39;turtle_teleop_node&#39;</span><span class="p">,</span> <span class="s">&#39;turtlenode&#39;</span><span class="p">]:</span>
+
+                    <span class="c"># Fallback to extend namespace if the ROS topic is defined private</span>
+                    <span class="k">if</span> <span class="n">executable_interface</span><span class="o">.</span><span class="n">namespace</span> <span class="o">==</span> <span class="s">&quot;private&quot;</span><span class="p">:</span>
                         <span class="n">connectionString</span> <span class="o">+=</span> <span class="n">mod</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s">&#39;_&#39;</span> <span class="o">+</span> <span class="n">exec_id</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span>
                     <span class="n">connectionString</span> <span class="o">+=</span> <span class="n">mod</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s">&#39;_&#39;</span> <span class="o">+</span> <span class="n">exec_id</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">linkparts</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
                     <span class="k">break</span>
@@ -372,8 +375,11 @@
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Incorrect connect-statement&quot;</span><span class="p">)</span>
 
     <span class="n">exec_id</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">executable</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">getExecutable</span><span class="p">(</span><span class="n">exec_id</span><span class="p">)</span>
+    <span class="n">executable_interface</span> <span class="o">=</span> <span class="n">executable</span><span class="o">.</span><span class="n">getInterface</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+
     <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-    <span class="k">if</span> <span class="n">exec_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;joystick_node&#39;</span><span class="p">]:</span> <span class="c">#TODO: This is an ugly hack, somehow we should make it possible to use &#39;root&#39; namespaces</span>
+    <span class="k">if</span> <span class="n">executable_interface</span><span class="o">.</span><span class="n">namespace</span> <span class="o">==</span> <span class="s">&quot;private&quot;</span><span class="p">:</span>
         <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;{}_{}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mod</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">exec_id</span><span class="p">)</span>
     <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">mod</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s">&quot;_&quot;</span> <span class="o">+</span> <span class="n">exec_id</span>
     <span class="k">return</span> <span class="s">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span></div>

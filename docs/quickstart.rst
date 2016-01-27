@@ -44,7 +44,7 @@ Now that we have the two modules, we need to connect them. We will need to conne
 
 Your setup is now ready. Hit the green *run* button on top of the screen. A new terminal should open that gives some text feedback. This terminal is used to open your complete setup. More importantly, you should also see a window with a turtle in it. If you focus your input on the text window (click somewhere on it) then you can use your arrow keys to control the turtle in the other window.
 
-When you're done playing around with the turtlebot, you can select the terminal window and press `Ctrl + c`, which will kill its processes. After gracefully shutting down, the terminal window will disappear, and you're free to again run your canvas setup.
+When you're done playing around with the turtlebot, you can select the terminal window and press `Ctrl + C`, which will kill its processes. After gracefully shutting down, the terminal window will disappear, and you're free to again run your canvas setup.
 
 Where to move from here?
 ------------------------

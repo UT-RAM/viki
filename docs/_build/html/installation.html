@@ -75,8 +75,8 @@
 <li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">- Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-using-install-script">Install using install script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-repositories">Module repositories</a></li>
 </ul>
 </li>
@@ -189,48 +189,34 @@
             
   <div class="section" id="installation">
 <span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>You can get VIKI either by using the installscript, or manually. For manual installation you can scroll down to <a class="reference internal" href="#manual-installation">Manual Installation</a>. Either way though, you need the requirements listed below. This installation guide assumes you have installed ROS already. If you have not done this, follow <a class="reference external" href="http://wiki.ros.org/jade/Installation/Ubuntu">this guide</a> to install it.</p>
-<p>If you have already a catkin workspace, VIKI could be installed under that workspace. However, we recommend to install VIKI in its own <strong>seperate workspace</strong>. ROS packages that are not defined as a module can not be used anyway in VIKI and setting up a new workspace allows for a clean installation with up-to-date package versions. If you just want some functionality from the modules of VIKI, while not using the GUI, you can also just get a module repository and use ROS packages directly in your base workspace.</p>
+<p>This installation guide assumes you have installed ROS already. If you have not done this, follow <a class="reference external" href="http://wiki.ros.org/jade/Installation/Ubuntu">this guide</a> to install it.</p>
+<p>If you have already a catkin workspace, VIKI can be installed in that workspace. However, we recommend to install VIKI in its own <strong>seperate workspace</strong>. ROS packages that are not defined as a module can not be used anyway in VIKI and setting up a new workspace allows for a clean installation with up-to-date package versions. If you just want some functionality from the modules of VIKI, while not using the GUI, you can also just get a module repository and use ROS packages directly in your base workspace.</p>
 <p>VIKI consists of a core and at least one module repository. Right now, there is only one main repository, but this design makes it easy to create your own repository of modules for use easy sharing. This installation will setup the core and the main module repository for you. Adding extra module respositories is quite easy and discussed in <a class="reference internal" href="#module-repositories">Module repositories</a>.</p>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>VIKI uses ROS for all its main functionality and therefore builds on top of those dependencies. In line with ROS, VIKI only supports Ubuntu as its platform and is tested on 12.04 and 14.04. Other Ubuntu (and even Linux) distributions might work just as well, but are not supported.</p>
 </div>
-<div class="section" id="install-using-install-script">
-<h2>Install using install script<a class="headerlink" href="#install-using-install-script" title="Permalink to this headline">¶</a></h2>
-<p>You can easily install VIKI by running this script. This script will also create its own workspace. This will automatically install dependency packages for VIKI itself and install the basic set of modules. To be able to use these modules, some extra ROS packages are needed as well, which will also be installed.</p>
+<div class="section" id="id2">
+<h2>Installation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Installation is as easy as pulling the repository into your (or a new) catkin_workspace. Detailed instructions can be found in the repository itself. Go to <a class="reference external" href="https://github.com/UT-RAM/VIKI/">https://github.com/UT-RAM/VIKI/</a> to install VIKI easily.</p>
 </div>
-<div class="section" id="manual-installation">
-<h2>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this headline">¶</a></h2>
-<p>You can manually install VIKI by pulling the coderepository of the core into your catkin workspace. First, make sure to install the dependencies of VIKI</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Finish this part about the manual installation</p>
-</div>
-<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install python python-webkit python-gtk2 python-wstool python-rosinstall
+<div class="section" id="configuring-viki">
+<h2>Configuring VIKI<a class="headerlink" href="#configuring-viki" title="Permalink to this headline">¶</a></h2>
+<p>VIKI can be easily configured using</p>
+<div class="highlight-bash"><div class="highlight"><pre>./viki configure
 </pre></div>
 </div>
-<p>The VIKI repository can be found at:</p>
-<div class="highlight-python"><div class="highlight"><pre>https://hg.ram.ewi.utwente.nl/viki
-</pre></div>
-</div>
-<p>Pull this repository in by executing</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd </span>catkin_ws/src
-hg clone https://hg.ram.ewi.utwente.nl/viki
-</pre></div>
-</div>
-<p>This main module repository can be found at:</p>
-<div class="highlight-python"><div class="highlight"><pre>https://hg.ram.ewi.utwente.nl/viki_modules
-</pre></div>
-</div>
-<p>Clone the VIKI repository and the VIKI modules repository in the src folder of your workspace. Then create a symbolic link from src/viki/modules to src/viki_modules. This link allowes you to easily change the set of modules, while not touching the VIKI core repository.</p>
+<p>This will install some extra dependencies. It should also put a symlink in your catkin_workspace directory that is included in your PATH, such that you can directly use VIKI, but this doesn&#8217;t work yet..</p>
+<p>Right now, there are still some issues regarding the configuration of VIKI.</p>
 </div>
 <div class="section" id="module-repositories">
 <h2>Module repositories<a class="headerlink" href="#module-repositories" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-todo admonition" id="index-1">
-<p class="first admonition-title">Todo</p>
-<p class="last">Module repositories, explanation, how to add new ones</p>
+<p>To be able to really use VIKI, a module repository needs to be added. VIKI works with module repositories, such that you can
+get started quickly by automatically adding a set of packages. Using the command line, you can add the default repository as follows</p>
+<div class="highlight-bash"><div class="highlight"><pre>./viki add-module-repository
+</pre></div>
 </div>
+<p>This will pull the repository and automatically install all dependencies that might be needed for the modules so they can be launched. Furthermore, VIKI should be able to run catkin_make instantly, but this does not work as well,</p>
 </div>
 </div>
 

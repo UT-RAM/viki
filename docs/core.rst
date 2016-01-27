@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     core.aero
+    core.cli
     core.gui
 
 Module contents

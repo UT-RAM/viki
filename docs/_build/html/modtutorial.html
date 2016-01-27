@@ -32,7 +32,7 @@
   
     <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
         <link rel="next" title="description of module attributes and tags" href="modtaglist.html"/>
-        <link rel="prev" title="Introduction to modules" href="modintroduction.html"/> 
+        <link rel="prev" title="More advanced modules" href="modintroduction.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -75,8 +75,8 @@
 <li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">- Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#install-using-install-script">Install using install script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
 </ul>
 </li>
@@ -87,6 +87,7 @@
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="commandline.html">- Commandline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">- Features</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="features.html#supported">Supported</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html#currently-unsopported">Currently unsopported</a></li>
@@ -117,22 +118,20 @@
 <li class="toctree-l3"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#guidelines">guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">- Module tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#simple-tutorial">Simple tutorial</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#advanced-examples">Advanced examples</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">- Module tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_guidelines.html">- Package Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer&#8217;s guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developer.html#updating-documentation">Updating documentation</a></li>
 </ul>
@@ -189,9 +188,7 @@
             
   <div class="section" id="tutorial-on-module-xml-writing">
 <span id="modtutorial"></span><h1>Tutorial on module.xml writing<a class="headerlink" href="#tutorial-on-module-xml-writing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="simple-tutorial">
-<span id="simplemoduletutorial"></span><h2>Simple tutorial<a class="headerlink" href="#simple-tutorial" title="Permalink to this headline">¶</a></h2>
-<p>In this tutorial we will create a module. The module in this tutorial will start the ros_rqt_graph (which is already installed in ROS), which is a nice graph of ROS nodes and topics active on your PC.</p>
+<p id="simplemoduletutorial">In this tutorial we will create a module. The module in this tutorial will start the ros_rqt_graph (which is already installed in ROS), which is a nice graph of ROS nodes and topics active on your PC.</p>
 <p>Now since you are here it means you are probably not one of the maintainers of the framework. Therefore I kindly request that you place your module in the a separate folder with a usefull name, for instance <em>YourNameMSC</em>. Let us assume that your name is Doutzen Kroes and you name your folder <em>DoutzenMSC</em>. If you have installed the framework in the default location then running this should do the job for you:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws/src/VIKI_modules/ <span class="o">&amp;&amp;</span> mkdir DoutzenMSC
 </pre></div>
@@ -253,15 +250,7 @@ ExpatError: no element found: line 2, column 0
 <span class="nt">&lt;/module&gt;</span>
 </pre></div>
 </div>
-<p>Your module is now finished and runnable. Find out how and confirm as described in <span class="xref std std-ref">simpleconfigtutorial</span> or read on for more on module writing.</p>
-<div class="section" id="advanced-examples">
-<h3>Advanced examples<a class="headerlink" href="#advanced-examples" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">reate advanced module examples</p>
-</div>
-</div>
-</div>
+<p>Your module is now finished and runnable. Of course, these are the real basics, look at <a href="#id1"><span class="problematic" id="id2">`modintroduction`_</span></a> to go more in-depth regarding writing a module file.</p>
 </div>
 
 
@@ -273,7 +262,7 @@ ExpatError: no element found: line 2, column 0
         <a href="modtaglist.html" class="btn btn-neutral float-right" title="description of module attributes and tags" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="modintroduction.html" class="btn btn-neutral" title="Introduction to modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="modintroduction.html" class="btn btn-neutral" title="More advanced modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
