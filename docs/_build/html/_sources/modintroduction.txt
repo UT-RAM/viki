@@ -1,7 +1,7 @@
 .. _`modintroduction`:
 
-Introduction to modules
-=======================
+More advanced modules
+=====================
 
 VIKI comes with (a currently not so) wide range of modules. As an engineer, you probably want to use your own functionality within VIKI. To do this, you will have to write a ROS package and enable it for VIKI by creating a *module.xml* file. This file is a module description for your package which describes the inputs, outputs, executables and meta data. This guide assumes you already have a ROS package (or multiple of them) that you want to use within VIKI. For creating new ROS packages for use in VIKI, it is useful to follow some guidelines, which can be found at :ref:`package_guidelines`.
 
@@ -20,6 +20,10 @@ A module file is standard XML and generally looks like this:
                 Wrapper for the USB cam package within ros
             </description>
         </meta>
+
+        <dependencies>
+            <depends>libuvc_camera</depends>
+        </dependencies>
 
         <!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
         <outputs>
@@ -110,6 +114,24 @@ For specifying the icon, you have three options:
 
 .. _`bootstrap icons`: http://getbootstrap.com/components/
 
+Dependencies
+------------
+To be able to automatically let VIKI install the ROS packages, you need to specify which you are using. This is simply done by specifying the name of the ROS package inside the dependency tags.
+
+.. code-block:: xml
+
+    <dependencies>
+        <depends>libuvc_camera</depends>
+    </dependencies>
+
+This can now be automatically installed using the VIKI command line tool. If there is no apt-get package available for your package, you can specify the repository of the package. Set a 'type' and 'src' attribute in the depends tag like such:
+
+.. code-block:: xml
+
+    <dependencies>
+		<depends type="git" src="https://github.com/ros-drivers/mocap_optitrack">mocap_optitrack</depends>
+	</dependencies>
+
 Inputs and Outputs
 ------------------
 
@@ -134,7 +156,7 @@ The inputs and outputs come after the meta information. These specify the *modul
 * *required*: Indicates whether the topic is required to be connected. Is currently not used in the interface, but will probably be implemented in the future.
 
 Executables
-------------
+-----------
 An executable in a ROS node specifies a ROS node that is to be executed. 
 
 .. code-block:: xml
@@ -164,41 +186,3 @@ The pkg and exec parameters correspond to running the node with
 .. code-block:: bash
 
     rosrun <package> <executable>
-
-
-.. _`modbestpractices`
-Best practices for writing modules
-----------------------------------
-
-Modules can be split up into two categories:
-
-* **RAM modules**: (called viki_modules repository) These are general modules that are made by RAM members. This is the main set that probabably everyone needs, appended with some specific work conducted at this group. For now, these live in the viki_modules repository at RaM. These modules are tested well and assumed to be stable. Bugs in these modules should be reported to the developers.
-* **User modules**: These modules are created by users, like you. These modules are project specific and should live only on your own filesystem. These modules should live in the 'contrib' folder within aeroworks. These are used for your own testing and will probably contain bugs until you finished your assignment.
-
-Of course, the bigger the first category, the more useful VIKI will be. We highly encourage user modules to be included in the ram module list. When you have made something cool let us know, and we might add it. 
-
-guidelines
-""""""""""
-
-When writing a (ROS package for a) VIKI module you **must**:
-
-* Use catkin for building your package
-* Specify the right dependencies in the package.xml file (from ROS)
-* Specify your name and contact information within the module.xml file
-
-User modules can be written anwhere you like on your system. You can then add them to the module-directory in the VIKI-root via for instance a symbolic link. You can also chose to make them directly in the modules folder.  
-
-Since VIKI is really modular, it is encouraged to use multiple ROS packages for your project. These are no hard guidelines, but to be useful they should be followed:
-
-Your module **must**:
-
-* Publish its topics in its own namespace (so no '/' at the start of your topic name). 
-
-Your module **should**
-
-* Have a clear (and preferably short) answer to the question: 'What is the task of this module?'
-
-Your ROS package/node **should**:
-
-* Live in the same folder as the module.xml file
-* Have clear documentation within the code

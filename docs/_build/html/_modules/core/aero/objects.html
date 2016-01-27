@@ -74,8 +74,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../user.html">User&#8217;s documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">- Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-using-install-script">Install using install script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#id2">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../installation.html#module-repositories">Module repositories</a></li>
 </ul>
 </li>
@@ -86,6 +86,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commandline.html">- Commandline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../features.html">- Features</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../features.html#supported">Supported</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../features.html#currently-unsopported">Currently unsopported</a></li>
@@ -110,28 +111,25 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributor.html">Contributor&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modintroduction.html">- Module introduction</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modtutorial.html">- Module tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modintroduction.html">- Advanced modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#general-outline">General outline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#meta">Meta</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#icon">Icon</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#executables">Executables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#guidelines">guidelines</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modtutorial.html">- Module tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../modtutorial.html#advanced-examples">Advanced examples</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../package_guidelines.html">- Package Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer&#8217;s guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../developer.html#updating-documentation">Updating documentation</a></li>
 </ul>
@@ -194,11 +192,13 @@
 <div class="viewcode-block" id="Interface"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Interface">[docs]</a><span class="k">class</span> <span class="nc">Interface</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;An *interface* represents an in- or output of a module. This in- and outputs can be connected to other module&#39;s in- and outputs.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface_type</span><span class="p">,</span>
-                 <span class="n">name</span><span class="p">,</span> <span class="n">message_type</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">link</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+                 <span class="n">name</span><span class="p">,</span> <span class="n">message_type</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">link</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">&quot;base&quot;</span><span class="p">):</span>
         <span class="c">#: Represents the name of the interface. E.g.: &quot;cmd_vel&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="c">#: Represents the type of the interface. E.g.: &quot;ros_topic&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">interface_type</span>
+        <span class="c">#: Namespace used in the ros package for this topic, &quot;base&quot;, &quot;global&quot; or &quot;private&quot;; according to wiki.ros.org/Names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
         <span class="c">#: Represents the message type the interface can handle. E.g.: &quot;twist&quot; or &quot;standard_msgs/Empty&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message_type</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">lookupMessageType</span><span class="p">(</span><span class="n">message_type</span><span class="p">)</span>
         <span class="c">#: Defines if the interface is required to be connected. Execution will halt if this requirement is not met.</span>
@@ -239,6 +239,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c">#: Contains the path to the module config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="c">#: List with names of dependent ROS packages</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">package_dependencies</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: List with missing packages, initially empty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_packages</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="Module.addMeta"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addMeta">[docs]</a>    <span class="k">def</span> <span class="nf">addMeta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds metadata to :attr:`meta`.</span>
@@ -249,6 +253,16 @@
 <span class="sd">        :type value: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</div>
+<div class="viewcode-block" id="Module.addPackageDependency"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addPackageDependency">[docs]</a>    <span class="k">def</span> <span class="nf">addPackageDependency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;apt-get&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">package_dependencies</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="n">package_name</span><span class="p">,</span>
+            <span class="s">&#39;type&#39;</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span>
+            <span class="s">&#39;src&#39;</span><span class="p">:</span> <span class="n">src</span>
+        <span class="p">})</span>
+</div>
+<div class="viewcode-block" id="Module.addMissingPackage"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addMissingPackage">[docs]</a>    <span class="k">def</span> <span class="nf">addMissingPackage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_packages</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Module.addInput"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.addInput">[docs]</a>    <span class="k">def</span> <span class="nf">addInput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds an input to the list of module inputs (:attr:`inputs`).</span>
@@ -288,7 +302,16 @@
 <span class="sd">        :param path: The path where to find the module</span>
 <span class="sd">        :type path: string&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
-
+</div>
+<div class="viewcode-block" id="Module.getExecutable"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Module.getExecutable">[docs]</a>    <span class="k">def</span> <span class="nf">getExecutable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exec_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the executable with the id, within this module</span>
+<span class="sd">        :param exec_id: the string id of the executable, as defined in the xml file</span>
+<span class="sd">        :return: Executable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">executable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">executables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">executable</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">exec_id</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">executable</span>
+        <span class="k">return</span> <span class="bp">None</span>
 </div></div>
 <div class="viewcode-block" id="Executable"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Executable">[docs]</a><span class="k">class</span> <span class="nc">Executable</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;An *executable* represents a ROS node that can be launched through a ROS launch file, generated by the AeroWorks infrastructure.&quot;&quot;&quot;</span>
@@ -329,6 +352,12 @@
 <span class="sd">        :type parameter: :class:`Parameter`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Executable.getInterface"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Executable.getInterface">[docs]</a>    <span class="k">def</span> <span class="nf">getInterface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">interface</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">interface</span>
+        <span class="k">return</span> <span class="bp">None</span>
 
 </div></div>
 <div class="viewcode-block" id="Parameter"><a class="viewcode-back" href="../../../core.aero.html#core.aero.objects.Parameter">[docs]</a><span class="k">class</span> <span class="nc">Parameter</span><span class="p">:</span>

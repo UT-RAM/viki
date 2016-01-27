@@ -74,8 +74,8 @@
 <li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">- Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#install-using-install-script">Install using install script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
 </ul>
 </li>
@@ -86,6 +86,7 @@
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="commandline.html">- Commandline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">- Features</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="features.html#supported">Supported</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html#currently-unsopported">Currently unsopported</a></li>
@@ -110,28 +111,25 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modintroduction.html">- Module introduction</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="modtutorial.html">- Module tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modintroduction.html">- Advanced modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#meta">Meta</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#guidelines">guidelines</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modtutorial.html">- Module tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="modtutorial.html#advanced-examples">Advanced examples</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_guidelines.html">- Package Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer&#8217;s guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developer.html#updating-documentation">Updating documentation</a></li>
 </ul>
@@ -223,6 +221,10 @@
   </dt>
 
       
+  <dt><a href="core.cli.html#core.cli.runnables.add_module_repository">add_module_repository() (in module core.cli.runnables)</a>
+  </dt>
+
+      
   <dt><a href="core.aero.html#core.aero.objects.Module_to_add.add_prefix">add_prefix() (core.aero.objects.Module_to_add method)</a>
   </dt>
 
@@ -251,6 +253,10 @@
   </dt>
 
       
+  <dt><a href="core.aero.html#core.aero.objects.Module.addMissingPackage">addMissingPackage() (core.aero.objects.Module method)</a>
+  </dt>
+
+      
   <dt><a href="core.aero.html#core.aero.objects.Executable.addOutput">addOutput() (core.aero.objects.Executable method)</a>
   </dt>
 
@@ -260,6 +266,10 @@
   </dt>
 
       </dl></dd>
+      
+  <dt><a href="core.aero.html#core.aero.objects.Module.addPackageDependency">addPackageDependency() (core.aero.objects.Module method)</a>
+  </dt>
+
       
   <dt><a href="core.aero.html#core.aero.objects.Executable.addParameter">addParameter() (core.aero.objects.Executable method)</a>
   </dt>
@@ -275,6 +285,22 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="core.cli.html#core.cli.repositories.catkin_make">catkin_make() (in module core.cli.repositories)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.check_installed_packages">check_installed_packages() (in module core.cli.dependencies)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.runnables.check_packages">check_packages() (in module core.cli.runnables)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.repositories.clone_module_repository">clone_module_repository() (in module core.cli.repositories)</a>
+  </dt>
+
+      
   <dt><a href="core.aero.html#core.aero.objects.Cmdline_argument">Cmdline_argument (class in core.aero.objects)</a>
   </dt>
 
@@ -284,6 +310,10 @@
 
       
   <dt><a href="core.aero.html#core.aero.objects.Configuration">Configuration (class in core.aero.objects)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.runnables.configure">configure() (in module core.cli.runnables)</a>
   </dt>
 
       
@@ -332,6 +362,22 @@
 
       
   <dt><a href="core.aero.html#module-core.aero.writeLaunch">core.aero.writeLaunch (module)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#module-core.cli">core.cli (module)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#module-core.cli.dependencies">core.cli.dependencies (module)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#module-core.cli.repositories">core.cli.repositories (module)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#module-core.cli.runnables">core.cli.runnables (module)</a>
   </dt>
 
       
@@ -389,6 +435,34 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="core.cli.html#core.cli.dependencies.get_aptget_packages">get_aptget_packages() (in module core.cli.dependencies)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.get_distinct_packages">get_distinct_packages() (in module core.cli.dependencies)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.get_installed_packages">get_installed_packages() (in module core.cli.dependencies)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.get_missing_packages">get_missing_packages() (in module core.cli.dependencies)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.get_modules">get_modules() (in module core.cli.dependencies)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.get_package_locations">get_package_locations() (in module core.cli.dependencies)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.get_second_level_dependencies">get_second_level_dependencies() (in module core.cli.dependencies)</a>
+  </dt>
+
+      
   <dt><a href="core.aero.html#core.aero.scan.getAvailableModules">getAvailableModules() (in module core.aero.scan)</a>
   </dt>
 
@@ -396,6 +470,8 @@
   <dt><a href="core.aero.html#core.aero.config_interpreter.getConfig">getConfig() (in module core.aero.config_interpreter)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.helpers.getElements">getElements() (in module core.aero.helpers)</a>
   </dt>
@@ -404,10 +480,16 @@
   <dt><a href="core.aero.html#core.aero.helpers.getElementsOnFirstLevel">getElementsOnFirstLevel() (in module core.aero.helpers)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.helpers.getElementsOnFirstLevelExceptTag">getElementsOnFirstLevelExceptTag() (in module core.aero.helpers)</a>
+  </dt>
+
+      
+  <dt><a href="core.aero.html#core.aero.objects.Module.getExecutable">getExecutable() (core.aero.objects.Module method)</a>
+  </dt>
+
+      
+  <dt><a href="core.aero.html#core.aero.objects.Executable.getInterface">getInterface() (core.aero.objects.Executable method)</a>
   </dt>
 
       
@@ -452,8 +534,6 @@
   </dt>
 
       </dl></dd>
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.objects.Executable.inputs">inputs (core.aero.objects.Executable attribute)</a>
   </dt>
@@ -464,6 +544,16 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.cli.html#core.cli.runnables.install_packages">install_packages() (in module core.cli.runnables)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.install_second_level_dependencies">install_second_level_dependencies() (in module core.cli.dependencies)</a>
+  </dt>
+
       
   <dt><a href="core.aero.html#core.aero.objects.Interface">Interface (class in core.aero.objects)</a>
   </dt>
@@ -536,10 +626,14 @@
   <dt><a href="core.aero.html#core.aero.objects.Interface.message_type">message_type (core.aero.objects.Interface attribute)</a>
   </dt>
 
+      
+  <dt><a href="core.aero.html#core.aero.objects.Module.meta">meta (core.aero.objects.Module attribute)</a>
+  </dt>
+
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="core.aero.html#core.aero.objects.Module.meta">meta (core.aero.objects.Module attribute)</a>
+  <dt><a href="core.aero.html#core.aero.objects.Module.missing_packages">missing_packages (core.aero.objects.Module attribute)</a>
   </dt>
 
       
@@ -560,10 +654,14 @@
   <dt><a href="core.aero.html#core.aero.objects.Interface.name">name (core.aero.objects.Interface attribute)</a>
   </dt>
 
+      
+  <dt><a href="core.aero.html#core.aero.objects.Namespace">Namespace (class in core.aero.objects)</a>
+  </dt>
+
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="core.aero.html#core.aero.objects.Namespace">Namespace (class in core.aero.objects)</a>
+  <dt><a href="core.aero.html#core.aero.objects.Interface.namespace">namespace (core.aero.objects.Interface attribute)</a>
   </dt>
 
   </dl></td>
@@ -601,6 +699,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="core.aero.html#core.aero.objects.Module.package_dependencies">package_dependencies (core.aero.objects.Module attribute)</a>
+  </dt>
+
+      
   <dt><a href="core.aero.html#core.aero.objects.Parameter">Parameter (class in core.aero.objects)</a>
   </dt>
 
@@ -612,12 +714,12 @@
   <dt><a href="core.aero.html#core.aero.objects.Executable.params">params (core.aero.objects.Executable attribute)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.objects.Module.path">path (core.aero.objects.Module attribute)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.objects.Executable.pkg">pkg (core.aero.objects.Executable attribute)</a>
   </dt>
@@ -644,14 +746,18 @@
   <dt><a href="core.aero.html#core.aero.config_matcher.recursiveMatch">recursiveMatch() (in module core.aero.config_matcher)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.writeLaunch.recursiveWrite">recursiveWrite() (in module core.aero.writeLaunch)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.aero.html#core.aero.objects.Interface.required">required (core.aero.objects.Interface attribute)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.runnables.run">run() (in module core.cli.runnables)</a>
   </dt>
 
   </dl></td>
@@ -668,10 +774,18 @@
   <dt><a href="core.aero.html#core.aero.objects.Module.setPath">setPath() (core.aero.objects.Module method)</a>
   </dt>
 
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.start_aptget_installation">start_aptget_installation() (in module core.cli.dependencies)</a>
+  </dt>
+
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.gui.html#core.gui.webgui.start_gtk_thread">start_gtk_thread() (in module core.gui.webgui)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.dependencies.start_vcs_installation">start_vcs_installation() (in module core.cli.dependencies)</a>
   </dt>
 
       

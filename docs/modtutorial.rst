@@ -5,8 +5,6 @@ Tutorial on module.xml writing
 
 .. _`simplemoduletutorial`:
 
-Simple tutorial
-----------------
 In this tutorial we will create a module. The module in this tutorial will start the ros_rqt_graph (which is already installed in ROS), which is a nice graph of ROS nodes and topics active on your PC.
 
 Now since you are here it means you are probably not one of the maintainers of the framework. Therefore I kindly request that you place your module in the a separate folder with a usefull name, for instance *YourNameMSC*. Let us assume that your name is Doutzen Kroes and you name your folder *DoutzenMSC*. If you have installed the framework in the default location then running this should do the job for you:
@@ -88,8 +86,4 @@ For your convenience, this is how your module.xml file should look now:
         </executable>
     </module>
 
-Your module is now finished and runnable. Find out how and confirm as described in :ref:`simpleconfigtutorial` or read on for more on module writing.
-
-Advanced examples
-^^^^^^^^^^^^^^^^^
-.. todo:: reate advanced module examples
+Your module is now finished and runnable. Of course, these are the real basics, look at `modintroduction`_ to go more in-depth regarding writing a module file.

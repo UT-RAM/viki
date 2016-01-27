@@ -73,8 +73,8 @@
 <li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">- Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#install-using-install-script">Install using install script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
 </ul>
 </li>
@@ -85,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="commandline.html">- Commandline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">- Features</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="features.html#supported">Supported</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html#currently-unsopported">Currently unsopported</a></li>
@@ -109,28 +110,25 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modintroduction.html">- Module introduction</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="modtutorial.html">- Module tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modintroduction.html">- Advanced modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#meta">Meta</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#guidelines">guidelines</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modtutorial.html">- Module tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="modtutorial.html#advanced-examples">Advanced examples</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_guidelines.html">- Package Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer&#8217;s guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developer.html#updating-documentation">Updating documentation</a></li>
 </ul>
@@ -499,6 +497,11 @@ usually from a configuration file, used to setup an experiment.</p>
 <dd><p>The ROS node executable to launch. E.g. &#8220;joy_node&#8221;.</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="core.aero.objects.Executable.getInterface">
+<code class="descname">getInterface</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Executable.getInterface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Executable.getInterface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="core.aero.objects.Executable.id">
 <code class="descname">id</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Executable.id" title="Permalink to this definition">¶</a></dt>
@@ -533,7 +536,7 @@ usually from a configuration file, used to setup an experiment.</p>
 
 <dl class="class">
 <dt id="core.aero.objects.Interface">
-<em class="property">class </em><code class="descclassname">core.aero.objects.</code><code class="descname">Interface</code><span class="sig-paren">(</span><em>interface_type</em>, <em>name</em>, <em>message_type</em>, <em>required</em>, <em>link=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Interface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Interface" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">core.aero.objects.</code><code class="descname">Interface</code><span class="sig-paren">(</span><em>interface_type</em>, <em>name</em>, <em>message_type</em>, <em>required</em>, <em>link=None</em>, <em>namespace='base'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Interface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Interface" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <em>interface</em> represents an in- or output of a module. This in- and outputs can be connected to other module&#8217;s in- and outputs.</p>
 <dl class="attribute">
 <dt id="core.aero.objects.Interface.link">
@@ -551,6 +554,12 @@ usually from a configuration file, used to setup an experiment.</p>
 <dt id="core.aero.objects.Interface.name">
 <code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Interface.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents the name of the interface. E.g.: &#8220;cmd_vel&#8221;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.aero.objects.Interface.namespace">
+<code class="descname">namespace</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Interface.namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Namespace used in the ros package for this topic, &#8220;base&#8221;, &#8220;global&#8221; or &#8220;private&#8221;; according to wiki.ros.org/Names</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -678,6 +687,11 @@ Can be very useful to for instance start a node in debug mode.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="core.aero.objects.Module.addMissingPackage">
+<code class="descname">addMissingPackage</code><span class="sig-paren">(</span><em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Module.addMissingPackage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Module.addMissingPackage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="core.aero.objects.Module.addOutput">
 <code class="descname">addOutput</code><span class="sig-paren">(</span><em>interface</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Module.addOutput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Module.addOutput" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds an output to the list of module outputs (<a class="reference internal" href="#core.aero.objects.Module.outputs" title="core.aero.objects.Module.outputs"><code class="xref py py-attr docutils literal"><span class="pre">outputs</span></code></a>).</p>
@@ -691,6 +705,11 @@ Can be very useful to for instance start a node in debug mode.</p>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="core.aero.objects.Module.addPackageDependency">
+<code class="descname">addPackageDependency</code><span class="sig-paren">(</span><em>package_name</em>, <em>type='apt-get'</em>, <em>src=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Module.addPackageDependency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Module.addPackageDependency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="core.aero.objects.Module.config">
 <code class="descname">config</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.config" title="Permalink to this definition">¶</a></dt>
@@ -701,6 +720,14 @@ Can be very useful to for instance start a node in debug mode.</p>
 <dt id="core.aero.objects.Module.executables">
 <code class="descname">executables</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.executables" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of <a class="reference internal" href="#core.aero.objects.Executable" title="core.aero.objects.Executable"><code class="xref py py-class docutils literal"><span class="pre">Executable</span></code></a> describing all executables (ROS nodes) in the module.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.aero.objects.Module.getExecutable">
+<code class="descname">getExecutable</code><span class="sig-paren">(</span><em>exec_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/aero/objects.html#Module.getExecutable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.aero.objects.Module.getExecutable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the executable with the id, within this module
+:param exec_id: the string id of the executable, as defined in the xml file
+:return: Executable</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -722,9 +749,21 @@ Can be very useful to for instance start a node in debug mode.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="core.aero.objects.Module.missing_packages">
+<code class="descname">missing_packages</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.missing_packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>List with missing packages, initially empty</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="core.aero.objects.Module.outputs">
 <code class="descname">outputs</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.outputs" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of <a class="reference internal" href="#core.aero.objects.Interface" title="core.aero.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a> describing all outputs of the module.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.aero.objects.Module.package_dependencies">
+<code class="descname">package_dependencies</code><em class="property"> = None</em><a class="headerlink" href="#core.aero.objects.Module.package_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>List with names of dependent ROS packages</p>
 </dd></dl>
 
 <dl class="attribute">
