@@ -11,7 +11,7 @@ First off, you will have to start VIKI. Open a terminal, navigate to the install
 
 .. code-block:: bash
 
-    python core
+    ./viki run
 
 You should see a screen pop up with the interface of VIKI.
 
