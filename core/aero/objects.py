@@ -67,8 +67,12 @@ class Module:
         """
         self.meta[key] = value
 
-    def addPackageDependency(self, package_name):
-        self.package_dependencies.append(package_name)
+    def addPackageDependency(self, package_name, type="apt-get", src=""):
+        self.package_dependencies.append({
+            'name': package_name,
+            'type': type,
+            'src': src
+        })
 
     def addMissingPackage(self, package_name):
         self.missing_packages.add(package_name)

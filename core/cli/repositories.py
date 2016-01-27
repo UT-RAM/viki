@@ -31,6 +31,6 @@ def clone_module_repository(repo):
 
 def catkin_make():
     # does not work yet!
-    p = subprocess.Popen('cd ../.. && catkin_make', stdout=subprocess.PIPE)
+    p = subprocess.Popen('. ~/.bashrc && catkin_make --directory ../..', stdout=subprocess.PIPE)
     print p.stdout.read()
     p.communicate()

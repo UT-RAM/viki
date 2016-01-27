@@ -61,7 +61,13 @@ def getAvailableModules():
                         if len(dependencies) == 1:
                             for depchild in getElements(dependencies[0]):
                                 if depchild.tagName == "depends":
-                                    mod.addPackageDependency(depchild.firstChild.nodeValue)
+                                    src = ""
+                                    type = "apt-get"
+                                    if depchild.hasAttribute('src'):
+                                        src = depchild.attributes['src'].value
+                                    if depchild.hasAttribute('type'):
+                                        type = depchild.attributes['type'].value
+                                    mod.addPackageDependency(depchild.firstChild.nodeValue, type, src)
 
                         # MODULE PATH
                         mod.setPath(fPath)

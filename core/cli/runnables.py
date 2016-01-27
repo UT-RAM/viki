@@ -34,8 +34,12 @@ def install_packages():
     if len(missing_ros_packages) == 0:
         print "[OK] - All ROS package dependencies are met, noting to install!"
 
-    installation_candidates = dependencies.get_aptget_packages(missing_ros_packages)
-    dependencies.start_installation(installation_candidates)
+    missing_aptget_packages = map((lambda x: x['name']), filter((lambda x: x['type'] == 'apt-get'), missing_ros_packages))
+    missing_vcs_packages = filter((lambda x: x['type'] == 'git'), missing_ros_packages)
+
+    installation_candidates = dependencies.get_aptget_packages(missing_aptget_packages)
+    dependencies.start_aptget_installation(installation_candidates)
+    dependencies.start_vcs_installation(missing_vcs_packages)
 
 def add_module_repository():
     # does not work yet really...
@@ -44,6 +48,5 @@ def add_module_repository():
     install_packages()
     # install using rosdep, for build dependencies
     dependencies.install_second_level_dependencies()
-    # now, there could still be missing dependencies, that cannot be resolved with ROS automatically
     # build
     repositories.catkin_make()
