@@ -17,6 +17,7 @@ def configure():
 
     # Create fancy desktop entry
 
+
     return None
 
 
@@ -43,5 +44,6 @@ def add_module_repository():
     install_packages()
     # install using rosdep, for build dependencies
     dependencies.install_second_level_dependencies()
+    # now, there could still be missing dependencies, that cannot be resolved with ROS automatically
     # build
     repositories.catkin_make()
