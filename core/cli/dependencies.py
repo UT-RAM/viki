@@ -20,16 +20,18 @@ def check_installed_packages():
     Checks for every module that is available,
     if the ROS packages needed for it are installed on the system
 
-    :return:
+    :return: Boolean
     """
     missing_packages = get_missing_packages()
 
     if len(missing_packages) > 0:
         print "[WARNING] - There are missing packages for full VIKI support:"
         print "\n".join(map((lambda x: x['name']), missing_packages))
+        return False
     else:
         print "[OK] - All ROS package dependencies are met!"
         print "Note: only second level dependencies of already installed packages have been checked"
+        return True
 
 def get_installed_packages():
     """
@@ -64,7 +66,13 @@ def get_missing_packages():
 
 def get_second_level_dependencies():
     p = subprocess.Popen(['rosdep', 'check', '--from-paths', '../'], stdout=subprocess.PIPE)
-    print p.stdout.read()
+    output_string = p.stdout.read()
+
+    print output_string
+    if "All system dependencies" in output_string:
+        return True
+
+    return False
 
 def install_second_level_dependencies():
     p = subprocess.Popen(['rosdep', 'install', '--from-paths', '../'], stdout=subprocess.PIPE)
