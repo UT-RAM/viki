@@ -3,7 +3,7 @@
 VIKI is a GUI tool for running ROS experiments. It helps you setting up experiments quickly and offers a lot of flexibility. 
 VIKI is designed to aid in setting up ROS packages and finding the right tools for you. 
  
- ![viki_screenshot](/docs/systemoverview.png)
+ ![viki_screenshot](/docs/viki_screenshot.png)
  
 ##Installation
 
