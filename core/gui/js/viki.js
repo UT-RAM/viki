@@ -9,6 +9,7 @@ var localHostName = "localhost";
 var machines = {};
 
 $(document).ready(function(){
+    $('img').on('dragstart', function (event) {event.preventDefault()});
     // All links with an id starting with viki are buttons that expect a reaction from python. This process is automated: the python function with name equal to the id will run.
     $("a[id^=viki]").click(function(){
         statusmessage = $(this).data("statusmessage");
