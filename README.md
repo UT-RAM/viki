@@ -26,7 +26,7 @@ After that, create a new ROS workspace and clone this repository into the src fo
      cd catkin_ws/src
      catkin_init_workspace
      
-     git clone https://github.com/UT-RAM/VIKI
+     git clone https://github.com/UT-RAM/viki
      
 This pulls the files needed right into your catkin_workspace. VIKI supports a commandline tool that you can use
 to further setup your system. From within VIKI directory, run 
