@@ -456,12 +456,12 @@ function clearSelectedModule() {
  * Delete the currently selected module from the canvas
  */
 function deleteSelectedModule() {
-    saveState();
     if (selectedModuleUid != null) {
+        saveState();
         deleteWindowFromCanvas(selectedModuleUid);
-        clearSelectedModule(); 
+        clearSelectedModule();
+        updateStatus("Deleted module from canvas.");
     }
-    updateStatus("Deleted module from canvas.");
 }
 
 /**
