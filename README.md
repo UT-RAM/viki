@@ -29,12 +29,13 @@ After that, create a new ROS workspace and clone this repository into the src fo
      git clone https://github.com/UT-RAM/VIKI
      
 This pulls the files needed right into your catkin_workspace. VIKI supports a commandline tool that you can use
-to further setup your system. From within VIKI directory, run 
-
+to further setup your system. To configure VIKI, from within VIKI directory, run 
+    
+    sudo apt-get install python-webkit
     ./viki configure
     
-To let VIKI configure itself _(does not work yet fully)_. Now, run
-
+Since the configure command is not totally working yet, we need to first install python-webkit. This issue will be fixed soon.
+    
     ./viki run
     
 To launch VIKI. Congratulations! You can now start using VIKI, look further into the documentation on how to use VIKI and how to add modules.
