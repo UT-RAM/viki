@@ -2,24 +2,31 @@ __author__ = 'robin'
 
 import subprocess
 
+"""
+    Package that handles repository installation.
+    Right now, this is very basic, but can be more elaborate in the future
+"""
+
 repositories = {
-    'core_old': {
-        'url': 'https://hg.ram.ewi.utwente.nl/viki_modules',
-        'type': 'hg',
-        'branch': 'dev'
-    },
     'core':  {
-        'url': 'https://github.com/UT-RAM/VIKI_modules',
+        'url': 'https://github.com/UT-RAM/viki-modules',
         'type': 'git',
         'branch': 'dev'
     }
 }
 
 def clone_module_repository(repo):
+    """
+    Clone a repository into the viki_modules folder
+    :param repo:
+    :return:
+    """
     repository = repositories[repo]
 
     if repository == None:
         print "Not known repository"
+
+    # TODO: Check if repository exists!
 
     command = []
     if repository['type'] == 'hg':

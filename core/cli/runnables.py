@@ -5,22 +5,40 @@ import subprocess
 import  dependencies
 import repositories
 
+# Be careful to import stuff here, this is the very low level of VIKI, where not all dependencies are met yet
+# If something is imported, test thoroughly!
+
 def run():
+    """
+        Run VIKI :D
+        :return:
+    """
     from core import __main__ as viki_core
     viki_core.run()
 
 def configure():
+    """
+        Usually the first command to run. This will install apt-get dependencies to run VIKI properly,
+        and do some more configuration like creating a desktop entry
+    :return:
+    """
     # Install the right dependencies
     to_install_packages = ['python-webkit', 'python-gtk2', 'python-simplejson']
     subprocess.call(['sudo', 'apt-get', 'install']+to_install_packages)
 
     # Create fancy desktop entry
-
+    # TODO: Create this desktop entry :)
 
     return None
 
 
 def check_packages():
+    """
+        Checks if all packages that should be installed are installed
+        First-level: ROS packages that are required for VIKI directly
+        Second-level: Dependencies of ROS-packages
+        :return:
+    """
     print '\033[1;33m# Checking direct VIKI dependencies\033[1;m'
     installed_ok = dependencies.check_installed_packages()
     print '\n\033[1;33m# Checking second level ROS dependencies, using rosdep\033[1;m'
@@ -32,6 +50,11 @@ def check_packages():
         print '\033[1;31mTry running [viki install-dependencies] to install the dependencies\033[1;m'
 
 def install_packages():
+    """
+        Installs packages that the 'check_packages' function determines as missing
+        This can either be with apt-get, or git, something else is not yet supported
+        :return:
+    """
     missing_ros_packages = dependencies.get_missing_packages()
     if len(missing_ros_packages) == 0:
         print "[OK] - All ROS package dependencies are met, noting to install!"
@@ -51,4 +74,5 @@ def add_module_repository():
     # install using rosdep, for build dependencies
     dependencies.install_second_level_dependencies()
     # build
-    repositories.catkin_make()
+    # repositories.catkin_make()
+    # TODO: Make this work!

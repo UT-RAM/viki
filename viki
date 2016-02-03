@@ -19,9 +19,14 @@ run_functions = {
     'add-module-repository': runnables.add_module_repository
 }
 
+# Parsing arguments using argparse
 parser.add_argument('method', nargs='?', default='run', choices=run_functions.keys(), help="Command for VIKI to run")
 
 args = parser.parse_args()
 method = args.method
 
+"""
+    Using the mapping from above, we can run functions from the runnables package,
+    this python module provides the actual functionality for the command line
+"""
 run_functions[method]()
