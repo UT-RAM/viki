@@ -39,3 +39,7 @@ Since the configure command is not totally working yet, we need to first install
     ./viki run
     
 To launch VIKI. Congratulations! You can now start using VIKI, look further into the documentation on how to use VIKI and how to add modules.
+
+## Documentation
+
+Right now, the documentation is not yet hosted to the public, but included in the repository. After cloning the repository locally, open the file ` `<repo_dir>/docs/_build/html/index.html` in your favourite browser to read the docs.
