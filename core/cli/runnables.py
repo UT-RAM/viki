@@ -2,12 +2,11 @@ __author__ = 'robin'
 
 import subprocess
 
-from core import __main__ as viki_core
-
 import  dependencies
 import repositories
 
 def run():
+    from core import __main__ as viki_core
     viki_core.run()
 
 def configure():
