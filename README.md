@@ -42,4 +42,4 @@ To launch VIKI. Congratulations! You can now start using VIKI, look further into
 
 ## Documentation
 
-Right now, the documentation is not yet hosted to the public, but included in the repository. After cloning the repository locally, open the file ` `<repo_dir>/docs/_build/html/index.html` in your favourite browser to read the docs.
+Right now, the documentation is not yet hosted to the public, but included in the repository. After cloning the repository locally, open the file `` <repo_dir>/docs/_build/html/index.html `` in your favourite browser to read the docs.
