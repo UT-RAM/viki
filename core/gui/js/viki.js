@@ -952,8 +952,8 @@ function addModuleToContainer(modId, _x, _y, uModId) {
     // start module at correct position
     var width = 100;
     var height = 20 + Math.max(modToAdd.inputs.length, modToAdd.outputs.length) * 20;
-    var X = _x - 0.5*width;
-    var Y = _y - 0.5*height;
+    var X = Math.floor((_x - 0.5*width) / 20) * 20;
+    var Y = Math.floor((_y - 0.5*height) / 20) * 20;
 
     $(".project-container #"+uModId).offset({
         top : Y,
