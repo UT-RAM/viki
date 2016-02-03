@@ -96,7 +96,7 @@ def main():
             # don't know if this works with intellijIDEA, find out yourself if you use it.
             global ros_master_hostname
             env = "http://"+ros_master_hostname+":11311"
-            pid = subprocess.Popen(args=["gnome-terminal", "-e", "./viki_launch.sh"], env=dict(os.environ, **{"ROS_MASTER_URI":env})).pid
+            pid = subprocess.Popen(args=["gnome-terminal", "-e", "./viki_launch.sh roslaunch aeroworks.launch"], env=dict(os.environ, **{"ROS_MASTER_URI":env})).pid
         except OSError:
             web_send('updateStatus("OSError")')
         web_send('updateStatus("Requested launch of AeroWorks.launch")')
@@ -122,6 +122,9 @@ def main():
     def vikiShowConfig():
         web_send('updateStatus("Opening generated config file...")')
         subprocess.Popen(args=["xdg-open", "configuration.xml"])
+
+    def vikiOpenRqtGraph():
+        subprocess.Popen(["gnome-terminal", '-e', "./viki_launch.sh rqt_graph"])
 
     def add_filters(dialog):
         filter_text = gtk.FileFilter()

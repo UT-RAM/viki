@@ -477,7 +477,7 @@ function keyPressed(event) {
                 deleteSelectedModule();
             }
             break;
-        case 77:  // TODO
+        case 77:  // m
             if (event.ctrlKey) {
                 $('#module-filter-text').focus();
             }
