@@ -5,7 +5,8 @@ import subprocess
 import signal
 
 # needed to import aero modules
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+sys.path.append(os.path.abspath('../'))
 from aero import scan
 from aero import helpers
 from aero import config_interpreter
@@ -59,25 +60,25 @@ class VikiBackend(htmlPy.Object):
 
     @htmlPy.Slot()
     def stopRosCore(self):
-        # if self.corePID > 0:
+        # if self.corePID > 0: 
         #     self.vikiLog('Killing process %s' % self.corePID)
         #     os.kill(self.corePID, signal.SIGKILL)
 
         # TODO user feedback
         app.evaluate_javascript("enableStartCore();")
 
-    # @htmlPy.Slot(str)
-    # def writeConfigXML(self, xml):
-    #     filename = 'configuration.xml'
-    #     with f as open(filename, 'w'):
-    #         f.write('<configurations>')
-    #         f.write(xml)
-    #         f.write('</configurations>')
-    #         self.vikiLog('Configuration written to configuration.xml')
-    #         return
-    #
-    #     self.vikiLog('Unable to write to configuration.xml')
-    #     return
+    @htmlPy.Slot(str)
+    def writeConfigXML(self, xml):
+        filename = 'configuration.xml'
+        with open(filename, 'w') as f:
+            f.write('<configurations>')
+            f.write(xml)
+            f.write('</configurations>')
+            self.vikiLog('Configuration written to configuration.xml')
+            return
+
+        self.vikiLog('Unable to write to configuration.xml')
+        return
 
     @htmlPy.Slot()
     def configLaunch(self):
