@@ -8,7 +8,11 @@
     </p>
 
     <input type="text" class="form-control" id="module-filter-text" placeholder="Filter modules (Ctrl+M)">
-    <ul id="list"></ul>
+    <ul id="list">
+        {{#each modules as |module|}}
+          {{palette-module module=module}}
+        {{/each}}
+    </ul>
 
     <p id="help-text-single-module-filter" style="display: none;">
     <i class="glyphicon glyphicon-info-sign"></i> Press 'Enter' to add this module</p>
