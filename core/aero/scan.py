@@ -20,8 +20,8 @@ def getAvailableModules():
 
     # START FILE LOOP
     # TODO: Being able to configure this directory, making it able to run viki everywhere, not just in its own directory
-    rootDir = '../'
-    for dirName, subdirList, fileList in os.walk(rootDir):
+    rootDir = '../../'
+    for dirName, subdirList, fileList in os.walk(rootDir, followlinks=True):
         for fName in fileList:
             if fName == 'module.xml':
                 try:

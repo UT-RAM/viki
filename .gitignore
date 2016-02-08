@@ -2,3 +2,5 @@
 *.pyc
 aeroworks.launch
 configuration.xml
+modules/
+modules
