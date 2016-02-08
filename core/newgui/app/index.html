@@ -3,24 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Newgui</title>
+    <title>VIKI</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{content-for 'head'}}
 
     <link rel="stylesheet" href="assets/vendor.css">
-    <link rel="stylesheet" href="assets/newgui.css">
+    <link rel="stylesheet" href="assets/viki-gui.css">
 
     {{content-for 'head-footer'}}
   </head>
   <body>
     {{content-for 'body'}}
 
-    <h1>VIKI GUI!</h1>
-
-    <script src="assets/vendor.js"></script>
-    <script src="assets/newgui.js"></script>
+    <script src="{{'assets/vendor.js' | staticfile}}"></script>
+    <script src="{{'assets/viki-gui.js' | staticfile}}"></script>
 
     {{content-for 'body-footer'}}
   </body>

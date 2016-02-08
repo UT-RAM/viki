@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'newgui',
+    modulePrefix: 'viki-gui',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',

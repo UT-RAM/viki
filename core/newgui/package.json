@@ -1,7 +1,7 @@
 {
-  "name": "newgui",
+  "name": "viki-gui",
   "version": "0.0.0",
-  "description": "Small description for newgui goes here",
+  "description": "Small description for viki-gui goes here",
   "private": true,
   "directories": {
     "doc": "doc",
