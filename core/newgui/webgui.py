@@ -32,7 +32,7 @@ class BackendConfig(htmlPy.Object):
 
 class VikiBackend(htmlPy.Object):
     def __init__(self):
-        super(vikiBackend, self).__init__()
+        super(VikiBackend, self).__init__()
         self.corePID = 0  # placeholder for process id of roscore
         self.available_mods = []  # placeholder for available mods
         self.ros_master_hostname = 'localhost'  # ros master hostname
@@ -59,25 +59,25 @@ class VikiBackend(htmlPy.Object):
 
     @htmlPy.Slot()
     def stopRosCore(self):
-        # if self.corePID > 0: 
+        # if self.corePID > 0:
         #     self.vikiLog('Killing process %s' % self.corePID)
         #     os.kill(self.corePID, signal.SIGKILL)
 
         # TODO user feedback
         app.evaluate_javascript("enableStartCore();")
 
-    @htmlPy.Slot(str)
-    def writeConfigXML(self, xml):
-        filename = 'configuration.xml'
-        with f as open(filename, 'w'):
-            f.write('<configurations>')
-            f.write(xml)
-            f.write('</configurations>')
-            self.vikiLog('Configuration written to configuration.xml')
-            return
-
-        self.vikiLog('Unable to write to configuration.xml')
-        return
+    # @htmlPy.Slot(str)
+    # def writeConfigXML(self, xml):
+    #     filename = 'configuration.xml'
+    #     with f as open(filename, 'w'):
+    #         f.write('<configurations>')
+    #         f.write(xml)
+    #         f.write('</configurations>')
+    #         self.vikiLog('Configuration written to configuration.xml')
+    #         return
+    #
+    #     self.vikiLog('Unable to write to configuration.xml')
+    #     return
 
     @htmlPy.Slot()
     def configLaunch(self):

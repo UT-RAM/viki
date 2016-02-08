@@ -23,6 +23,8 @@ export default Ember.Service.extend({
     strokeStyle: "#216477"
   },
 
+
+
   init() {
     jsPlumbInstance = jsPlumb.getInstance({
       // default drag options
@@ -59,7 +61,7 @@ export default Ember.Service.extend({
     });
 
     this.get('jsPlumbInstance').bind("connectionDragStop", function(connection) {
-      jsPlumbInstance.selectEndpoints().each(function (endpoint) {
+      this.get('jsPlumbInstance').selectEndpoints().each(function (endpoint) {
         endpoint.removeClass('validDropPoint');
         endpoint.removeClass('invalidDropPoint');
       });
@@ -67,7 +69,7 @@ export default Ember.Service.extend({
 
     this.get('jsPlumbInstance').bind("connectionDrag", function (connection) {
       var sourceType = connection.endpoints[0].getParameter("type");
-      var connections = jsPlumbInstance.selectEndpoints().each(function(endpoint) {
+      var connections = this.get('jsPlumbInstance').selectEndpoints().each(function(endpoint) {
         // Color code all target endpoints based on the source type
         if (endpoint.isTarget) {
           if (sourceType == "ANY") {
@@ -84,7 +86,7 @@ export default Ember.Service.extend({
     });
 
     // make all the window divs draggable
-    this.get('jsPlumbInstance').draggable($(".project-container .window"), { grid: [20, 20], start: saveState, containment: "parent"});
+    this.get('jsPlumbInstance').draggable($(".project-container .window"), { grid: [20, 20], containment: "parent"});
 
     /*
      Connection click handler...
@@ -94,5 +96,99 @@ export default Ember.Service.extend({
         jsPlumbInstance.detach(conn);
       }
     });
+
+    this.set('targetEndpoint', {
+        endpoint: "Dot",
+        paintStyle: { fillStyle: "#7AB02C", radius: 11 },
+        hoverPaintStyle: this.get('endpointHoverStyle'),
+        dropOptions: { hoverClass: "hover", activeClass: "active" },
+        isTarget: true
+    });
+
+    this.set('sourceEndpoint', {
+      endpoint: "Dot",
+        paintStyle: {
+        strokeStyle: "#7AB02C",
+          fillStyle: "transparent",
+          radius: 7,
+          lineWidth: 3
+      },
+      isSource: true,
+        connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
+        connectorStyle: this.get('connectorPaintStyle'),
+        hoverPaintStyle: this.get('endpointHoverStyle'),
+        connectorHoverStyle: this.get('connectorHoverStyle'),
+        dragOptions: {}
+    });
+
+  },
+
+  jsPlumbifyModule(module) {
+    // TODO: Refactor this?
+    // make draggable
+    Ember.$('#'+module.uWindowId)
+      .offset({top: module.drawInfo.y, left: module.drawInfo.x})
+      .width(module.drawInfo.width)
+      .height(module.drawInfo.height);
+
+    this.get('jsPlumbInstance').draggable(Ember.$("#"+module.uWindowId), { grid: [20, 20], containment: "parent" });
+
+    console.log(module.uWindowId);
+
+    // connections
+    // TODO: Fix this!
+    this.addInputsToWindow(module.uWindowId, module.inputs.toArray());
+    //this.addOutputsToWindow(module.uWindowId, module.outputs.toArray());
+  },
+
+
+  addInputsToWindow(moduleId, inputs) {
+    // add enpoints for every input
+    for (var i = 0; i < inputs.length; i++) {
+      var anchorId = moduleId + "input" + i.toString;
+      var pos = [0, ((i+1)/(inputs.length +1)), -1, 0];
+
+      var te = this.get('targetEndpoint');
+      jsPlumbInstance.addEndpoint('#'+moduleId, te, {
+        uuid: moduleId + "/" + inputs[i].name,
+        anchor: pos,
+        parameters: {
+          type: inputs[i].message_type,
+          name: inputs[i].name
+        },
+        maxConnections: 10,
+        overlays: [
+          [ "Label", {
+            location: [-1.5, 0.5],
+            label: inputs[i].name,
+            cssClass: "endpoint-label"
+          } ]
+        ]
+      });
+    }
+  },
+
+  addOutputsToWindow(moduleId, outputs) {
+    // add an endpoint for every output
+    for (var i = 0; i < outputs.length; i++) {
+      var anchorId = moduleId + "output" + i.toString;
+      var pos = [1, ((i+1)/(outputs.length +1)), 1, 0];
+      jsPlumbInstance.addEndpoint(moduleId, this.get('sourceEndpoint').toJSON(), {
+        uuid: moduleId + "/" + outputs[i].name,
+        anchor: pos,
+        parameters: {
+          type: outputs[i].message_type,
+          name: outputs[i].name
+        },
+        maxConnections: 10,
+        overlays: [
+          [ "Label", {
+            location: [-1.5, 0.5],
+            label: outputs[i].name,
+            cssClass: "endpoint-label"
+          } ]
+        ]
+      });
+    }
   }
 });

@@ -1,7 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  modules: [{'id': 'test', 'type': 'controller', 'meta': {'name': 'test', 'description': "This is a test module"}}]
+  moduleBag: Ember.inject.service(),
+
+  willRender() {
+    //this.set('modules', this.get('moduleBag').get('modules'));
+    this.set('modules', this.get('moduleBag').get('modules'));
+  }
+
 });
 
 
