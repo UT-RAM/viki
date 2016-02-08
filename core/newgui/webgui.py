@@ -5,7 +5,8 @@ import subprocess
 import signal
 
 # needed to import aero modules
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+sys.path.append(os.path.abspath('../'))
 from aero import scan
 from aero import helpers
 from aero import config_interpreter
@@ -32,7 +33,7 @@ class BackendConfig(htmlPy.Object):
 
 class VikiBackend(htmlPy.Object):
     def __init__(self):
-        super(vikiBackend, self).__init__()
+        super(VikiBackend, self).__init__()
         self.corePID = 0  # placeholder for process id of roscore
         self.available_mods = []  # placeholder for available mods
         self.ros_master_hostname = 'localhost'  # ros master hostname
@@ -69,7 +70,7 @@ class VikiBackend(htmlPy.Object):
     @htmlPy.Slot(str)
     def writeConfigXML(self, xml):
         filename = 'configuration.xml'
-        with f as open(filename, 'w'):
+        with open(filename, 'w') as f:
             f.write('<configurations>')
             f.write(xml)
             f.write('</configurations>')
