@@ -79,14 +79,14 @@ $(document).ready(function(){
         $("#marioImg").remove();
     }
 
-    $("#logo").on('click', function() {
-    // Makes the VIKI-logo re-fly in when clicking on it 
-         var el     = $(this),  
-             newone = el.clone(true);
-                   
-         el.before(newone);
-         el.remove();
-    });
+    //$("#logo").on('click', function() {
+    //// Makes the VIKI-logo re-fly in when clicking on it
+    //     var el     = $(this),
+    //         newone = el.clone(true);
+    //
+    //     el.before(newone);
+    //     el.remove();
+    //});
 
     $("#editLocalHostName").click(function() {
     // Change the hostname of this machine via a dialog
@@ -316,7 +316,7 @@ function updateModules(modulelist) {
  * @param modules modules to show
  */
 function showModulesInPalette(modules) {
-    $('#palette #list').html("");
+    //$('#palette #list').html("");
     modules.forEach(function(module){
         // Get a fancy image for the module, with a lot of fallbacks
         var icon_path = 'img/plugin.png';
@@ -332,11 +332,11 @@ function showModulesInPalette(modules) {
             image_html = '<img src="'+icon_path+'" />';
         }
 
-        $('#palette #list').append('<li class="module_palette '+module.type+'" id="'+module.id+'">'+
-            image_html+' <h3>'+module.meta.name+'</h3>'+
-            '<p class="description">'+module.meta.description+'</p>'+
-            '<p class="type">type: '+module.type+'</p>'+
-            '</li>');        
+        //$('#palette #list').append('<li class="module_palette '+module.type+'" id="'+module.id+'">'+
+        //    image_html+' <h3>'+module.meta.name+'</h3>'+
+        //    '<p class="description">'+module.meta.description+'</p>'+
+        //    '<p class="type">type: '+module.type+'</p>'+
+        //    '</li>');
     });
 
     var module_els = $(".module_palette");
@@ -688,103 +688,10 @@ function onModuleSelect(event) {
  * this is where the jsPlumb starts
  ***************************************/
 // this is the paint style for the connecting lines..
-var connectorPaintStyle = {
-        lineWidth: 4,
-        strokeStyle: "#61B7CF",
-        joinstyle: "round",
-        outlineColor: "white",
-        outlineWidth: 2
-    },
-// .. and this is the hover style.
-    connectorHoverStyle = {
-        lineWidth: 4,
-        strokeStyle: "#216477",
-        outlineWidth: 2,
-        outlineColor: "white"
-    },
-    endpointHoverStyle = {
-        fillStyle: "#216477",
-        strokeStyle: "#216477"
-    };
+
 
 jsPlumb.ready(function() {
-    jsPlumbInstance = jsPlumb.getInstance({
-        // default drag options
-        DragOptions: { cursor: 'pointer', zIndex: 2000 },
-        // the overlays to decorate each connection with.  note that the label overlay uses a function to generate the label text; in this
-        // case it returns the 'labelText' member that we set on each connection in the 'init' method below.
-        ConnectionOverlays: [
-            [ "Arrow", { location: 1 } ],
-        ],
-        Container: "project-container"
-    });
 
-    // suspend drawing and initialise.
-    jsPlumbInstance.batch(function () {
-
-        // listen for new connections; initialise them the same way we initialise the connections at startup.
-        jsPlumbInstance.bind("beforeDrop", function (connInfo) {
-            saveState();
-            sourceType = connInfo.connection.endpoints[0].getParameter("type");
-            targetType = connInfo.dropEndpoint.getParameter("type");
-
-            if (sourceType != targetType) {
-                if (sourceType == "ANY") {
-                    return true;
-                }
-                else if (targetType == "ANY") {
-                    return true;
-                }
-                else{
-                    updateStatus("Not able to connect endpoints of different types");
-                    return false;
-                }
-            }
-
-            return true;
-        });
-
-        jsPlumbInstance.bind("beforeDetach", function(e){
-            saveState();
-        });
-
-        jsPlumbInstance.bind("connectionDragStop", function(connection) {
-            jsPlumbInstance.selectEndpoints().each(function (endpoint) {
-                endpoint.removeClass('validDropPoint');
-                endpoint.removeClass('invalidDropPoint');
-            });
-        })
-
-        jsPlumbInstance.bind("connectionDrag", function (connection) {
-            var sourceType = connection.endpoints[0].getParameter("type");
-            var connections = jsPlumbInstance.selectEndpoints().each(function(endpoint) {
-                // Color code all target endpoints based on the source type
-                if (endpoint.isTarget) {
-                    if (sourceType == "ANY") {
-                        endpoint.addClass('validDropPoint');
-                    } else if (endpoint.getParameter('type') == sourceType) {
-                        endpoint.addClass('validDropPoint');
-                    } else if (endpoint.getParameter('type') == "ANY") {
-                        endpoint.addClass('validDropPoint')
-                    } else {
-                        endpoint.addClass('invalidDropPoint');
-                    }
-                }
-            });
-        });
-
-        // make all the window divs draggable
-        jsPlumbInstance.draggable($(".project-container .window"), { grid: [20, 20], start: saveState, containment: "parent"});
-
-        /*
-         Connection click handler...
-         */
-        jsPlumbInstance.bind("click", function (conn, originalEvent) {
-            if (originalEvent.ctrlKey) { // delete the connection on ctrl click
-                jsPlumbInstance.detach(conn);
-            }
-        });
-    });
 });
 /****************************************
  * this is where the jsPlumb ends
