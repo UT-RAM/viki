@@ -1,0 +1,44 @@
+<div id="actions">
+    <a href="#" id="makeNoRun" class="btn btn-default" title="Generate build files (configuration and launch)">
+        <i class="glyphicon glyphicon-duplicate"></i>
+    </a>
+
+    <a href="#" id="vikiConnCheck" class="btn btn-default" title="Quick connection check" data-statusmessage="Sent request for connection check">
+        <i class="glyphicon glyphicon-ok"></i>
+    </a>
+
+    <a href="#" id="vikiStartRosCore" class="btn btn-default" data-statusmessage="Sent request for starting ROS core" title="Start ROS core">
+        <img src="{{external-image "img/cog.png"}}" />
+    </a>
+    <a href="#" id="vikiStopRosCore" class="btn btn-default" data-statusmessage="Sent request for stopping the ROS core" style="display: none;" title="Stop ROS core">
+        <img src="{{external-image "img/cog_delete.png"}}" />
+    </a>
+
+    <a href="#" id="vikiOpenRqtGraph" class="btn btn-default" data-statusmessage="Invoked rqt_graph" title="Open rqt_graph">
+        <img src="{{external-image "img/image.png"}}" />
+    </a>
+
+    <a href="#" id="vikiShowLaunch" class="btn btn-default" data-statusmessage="Showing generated launch file" title="Show generated launch file">
+        <img src="{{external-image "img/xml_green.png"}}" />
+    </a>
+
+    <a href="#" id="vikiShowConfig" class="btn btn-default" data-statusmessage="Showing generated configfile" title="Show generated config file">
+        <img src="{{external-image "img/xml_blue.png"}}" />
+    </a>
+
+    <a href="#" id="vikiSave" class="btn btn-default" data-function="getProject" data-statusmessage="Starting save procedure" title="Save"><i class="glyphicon glyphicon-save-file"> </i> </a>
+
+    <a href="#" id="vikiOpen" class="btn btn-default" data-statusmessage="Starting open procedure" title="Open"><i class="glyphicon glyphicon-open-file"> </i> </a>
+
+    <a href="#" id="stepBack" class="btn btn-default" title="Undo"><i class="glyphicon glyphicon-backward"></i></a>
+
+    <a href="#" id="stepForward" class="btn btn-default" title="Redo"><i class="glyphicon glyphicon-forward"></i></a>
+
+    <a href="#" id="reset" class="btn btn-default" data-statusmessage="Reset canvas" title="Reset Canvas"><i class="glyphicon glyphicon-erase"> </i> </a>
+
+    <a href="#" id="openMachineList" class="btn btn-default" data-statusmessage="Opening machine list" title="Open machine list" data-toggle="modal" data-target="#machinePopup"><i class="glyphicon glyphicon-hdd"> </i> </a>
+
+    <div id="right-buttons" style="float: right;">
+        <button id="makeAndRun" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-play"></i> Run</button>
+    </div>
+</div>
