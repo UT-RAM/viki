@@ -6,6 +6,5 @@ export default Ember.Component.extend({
 
     dragStart(event) {
       event.dataTransfer.setData("id", this.get('module').id);
-      event.dataTransfer.setPosition("100px", "200px");
     }
 });

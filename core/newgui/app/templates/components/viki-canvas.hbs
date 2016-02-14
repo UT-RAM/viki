@@ -1,16 +1,9 @@
 <div id="project">
     <div class="project-container">
-
-        <div class="window" id="uModId"><span class="window_label">Testmodule</span></div>
+        {{#each canvasState.modules_in_canvas as |module|}}
+            <div class="window" id="{{module.uWindowId}}"><span class="window_label">{{module.meta.name}}</span></div>
+        {{/each}}
     </div>
 </div>
-
-{{current_dragging_module}}
-
-<span>
-    {{#each canvasState.modules_in_canvas as |module|}}
-      {{module.id}}
-    {{/each}}
-</span>
 
 {{yield}}
