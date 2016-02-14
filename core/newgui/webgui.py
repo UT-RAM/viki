@@ -129,6 +129,55 @@ class VikiBackend(htmlPy.Object):
         subprocess.Popen(args=["xdg-open", "aeroworks.launch"])
         return
 
+    @htmlPy.Slot()
+    def openRqtGraph(self):
+        subprocess.Popen(["gnome-terminal", '-e', "./viki_launch.sh rqt_graph"])
+        return
+
+    @htmlPy.Slot(str)
+    def save(self, project):
+        # TODO: replace gtk file dialog with PySide file dialog
+        # dialog = gtk.FileChooserDialog("Please enter a file name",None,
+        #                                gtk.FILE_CHOOSER_ACTION_SAVE,
+        #                                (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+        #                                 gtk.STOCK_SAVE, gtk.RESPONSE_OK))
+
+        # #add_filters(dialog)
+
+        # gtk.gdk.threads_enter()
+        # response = dialog.run()
+        # if response == gtk.RESPONSE_OK:
+        #     f = open(dialog.get_filename(), mode='w+')
+        #     f.write(project)
+        #     web_send('updateStatus("Save finished")')
+        # elif response == gtk.RESPONSE_CANCEL:
+        #     web_send('updateStatus("Save cancelled")')
+        # dialog.destroy()
+        # gtk.gdk.threads_leave()
+        app.evaluate_javascript("alert('Not yet implemented, see todo in source');")
+
+    @htmlPy.Slot(return=str)
+    def open(self):
+        # TODO: replace gtk file dialog with PySide Dialog 
+        # dialog = gtk.FileChooserDialog("Please choose a file",None,
+        #                                gtk.FILE_CHOOSER_ACTION_OPEN,
+        #                                (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+        #                                 gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+
+        # #add_filters(dialog)
+
+        # gtk.gdk.threads_enter()
+        # response = dialog.run()
+        # if response == gtk.RESPONSE_OK:
+        #     f = open(dialog.get_filename(), mode='r')
+        #     web_send('openFromJSON('+f.read()+')')
+        #     web_send('updateStatus("Open finished")')
+        # elif response == gtk.RESPONSE_CANCEL:
+        #     web_send('updateStatus("Open cancelled")')
+        # dialog.destroy()
+        # gtk.gdk.threads_leave()
+        app.evaluate_javascript("alert('Not yet implemented, see todo in source');")
+
     def vikiLog(self, msg):
         # TODO prepend time here
         print(msg)
