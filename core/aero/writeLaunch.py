@@ -165,12 +165,13 @@ def lookup(configPart, string, path):
                     linkparts = con.link.split('/')
                     exec_id = linkparts[0]
 
-                    # TODO: Check this!
-                    if len(linkparts) > 2:
-                        print "The link name is longer than expected, VIKI has not yet full support for this. Please check your module file: {}".format(mod.id)
-
                     executable = mod.implementation.getExecutable(exec_id)
-                    executable_interface = executable.getInterface(linkparts[1])
+                    if executable == None:
+                        print "WARNING: No executable with id {} found".format(exec_id)
+
+                    executable_interface = executable.getInterface("/".join(linkparts[1:]))
+                    if executable_interface == None:
+                        print "WARNING: No interface with name {} found. Make sure you specified the in- and outputs correctly".format("/".join(linkparts[1:]))
 
                     linkparts[0] = ''
 
