@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>core.cli.dependencies &mdash; VIKI 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="VIKI 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user.html">User&#8217;s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">- Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#id2">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#configuring-viki">Configuring VIKI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#module-repositories">Module repositories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">- Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commandline.html">- Commandline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../features.html">- Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../features.html#supported">Supported</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../features.html#currently-unsopported">Currently unsopported</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sshdoc.html">- Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor.html">Contributor&#8217;s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modtutorial.html">- Module tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modintroduction.html">- Advanced modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html#executables">Executables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modtaglist.html">- Tag list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../package_guidelines.html">- Package Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer&#8217;s guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../developer.html#updating-documentation">Updating documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../framework_description.html">- Framework description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../framework_description.html#core">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_overview.html">- System overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">- API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">VIKI</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>core.cli.dependencies</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for core.cli.dependencies</h1><div class="highlight"><pre>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;robin&#39;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Python file with a set of functions that handles basically all dependency management concerning ROS for viki</span>
+
+<span class="sd">    A couple of kinds of dependencies:</span>
+<span class="sd">    - First level dependencies are the dependencies of ROS packages that are needed directly for modules</span>
+<span class="sd">    - Second level dependencies are dependencies of ROS packages, these can be</span>
+<span class="sd">        - System level, to be installed with rosdep</span>
+<span class="sd">        - ROS package leven, to be installed (parsed, pulled, etc.) with rospack</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">core.aero</span> <span class="kn">import</span> <span class="n">scan</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+
+<div class="viewcode-block" id="check_installed_packages"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.check_installed_packages">[docs]</a><span class="k">def</span> <span class="nf">check_installed_packages</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks for every module that is available,</span>
+<span class="sd">    if the ROS packages needed for it are installed on the system</span>
+
+<span class="sd">    :return: Boolean</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">missing_packages</span> <span class="o">=</span> <span class="n">get_missing_packages</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_packages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[WARNING] - There are missing packages for full VIKI support:&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]),</span> <span class="n">missing_packages</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;[OK] - All ROS package dependencies are met!&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;Note: only second level dependencies of already installed packages have been checked&quot;</span>
+        <span class="k">return</span> <span class="bp">True</span>
+</div>
+<div class="viewcode-block" id="get_installed_packages"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.get_installed_packages">[docs]</a><span class="k">def</span> <span class="nf">get_installed_packages</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets the currently installed ROS packages and returns the names as an array</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">&#39;rospack&#39;</span><span class="p">,</span> <span class="s">&#39;list-names&#39;</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+    <span class="n">packages</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">packages</span>
+</div>
+<div class="viewcode-block" id="get_missing_packages"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.get_missing_packages">[docs]</a><span class="k">def</span> <span class="nf">get_missing_packages</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Looks for missing ROS packages that are defined as dependency in a module</span>
+<span class="sd">    :return: List with names of the missing ROS packages</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">installed_packages</span> <span class="o">=</span> <span class="n">get_installed_packages</span><span class="p">()</span>
+    <span class="n">modules_on_system</span> <span class="o">=</span> <span class="n">get_modules</span><span class="p">()</span>
+
+    <span class="n">missing_packages</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c"># if multiple modules use that package</span>
+    <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules_on_system</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">module</span><span class="o">.</span><span class="n">package_dependencies</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">package</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">installed_packages</span><span class="p">:</span>
+                <span class="c"># Only add the package if it is not yet in the list</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">missing_packages</span><span class="p">:</span>
+                    <span class="n">missing_packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">package</span><span class="p">)</span>
+                <span class="n">module</span><span class="o">.</span><span class="n">missing_packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">package</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">missing_packages</span>
+</div>
+<div class="viewcode-block" id="get_second_level_dependencies"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.get_second_level_dependencies">[docs]</a><span class="k">def</span> <span class="nf">get_second_level_dependencies</span><span class="p">():</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">&#39;rosdep&#39;</span><span class="p">,</span> <span class="s">&#39;check&#39;</span><span class="p">,</span> <span class="s">&#39;--from-paths&#39;</span><span class="p">,</span> <span class="s">&#39;../&#39;</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+    <span class="n">output_string</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="k">print</span> <span class="n">output_string</span>
+    <span class="k">if</span> <span class="s">&quot;All system dependencies&quot;</span> <span class="ow">in</span> <span class="n">output_string</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="install_second_level_dependencies"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.install_second_level_dependencies">[docs]</a><span class="k">def</span> <span class="nf">install_second_level_dependencies</span><span class="p">():</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">&#39;rosdep&#39;</span><span class="p">,</span> <span class="s">&#39;install&#39;</span><span class="p">,</span> <span class="s">&#39;--from-paths&#39;</span><span class="p">,</span> <span class="s">&#39;../&#39;</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="get_package_locations"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.get_package_locations">[docs]</a><span class="k">def</span> <span class="nf">get_package_locations</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Uses &#39;rosdep db&#39; and parsing to get the packages that we can install and the apt-get packages to install it</span>
+
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">&#39;rosdep&#39;</span><span class="p">,</span> <span class="s">&#39;db&#39;</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+    <span class="n">package_lines</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="n">package_map</span> <span class="o">=</span> <span class="nb">map</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; -&gt; &#39;</span><span class="p">)),</span> <span class="n">package_lines</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">package_map</span>
+</div>
+<div class="viewcode-block" id="get_aptget_packages"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.get_aptget_packages">[docs]</a><span class="k">def</span> <span class="nf">get_aptget_packages</span><span class="p">(</span><span class="n">ros_package_names</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns installation candidates in a list [[ros_package_name, aptget_package], ...]</span>
+<span class="sd">        This is based on the package names provided as the parameter</span>
+<span class="sd">    :param ros_package_names:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">apt_packages</span> <span class="o">=</span> <span class="n">get_package_locations</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">filter</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">ros_package_names</span><span class="p">),</span> <span class="n">apt_packages</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="start_aptget_installation"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.start_aptget_installation">[docs]</a><span class="k">def</span> <span class="nf">start_aptget_installation</span><span class="p">(</span><span class="n">installation_candidates</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Installs the packages that are provided in aa package list</span>
+<span class="sd">    :param installation_candidates:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">installation_candidates</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span> <span class="k">return</span>
+
+    <span class="k">print</span> <span class="s">&quot;VIKI is going to install the following missing packages using apt-get: </span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s">&quot; (&quot;</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s">&quot;)&quot;</span><span class="p">),</span> <span class="n">installation_candidates</span><span class="p">))</span>
+    <span class="k">print</span> <span class="s">&quot;It may ask for your sudo password, to be able to execute apt-get&quot;</span>
+    <span class="nb">input</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="c"># Ask for confirmation, pressing enter yields Y as default</span>
+    <span class="k">while</span> <span class="nb">input</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&quot;y&quot;</span><span class="p">,</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="s">&quot;N&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">]:</span>
+        <span class="k">print</span> <span class="s">&quot;Are you OK with that?&quot;</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;[Y/n]: &quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">input</span> <span class="o">==</span> <span class="s">&quot;n&quot;</span> <span class="ow">or</span> <span class="nb">input</span> <span class="o">==</span> <span class="s">&quot;N&quot;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Aborting installation...&quot;</span>
+        <span class="k">return</span>
+
+    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;sudo&quot;</span><span class="p">,</span> <span class="s">&quot;apt-get&quot;</span><span class="p">,</span> <span class="s">&quot;install&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">map</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">installation_candidates</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="start_vcs_installation"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.start_vcs_installation">[docs]</a><span class="k">def</span> <span class="nf">start_vcs_installation</span><span class="p">(</span><span class="n">missing_vcs_packages</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">missing_vcs_packages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span> <span class="k">return</span>
+
+    <span class="k">print</span> <span class="s">&quot;VIKI is going to install the following missing packages using version control: </span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&quot; (&quot;</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="s">&#39;src&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&quot;)&quot;</span><span class="p">),</span> <span class="n">missing_vcs_packages</span><span class="p">))</span>
+    <span class="nb">input</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="c"># Ask for confirmation, pressing enter yields Y as default</span>
+    <span class="k">while</span> <span class="nb">input</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&quot;y&quot;</span><span class="p">,</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="s">&quot;N&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">]:</span>
+        <span class="k">print</span> <span class="s">&quot;Are you OK with that?&quot;</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;[Y/n]: &quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">input</span> <span class="o">==</span> <span class="s">&quot;n&quot;</span> <span class="ow">or</span> <span class="nb">input</span> <span class="o">==</span> <span class="s">&quot;N&quot;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Aborting installation...&quot;</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&quot;../viki_dependencies&quot;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s">&quot;../viki_dependencies&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">missing_vcs_packages</span><span class="p">:</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">package</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;git&#39;</span><span class="p">:</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;clone&#39;</span><span class="p">,</span> <span class="n">package</span><span class="p">[</span><span class="s">&#39;src&#39;</span><span class="p">],</span> <span class="s">&#39;../viki_dependencies/&#39;</span><span class="o">+</span><span class="n">package</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]]</span>
+
+        <span class="k">if</span> <span class="n">command</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="get_modules"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.get_modules">[docs]</a><span class="k">def</span> <span class="nf">get_modules</span><span class="p">():</span>
+    <span class="c"># TODO: Cache the module list in here, so that we don&#39;t scan all files again and again, and again...</span>
+    <span class="c"># if module_list == None:</span>
+    <span class="n">module_list</span> <span class="o">=</span> <span class="n">scan</span><span class="o">.</span><span class="n">getAvailableModules</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">module_list</span>
+</div>
+<div class="viewcode-block" id="get_distinct_packages"><a class="viewcode-back" href="../../../core.cli.html#core.cli.dependencies.get_distinct_packages">[docs]</a><span class="k">def</span> <span class="nf">get_distinct_packages</span><span class="p">(</span><span class="n">modules</span><span class="p">):</span>
+    <span class="n">packages_per_module</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="nb">map</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">package_dependencies</span><span class="p">),</span> <span class="n">modules</span><span class="p">))</span>
+    <span class="n">packages_list</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">),</span> <span class="n">packages_per_module</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">packages_list</span><span class="p">))</span> <span class="c"># filter out duplicates..</span>
+</pre></div></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
