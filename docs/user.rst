@@ -1,12 +1,25 @@
 .. _user:
 
-User's documentation
-====================
+User documentation
+==================
 
-Hi there VIKI user.
+Hi there VIKI user!
 
-We have selected some documents that might be of use to you. They are all focussed on using VIKI. There's no information on writing your own stuff (:ref:`contributing`) or even :ref:`developing`. For those purposes there is another documentation.
+This part of the documentation is focused on the using VIKI itself, not on developing modules or contributing to VIKI itself.
+Are you looking to write a module? Look at :ref:`contributor`.
+Are you looking for internal documentation on VIKI? Look at :ref:`developer`.
+
+This documentation will guide you through the main process of using the GUI and launching your first applications.
 
 #. :ref:`installation` - Get VIKI installed correctly on your system
 #. :ref:`quickstart` - Start your very own turtle-simulator and control it!
 #. :ref:`features` - An overview of things VIKI can do for you
+
+.. toctree::
+    :maxdepth: 2
+
+    Installation <installation>
+    Quickstart <quickstart>
+    Commandline <commandline>
+    Features <features>
+    Distributed systems (ssh doc) <sshdoc>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developer’s guide &mdash; VIKI 1.0 documentation</title>
+  <title>Developer documentation &mdash; VIKI 1.0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
     <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
         <link rel="next" title="Framework description" href="framework_description.html"/>
-        <link rel="prev" title="description of module attributes and tags" href="modtaglist.html"/> 
+        <link rel="prev" title="Package and module writing guidelines" href="package_guidelines.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -72,79 +72,81 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="user.html">User&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">- Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#id2">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">User documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">- Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-viki">Launching VIKI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#launching-your-first-project">Launching your first project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="features.html">- Features</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="features.html#supported">Supported</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features.html#currently-unsopported">Currently unsopported</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commandline.html">Commandline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="features.html#supported">Supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html#currently-unsopported">Currently unsopported</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sshdoc.html">- Distributed systems (ssh doc)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#network-connection">Network connection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#finding-computer-names">Finding computer names</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-hostnames">Setting hostnames</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html">Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#testing">Testing</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing-ssh">Testing SSH</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor&#8217;s documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modintroduction.html">- Module introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#meta">Meta</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modintroduction.html#best-practices-for-writing-modules">Best practices for writing modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#guidelines">guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="modtutorial.html">- Module tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modtutorial.html#simple-tutorial">Simple tutorial</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="modtutorial.html#advanced-examples">Advanced examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modtutorial.html">Module tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html">Advanced modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modtaglist.html">Tag list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html">Package Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#checklist">Checklist</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="modtaglist.html">- Tag list</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Developer&#8217;s guide</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system_overview.html">System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">API documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#updating-documentation">Updating documentation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="framework_description.html">- Framework description</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="system_overview.html">- System overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">- API documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
@@ -174,7 +176,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Developer&#8217;s guide</li>
+    <li>Developer documentation</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -187,8 +189,8 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="developer-s-guide">
-<span id="developer"></span><h1>Developer&#8217;s guide<a class="headerlink" href="#developer-s-guide" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="developer-documentation">
+<span id="developer"></span><h1>Developer documentation<a class="headerlink" href="#developer-documentation" title="Permalink to this headline">¶</a></h1>
 <p>Hi there VIKI-Developer,</p>
 <p>This guide consists of a few parts.</p>
 <ol class="arabic simple">
@@ -196,6 +198,18 @@
 <li><a class="reference internal" href="system_overview.html#system-overview"><span>System Overview</span></a> - in depth, technical view of the system</li>
 <li><a class="reference internal" href="api.html#apidoc"><span>API documentation</span></a> - API for all functions</li>
 </ol>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">System overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
+</ul>
+</div>
 <div class="section" id="updating-documentation">
 <h2>Updating documentation<a class="headerlink" href="#updating-documentation" title="Permalink to this headline">¶</a></h2>
 <p>Once you have made changes please update the documentation by editing the <em>.rst</em> files in <em>VIKI/doc/</em> and re-build the documentation by running the following the the VIKI root directory</p>
@@ -214,7 +228,7 @@
         <a href="framework_description.html" class="btn btn-neutral float-right" title="Framework description" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="modtaglist.html" class="btn btn-neutral" title="description of module attributes and tags" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="package_guidelines.html" class="btn btn-neutral" title="Package and module writing guidelines" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

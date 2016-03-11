@@ -1,7 +1,7 @@
-.. _Contributor:
+.. _contributor:
 
-Contributor's documentation
-===========================
+Contributor documentation
+=========================
 
 Hi there VIKI-contributor. 
 
@@ -12,3 +12,11 @@ You can learn how to write modules using the following guides
 #. :ref:`modintroduction`
 #. :ref:`modtutorial`
 #. :ref:`modtaglist`
+
+.. toctree::
+    :maxdepth: 2
+
+    Module tutorial <modtutorial>
+    Advanced modules <modintroduction>
+    Tag list <modtaglist>
+    Package Guidelines <package_guidelines>

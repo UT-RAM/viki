@@ -1,20 +1,16 @@
 .. _developer:
 
-Developer's guide
-=================
+Developer documentation
+=======================
 
 Hi there VIKI-Developer,
 
-This guide consists of a few parts.
+This documentation is aimed at the people that are developing to the core of VIKI.
 
-#. :ref:`Framework description` - short description of the framework
-#. :ref:`system_overview` - in depth, technical view of the system
-#. :ref:`apidoc` - API for all functions
+.. toctree::
+    :maxdepth: 2
 
-Updating documentation
-----------------------
-Once you have made changes please update the documentation by editing the *.rst* files in *VIKI/doc/* and re-build the documentation by running the following the the VIKI root directory
+    Framework description <framework_description>
+    System overview <system_overview>
+    API documentation <api>
 
-.. code-block:: bash
-
-      sphinx-apidoc -f -o docs core; cd docs; make html; cd ..
