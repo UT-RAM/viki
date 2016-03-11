@@ -21,12 +21,12 @@ run_functions = {
 
 # Parsing arguments using argparse
 parser.add_argument('method', nargs='?', default='run', choices=run_functions.keys(), help="Command for VIKI to run")
+parser.add_argument('options', nargs='*', help="Extra options for the method used")
 
 args = parser.parse_args()
-method = args.method
 
 """
     Using the mapping from above, we can run functions from the runnables package,
     this python module provides the actual functionality for the command line
 """
-run_functions[method]()
+run_functions[args.method](args.options)

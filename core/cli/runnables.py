@@ -8,7 +8,7 @@ import repositories
 # Be careful to import stuff here, this is the very low level of VIKI, where not all dependencies are met yet
 # If something is imported, test thoroughly!
 
-def run():
+def run(options):
     """
         Run VIKI :D
         :return:
@@ -16,7 +16,7 @@ def run():
     from core import __main__ as viki_core
     viki_core.run()
 
-def configure():
+def configure(options):
     """
         Usually the first command to run. This will install apt-get dependencies to run VIKI properly,
         and do some more configuration like creating a desktop entry
@@ -27,12 +27,11 @@ def configure():
     subprocess.call(['sudo', 'apt-get', 'install']+to_install_packages)
 
     # Create fancy desktop entry
-    # TODO: Create this desktop entry :)
 
     return None
 
 
-def check_packages():
+def check_packages(options):
     """
         Checks if all packages that should be installed are installed
         First-level: ROS packages that are required for VIKI directly
@@ -49,7 +48,7 @@ def check_packages():
     else:
         print '\033[1;31mTry running [viki install-dependencies] to install the dependencies\033[1;m'
 
-def install_packages():
+def install_packages(options):
     """
         Installs packages that the 'check_packages' function determines as missing
         This can either be with apt-get, or git, something else is not yet supported
@@ -66,7 +65,7 @@ def install_packages():
     dependencies.start_aptget_installation(installation_candidates)
     dependencies.start_vcs_installation(missing_vcs_packages)
 
-def add_module_repository():
+def add_module_repository(options):
     # does not work yet really...
     repositories.clone_module_repository('core')
     # install direct dependencies
