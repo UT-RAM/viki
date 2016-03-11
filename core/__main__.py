@@ -190,7 +190,6 @@ def main():
                 continue
 
             again = True
-            print msg['value']
 
             # Check if the message starts with lowercase viki. This indicates that there is a matching function with the same name in Python that should be executed.
             if msg['name'].startswith("viki"):

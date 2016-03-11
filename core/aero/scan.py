@@ -142,7 +142,9 @@ def getAvailableModules():
                                 Parameters = getElements(ParameterElement[0])
                                 for aParameter in Parameters:
                                     aName = aParameter.attributes['name'].value
-                                    aType = aParameter.attributes['type'].value
+                                    aType = getOptionalAttribute(aParameter, 'type')
+                                    if aType not in ['str', 'int', 'double', 'bool']:
+                                        print "[WARNING] - Type of parameter {} in {} has no valid type".format(aName, executableId)
                                     aDefault = getOptionalAttribute(aParameter, 'default')
                                     parameter = Parameter(aName, aType, default=aDefault)
                                     executableObject.addParameter(parameter)

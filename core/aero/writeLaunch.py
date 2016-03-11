@@ -99,7 +99,7 @@ def recursiveWrite(configPart, configElem, rootElem, path=''):
             for paramList in executable.params:
                 if not paramList.name in added_params:
                     added_params.append(paramList.name)
-                    param = ET.SubElement(node, "param", name=paramList.name, value=paramList.default)
+                    param = ET.SubElement(node, "param", name=paramList.name, value=paramList.default, type=paramList.type)
 
             # find any command line arguments that belong to this executable
             for argSearch in mod.args:
