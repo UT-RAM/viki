@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developer documentation &mdash; VIKI 1.0 documentation</title>
+  <title>Module repositories &mdash; VIKI 1.0 documentation</title>
   
 
   
@@ -31,8 +31,9 @@
 
   
     <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
-        <link rel="next" title="Framework description" href="framework_description.html"/>
-        <link rel="prev" title="Package and module writing guidelines" href="package_guidelines.html"/> 
+        <link rel="up" title="Contributor documentation" href="contributor.html"/>
+        <link rel="next" title="description of module attributes and tags" href="modtaglist.html"/>
+        <link rel="prev" title="More advanced modules" href="modintroduction.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -113,7 +114,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor documentation</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="contributor.html">Contributor documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="modtutorial.html">Module tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modintroduction.html">Advanced modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
@@ -126,7 +127,7 @@
 <li class="toctree-l3"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="modrepositories.html">Module repositories</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Module repositories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modtaglist.html">Tag list</a></li>
 <li class="toctree-l2"><a class="reference internal" href="package_guidelines.html">Package Guidelines</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#modularity">Modularity</a></li>
@@ -136,7 +137,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Developer documentation</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="framework_description.html#core">Core</a></li>
 <li class="toctree-l3"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
@@ -177,11 +178,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Developer documentation</li>
+          <li><a href="contributor.html">Contributor documentation</a> &raquo;</li>
+      
+    <li>Module repositories</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/developer.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/modrepositories.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -190,23 +193,9 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="developer-documentation">
-<span id="developer"></span><h1>Developer documentation<a class="headerlink" href="#developer-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Hi there VIKI-Developer,</p>
-<p>This documentation is aimed at the people that are developing to the core of VIKI.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="framework_description.html#core">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="framework_description.html#updating-documentation">Updating documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="system_overview.html">System overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API documentation</a></li>
-</ul>
-</div>
+  <div class="section" id="module-repositories">
+<span id="modrepositories"></span><h1>Module repositories<a class="headerlink" href="#module-repositories" title="Permalink to this headline">¶</a></h1>
+<p>It is important to grasp the concept of module repositories. VIKI recursively scans its module folder, allowing us to put multiple repositories in that folder. By default, the core VIKI modules are located in <em>viki_modules/core</em>. If you would easily like to add your own specific modules, you can create a subfolder next to the core folder, such as <em>viki_modules/drone_modules</em>, in which you place your own modules.</p>
 </div>
 
 
@@ -215,10 +204,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="framework_description.html" class="btn btn-neutral float-right" title="Framework description" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="modtaglist.html" class="btn btn-neutral float-right" title="description of module attributes and tags" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="package_guidelines.html" class="btn btn-neutral" title="Package and module writing guidelines" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="modintroduction.html" class="btn btn-neutral" title="More advanced modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

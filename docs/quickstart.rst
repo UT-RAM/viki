@@ -19,7 +19,7 @@ A quick look at the interface
 -----------------------------
 After launching VIKI, we can take a look at the interface and the elements that the interface provides:
 
-.. image:: viki_screenshot.png
+.. image:: images/viki_screenshot.png
 
 1. **Canvas**: This is where you will build your project.
 2. **Module Palette**: This shows all the modules that are available.

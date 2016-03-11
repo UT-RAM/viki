@@ -11,10 +11,6 @@ Are you looking for internal documentation on VIKI? Look at :ref:`developer`.
 
 This documentation will guide you through the main process of using the GUI and launching your first applications.
 
-#. :ref:`installation` - Get VIKI installed correctly on your system
-#. :ref:`quickstart` - Start your very own turtle-simulator and control it!
-#. :ref:`features` - An overview of things VIKI can do for you
-
 .. toctree::
     :maxdepth: 2
 
