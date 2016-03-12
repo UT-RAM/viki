@@ -1,3 +1,6 @@
+<!-- VIKI_VERSION_INFO
+
+END_VERSION_INFO -->
 #VIKI
 
 VIKI is a GUI tool for running ROS experiments. It helps you setting up experiments quickly and offers a lot of flexibility. 
