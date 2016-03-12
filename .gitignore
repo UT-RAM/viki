@@ -12,4 +12,7 @@ core/newgui/bower_components
 core/newgui/dist
 core/newgui/node_modules
 core/newgui/tmp
+
+#other
 viki.desktop
+modules
