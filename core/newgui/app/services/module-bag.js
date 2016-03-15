@@ -5,16 +5,7 @@ export default Ember.Service.extend({
   modules: [],
 
   init() {
-    this.set('modules', [{
-      'id': 'test_module',
-      type: 'controller',
-      'meta': {
-        'name': "Test Module",
-        'description': "This is a test module"
-      },
-      inputs: [{name: 'pos_in', message_type: 'position'}],
-      outputs: [{name: 'pos_out', message_type: 'position'}]
-    }]);
+      this.set('modules', JSON.parse(VikiBackend.getModules()));
   },
 
   getModuleById(Id) {

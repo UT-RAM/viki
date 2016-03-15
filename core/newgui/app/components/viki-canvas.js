@@ -14,14 +14,6 @@ export default Ember.Component.extend({
         let moduleId = event.dataTransfer.getData("id");
         var module = this.get('moduleBag').getModuleById(moduleId);
         this.get('canvasState').addModuleToCanvas(module, event.originalEvent.pageX, event.originalEvent.pageY);
-        this.rerender();
-    },
-
-    didRender() {
-        let jsPlumb = this.get('jsplumb');
-        this.get('canvasState').get('modules_in_canvas').forEach(function(module) {
-            jsPlumb.jsPlumbifyModule(module);
-        });
+        this.get('jsPlumb').jsPlumbifyModule(module);
     }
-
 });
