@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=VIKI
+Exec={{viki_dir}}/viki run
+Path={{viki_dir}}/viki
+Icon={{viki_dir}}/viki_logo.png
+Type=Application
+Terminal=True
