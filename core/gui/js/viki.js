@@ -48,7 +48,7 @@ $(document).ready(function(){
         updateStatus("Requesting make and run...");
         send(JSON.stringify({name: "vikiMakeAndRun", value: getConfigXML(getConfig())}));
        });
-    $('#module-filter-text').on('keydown change', filterModules);
+    $('#module-filter-text').on('keyup change', filterModules);
 
     $("#italian").click(function(){
         // Italian language support:
