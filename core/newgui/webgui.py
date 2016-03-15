@@ -5,8 +5,8 @@ import subprocess
 import signal
 
 # needed to import aero modules
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-sys.path.append(os.path.abspath('../'))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+# sys.path.append(os.path.abspath('../'))
 from aero import scan
 from aero import helpers
 from aero import config_interpreter
@@ -17,8 +17,8 @@ app = htmlPy.AppGUI(title=u"VIKI GUI",
                     maximized=True,
                     developer_mode=True,
                     plugins=True)
-app.template_path = os.path.abspath("./dist/")
-app.static_path = os.path.abspath("./dist/")
+app.template_path = os.path.realpath("./dist/")
+app.static_path = os.path.realpath("./dist/")
 app.template = ("index.html", {})
 
 
@@ -60,7 +60,7 @@ class VikiBackend(htmlPy.Object):
 
     @htmlPy.Slot()
     def stopRosCore(self):
-        # if self.corePID > 0: 
+        # if self.corePID > 0:
         #     self.vikiLog('Killing process %s' % self.corePID)
         #     os.kill(self.corePID, signal.SIGKILL)
 
@@ -156,9 +156,9 @@ class VikiBackend(htmlPy.Object):
         # gtk.gdk.threads_leave()
         app.evaluate_javascript("alert('Not yet implemented, see todo in source');")
 
-    @htmlPy.Slot(return=str)
+    @htmlPy.Slot(result=str)
     def open(self):
-        # TODO: replace gtk file dialog with PySide Dialog 
+        # TODO: replace gtk file dialog with PySide Dialog
         # dialog = gtk.FileChooserDialog("Please choose a file",None,
         #                                gtk.FILE_CHOOSER_ACTION_OPEN,
         #                                (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
