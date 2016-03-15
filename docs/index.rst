@@ -18,7 +18,7 @@ The repository can be found on github: http://www.github.com/UT-RAM/viki. If you
 This documentation is split up into three parts, each having its own goal:
 
 #. :ref:`User` aims at the regular VIKI users which are not developing their own modules. This start with :ref:`Installation` and :ref:`Quick start guide` to get up and running with VIKI.
-#. :ref:`Contributor` aids people at writing their own modules for VIKI.
+#. :ref:`CustomModuleDevelopment` aids people at writing their own cusom modules for VIKI
 #. :ref:`Developer` is for internal documentation on VIKI or for people wanting to know more about the internals of VIKI.
 
 .. todolist::

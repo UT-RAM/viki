@@ -1,9 +1,7 @@
-.. _contributor:
+.. _CustomModuleDevelopment:
 
-Contributor documentation
+Custom module development
 =========================
-
-Hi there VIKI-contributor. 
 
 This part of the documentation is aimed at people writing their own modules. If you just want to use viki, take a look at :ref:`user`, or if you're interested in internal documentation, have a look at :ref:`developer`.
 
