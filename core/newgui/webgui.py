@@ -45,7 +45,7 @@ class VikiBackend(htmlPy.Object):
 
     @htmlPy.Slot(result=str)
     def getModules(self):
-        self.available_mods = scan.getAvailableModules()
+        self.available_mods = scan.getAvailableModules('../../../viki_modules')
         print('Got all (%i) modules, returning as JSON' % len(self.available_mods))
         return helpers.toJSON(self.available_mods)
 
