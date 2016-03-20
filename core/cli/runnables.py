@@ -1,6 +1,7 @@
 __author__ = 'robin'
 
 import subprocess
+import os
 
 import  dependencies
 import repositories
@@ -22,11 +23,22 @@ def configure(options):
         and do some more configuration like creating a desktop entry
     :return:
     """
+
+    ros_version = 'indigo'
+    viki_dir = os.getcwd()
+
     # Install the right dependencies
+    print_to_terminal("Installing extra dependencies (webkit, gth and simplejson)")
     to_install_packages = ['python-webkit', 'python-gtk2', 'python-simplejson']
     subprocess.call(['sudo', 'apt-get', 'install']+to_install_packages)
 
     # Create fancy desktop entry
+    print_to_terminal("Creating a desktop entry...")
+    desktop_template = open('viki.desktop.template', 'r').read()
+    desktop_entry = desktop_template.replace('{{viki_dir}}', viki_dir)
+    open(os.path.expanduser('~/.local/share/applications/viki.desktop'), 'w').write(desktop_entry)
+
+    # TODO: create viki_env.sh file
 
     return None
 
@@ -75,3 +87,8 @@ def add_module_repository(options):
     # build
     # repositories.catkin_make()
     # TODO: Make this work!
+
+
+def print_to_terminal(string, color='black'):
+    print '\033[1;33m# {} \033[1;m'.format(string)
+    return 0
