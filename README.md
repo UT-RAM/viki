@@ -41,5 +41,14 @@ Congratulations! You can now start using VIKI, look further into the documentati
 
 ## Documentation
 
-Right now, the documentation is not yet hosted to the public, but included in the repository. After cloning the repository locally, open the file `` <repo_dir>/docs/_build/html/index.html `` in your favourite browser to read the docs.
+Documentation for VIKI is included in the repository. To view this, open the file ``<viki_dir>/docs/_build/html/index.html `` in your favourite browser to read the docs. This can also be done using the terminal. (again from the viki directory)
 
+    xdg-open docs/_build/html/index.html
+    
+## Issues and contact
+
+If you encounter any bugs or have ideas for improving VIKI, please do not hesitate to contact us. This can either be done by openining an issue, or contact us directly using the contact information in the documentation.
+
+## Licensing
+
+VIKI is provided under a MIT license. 
