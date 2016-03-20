@@ -26,7 +26,7 @@ After that, create a new ROS workspace and clone this repository into the src fo
      cd catkin_ws/src
      catkin_init_workspace
      
-     git clone https://github.com/UT-RAM/VIKI
+     git clone https://github.com/UT-RAM/viki
      
 This pulls the files needed right into your catkin_workspace. VIKI supports a commandline tool that you can use
 to further setup your system. To configure VIKI, from within VIKI directory, run 
@@ -42,3 +42,4 @@ Congratulations! You can now start using VIKI, look further into the documentati
 ## Documentation
 
 Right now, the documentation is not yet hosted to the public, but included in the repository. After cloning the repository locally, open the file `` <repo_dir>/docs/_build/html/index.html `` in your favourite browser to read the docs.
+
