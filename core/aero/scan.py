@@ -104,7 +104,9 @@ def getAvailableModules():
                             executableId = executable.attributes['id'].value
                             executablePkg = executable.attributes['pkg'].value
                             executableExec = executable.attributes['exec'].value
+                            executableArg = getOptionalAttribute(executable, 'args')
                             executableObject = Executable(executableId, executablePkg, executableExec)
+                            executableObject.setArguments(executableArg)
 
                             # EXECUTABLE INPUTS
                             gInputElement = getElementsOnFirstLevel(executable, 'inputs')

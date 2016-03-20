@@ -135,6 +135,8 @@ class Executable:
         self.outputs = []
         #: A list of :class:`Parameter` describing parameters to be set for the executable.
         self.params = []
+        #: A string with default arguments
+        self.args = ""
         #: The ID of the executable, as given in the ``module.xml``.
         self.id = id
         #: The ROS package that contains the executable. E.g.: "joy"
@@ -165,6 +167,9 @@ class Executable:
         :type parameter: :class:`Parameter`
         """
         self.params.append(parameter)
+
+    def setArguments(self, argument):
+        self.args = argument
 
     def getInterface(self, name):
         for interface in (self.inputs + self.outputs):

@@ -58,7 +58,7 @@ $(document).ready(function(){
         var w = $('.project-container').width();
         var h = $('.project-container').height();
         // put image in page
-        $('.project-container').prepend('<img id="marioImg" src="img/mario.png" />')
+        $('.project-container').prepend('<img id="marioImg" src="img/mario.png" />');
         // set start position
         $("#marioImg").css({
             position: "absolute",
@@ -197,7 +197,7 @@ function stepForward() {
  * @returns JSON stringified state of the window
  */
 function getProject() {
-    var nodes = []
+    var nodes = [];
     $(".window").each(function (idx, elem) {
         var $elem = $(elem);
         var endpoints = jsPlumbInstance.getEndpoints($elem.attr('id'));
@@ -226,7 +226,7 @@ function getProject() {
         localHostName: localHostName,
         generatedGUIDs: generatedGUIDs,
         modules: jsp
-    }
+    };
     return JSON.stringify(project);
 }
 
@@ -259,7 +259,7 @@ function canvasReset() {
  * @param project The JSON string
  */
 function openFromJSON(project) {
-    canvasReset()
+    canvasReset();
     var flowChart = project.modules;
     var nodes = flowChart.nodes;
     $.each(nodes, function( index, elem ) {
@@ -753,7 +753,7 @@ jsPlumb.ready(function() {
                 endpoint.removeClass('validDropPoint');
                 endpoint.removeClass('invalidDropPoint');
             });
-        })
+        });
 
         jsPlumbInstance.bind("connectionDrag", function (connection) {
             var sourceType = connection.endpoints[0].getParameter("type");
@@ -872,8 +872,7 @@ function addOutputsToWindow(moduleId, outputs) {
             ]
         });
     }
-};
-
+}
 /**
  * This function collects some data when you start dragging a module
  * first the state of the window is saved, the module id is set to be 
@@ -945,6 +944,13 @@ function addModuleToContainer(modId, _x, _y, uModId) {
     modToAdd.args = [];  // placeholder for command line arguments
     modToAdd.prefixes = [];  // placeholder for launch-prefixes
     modToAdd.selectedMachines = [];
+
+    for (ex_index in modToAdd.executables)
+    {
+        var ex = modToAdd.executables[ex_index];
+        modToAdd.args.push({'execId': ex.id, 'cmd': ex.args});
+    }
+
     modulesInCanvas.push(modToAdd);
     
     $(".project-container").append('<div class="window" id="'+uModId+'"><span class="window_label">'+modToAdd.meta.name+'</span></div>');
@@ -1009,7 +1015,7 @@ function guid() {
     do {
         var generatedId = "_" + ("" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4);
     }
-    while(generatedGUIDs.indexOf(generatedId) > -1)
+    while(generatedGUIDs.indexOf(generatedId) > -1);
 
     // save number in list
     generatedGUIDs.push(generatedId);
