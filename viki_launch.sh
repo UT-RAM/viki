@@ -1,3 +1,3 @@
-#/bin/bash
-. ~/.bashrc
+#!/bin/bash
+. ./viki_env.sh
 exec "$@"

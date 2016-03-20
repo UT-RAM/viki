@@ -1133,7 +1133,7 @@ function getConfig() {
  * @param config the config object
  * @returns the requested xml as string
  */
-function getConfigXML(config) {
+function getConfigXML (config) {
     updateStatus("Generating XML...");
     // create config XML 
     var configXML = document.createElement("configuration");
