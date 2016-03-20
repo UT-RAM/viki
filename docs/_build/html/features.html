@@ -90,8 +90,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="commandline.html">Commandline</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Features</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#supported">Supported</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#currently-unsopported">Currently unsopported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#currently-supported">Currently supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#future-goals">Future goals</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sshdoc.html">Distributed systems (ssh doc)</a><ul>
@@ -199,27 +199,33 @@
             
   <div class="section" id="features">
 <span id="id1"></span><h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="supported">
-<h2>Supported<a class="headerlink" href="#supported" title="Permalink to this headline">¶</a></h2>
-<p>This is a list of things that VIKI supports. If this is not complete please contact <a class="reference internal" href="developers.html#developers"><span>The developers</span></a>.</p>
+<p>VIKI aims at making software for robotics easier to run and exchange between the community.</p>
+<div class="section" id="currently-supported">
+<h2>Currently supported<a class="headerlink" href="#currently-supported" title="Permalink to this headline">¶</a></h2>
+<p>VIKI supports a wide set of features</p>
 <ul class="simple">
-<li>Italian language support</li>
-<li>Command line arguments</li>
-<li>Save and open</li>
-<li>Export to launch file</li>
-<li>Export to configuration file</li>
-<li>Parameters</li>
-<li>Launch prefixes</li>
-<li>many2many communication (via topics (publisher-subscriber))</li>
+<li>Build a graphical model of your robot software with modules based on ROS</li>
+<li>Save/Open build canvas models</li>
+<li>Add extra commandline options to modules on the canvas</li>
+<li>Extend functionality by easily creating your own modules</li>
+<li>Export your build model to a launch file</li>
+</ul>
+<p>Of course, VIKI supports (at least the basic) functionality of ROS features.</p>
+<ul class="simple">
+<li>Supply parameters for launch, which can be edited directly in the GUI as well</li>
+<li>Dependency management on the modules, based on rosdep, rospack and git repositories</li>
+<li>Many2Many communication between modules, also to be edited easily in the GUI</li>
 </ul>
 </div>
-<div class="section" id="currently-unsopported">
-<h2>Currently unsopported<a class="headerlink" href="#currently-unsopported" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="future-goals">
+<h2>Future goals<a class="headerlink" href="#future-goals" title="Permalink to this headline">¶</a></h2>
+<p>VIKI is continuing to be improved and different features get added constantly. Functionality that has not made it yet to its release includes</p>
 <ul class="simple">
-<li>communication via services</li>
-<li>connection to nodes started outside VIKI</li>
-<li>distributed running (will be added shortly)</li>
+<li>Communication via services</li>
+<li>Communication via topics that are not created by nodes in VIKI</li>
+<li>ROS multimaster support</li>
 </ul>
+<p>We&#8217;re working on bringing these features into VIKI as well! If there&#8217;s any functionality you would like to see, contact <a class="reference internal" href="developers.html#developers"><span>The developers</span></a> and we will (most likely) help you out quickly!</p>
 </div>
 </div>
 
