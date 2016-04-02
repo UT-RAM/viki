@@ -7,11 +7,11 @@ Tutorial on module XML writing
 
 In this tutorial we will create a module. The module in this tutorial will start the ros_rqt_graph (which is already installed in ROS), which is a nice graph of ROS nodes and topics active on your PC.
 
-Now since you are here it means you are probably not one of the maintainers of the framework. Therefore I kindly request that you place your module in the a separate folder with a usefull name, for instance *YourNameMSC*. Let us assume that your name is Doutzen Kroes and you name your folder *DoutzenMSC*. If you have installed the framework in the default location then running this should do the job for you:
+To keep your module nicely separated from the rest it is advisable to create your modules in a new folder. Let us assume that your name is Doutzen Kroes and you name your folder *DoutzenMSC*. If you have installed the framework in the default location then running this should do the job for you:
 
 .. code-block:: bash
 
-    cd ~/catkin_ws/src/VIKI_modules/ && mkdir DoutzenMSC
+    cd ~/catkin_ws/src/viki_modules/ && mkdir DoutzenMSC
 
 Inside there create your very first module definition file. You have no choice for name here, it must be named *viki.xml*. Open it to start defining your module. This should help you:
 
@@ -86,4 +86,5 @@ For your convenience, this is how your viki.xml file should look now:
         </executable>
     </module>
 
-Your module is now finished and runnable. Of course, these are the real basics, look at `modintroduction`_ to go more in-depth regarding writing a module file.
+Your module is now finished and runnable. Of course, these are the real basics, look at :ref:`modtaglist`
+to go more in-depth regarding writing a module file.

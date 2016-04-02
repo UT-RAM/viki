@@ -9,7 +9,7 @@ Setting up the network
 ----------------------
 ROS works by running a ros master, or roscore, on one system. All other systems connect to it via it's location that is saved in the *ROS_MASTER_URI* environment variable. Other computers on the network are found by using their name. Furthermore all ports need to be open as ROS opens a new connection for every topic on a random port.
 
-First we make sure we can communicate bidirectionally between systems. As an example take a computer named Ash and a computer named Pikachu. Ash will be the main computer where we run VIKI. Pikachu will be the remote computer (with ROS, but without VIKI). There can be more computers like Pikachu (with different names!) but in this guide we will describe just one.
+First we make sure we can communicate bidirectionally between systems. As an example take a computer named Ash and a computer named Pikachu. Ash will be the main computer where we run VIKI. Pikachu will be the remote computer (with ROS, but possibly without VIKI). There can be more computers like Pikachu (with different names!) but in this guide we will describe just one.
 
 Network connection
 ******************
