@@ -10,7 +10,7 @@ VIKI consists of a core and at least one module repository. Right now, there is 
 
 Requirements
 ------------
-VIKI uses ROS for all its main functionality and therefore builds on top of those dependencies. In line with ROS, VIKI only supports Ubuntu as its platform and is tested on 12.04 and 14.04. Other Ubuntu (and even Linux) distributions might work just as well, but are not supported.
+VIKI uses ROS for all its main functionality and therefore builds on top of those dependencies. In line with ROS, VIKI only supports Ubuntu as its platform and is tested on 12.04 and 14.04. Other Ubuntu (and even Linux) distributions may work just as well, but are not supported.
 
 Installation
 ------------

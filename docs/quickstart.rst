@@ -1,4 +1,5 @@
 .. _quickstart:
+.. _`Quick start guide`:
 
 Quick start guide
 =================
@@ -19,7 +20,7 @@ A quick look at the interface
 -----------------------------
 After launching VIKI, we can take a look at the interface and the elements that the interface provides:
 
-.. image:: images/viki_screenshot.png
+.. image:: images/viki_screenshot_labeled.png
 
 1. **Canvas**: This is where you will build your project.
 2. **Module Palette**: This shows all the modules that are available.
@@ -33,7 +34,7 @@ People that are familiar with for example Simulink probably recognize this layou
 Launching your first project
 ----------------------------
 
-In this quick guide, I will guide you through launching your first project with VIKI using the turtlesim. We need two modules for this setup: the turtle simulator and a module that interprets input from your keyboard and sends it to the simulator. Below the VIKI-logo you can search for modules by clicking in the textbox and entering *turtle*. You will see two boxes called:
+In this quick guide, I will guide you through launching your first project with VIKI using the turtlesim. We need two modules for this setup: the turtle simulator and a module that interprets input from your keyboard and sends it to the simulator. Below the VIKI-logo you can search for modules by clicking in the textbox and entering *turtle*. You will see two modules called:
 
 - turtle_teleop_key
 - turtlesim node

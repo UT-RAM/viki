@@ -27,5 +27,4 @@ Modules
 -------
 A module is a collection of ROS packages or nodes, with some configuration added so that it provides one simple function. A module is the smallest building block of the framework. You can write your own modules and put it in a dedicated folder so that you and others can use it. If you are a RAM member the developers provide a list of useful modules in an actively maintained repository at http://www.github.com/UT-RAM/viki-modules .
 
-A more elaborate description (much more technical) can be found in 
-.. todo:: add link to overview here
+A more elaborate description (much more technical) can be found in :ref:`modtaglist`
