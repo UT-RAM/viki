@@ -5,7 +5,7 @@ System Overview
 
 The picture below is an overview of the system.
 
-.. image:: systemoverview.png
+.. image:: images/systemoverview.png
 
 Start at the right top and follow the arrows to match the discription here:
 

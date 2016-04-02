@@ -1,27 +1,75 @@
 __author__ = 'robin'
+"""VIKI_VERSION_INFO
+VIKI: more than a GUI for ROS 
+version number: 0.1
+version name: Alice
+
+Copyright (c) 2016 Robin Hoogervorst, Alex Kamphuis, Cees Trouwborst, https://github.com/UT-RAM/viki
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Connection between the HTML GUI and Python backend was established using work by David Baird following his tutorial on http://www.aclevername.com/articles/python-webgui/
+
+Thank you for letting us use your great work, David.
+
+This work has been funded by the European Commission's H2020 project AEROWORKS under grant no. 644128
+END_VERSION_INFO"""
 
 import subprocess
-
-from core import __main__ as viki_core
 
 import  dependencies
 import repositories
 
-def run():
+# Be careful to import stuff here, this is the very low level of VIKI, where not all dependencies are met yet
+# If something is imported, test thoroughly!
+
+def run(options):
+    """
+        Run VIKI :D
+        :return:
+    """
+    from core import __main__ as viki_core
     viki_core.run()
 
-def configure():
+def configure(options):
+    """
+        Usually the first command to run. This will install apt-get dependencies to run VIKI properly,
+        and do some more configuration like creating a desktop entry
+    :return:
+    """
     # Install the right dependencies
     to_install_packages = ['python-webkit', 'python-gtk2', 'python-simplejson']
     subprocess.call(['sudo', 'apt-get', 'install']+to_install_packages)
 
     # Create fancy desktop entry
 
-
     return None
 
 
-def check_packages():
+def check_packages(options):
+    """
+        Checks if all packages that should be installed are installed
+        First-level: ROS packages that are required for VIKI directly
+        Second-level: Dependencies of ROS-packages
+        :return:
+    """
     print '\033[1;33m# Checking direct VIKI dependencies\033[1;m'
     installed_ok = dependencies.check_installed_packages()
     print '\n\033[1;33m# Checking second level ROS dependencies, using rosdep\033[1;m'
@@ -32,7 +80,12 @@ def check_packages():
     else:
         print '\033[1;31mTry running [viki install-dependencies] to install the dependencies\033[1;m'
 
-def install_packages():
+def install_packages(options):
+    """
+        Installs packages that the 'check_packages' function determines as missing
+        This can either be with apt-get, or git, something else is not yet supported
+        :return:
+    """
     missing_ros_packages = dependencies.get_missing_packages()
     if len(missing_ros_packages) == 0:
         print "[OK] - All ROS package dependencies are met, noting to install!"
@@ -44,7 +97,7 @@ def install_packages():
     dependencies.start_aptget_installation(installation_candidates)
     dependencies.start_vcs_installation(missing_vcs_packages)
 
-def add_module_repository():
+def add_module_repository(options):
     # does not work yet really...
     repositories.clone_module_repository('core')
     # install direct dependencies
@@ -52,4 +105,5 @@ def add_module_repository():
     # install using rosdep, for build dependencies
     dependencies.install_second_level_dependencies()
     # build
-    repositories.catkin_make()
+    # repositories.catkin_make()
+    # TODO: Make this work!

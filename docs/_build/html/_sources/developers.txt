@@ -10,7 +10,7 @@ Contact for questions concerning purpose, license and scientific work.
 ::
 
     Matteo Fumagalli
-    m.fumagalli@utwente.nl
+    m_fumagalli@m-tech.aau.dk
 
 
 Core developers
@@ -34,4 +34,3 @@ Contact for any problems concerning the framework (try using one the the usergui
 
     Robin Hoogervorst
     robin9975@gmail.com
-    +316 4600 3629

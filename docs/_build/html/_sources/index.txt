@@ -5,19 +5,24 @@
 
 .. _home:
 
-VIKI documentation home
-=======================
+.. image:: images/viki_logo.png
+   :align: right
 
-This is the VIKI robotics framework documentation. It is split up in three parts:
+VIKI documentation
+==================
 
-#. :ref:`User` which includes :ref:`Installation` and :ref:`Quick start guide`
-#. :ref:`Contributor` which includes :ref:`Module writing guide`
-#. :ref:`Developer` Which includes for instance :ref:`apidoc` and :ref:`system_overview`
+VIKI is software aiming to enable the quick and easy start up of experiments involving ROS. Development has started in 2014 at the University of Twente under funding of project Aeroworks. VIKI can help a student that is new to a experimental setup to quickly start where the previous contributor stopped. For example: if you are designing a position-controlled quadrotor, based on on-board camera and IMU info, you can immediately start a position-controlled drone based on external cameras (OptiTrack), redo/validate the experiments of the researcher who created that setup, and focus on your research in stead of on peripherals.
 
+The repository can be found on github: http://www.github.com/UT-RAM/viki. If you have any issues, please contact :ref:`developers` or place on issue on github.
+
+This documentation is split up into three parts, each having its own goal:
+
+#. :ref:`User` aims at the regular VIKI users which are not developing their own modules. This starts with :ref:`Installation` and :ref:`Quick start guide` to get up and running with VIKI.
+#. :ref:`Contributor` aids people at writing their own modules for VIKI.
+#. :ref:`Developer` is for internal documentation on VIKI or for people wanting to know more about the internals of VIKI.
 
 .. todolist::
 
-.. todo:: create JS documentation using sphinx
 
 Contents
 --------
@@ -26,21 +31,8 @@ Contents
    :maxdepth: 2
 
    user
-   - Installation <installation>
-   - Quickstart <quickstart>
-   - Commandline <commandline>
-   - Features <features>
-   - Distributed systems (ssh doc) <sshdoc>
    contributor
-   - Module tutorial <modtutorial>
-   - Advanced modules <modintroduction>
-   - Tag list <modtaglist>
-   - Package Guidelines <package_guidelines>
    developer
-   - Framework description <framework_description>
-   - System overview <system_overview>
-   - API documentation <api>
-
    developers
 
 Automatically generated pages

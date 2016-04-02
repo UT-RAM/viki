@@ -27,16 +27,16 @@ A module file is standard XML and generally looks like this:
 
         <!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
         <outputs>
-            <output type="ros_topic" name="image" link="usb_cam/image_raw" message_type="sensor_msgs/Image" required="true" />
+            <output type="ros_topic" name="imag e" link="usb_cam/image_raw" message_type="sensor_msgs/Image" required="true" />
         </outputs>
 
         <executable id="usb_cam" pkg="libuvc_camera" exec="camera_node">
             <params>
-                <param name="vendor" type="string" default="null" />
-                <param name="product" type="string" default="null" />
-                <param name="width" type="string" default="640" />
-                <param name="height" type="string" default="480" />
-                <param name="frame_rate" type="string" default="15.0" />
+                <param name="vendor" type="str" default="null" />
+                <param name="product" type="str" default="null" />
+                <param name="width" type="str" default="640" />
+                <param name="height" type="str" default="480" />
+                <param name="frame_rate" type="str" default="15.0" />
             </params>
 
             <outputs>
@@ -163,11 +163,11 @@ An executable in a ROS node specifies a ROS node that is to be executed.
 
     <executable id="usb_cam" pkg="libuvc_camera" exec="camera_node">
         <params>
-            <param name="vendor" type="string" default="null" />
-            <param name="product" type="string" default="null" />
-            <param name="width" type="string" default="640" />
-            <param name="height" type="string" default="480" />
-            <param name="frame_rate" type="string" default="15.0" />
+            <param name="vendor" type="str" default="null" />
+            <param name="product" type="str" default="null" />
+            <param name="width" type="str" default="640" />
+            <param name="height" type="str" default="480" />
+            <param name="frame_rate" type="str" default="15.0" />
         </params>
 
         <outputs>
@@ -175,7 +175,7 @@ An executable in a ROS node specifies a ROS node that is to be executed.
         </outputs>
     </executable>
 
-The first line has three parameters:
+The first line has three attributes:
 
 * *id*: This is the id used in the configuration to specify this executable. The module inputs and outputs are linked to executable inputs and outputs using this id.
 * *pkg*: The package from which to run the node
@@ -186,3 +186,7 @@ The pkg and exec parameters correspond to running the node with
 .. code-block:: bash
 
     rosrun <package> <executable>
+
+The params block corresponds to the parameters that can be set for each executable. The type corresponds to the types of `ros parameters`_. Since this module file is basically an template for what will be runned, only a default option can be set and no definite value. These default options can be changed by the user using VIKI before launch.
+
+.. _ros parameters: http://wiki.ros.org/roslaunch/XML/param

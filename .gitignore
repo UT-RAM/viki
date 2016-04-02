@@ -1,2 +1,15 @@
+# IDE specific files
 .idea
 *.pyc
+*.iml
+
+# generated files
+aeroworks.launch
+configuration.xml
+
+# Dependencies for the newgui
+core/newgui/bower_components
+core/newgui/dist
+core/newgui/node_modules
+core/newgui/tmp
+modules

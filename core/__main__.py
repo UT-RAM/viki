@@ -7,6 +7,38 @@ Call various other functions to scan for available modules in a file tree to fin
 :param configfilename: the (relative) filename of a configuration file (can be given as first argument via command line) (default configuration.xml)
 :param config_id_to_use: the id of a specific configuration within *configfilename* to be used (can be given as second argument via command line) (default None)
 """
+"""VIKI_VERSION_INFO
+VIKI: more than a GUI for ROS 
+version number: 0.1
+version name: Alice
+
+Copyright (c) 2016 Robin Hoogervorst, Alex Kamphuis, Cees Trouwborst, https://github.com/UT-RAM/viki
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Connection between the HTML GUI and Python backend was established using work by David Baird following his tutorial on http://www.aclevername.com/articles/python-webgui/
+
+Thank you for letting us use your great work, David.
+
+This work has been funded by the European Commission's H2020 project AEROWORKS under grant no. 644128
+END_VERSION_INFO"""
 # import sys
 from aero import scan
 from aero import config_interpreter
@@ -96,7 +128,7 @@ def main():
             # don't know if this works with intellijIDEA, find out yourself if you use it.
             global ros_master_hostname
             env = "http://"+ros_master_hostname+":11311"
-            pid = subprocess.Popen(args=["gnome-terminal", "-e", "./viki_launch.sh"], env=dict(os.environ, **{"ROS_MASTER_URI":env})).pid
+            pid = subprocess.Popen(args=["gnome-terminal", "-e", "./viki_launch.sh roslaunch aeroworks.launch"], env=dict(os.environ, **{"ROS_MASTER_URI":env})).pid
         except OSError:
             web_send('updateStatus("OSError")')
         web_send('updateStatus("Requested launch of AeroWorks.launch")')
@@ -122,6 +154,9 @@ def main():
     def vikiShowConfig():
         web_send('updateStatus("Opening generated config file...")')
         subprocess.Popen(args=["xdg-open", "configuration.xml"])
+
+    def vikiOpenRqtGraph():
+        subprocess.Popen(["gnome-terminal", '-e', "./viki_launch.sh rqt_graph"])
 
     def add_filters(dialog):
         filter_text = gtk.FileFilter()
@@ -187,7 +222,6 @@ def main():
                 continue
 
             again = True
-            print msg['value']
 
             # Check if the message starts with lowercase viki. This indicates that there is a matching function with the same name in Python that should be executed.
             if msg['name'].startswith("viki"):

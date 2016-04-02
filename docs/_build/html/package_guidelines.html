@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Package and module writing guidelines &mdash; VIKI 0.1 Alice documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="index.html"/>
+        <link rel="up" title="Contributor documentation" href="contributor.html"/>
+        <link rel="next" title="Developer documentation" href="developer.html"/>
+        <link rel="prev" title="description of module attributes and tags" href="modtaglist.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> VIKI
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user.html">User documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contributor.html">Contributor documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="modtutorial.html">Module tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html">Advanced modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modrepositories.html">Module repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modtaglist.html">Tag list</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Package Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modularity">Modularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">VIKI</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="contributor.html">Contributor documentation</a> &raquo;</li>
+      
+    <li>Package and module writing guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/package_guidelines.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="package-and-module-writing-guidelines">
+<span id="package-guidelines"></span><h1>Package and module writing guidelines<a class="headerlink" href="#package-and-module-writing-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>If you want to extend functionality in VIKI, you can make your own module. The module basically describes the ROS package, which you have written.
+When developing a ROS package for use in VIKI, it is good to follow some general guidelines to optimize the use and re-use of your package.</p>
+<div class="section" id="modularity">
+<h2>Modularity<a class="headerlink" href="#modularity" title="Permalink to this headline">¶</a></h2>
+<p>VIKI aims at creating and maintaining a highly modular environment. This means we highly encourage you to write your modules as modular as possible. It is good to really think beforehand what you want the module to do and keep it as general as possible.</p>
+</div>
+<div class="section" id="location">
+<h2>Location<a class="headerlink" href="#location" title="Permalink to this headline">¶</a></h2>
+<p>If you want to add your own module, you can place this in your own folder in the viki_modules directory. If you have installed VIKI properly, you should have a viki_modules directory inside the src directory in your workspace. In there, there is the core directory that supplies the basic modules for VIKI. You can place a directory next to that, where your own modules and packages will live. You can place the module.xml for VIKI in the same folder as you create your ROS package with.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+---</span> <span class="n">catkin_ws</span><span class="o">/</span><span class="n">src</span>
+<span class="o">|------</span> <span class="n">viki</span><span class="o">/</span>
+<span class="o">|------</span> <span class="n">viki_modules</span><span class="o">/</span>
+<span class="o">|</span>       <span class="o">|---</span> <span class="n">core</span><span class="o">/</span>
+<span class="o">|</span>       <span class="o">|---</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+<span class="o">|</span>       <span class="o">|</span>    <span class="o">|---</span> <span class="o">&lt;</span><span class="n">your_module</span><span class="o">&gt;</span>
+<span class="o">|</span>       <span class="o">|</span>    <span class="o">|</span>   <span class="o">|---</span> <span class="n">src</span><span class="o">/</span>
+<span class="o">|</span>       <span class="o">|</span>    <span class="o">|</span>   <span class="o">|---</span> <span class="n">package</span><span class="o">.</span><span class="n">xml</span>
+<span class="o">|</span>       <span class="o">|</span>    <span class="o">|</span>   <span class="o">|---</span> <span class="n">module</span><span class="o">.</span><span class="n">xml</span>
+<span class="o">|</span>       <span class="o">|</span>    <span class="o">|---</span> <span class="o">&lt;</span><span class="n">your_second_module</span><span class="o">&gt;</span>
+<span class="o">|</span>       <span class="o">|</span>        <span class="o">|---</span> <span class="n">src</span><span class="o">/</span>
+<span class="o">|</span>       <span class="o">|</span>        <span class="o">|---</span> <span class="n">package</span><span class="o">.</span><span class="n">xml</span>
+<span class="o">|</span>       <span class="o">|</span>        <span class="o">|---</span> <span class="n">module</span><span class="o">.</span><span class="n">xml</span>
+</pre></div>
+</div>
+<p>Since VIKI does have good dependency management, you can also just put your ROS package in its own seperate repository and define the dependency in the module file.</p>
+</div>
+<div class="section" id="checklist">
+<h2>Checklist<a class="headerlink" href="#checklist" title="Permalink to this headline">¶</a></h2>
+<p>When writing a (ROS package for a) VIKI module you <strong>must</strong>:</p>
+<ul class="simple">
+<li>Use catkin to build your package</li>
+<li>Specify the right dependencies in the package.xml file (from ROS)</li>
+<li>Specify your name and contact information within the module.xml file</li>
+<li>Specify your own package name in the dependency in the module.xml file</li>
+</ul>
+<p>Your module <strong>must</strong>:</p>
+<ul class="simple">
+<li>Publish its topics in its base namespace (so no &#8216;/&#8217; at the start of your topic name). (For more information about namespaces, see <a class="reference external" href="http://wiki.ros.org/Names">http://wiki.ros.org/Names</a> ) If you use python, this is done automatically, but if you&#8217;re using C++, make sure you have the right nodehandle.</li>
+</ul>
+<p>Your module <strong>should</strong></p>
+<ul class="simple">
+<li>Have a clear (and preferably short) answer to the question: &#8216;What is the task of this module?&#8217;</li>
+</ul>
+<p>Your ROS package/node <strong>should</strong>:</p>
+<ul class="simple">
+<li>Live in the same folder as the module.xml file</li>
+<li>Have clear documentation within the code</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="developer.html" class="btn btn-neutral float-right" title="Developer documentation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modtaglist.html" class="btn btn-neutral" title="description of module attributes and tags" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1 Alice',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
