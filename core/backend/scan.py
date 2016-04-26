@@ -28,7 +28,7 @@ def getAvailableModules():
                     fPath = dirName + '/' + fName
                     f = open(fPath)
                     fLine = f.readlines()[0]
-                    if re.search('AEROWORKS', fLine) is not None:
+                    if re.search('VIKI_MODULE', fLine) is not None:
                         # Get DOM
                         dom = xml.dom.minidom.parse(fPath)
                         moddom = dom.getElementsByTagName('module')[0]
