@@ -8,11 +8,11 @@ Call various other functions to scan for available modules in a file tree to fin
 :param config_id_to_use: the id of a specific configuration within *configfilename* to be used (can be given as second argument via command line) (default None)
 """
 # import sys
-from aero import scan
-from aero import config_interpreter
-from aero import config_matcher
-from aero import writeLaunch
-from aero import helpers
+from backend import scan
+from backend import config_interpreter
+from backend import config_matcher
+from backend import writeLaunch
+from backend import helpers
 
 # imports, directly from:  http://www.aclevername.com/articles/python-webgui/
 import signal

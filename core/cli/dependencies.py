@@ -10,7 +10,7 @@ __author__ = 'robin'
         - ROS package leven, to be installed (parsed, pulled, etc.) with rospack
 """
 
-from core.aero import scan
+from core.backend import scan
 import os
 import subprocess
 
