@@ -5,42 +5,13 @@ import os
 from datetime import date
 import fnmatch
 
-# def processFile(fname, versiontext):
-#     print('Processing file: ', fname)
-#     tf = open(tempfile, 'w')
-#     foundFlag = False
-#     try:
-#         with open(fname, 'r') as f:
-#             for line in f:
-#                 if versionstart in line:
-#                     foundFlag = True
-#                     tf.write(line)
-#                     tf.write(versiontext)
-#                     tf.write(lincensetext)
-#                     tf.write('\n')
-#                     tf.write(granttext)
-#                     tf.write('\n')
-#                     continue
-#                 if versionend in line:
-#                     foundFlag = False
-#                     tf.write(line)
-#                     continue
-#                 if not foundFlag:
-#                     tf.write(line)
-#                     continue
-#     finally:
-#         tf.close()
-#         os.rename(tempfile, fname)
-#     print('Done!')
-
-
 class VersionBumper:
 
     version_file = 'VERSION'
     license_template = 'VIKI: more than a GUI for ROS, https://github.com/UT-RAM/viki \n' \
                        'version: {} - {}\n' \
                        'copyright: Robin Hoogervorst, Alex Kamphuis, Cees Trouwborst, {} \n' \
-                       'licensed under the MIT License\n\n'
+                       'licensed under the MIT License'
 
     def __init__(self):
         self.version = self.parse_version()
@@ -53,6 +24,7 @@ class VersionBumper:
     def run(self):
         print "Adding version info to listed files.."
         print "VERSIONING: {} - {}\n".format(self.version[0], self.version[1])
+        self.process_files()
 
     def process_files(self):
         for dir in self.list_dirs:
@@ -63,15 +35,31 @@ class VersionBumper:
                 if not self.check_file(item):
                     continue
                 self.process_file(item_path)
+                print "exiting early because of testing reaons..."
 
     def process_file(self, filename):
-        self.prepend_to_file(filename, self.license_text)
+        print "processing file {}".format(filename)
+        text_to_add = self.get_license_comment(filename)
+        self.prepend_to_file(filename, text_to_add)
+
+    def get_license_comment(self, filename):
+        _, extension = os.path.splitext(filename)
+        if (extension in ['.py', '']):
+            return '"""\n{}\n"""'.format(self.license_text)
+        if (extension in ['.js', '.css']):
+            return '/*\n{}\n*/'.format(self.license_text)
+        if (extension == '.html'):
+            return '<!--\n{}\n-->'.format(self.license_text)
+        if (extension == '.sh'):
+            return '\n'.join(map(lambda x: '# '+x, self.license_text.split('\n')))
+
+        raise Exception("Extension {} is not valid for genreting licensing..".format(extension))
 
     def prepend_to_file(self, filename, line):
         with open(filename, 'r+') as f:
             content = f.read()
             f.seek(0, 0)
-            f.write(line.rstrip('\r\n') + '\n' + content)
+            f.write(line.rstrip('\r\n') + '\n\n' + content)
 
     def check_file(self, filename):
         """
