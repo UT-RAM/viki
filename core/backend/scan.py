@@ -23,7 +23,7 @@ def getAvailableModules():
     rootDir = '../'
     for dirName, subdirList, fileList in os.walk(rootDir):
         for fName in fileList:
-            if fName == 'module.xml':
+            if fName == 'viki.xml':
                 try:
                     fPath = dirName + '/' + fName
                     f = open(fPath)
