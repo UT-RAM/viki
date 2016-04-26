@@ -35,10 +35,9 @@ class VersionBumper:
                 if not self.check_file(item):
                     continue
                 self.process_file(item_path)
-                print "exiting early because of testing reaons..."
 
     def process_file(self, filename):
-        print "processing file {}".format(filename)
+        print filename
         text_to_add = self.get_license_comment(filename)
         self.prepend_to_file(filename, text_to_add)
 
