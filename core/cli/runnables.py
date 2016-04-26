@@ -5,6 +5,7 @@ import os
 
 import  dependencies
 import repositories
+from configuring import Configuring
 
 # Be careful to import stuff here, this is the very low level of VIKI, where not all dependencies are met yet
 # If something is imported, test thoroughly!
@@ -23,9 +24,9 @@ def configure(options):
         and do some more configuration like creating a desktop entry
     :return:
     """
-
-    ros_version = 'indigo'
-    viki_dir = os.getcwd()
+    configuring = Configuring()
+    configuring.run()
+    config = configuring.config
 
     # Install the right dependencies
     print_to_terminal("Installing extra dependencies (webkit, gth and simplejson)")
@@ -35,7 +36,7 @@ def configure(options):
     # Create fancy desktop entry
     print_to_terminal("Creating a desktop entry...")
     desktop_template = open('viki.desktop.template', 'r').read()
-    desktop_entry = desktop_template.replace('{{viki_dir}}', viki_dir)
+    desktop_entry = desktop_template.replace('{{viki_dir}}', config.get_option('viki_dir'))
     open(os.path.expanduser('~/.local/share/applications/viki.desktop'), 'w').write(desktop_entry)
 
     # TODO: create viki_env.sh file

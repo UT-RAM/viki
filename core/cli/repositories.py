@@ -24,7 +24,7 @@ def clone_module_repository(repo):
     repository = repositories[repo]
 
     if repository == None:
-        print "Not known repository"
+        raise Exception("Repository {} is not a valid configuration".format(repo))
 
     # TODO: Check if repository exists!
 
