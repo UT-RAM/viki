@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>More advanced modules &mdash; VIKI 1.0 documentation</title>
+  <title>More advanced modules &mdash; VIKI 0.1 Alice documentation</title>
   
 
   
@@ -30,10 +30,10 @@
   
 
   
-    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="index.html"/>
         <link rel="up" title="Custom module development" href="contributor.html"/>
         <link rel="next" title="Module repositories" href="modrepositories.html"/>
-        <link rel="prev" title="Tutorial on module.xml writing" href="modtutorial.html"/> 
+        <link rel="prev" title="Tutorial on module XML writing" href="modtutorial.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -199,9 +199,9 @@
             
   <div class="section" id="more-advanced-modules">
 <span id="modintroduction"></span><h1>More advanced modules<a class="headerlink" href="#more-advanced-modules" title="Permalink to this headline">¶</a></h1>
-<p>VIKI comes with (a currently not so) wide range of modules. As an engineer, you probably want to use your own functionality within VIKI. To do this, you will have to write a ROS package and enable it for VIKI by creating a <em>module.xml</em> file. This file is a module description for your package which describes the inputs, outputs, executables and meta data. This guide assumes you already have a ROS package (or multiple of them) that you want to use within VIKI. For creating new ROS packages for use in VIKI, it is useful to follow some guidelines, which can be found at <a class="reference internal" href="package_guidelines.html#package-guidelines"><span>Package and module writing guidelines</span></a>.</p>
+<p>VIKI comes with (a currently not so) wide range of modules. As an engineer, you probably want to use your own functionality within VIKI. To do this, you will have to write a ROS package and enable it for VIKI by creating a <em>viki.xml</em> file. This file is a module description for your package which describes the inputs, outputs, executables and meta data. This guide assumes you already have a ROS package (or multiple of them) that you want to use within VIKI. For creating new ROS packages for use in VIKI, it is useful to follow some guidelines, which can be found at <a class="reference internal" href="package_guidelines.html#package-guidelines"><span>Package and module writing guidelines</span></a>.</p>
 <p>A module file is standard XML and generally looks like this:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- VIKI_MODULE --&gt;</span>
 <span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;sensor&quot;</span> <span class="na">id=</span><span class="s">&quot;camera_source&quot;</span><span class="nt">&gt;</span>
 
     <span class="nt">&lt;meta&gt;</span>
@@ -241,7 +241,7 @@
 <div class="section" id="general-outline">
 <h2>General outline<a class="headerlink" href="#general-outline" title="Permalink to this headline">¶</a></h2>
 <p>Every module file starts out with:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!--AEROWORKS--&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- VIKI_MODULE --&gt;</span>
 </pre></div>
 </div>
 <p>This line makes sure the module is found by VIKI during the scan of files. Not implementing this line makes your module invisible to VIKI. The second line starts the module description:</p>
@@ -293,7 +293,7 @@
 <p>For specifying the icon, you have three options:</p>
 <ul class="simple">
 <li>Specify nothing: The default VIKI icon will be used.</li>
-<li>Specify a filename: VIKI will look for a image with this filename in the same folder as the module.xml file. If you add icon.png here, make sure you add a icon.png file as well.</li>
+<li>Specify a filename: VIKI will look for a image with this filename in the same folder as the viki.xml file. If you add icon.png here, make sure you add a icon.png file as well.</li>
 <li>Specify a bootstrap icon: If you provide an icon name which starts with &#8216;glyphicon-&#8216; (e.g. glyphicon-star), VIKI will look for a bootstrap icon. This is an easy way to quickly add fancy icons. An overview of icons can be found at <a class="reference external" href="http://getbootstrap.com/components/">bootstrap icons</a></li>
 </ul>
 </div>
@@ -376,7 +376,7 @@
         <a href="modrepositories.html" class="btn btn-neutral float-right" title="Module repositories" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="modtutorial.html" class="btn btn-neutral" title="Tutorial on module.xml writing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="modtutorial.html" class="btn btn-neutral" title="Tutorial on module XML writing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -406,7 +406,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0',
+            VERSION:'0.1 Alice',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

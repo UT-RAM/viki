@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>System Overview &mdash; VIKI 1.0 documentation</title>
+  <title>System Overview &mdash; VIKI 0.1 Alice documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="index.html"/>
         <link rel="up" title="Developer documentation" href="developer.html"/>
         <link rel="next" title="API documentation" href="api.html"/>
         <link rel="prev" title="Framework description" href="framework_description.html"/> 
@@ -201,11 +201,11 @@
 <span id="id1"></span><h1>System Overview<a class="headerlink" href="#system-overview" title="Permalink to this headline">¶</a></h1>
 <p>The picture below is an overview of the system.</p>
 <img alt="_images/systemoverview.png" src="_images/systemoverview.png" />
-<p>Start at the right top and follow the arrows to match the discription here:</p>
+<p>Start at the right top and follow the arrows to match the description here:</p>
 <ul class="simple">
-<li><strong>contributors</strong> People that have contributed modules to the framework they make module.xml files</li>
-<li><strong>module.xml</strong> Several files that describe what nodes go together in what way, building blocks of an experimental setup</li>
-<li><strong>VIKI CORE*</strong> The core, written in Python, interpretes the module.xml files and generates a list of modules.</li>
+<li><strong>contributors</strong> People that have contributed modules to the framework they make viki.xml files</li>
+<li><strong>viki.xml</strong> Several files that describe what nodes go together in what way, building blocks of an experimental setup</li>
+<li><strong>VIKI CORE*</strong> The core, written in Python, interprets the viki.xml files and generates a list of modules.</li>
 <li><strong>list of modules</strong> A list of modules that are now readily available in the system</li>
 <li><strong>Python Webkit</strong> A webbrowser that opens the GUI frontend page. It has been wired via a dirty trick to make communication between javascript and Python possible: It simply changes the name of the page to send a message.</li>
 <li><strong>list of modules</strong> Again a list of modules, now parsed in JavaScript</li>
@@ -215,7 +215,7 @@
 <li><strong>Python webkit</strong> used for communication to the Python backend again</li>
 <li><strong>Configuration</strong> An abstraction of the complete experimental setup, in Python</li>
 <li><strong>configuration.xml</strong> Human readable, temporary file that reflects the configuration. Basically just the DOM.</li>
-<li><strong>Launchfile</strong> The core matches info in the configuration.xml with information from the module.xml files to generate a ROS runnable launch file. Calls ROS to launch if required.</li>
+<li><strong>Launchfile</strong> The core matches info in the configuration.xml with information from the viki.xml files to generate a ROS runnable launch file. Calls ROS to launch if required.</li>
 <li><strong>ROS</strong> Robot Operating System</li>
 </ul>
 </div>
@@ -259,7 +259,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0',
+            VERSION:'0.1 Alice',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

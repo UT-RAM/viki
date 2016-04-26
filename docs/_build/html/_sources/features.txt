@@ -15,6 +15,7 @@ VIKI supports a wide set of features
 - Add extra commandline options to modules on the canvas
 - Extend functionality by easily creating your own modules
 - Export your build model to a launch file
+- Automatically launch nodes on a different machine with SSH
 
 Of course, VIKI supports (at least the basic) functionality of ROS features.
 

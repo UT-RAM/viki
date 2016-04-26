@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>core.backend.helpers &mdash; VIKI 0.1 Alice documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user.html">User documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#configuring-viki">Configuring VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#module-repositories">Module repositories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commandline.html">Commandline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../features.html">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../features.html#currently-supported">Currently supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../features.html#future-goals">Future goals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sshdoc.html">Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor.html">Custom module development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modtutorial.html">Module tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html">Advanced modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#executables">Executables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modrepositories.html">Module repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modtaglist.html">Tag list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html">Package Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releasing.html">Releasing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releasing.html#hotfixing">Hotfixing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../framework_description.html">Framework description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#core">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#updating-documentation">Updating documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../system_overview.html">System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html">API documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">VIKI</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>core.backend.helpers</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for core.backend.helpers</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;A collection of functions that help during lookup of modules and interpretation.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+
+<div class="viewcode-block" id="lookupMessageType"><a class="viewcode-back" href="../../../core.backend.html#core.backend.helpers.lookupMessageType">[docs]</a><span class="k">def</span> <span class="nf">lookupMessageType</span><span class="p">(</span><span class="n">message_type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Look up a message type from a list given its acronym *message_type* and returns the full message type.</span>
+
+<span class="sd">    If the *message_type* is not an acronym from the list, return *message_type*.</span>
+
+<span class="sd">    :param message_type: the acronym to look up, or a non acronym message type</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">message_type</span>
+
+</div>
+<div class="viewcode-block" id="getElements"><a class="viewcode-back" href="../../../core.backend.html#core.backend.helpers.getElements">[docs]</a><span class="k">def</span> <span class="nf">getElements</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of al dom elements in the element *node*.</span>
+
+<span class="sd">    :param node: the parent element</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">elems</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">childNodes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">nodeType</span> <span class="o">==</span> <span class="n">child</span><span class="o">.</span><span class="n">ELEMENT_NODE</span><span class="p">:</span>
+            <span class="n">elems</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">elems</span>
+
+</div>
+<div class="viewcode-block" id="getElementsOnFirstLevel"><a class="viewcode-back" href="../../../core.backend.html#core.backend.helpers.getElementsOnFirstLevel">[docs]</a><span class="k">def</span> <span class="nf">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of elements below *parent*, that have tagname *element*.</span>
+
+<span class="sd">    :param parent: the parent element</span>
+<span class="sd">    :param element: tagname of elements to return in the list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">occurences</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">occurences</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">parentNode</span> <span class="o">==</span> <span class="n">parent</span><span class="p">:</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">elements</span>
+
+</div>
+<div class="viewcode-block" id="getOptionalAttribute"><a class="viewcode-back" href="../../../core.backend.html#core.backend.helpers.getOptionalAttribute">[docs]</a><span class="k">def</span> <span class="nf">getOptionalAttribute</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the value of an *attribute* from an *element*,</span>
+<span class="sd">    but do not crash/throw if *attribute* does not exist.</span>
+
+<span class="sd">    Return None if *attribute* is not in the parent *element*.</span>
+
+<span class="sd">    :param element: the parent element that (might) contain(s) the attribute</span>
+<span class="sd">    :param attribute: the optional attribute to return the value of</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">hasAttribute</span><span class="p">(</span><span class="n">attribute</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+</div>
+<div class="viewcode-block" id="findModuleById"><a class="viewcode-back" href="../../../core.backend.html#core.backend.helpers.findModuleById">[docs]</a><span class="k">def</span> <span class="nf">findModuleById</span><span class="p">(</span><span class="n">available_mods</span><span class="p">,</span> <span class="n">module_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Find a module from list of modules (*available_mods*) by its *module_id* and return the module.</span>
+
+<span class="sd">    Return None if the module is there is not a module with id *module_id* in *available_mods*.</span>
+
+<span class="sd">    :param available_mods: list of all available modules</span>
+<span class="sd">    :param module_id: id of the module to find</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">module_found</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">for</span> <span class="n">available_mod</span> <span class="ow">in</span> <span class="n">available_mods</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">available_mod</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">module_id</span><span class="p">:</span>
+            <span class="n">module_found</span> <span class="o">=</span> <span class="n">available_mod</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">module_found</span>
+
+</div>
+<div class="viewcode-block" id="getElementsOnFirstLevelExceptTag"><a class="viewcode-back" href="../../../core.backend.html#core.backend.helpers.getElementsOnFirstLevelExceptTag">[docs]</a><span class="k">def</span> <span class="nf">getElementsOnFirstLevelExceptTag</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return all elements below *parent* except for the ones tagged *element*.</span>
+
+<span class="sd">    :param parent: the parent dom object</span>
+<span class="sd">    :param elemnt: the tag-name of elements **not** to return</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="n">getElements</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">parentNode</span> <span class="o">==</span> <span class="n">parent</span> <span class="ow">and</span> <span class="n">c</span><span class="o">.</span><span class="n">tagName</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="n">element</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">elements</span>
+
+</div>
+<div class="viewcode-block" id="toJSON"><a class="viewcode-back" href="../../../core.backend.html#core.backend.helpers.toJSON">[docs]</a><span class="k">def</span> <span class="nf">toJSON</span><span class="p">(</span><span class="n">py_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert an object to JSON string using its __dict__</span>
+
+<span class="sd">    :param py_object: object to create a JSON string of</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">py_object</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="n">o</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1 Alice',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

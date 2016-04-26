@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Distributed systems (SSH documentation) &mdash; VIKI 1.0 documentation</title>
+  <title>Distributed systems (SSH documentation) &mdash; VIKI 0.1 Alice documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="index.html"/>
         <link rel="up" title="User documentation" href="user.html"/>
         <link rel="next" title="Custom module development" href="contributor.html"/>
         <link rel="prev" title="Features" href="features.html"/> 
@@ -203,7 +203,7 @@
 <div class="section" id="setting-up-the-network">
 <h2>Setting up the network<a class="headerlink" href="#setting-up-the-network" title="Permalink to this headline">¶</a></h2>
 <p>ROS works by running a ros master, or roscore, on one system. All other systems connect to it via it&#8217;s location that is saved in the <em>ROS_MASTER_URI</em> environment variable. Other computers on the network are found by using their name. Furthermore all ports need to be open as ROS opens a new connection for every topic on a random port.</p>
-<p>First we make sure we can communicate bidirectionally between systems. As an example take a computer named Ash and a computer named Pikachu. Ash will be the main computer where we run VIKI. Pikachu will be the remote computer (with ROS, but without VIKI). There can be more computers like Pikachu (with different names!) but in this guide we will describe just one.</p>
+<p>First we make sure we can communicate bidirectionally between systems. As an example take a computer named Ash and a computer named Pikachu. Ash will be the main computer where we run VIKI. Pikachu will be the remote computer (with ROS, but possibly without VIKI). There can be more computers like Pikachu (with different names!) but in this guide we will describe just one.</p>
 <div class="section" id="network-connection">
 <h3>Network connection<a class="headerlink" href="#network-connection" title="Permalink to this headline">¶</a></h3>
 <p>Make sure your computers are connected to the same network. This can be done by connecting to the same wireless or wired network. If you&#8217;re running ROS in a VM, like VirtualBox, this can be achieved by adding an extra &#8216;internal&#8217; network adapter.</p>
@@ -366,7 +366,7 @@ ssh-keyscan -H <span class="o">[</span>hostname<span class="o">]</span> &gt;&gt;
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0',
+            VERSION:'0.1 Alice',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

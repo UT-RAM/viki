@@ -12,6 +12,7 @@ Please follow the guidelines stated in :ref:`Contributing`
     :maxdepth: 2
 
     Contributing <contributing>
+    Releasing <releasing>
     Framework description <framework_description>
     System overview <system_overview>
     API documentation <api>

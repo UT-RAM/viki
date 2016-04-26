@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Package and module writing guidelines &mdash; VIKI 1.0 documentation</title>
+  <title>Package and module writing guidelines &mdash; VIKI 0.1 Alice documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="VIKI 1.0 documentation" href="index.html"/>
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="index.html"/>
         <link rel="up" title="Custom module development" href="contributor.html"/>
         <link rel="next" title="Developer documentation" href="developer.html"/>
         <link rel="prev" title="description of module attributes and tags" href="modtaglist.html"/> 
@@ -207,7 +207,7 @@ When developing a ROS package for use in VIKI, it is good to follow some general
 </div>
 <div class="section" id="location">
 <h2>Location<a class="headerlink" href="#location" title="Permalink to this headline">¶</a></h2>
-<p>If you want to add your own module, you can place this in your own folder in the viki_modules directory. If you have installed VIKI properly, you should have a viki_modules directory inside the src directory in your workspace. In there, there is the core directory that supplies the basic modules for VIKI. You can place a directory next to that, where your own modules and packages will live. You can place the module.xml for VIKI in the same folder as you create your ROS package with.</p>
+<p>If you want to add your own module, you can place this in your own folder in the viki_modules directory. If you have installed VIKI properly, you should have a viki_modules directory inside the src directory in your workspace. In there, there is the core directory that supplies the basic modules for VIKI. You can place a directory next to that, where your own modules and packages will live. You can place the viki.xml for VIKI in the same folder as you create your ROS package with.</p>
 <div class="highlight-python"><div class="highlight"><pre>+--- catkin_ws/src
 |------ viki/
 |------ viki_modules/
@@ -216,11 +216,11 @@ When developing a ROS package for use in VIKI, it is good to follow some general
 |       |    |--- &lt;your_module&gt;
 |       |    |   |--- src/
 |       |    |   |--- package.xml
-|       |    |   |--- module.xml
+|       |    |   |--- viki.xml
 |       |    |--- &lt;your_second_module&gt;
 |       |        |--- src/
 |       |        |--- package.xml
-|       |        |--- module.xml
+|       |        |--- viki.xml
 </pre></div>
 </div>
 <p>Since VIKI does have good dependency management, you can also just put your ROS package in its own seperate repository and define the dependency in the module file.</p>
@@ -231,8 +231,8 @@ When developing a ROS package for use in VIKI, it is good to follow some general
 <ul class="simple">
 <li>Use catkin to build your package</li>
 <li>Specify the right dependencies in the package.xml file (from ROS)</li>
-<li>Specify your name and contact information within the module.xml file</li>
-<li>Specify your own package name in the dependency in the module.xml file</li>
+<li>Specify your name and contact information within the viki.xml file</li>
+<li>Specify your own package name in the dependency in the viki.xml file</li>
 </ul>
 <p>Your module <strong>must</strong>:</p>
 <ul class="simple">
@@ -244,7 +244,7 @@ When developing a ROS package for use in VIKI, it is good to follow some general
 </ul>
 <p>Your ROS package/node <strong>should</strong>:</p>
 <ul class="simple">
-<li>Live in the same folder as the module.xml file</li>
+<li>Live in the same folder as the viki.xml file</li>
 <li>Have clear documentation within the code</li>
 </ul>
 </div>
@@ -289,7 +289,7 @@ When developing a ROS package for use in VIKI, it is good to follow some general
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0',
+            VERSION:'0.1 Alice',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

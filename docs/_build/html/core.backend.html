@@ -1,0 +1,1080 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>core.backend package &mdash; VIKI 0.1 Alice documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="user.html">User documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commandline.html">Commandline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="features.html#currently-supported">Currently supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html#future-goals">Future goals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html">Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributor.html">Custom module development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modtutorial.html">Module tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html">Advanced modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modrepositories.html">Module repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modtaglist.html">Tag list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html">Package Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="releasing.html">Releasing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="releasing.html#hotfixing">Hotfixing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#updating-documentation">Updating documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system_overview.html">System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">API documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">VIKI</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>core.backend package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/core.backend.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="core-backend-package">
+<h1>core.backend package<a class="headerlink" href="#core-backend-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-core.backend.config_interpreter">
+<span id="core-backend-config-interpreter-module"></span><h2>core.backend.config_interpreter module<a class="headerlink" href="#module-core.backend.config_interpreter" title="Permalink to this headline">¶</a></h2>
+<p>Provide tools to interpret configuration files and return abstractions of it.</p>
+<dl class="function">
+<dt id="core.backend.config_interpreter.getConfig">
+<code class="descclassname">core.backend.config_interpreter.</code><code class="descname">getConfig</code><span class="sig-paren">(</span><em>configfilename='configuration.xml'</em>, <em>config_id_to_use=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/config_interpreter.html#getConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.config_interpreter.getConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in the configuration file with path <em>configfilename</em>.</p>
+<p>If <em>config_id_to_use</em> is set, use a configuration with this specific id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>configfilename</strong> &#8211; the xml-file containing configuration(s) (default configuration.xml)</li>
+<li><strong>config_id_to_use</strong> &#8211; use this specific configuration from within the configuration file (default None)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.backend.config_interpreter.recursiveGet">
+<code class="descclassname">core.backend.config_interpreter.</code><code class="descname">recursiveGet</code><span class="sig-paren">(</span><em>domparent</em>, <em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/config_interpreter.html#recursiveGet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.config_interpreter.recursiveGet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information from dom element <em>domparent</em> and place in an abstraction called <em>parent</em>.</p>
+<p>Recursively increase depth, stepping untill the deepest level of <em>domparent</em>. use objects from <code class="xref py py-mod docutils literal"><span class="pre">core.aero.objects</span></code> to create an abstraction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>domparent</strong> &#8211; the (current) dom parent</li>
+<li><strong>parent</strong> &#8211; the parent to which abstractions of the domparent are to be added</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.backend.config_matcher">
+<span id="core-backend-config-matcher-module"></span><h2>core.backend.config_matcher module<a class="headerlink" href="#module-core.backend.config_matcher" title="Permalink to this headline">¶</a></h2>
+<p>Provide functions to match a configuration (abstraction) to module abstractions</p>
+<dl class="function">
+<dt id="core.backend.config_matcher.matchConfig">
+<code class="descclassname">core.backend.config_matcher.</code><code class="descname">matchConfig</code><span class="sig-paren">(</span><em>configuration</em>, <em>available_mods</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/config_matcher.html#matchConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.config_matcher.matchConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start matching modules and settings specified in <em>configuration</em> to available modules in <em>available_mods</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>configuration</strong> &#8211; the abstraction of a configuration</li>
+<li><strong>available_mods</strong> &#8211; list of all available modules (can be delivered by <code class="xref py py-func docutils literal"><span class="pre">core.aero.scan.getAvailableModules()</span></code> )</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.backend.config_matcher.recursiveMatch">
+<code class="descclassname">core.backend.config_matcher.</code><code class="descname">recursiveMatch</code><span class="sig-paren">(</span><em>parent</em>, <em>available_mods</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/config_matcher.html#recursiveMatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.config_matcher.recursiveMatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a the abstraction of an object mentioned in <em>parent</em> in <em>available_mods</em> and return.</p>
+<p>Also step into every level of <em>parent</em> recusively and finally return is an abstraction of <em>parent</em> with all children abstracted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> &#8211; the to-be-implemented object</li>
+<li><strong>available_mods</strong> &#8211; list of all available modules (can be delivered by <code class="xref py py-func docutils literal"><span class="pre">core.aero.scan.getAvailableModules()</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.backend.helpers">
+<span id="core-backend-helpers-module"></span><h2>core.backend.helpers module<a class="headerlink" href="#module-core.backend.helpers" title="Permalink to this headline">¶</a></h2>
+<p>A collection of functions that help during lookup of modules and interpretation.</p>
+<dl class="function">
+<dt id="core.backend.helpers.findModuleById">
+<code class="descclassname">core.backend.helpers.</code><code class="descname">findModuleById</code><span class="sig-paren">(</span><em>available_mods</em>, <em>module_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/helpers.html#findModuleById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.helpers.findModuleById" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a module from list of modules (<em>available_mods</em>) by its <em>module_id</em> and return the module.</p>
+<p>Return None if the module is there is not a module with id <em>module_id</em> in <em>available_mods</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>available_mods</strong> &#8211; list of all available modules</li>
+<li><strong>module_id</strong> &#8211; id of the module to find</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.backend.helpers.getElements">
+<code class="descclassname">core.backend.helpers.</code><code class="descname">getElements</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/helpers.html#getElements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.helpers.getElements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of al dom elements in the element <em>node</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node</strong> &#8211; the parent element</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.backend.helpers.getElementsOnFirstLevel">
+<code class="descclassname">core.backend.helpers.</code><code class="descname">getElementsOnFirstLevel</code><span class="sig-paren">(</span><em>parent</em>, <em>element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/helpers.html#getElementsOnFirstLevel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.helpers.getElementsOnFirstLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of elements below <em>parent</em>, that have tagname <em>element</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> &#8211; the parent element</li>
+<li><strong>element</strong> &#8211; tagname of elements to return in the list</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.backend.helpers.getElementsOnFirstLevelExceptTag">
+<code class="descclassname">core.backend.helpers.</code><code class="descname">getElementsOnFirstLevelExceptTag</code><span class="sig-paren">(</span><em>parent</em>, <em>element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/helpers.html#getElementsOnFirstLevelExceptTag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.helpers.getElementsOnFirstLevelExceptTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all elements below <em>parent</em> except for the ones tagged <em>element</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> &#8211; the parent dom object</li>
+<li><strong>elemnt</strong> &#8211; the tag-name of elements <strong>not</strong> to return</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.backend.helpers.getOptionalAttribute">
+<code class="descclassname">core.backend.helpers.</code><code class="descname">getOptionalAttribute</code><span class="sig-paren">(</span><em>element</em>, <em>attribute</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/helpers.html#getOptionalAttribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.helpers.getOptionalAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value of an <em>attribute</em> from an <em>element</em>,
+but do not crash/throw if <em>attribute</em> does not exist.</p>
+<p>Return None if <em>attribute</em> is not in the parent <em>element</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element</strong> &#8211; the parent element that (might) contain(s) the attribute</li>
+<li><strong>attribute</strong> &#8211; the optional attribute to return the value of</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.backend.helpers.lookupMessageType">
+<code class="descclassname">core.backend.helpers.</code><code class="descname">lookupMessageType</code><span class="sig-paren">(</span><em>message_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/helpers.html#lookupMessageType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.helpers.lookupMessageType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Look up a message type from a list given its acronym <em>message_type</em> and returns the full message type.</p>
+<p>If the <em>message_type</em> is not an acronym from the list, return <em>message_type</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message_type</strong> &#8211; the acronym to look up, or a non acronym message type</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.backend.helpers.toJSON">
+<code class="descclassname">core.backend.helpers.</code><code class="descname">toJSON</code><span class="sig-paren">(</span><em>py_object</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/helpers.html#toJSON"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.helpers.toJSON" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an object to JSON string using its __dict__</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>py_object</strong> &#8211; object to create a JSON string of</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.backend.objects">
+<span id="core-backend-objects-module"></span><h2>core.backend.objects module<a class="headerlink" href="#module-core.backend.objects" title="Permalink to this headline">¶</a></h2>
+<p>Describes the different objects used as abstraction of the AeroWorks configuration and modules.</p>
+<dl class="class">
+<dt id="core.backend.objects.Cmdline_argument">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Cmdline_argument</code><span class="sig-paren">(</span><em>executable_id</em>, <em>argument</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Cmdline_argument"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Cmdline_argument" title="Permalink to this definition">¶</a></dt>
+<dd><p>An argument to use when starting a specific rosnode.
+Used for instance when starting rviz with a configuration file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>executable_id</strong> &#8211; id of the executable this argument is used for</li>
+<li><strong>argument</strong> &#8211; string of all arguments to use for this executable</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Configuration">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Configuration</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Configuration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <em>Configuration</em> is a list of settings,
+usually from a configuration file, used to setup an experiment.</p>
+<p>it contains:
+:param id: unique id for this configuration
+:param modules_to_add: list of modules needed in this <em>configuration</em>
+:param connections_to_add: list of connections needed
+:param namespaces: list of :class:Namespace in this <em>configuration</em></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Connection_to_add">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Connection_to_add</code><span class="sig-paren">(</span><em>publisher</em>, <em>listener</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Connection_to_add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Connection_to_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Representation of a connection desired to add to a configuration</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>publisher</strong> &#8211; topic of the publisher to be connected</li>
+<li><strong>subscriber</strong> &#8211; topic of the subscriber to be connected</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Executable">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Executable</code><span class="sig-paren">(</span><em>id</em>, <em>pkg</em>, <em>executable</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Executable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Executable" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <em>executable</em> represents a ROS node that can be launched through a ROS launch file, generated by the AeroWorks infrastructure.</p>
+<dl class="method">
+<dt id="core.backend.objects.Executable.addInput">
+<code class="descname">addInput</code><span class="sig-paren">(</span><em>interface</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Executable.addInput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Executable.addInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an input to the list of executable inputs (<a class="reference internal" href="#core.backend.objects.Executable.inputs" title="core.backend.objects.Executable.inputs"><code class="xref py py-attr docutils literal"><span class="pre">inputs</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>interface</strong> (<a class="reference internal" href="#core.backend.objects.Interface" title="core.backend.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a>) &#8211; The interface to add</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Executable.addOutput">
+<code class="descname">addOutput</code><span class="sig-paren">(</span><em>interface</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Executable.addOutput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Executable.addOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an output to the list of executable outputs (<a class="reference internal" href="#core.backend.objects.Executable.outputs" title="core.backend.objects.Executable.outputs"><code class="xref py py-attr docutils literal"><span class="pre">outputs</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>interface</strong> (<a class="reference internal" href="#core.backend.objects.Interface" title="core.backend.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a>) &#8211; The interface to add</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Executable.addParameter">
+<code class="descname">addParameter</code><span class="sig-paren">(</span><em>parameter</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Executable.addParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Executable.addParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a parameter to the list of executable parameters (<a class="reference internal" href="#core.backend.objects.Executable.params" title="core.backend.objects.Executable.params"><code class="xref py py-attr docutils literal"><span class="pre">params</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>parameter</strong> (<a class="reference internal" href="#core.backend.objects.Parameter" title="core.backend.objects.Parameter"><code class="xref py py-class docutils literal"><span class="pre">Parameter</span></code></a>) &#8211; The parameter to add</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Executable.args">
+<code class="descname">args</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Executable.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string with default arguments</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Executable.executable">
+<code class="descname">executable</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Executable.executable" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ROS node executable to launch. E.g. &#8220;joy_node&#8221;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Executable.getInterface">
+<code class="descname">getInterface</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Executable.getInterface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Executable.getInterface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Executable.id">
+<code class="descname">id</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Executable.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the executable, as given in the <code class="docutils literal"><span class="pre">viki.xml</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Executable.inputs">
+<code class="descname">inputs</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Executable.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#core.backend.objects.Interface" title="core.backend.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a> describing all inputs of the executable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Executable.outputs">
+<code class="descname">outputs</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Executable.outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#core.backend.objects.Interface" title="core.backend.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a> describing all outputs of the executable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Executable.params">
+<code class="descname">params</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Executable.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#core.backend.objects.Parameter" title="core.backend.objects.Parameter"><code class="xref py py-class docutils literal"><span class="pre">Parameter</span></code></a> describing parameters to be set for the executable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Executable.pkg">
+<code class="descname">pkg</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Executable.pkg" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ROS package that contains the executable. E.g.: &#8220;joy&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Executable.setArguments">
+<code class="descname">setArguments</code><span class="sig-paren">(</span><em>argument</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Executable.setArguments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Executable.setArguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Interface">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Interface</code><span class="sig-paren">(</span><em>interface_type</em>, <em>name</em>, <em>message_type</em>, <em>required</em>, <em>link=None</em>, <em>namespace='base'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Interface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <em>interface</em> represents an in- or output of a module. This in- and outputs can be connected to other module&#8217;s in- and outputs.</p>
+<dl class="attribute">
+<dt id="core.backend.objects.Interface.link">
+<code class="descname">link</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Interface.link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the reference to the executable within the module that actually provides the in- or output. E.g.: &#8220;test_node/test_topic&#8221;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Interface.message_type">
+<code class="descname">message_type</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Interface.message_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the message type the interface can handle. E.g.: &#8220;twist&#8221; or &#8220;standard_msgs/Empty&#8221;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Interface.name">
+<code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Interface.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the name of the interface. E.g.: &#8220;cmd_vel&#8221;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Interface.namespace">
+<code class="descname">namespace</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Interface.namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Namespace used in the ros package for this topic, &#8220;base&#8221;, &#8220;global&#8221; or &#8220;private&#8221;; according to wiki.ros.org/Names</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Interface.required">
+<code class="descname">required</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Interface.required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines if the interface is required to be connected. Execution will halt if this requirement is not met.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Interface.type">
+<code class="descname">type</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Interface.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the type of the interface. E.g.: &#8220;ros_topic&#8221;</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Internal_Interface">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Internal_Interface</code><span class="sig-paren">(</span><em>publisher</em>, <em>listener</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Internal_Interface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Internal_Interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <em>internal_interface</em> represents a connection between an in- and output <strong>within</strong> a module. At this point, implicitly only implemented for <em>ros_topic</em> type interfaces.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the future, this might be a specific case of <a class="reference internal" href="#core.backend.objects.Interface" title="core.backend.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a>.</p>
+</div>
+<dl class="attribute">
+<dt id="core.backend.objects.Internal_Interface.listener">
+<code class="descname">listener</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Internal_Interface.listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refers to the topic where the node is listening for messages. This topic is remapped to listen to the publisher. E.g. &#8220;node2_name/i_listen_here&#8221;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Internal_Interface.publisher">
+<code class="descname">publisher</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Internal_Interface.publisher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refers to the topic on which messages are be published. E.g. &#8220;node_name/command_giver&#8221;</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Launch_prefix">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Launch_prefix</code><span class="sig-paren">(</span><em>executable_id</em>, <em>prefix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Launch_prefix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Launch_prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A launch prefix that will be run before the actual ROSnode.
+Can be very useful to for instance start a node in debug mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>executable_id</strong> &#8211; id of the executable this prefix is used for</li>
+<li><strong>prefix</strong> &#8211; string of the prefix</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Machine">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Machine</code><span class="sig-paren">(</span><em>name</em>, <em>hostname</em>, <em>username</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Machine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Module">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Module</code><span class="sig-paren">(</span><em>type</em>, <em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <em>module</em> represents a separately distributable piece of software, that is able to work within the AeroWorks infrastructure.</p>
+<dl class="method">
+<dt id="core.backend.objects.Module.addExecutable">
+<code class="descname">addExecutable</code><span class="sig-paren">(</span><em>executable</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module.addExecutable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module.addExecutable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an executable to the list of module executables (<a class="reference internal" href="#core.backend.objects.Module.executables" title="core.backend.objects.Module.executables"><code class="xref py py-attr docutils literal"><span class="pre">executables</span></code></a>). Those executables are ROS nodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>executable</strong> (<a class="reference internal" href="#core.backend.objects.Executable" title="core.backend.objects.Executable"><code class="xref py py-class docutils literal"><span class="pre">Executable</span></code></a>) &#8211; The executable to add.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module.addInput">
+<code class="descname">addInput</code><span class="sig-paren">(</span><em>interface</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module.addInput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module.addInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an input to the list of module inputs (<a class="reference internal" href="#core.backend.objects.Module.inputs" title="core.backend.objects.Module.inputs"><code class="xref py py-attr docutils literal"><span class="pre">inputs</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>interface</strong> (<a class="reference internal" href="#core.backend.objects.Interface" title="core.backend.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a>) &#8211; The interface to add</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module.addIntConnect">
+<code class="descname">addIntConnect</code><span class="sig-paren">(</span><em>internal_interface</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module.addIntConnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module.addIntConnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an internal connection to the list of module internal connections (<a class="reference internal" href="#core.backend.objects.Module.config" title="core.backend.objects.Module.config"><code class="xref py py-attr docutils literal"><span class="pre">config</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>internal_interface</strong> (<a class="reference internal" href="#core.backend.objects.Internal_Interface" title="core.backend.objects.Internal_Interface"><code class="xref py py-class docutils literal"><span class="pre">Internal_Interface</span></code></a>) &#8211; The connection to add</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module.addMeta">
+<code class="descname">addMeta</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module.addMeta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module.addMeta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds metadata to <a class="reference internal" href="#core.backend.objects.Module.meta" title="core.backend.objects.Module.meta"><code class="xref py py-attr docutils literal"><span class="pre">meta</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; The key of the metadata. E.g. &#8220;name&#8221;</li>
+<li><strong>value</strong> (<em>string</em>) &#8211; The value of the metadata. E.g. &#8220;AeroWorks&#8221;</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module.addMissingPackage">
+<code class="descname">addMissingPackage</code><span class="sig-paren">(</span><em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module.addMissingPackage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module.addMissingPackage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module.addOutput">
+<code class="descname">addOutput</code><span class="sig-paren">(</span><em>interface</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module.addOutput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module.addOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an output to the list of module outputs (<a class="reference internal" href="#core.backend.objects.Module.outputs" title="core.backend.objects.Module.outputs"><code class="xref py py-attr docutils literal"><span class="pre">outputs</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>interface</strong> (<a class="reference internal" href="#core.backend.objects.Interface" title="core.backend.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a>) &#8211; The interface to add</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module.addPackageDependency">
+<code class="descname">addPackageDependency</code><span class="sig-paren">(</span><em>package_name</em>, <em>type='apt-get'</em>, <em>src=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module.addPackageDependency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module.addPackageDependency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.config">
+<code class="descname">config</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#core.backend.objects.Internal_Interface" title="core.backend.objects.Internal_Interface"><code class="xref py py-class docutils literal"><span class="pre">Internal_Interface</span></code></a> describing all internal connections.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.executables">
+<code class="descname">executables</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.executables" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#core.backend.objects.Executable" title="core.backend.objects.Executable"><code class="xref py py-class docutils literal"><span class="pre">Executable</span></code></a> describing all executables (ROS nodes) in the module.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module.getExecutable">
+<code class="descname">getExecutable</code><span class="sig-paren">(</span><em>exec_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module.getExecutable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module.getExecutable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the executable with the id, within this module
+:param exec_id: the string id of the executable, as defined in the xml file
+:return: Executable</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.id">
+<code class="descname">id</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the ID of the module, as defined in the <code class="docutils literal"><span class="pre">viki.xml</span></code>. This is used for identifying and selecting the module throughout the process, so this value should be unique.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.inputs">
+<code class="descname">inputs</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#core.backend.objects.Interface" title="core.backend.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a> describing all inputs of the module.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.meta">
+<code class="descname">meta</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains a dictionary with all module metadata, as defined in <code class="docutils literal"><span class="pre">viki.xml</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.missing_packages">
+<code class="descname">missing_packages</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.missing_packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>List with missing packages, initially empty</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.outputs">
+<code class="descname">outputs</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#core.backend.objects.Interface" title="core.backend.objects.Interface"><code class="xref py py-class docutils literal"><span class="pre">Interface</span></code></a> describing all outputs of the module.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.package_dependencies">
+<code class="descname">package_dependencies</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.package_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>List with names of dependent ROS packages</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.path">
+<code class="descname">path</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the path to the module config</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module.setPath">
+<code class="descname">setPath</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module.setPath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module.setPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the path for the current module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>string</em>) &#8211; The path where to find the module</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="core.backend.objects.Module.type">
+<code class="descname">type</code><em class="property"> = None</em><a class="headerlink" href="#core.backend.objects.Module.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the type of the module, as defined in the <code class="docutils literal"><span class="pre">viki.xml</span></code>. This categorization is added for the comfort of the user. Examples are &#8220;userinput&#8221;, &#8220;sensor&#8221;, &#8220;controller&#8221; and &#8220;vehicle&#8221;.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Module_to_add">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Module_to_add</code><span class="sig-paren">(</span><em>role</em>, <em>type</em>, <em>id</em>, <em>supress_warning=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module_to_add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module_to_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object representing a module that is desired to be in a configuration.
+It is a temporary container for all information to get the actual :class:Module classes,
+and contains an <em>implementation</em> where the :class:Module can be placed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>role</strong> &#8211; role of this module eg. userinput, vehicle, etc.</li>
+<li><strong>id</strong> &#8211; unique id of the module</li>
+<li><strong>type</strong> &#8211; type of module</li>
+<li><strong>supress_warning</strong> &#8211; suppress warnings given in/by this module (not yet implemented)</li>
+<li><strong>parameters_to_add</strong> &#8211; list of parameters that are to be added to class:Executable in this module</li>
+<li><strong>args</strong> &#8211; list of command line arguments that are used to start this modules nodes</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="core.backend.objects.Module_to_add.add_cmdline_arg">
+<code class="descname">add_cmdline_arg</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module_to_add.add_cmdline_arg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module_to_add.add_cmdline_arg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a command line argument object <em>arg</em> to the list of arguments needed to run this module</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>arg</strong> &#8211; The command line argument object to add</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module_to_add.add_machine_selection">
+<code class="descname">add_machine_selection</code><span class="sig-paren">(</span><em>selection</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module_to_add.add_machine_selection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module_to_add.add_machine_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a machine selection object <em>selection</em> to the list of machine selections desired to run</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>selection</strong> &#8211; machine selection object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="core.backend.objects.Module_to_add.add_prefix">
+<code class="descname">add_prefix</code><span class="sig-paren">(</span><em>pf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Module_to_add.add_prefix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Module_to_add.add_prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a launch-prefix object <em>pf</em> to the list of prefixes desired to run</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pf</strong> &#8211; prefix object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Namespace">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Namespace</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Namespace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>A namespace is in itself basically a :class:Configuration ,
+which can in turn contain multiple namespaces.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> &#8211; unique id for this configuration</li>
+<li><strong>modules_to_add</strong> &#8211; list of modules needed in this <em>configuration</em></li>
+<li><strong>connections_to_add</strong> &#8211; list of connections needed</li>
+<li><strong>namespaces</strong> &#8211; list of <a href="#id1"><span class="problematic" id="id2">*</span></a>namespace*s</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Parameter">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Parameter</code><span class="sig-paren">(</span><em>name</em>, <em>type</em>, <em>default=None</em>, <em>value=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <em>Parameter</em> represents a param in the rosparam server</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The name of the parameter</li>
+<li><strong>default</strong> &#8211; A default value, when no specific value is given</li>
+<li><strong>type</strong> &#8211; Type of parameter</li>
+<li><strong>value</strong> &#8211; Value of the parameter</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Parameter_to_add">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Parameter_to_add</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Parameter_to_add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Parameter_to_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>A parameter to add to a module (and finally to an executable)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; name of the parameter</li>
+<li><strong>value</strong> &#8211; value of the parameter</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="core.backend.objects.Selected_machine">
+<em class="property">class </em><code class="descclassname">core.backend.objects.</code><code class="descname">Selected_machine</code><span class="sig-paren">(</span><em>executable_id</em>, <em>machine_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/objects.html#Selected_machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.objects.Selected_machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>A machine selection defines at what machine the ros_node will run.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>executable_id</strong> &#8211; id of the executable this selection is used for</li>
+<li><strong>machine_name</strong> &#8211; name of the machine</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.backend.scan">
+<span id="core-backend-scan-module"></span><h2>core.backend.scan module<a class="headerlink" href="#module-core.backend.scan" title="Permalink to this headline">¶</a></h2>
+<p>Provides <a class="reference internal" href="#core.backend.scan.getAvailableModules" title="core.backend.scan.getAvailableModules"><code class="xref py py-func docutils literal"><span class="pre">getAvailableModules()</span></code></a>.</p>
+<dl class="function">
+<dt id="core.backend.scan.getAvailableModules">
+<code class="descclassname">core.backend.scan.</code><code class="descname">getAvailableModules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/scan.html#getAvailableModules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.scan.getAvailableModules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of modules available in the framework at this moment.</p>
+<ol class="arabic simple">
+<li>Run through the entire project tree searching for files called &#8216;viki.xml&#8217;.</li>
+<li>Create an abstraction from each .xml file as objects from <code class="xref py py-mod docutils literal"><span class="pre">core.aero.objects</span></code>.</li>
+<li>Put abstraction in a list</li>
+<li>Return list when done.</li>
+</ol>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.backend.writeLaunch">
+<span id="core-backend-writelaunch-module"></span><h2>core.backend.writeLaunch module<a class="headerlink" href="#module-core.backend.writeLaunch" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="core.backend.writeLaunch.getName">
+<code class="descclassname">core.backend.writeLaunch.</code><code class="descname">getName</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/writeLaunch.html#getName"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.writeLaunch.getName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="core.backend.writeLaunch.lookup">
+<code class="descclassname">core.backend.writeLaunch.</code><code class="descname">lookup</code><span class="sig-paren">(</span><em>configPart</em>, <em>string</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/writeLaunch.html#lookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.writeLaunch.lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="core.backend.writeLaunch.lookupInternal">
+<code class="descclassname">core.backend.writeLaunch.</code><code class="descname">lookupInternal</code><span class="sig-paren">(</span><em>string</em>, <em>mod</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/writeLaunch.html#lookupInternal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.writeLaunch.lookupInternal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="core.backend.writeLaunch.prettify">
+<code class="descclassname">core.backend.writeLaunch.</code><code class="descname">prettify</code><span class="sig-paren">(</span><em>elem</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/writeLaunch.html#prettify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.writeLaunch.prettify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pretty-printed XML string for the Element.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="core.backend.writeLaunch.recursiveWrite">
+<code class="descclassname">core.backend.writeLaunch.</code><code class="descname">recursiveWrite</code><span class="sig-paren">(</span><em>configPart</em>, <em>configElem</em>, <em>rootElem</em>, <em>path=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/writeLaunch.html#recursiveWrite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.writeLaunch.recursiveWrite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="core.backend.writeLaunch.write">
+<code class="descclassname">core.backend.writeLaunch.</code><code class="descname">write</code><span class="sig-paren">(</span><em>configuration</em>, <em>filename='aeroworks.launch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/writeLaunch.html#write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.writeLaunch.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-core.backend">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-core.backend" title="Permalink to this headline">¶</a></h2>
+<p>Set up the aero-core.</p>
+<p>Currently does nothing, but is included for later use.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1 Alice',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
