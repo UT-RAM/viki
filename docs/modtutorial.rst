@@ -1,6 +1,6 @@
 .. _`modtutorial`:
 
-Tutorial on module.xml writing
+Tutorial on module XML writing
 ==============================
 
 .. _`simplemoduletutorial`:
@@ -13,11 +13,11 @@ Now since you are here it means you are probably not one of the maintainers of t
 
     cd ~/catkin_ws/src/VIKI_modules/ && mkdir DoutzenMSC
 
-Inside there create your very first module definition file. You have no choice for name here, it must be named *module.xml*. Open it to start defining your module. This should help you:
+Inside there create your very first module definition file. You have no choice for name here, it must be named *viki.xml*. Open it to start defining your module. This should help you:
 
 .. code-block:: bash
 
-    gedit module.xml
+    gedit viki.xml
 
 Write, on the first line of the file
 
@@ -29,7 +29,7 @@ and save the file. Congratulations, you have just defined your first module! Nev
 
 .. code-block:: bash
 
-    Skipped adding '../aeroworks/contrib/DoutzenMSC/module.xml' because it is a broken file. Error thrown was:
+    Skipped adding '../aeroworks/contrib/DoutzenMSC/viki.xml' because it is a broken file. Error thrown was:
     Traceback (most recent call last):
       File "core/aero/scan.py", line 33, in getAvailableModules
         dom = xml.dom.minidom.parse(fPath)
@@ -43,7 +43,7 @@ and save the file. Congratulations, you have just defined your first module! Nev
 
 As you can see that is quite a lot of text. The framework does not crash, and other modules are still available, but you can imagine that this is undesireable.
 
-Now open your gedit with module.xml again, and we will create something more useful.
+Now open your gedit with viki.xml again, and we will create something more useful.
 
 Add this to your module file and save:
 
@@ -70,7 +70,7 @@ Your module is now no longer broken (confirm by running the core if you like) bu
     <executable id="graphnode" pkg="rqt_graph" exec="rqt_graph">
     </executable>
 
-For your convenience, this is how your module.xml file should look now:
+For your convenience, this is how your viki.xml file should look now:
 
 .. code-block:: xml
 

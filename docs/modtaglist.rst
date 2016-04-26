@@ -3,8 +3,8 @@
 description of module attributes and tags
 -----------------------------------------
 
-AEROWORKS (comment, not a tag)
-	comment at the beginning of module.xml file telling VIKI that this is a file she can work with
+VIKI_MODULE (comment, not a tag)
+	comment at the beginning of viki.xml file telling VIKI that this is a file she can work with
 MODULE
 	Top level tag for the module
 	attributes:
