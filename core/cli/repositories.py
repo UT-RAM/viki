@@ -1,6 +1,7 @@
 __author__ = 'robin'
 
 import subprocess
+import os
 
 """
     Package that handles repository installation.
@@ -28,7 +29,7 @@ def clone_module_repository(repo, viki_config):
 
     # TODO: Check if repository exists!
 
-    target_directory = "{}/{}".format(viki_config.get_option('root_module_directory'), repo)
+    target_directory = os.path.expanduser("{}/{}".format(viki_config.get_option('root_module_directory'), repo))
     command = []
     if repository['type'] == 'hg':
         command = ['hg', 'clone', repository['url'], target_directory, '-r', repository['branch']]

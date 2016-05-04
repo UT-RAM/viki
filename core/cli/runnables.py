@@ -94,7 +94,7 @@ def add_module_repository(options):
     config = VikiConfig()
     repositories.clone_module_repository('core', config)
     # install direct dependencies
-    install_packages()
+    install_packages({})
     # install using rosdep, for build dependencies
     dependencies.install_second_level_dependencies()
     # build
