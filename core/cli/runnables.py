@@ -9,6 +9,8 @@ import  dependencies
 import repositories
 from configuring import Configuring
 
+from viki_config import VikiConfig
+
 # Be careful to import stuff here, this is the very low level of VIKI, where not all dependencies are met yet
 # If something is imported, test thoroughly!
 
@@ -89,7 +91,8 @@ def install_packages(options):
 
 def add_module_repository(options):
     # does not work yet really...
-    repositories.clone_module_repository('core')
+    config = VikiConfig()
+    repositories.clone_module_repository('core', config)
     # install direct dependencies
     install_packages()
     # install using rosdep, for build dependencies

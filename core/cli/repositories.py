@@ -15,7 +15,7 @@ repositories = {
     }
 }
 
-def clone_module_repository(repo):
+def clone_module_repository(repo, viki_config):
     """
     Clone a repository into the viki_modules folder
     :param repo:
@@ -28,11 +28,12 @@ def clone_module_repository(repo):
 
     # TODO: Check if repository exists!
 
+    target_directory = "{}/{}".format(viki_config.get_option('root_module_directory'), repo)
     command = []
     if repository['type'] == 'hg':
-        command = ['hg', 'clone', repository['url'], '../viki_modules/'+repo, '-r', repository['branch']]
+        command = ['hg', 'clone', repository['url'], target_directory, '-r', repository['branch']]
     elif repository['type'] == 'git':
-        command = ['git', 'clone', repository['url'], '../viki_modules/'+repo, '-b', repository['branch']]
+        command = ['git', 'clone', repository['url'], target_directory, '-b', repository['branch']]
 
     subprocess.call(command)
 
