@@ -73,9 +73,10 @@
 <li class="toctree-l1"><a class="reference internal" href="user.html">User documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#id3">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#ros-package-dependencies">ROS package dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html">Getting started</a><ul>
@@ -967,7 +968,7 @@ which can in turn contain multiple namespaces.</p>
 <p>Provides <a class="reference internal" href="#core.backend.scan.getAvailableModules" title="core.backend.scan.getAvailableModules"><code class="xref py py-func docutils literal"><span class="pre">getAvailableModules()</span></code></a>.</p>
 <dl class="function">
 <dt id="core.backend.scan.getAvailableModules">
-<code class="descclassname">core.backend.scan.</code><code class="descname">getAvailableModules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/scan.html#getAvailableModules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.scan.getAvailableModules" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">core.backend.scan.</code><code class="descname">getAvailableModules</code><span class="sig-paren">(</span><em>viki_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/backend/scan.html#getAvailableModules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.backend.scan.getAvailableModules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of modules available in the framework at this moment.</p>
 <ol class="arabic simple">
 <li>Run through the entire project tree searching for files called &#8216;viki.xml&#8217;.</li>

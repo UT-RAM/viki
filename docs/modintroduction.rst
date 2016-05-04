@@ -27,7 +27,7 @@ A module file is standard XML and generally looks like this:
 
         <!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
         <outputs>
-            <output type="ros_topic" name="imag e" link="usb_cam/image_raw" message_type="sensor_msgs/Image" required="true" />
+            <output type="ros_topic" name="image" link="usb_cam/image_raw" message_type="sensor_msgs/Image" required="true" />
         </outputs>
 
         <executable id="usb_cam" pkg="libuvc_camera" exec="camera_node">

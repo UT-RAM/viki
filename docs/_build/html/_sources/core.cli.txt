@@ -4,6 +4,14 @@ core.cli package
 Submodules
 ----------
 
+core.cli.configuring module
+---------------------------
+
+.. automodule:: core.cli.configuring
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 core.cli.dependencies module
 ----------------------------
 
@@ -24,6 +32,14 @@ core.cli.runnables module
 -------------------------
 
 .. automodule:: core.cli.runnables
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+core.cli.viki_config module
+---------------------------
+
+.. automodule:: core.cli.viki_config
     :members:
     :undoc-members:
     :show-inheritance:
