@@ -18,6 +18,7 @@ class Configuring:
         # Also, initialize it in this way, because of order
         self.default_options = OrderedDict()
         self.default_options['ros_version'] = lambda: 'indigo'
+        self.default_options['ros_dir'] = lambda: '/opt/ros/' + self.config.get_option('ros_version')
         self.default_options['viki_dir'] = lambda: os.getcwd()
         self.default_options['catkin_workspace'] = lambda : '~/catkin_ws'
         self.default_options['root_module_directory'] = lambda : self.config.get_option('catkin_workspace') + '/src/viki_modules'

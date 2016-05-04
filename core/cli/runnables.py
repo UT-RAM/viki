@@ -2,6 +2,8 @@ __author__ = 'robin'
 
 import subprocess
 import os
+import stat
+import shutil
 
 import  dependencies
 import repositories
@@ -34,14 +36,25 @@ def configure(options):
     subprocess.call(['sudo', 'apt-get', 'install']+to_install_packages)
 
     # Create fancy desktop entry
-    print_to_terminal("Creating a desktop entry...")
-    desktop_template = open('viki.desktop.template', 'r').read()
-    desktop_entry = desktop_template.replace('{{viki_dir}}', config.get_option('viki_dir'))
-    open(os.path.expanduser('~/.local/share/applications/viki.desktop'), 'w').write(desktop_entry)
-
-    # TODO: create viki_env.sh file
+    for file in ['viki.desktop', 'viki_env.sh', 'viki_launch.sh']:
+        process_template(file, config)
+        os.chmod(file, os.stat(file).st_mode | stat.S_IEXEC)
+    app_dir = os.path.expanduser('~/.local/share/applications')
+    command = "desktop-file-install --dir={} {}/viki.desktop".format(app_dir, os.getcwd())
+    print command
+    subprocess.call(command)
 
     return None
+
+def process_template(file, viki_config):
+    print viki_config.config.keys()
+    template = open('file_templates/'+file+'.template', 'r').read()
+    for option in viki_config.config.keys():
+        print option
+        template = template.replace('{{'+option+'}}', viki_config.get_option(option))
+    print template
+    with open(file, 'w') as write_file:
+        write_file.write(template)
 
 
 def check_packages(options):

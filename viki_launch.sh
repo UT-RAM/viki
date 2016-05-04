@@ -1,3 +1,3 @@
 #!/bin/bash
-. ./viki_env.sh
+. /mnt/data/RAM/workspace/src/viki/viki_env.sh
 exec "$@"

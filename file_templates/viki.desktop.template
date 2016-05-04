@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=VIKI
-Exec={{viki_dir}}/viki_env.sh viki run
-Path={{viki_dir}}/viki
+Exec={{viki_dir}}/viki_launch.sh ./viki run
+Path={{viki_dir}}
 Icon={{viki_dir}}/viki_logo.png
 Type=Application
-Terminal=True
+Terminal=true

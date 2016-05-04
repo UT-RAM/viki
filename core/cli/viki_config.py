@@ -1,12 +1,14 @@
+
 import json
+from collections import OrderedDict
 
 class VikiConfig:
 
-    config = {}
     config_filename = 'config.json'
 
     def __init__(self):
         self.load_config()
+        self.config = OrderedDict()
 
     def set_option(self, option, value):
         self.config[option] = value
