@@ -19,7 +19,7 @@ def getAvailableModules(viki_config):
     available_mods = []
 
     # START FILE LOOP
-    rootDir = viki_config.get_root_module_dir()
+    rootDir = os.path.expanduser(viki_config.get_root_module_dir())
 
     for dirName, subdirList, fileList in os.walk(rootDir):
         for fName in fileList:
