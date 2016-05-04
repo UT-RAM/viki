@@ -30,6 +30,9 @@ from gui.webgui import synchronous_gtk_message
 # from gui.webgui import asynchronous_gtk_message
 from gui.webgui import kill_gtk_thread
 # end of imports from internet
+
+from cli.viki_config import VikiConfig
+
 import gtk
 
 ros_master_hostname = "localhost"
@@ -43,8 +46,8 @@ class Global(object):
         cls.quit = True
 
 def main():
-    available_mods = scan.getAvailableModules()
-    print "Got all the modules"
+    viki_config = VikiConfig()
+    available_mods = scan.getAvailableModules(viki_config)
 
     start_gtk_thread()
     corePID = 0
@@ -66,7 +69,7 @@ def main():
 
     def vikiStartRosCore():
         # sp = subprocess.Popen('/opt/ros/indigo/bin/roscore')
-        sp = subprocess.Popen(['gnome-terminal', '-x', '/opt/ros/indigo/bin/roscore'])
+        sp = subprocess.Popen(['gnome-terminal', '-x', "{}/bin/roscore".format(viki_config.get_option('ros_dir'))])
         main.corePID = sp.pid # This PID is not the right one!
         web_send('enableStopCore()')
         web_send('updateStatus("ROS core started (PID: '+str(main.corePID)+')")')

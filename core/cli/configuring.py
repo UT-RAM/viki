@@ -14,7 +14,7 @@ class Configuring:
         self.config = VikiConfig()
 
         # Return functions here, which are used with lazy evaluation,
-        # this way, we can use extra functions
+        # such that we can evaluate already set options
         # Also, initialize it in this way, because of order
         self.default_options = OrderedDict()
         self.default_options['ros_version'] = lambda: 'indigo'
