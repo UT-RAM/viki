@@ -6,6 +6,9 @@
 # generated files
 aeroworks.launch
 configuration.xml
+config.json
+viki_env.sh
+viki_launch.sh
 
 # Dependencies for the newgui
 core/newgui/bower_components
