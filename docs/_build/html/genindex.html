@@ -74,9 +74,10 @@
 <li class="toctree-l1"><a class="reference internal" href="user.html">User documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#id3">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#ros-package-dependencies">ROS package dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html">Getting started</a><ul>
@@ -215,6 +216,7 @@
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -292,6 +294,10 @@
   </dt>
 
       
+  <dt><a href="core.cli.html#core.cli.configuring.Configuring.ask_config_option">ask_config_option() (core.cli.configuring.Configuring method)</a>
+  </dt>
+
+      
   <dt><a href="core.gui.html#core.gui.webgui.asynchronous_gtk_message">asynchronous_gtk_message() (in module core.gui.webgui)</a>
   </dt>
 
@@ -326,11 +332,19 @@
   </dt>
 
       
+  <dt><a href="core.cli.html#core.cli.viki_config.VikiConfig.config_filename">config_filename (core.cli.viki_config.VikiConfig attribute)</a>
+  </dt>
+
+      
   <dt><a href="core.backend.html#core.backend.objects.Configuration">Configuration (class in core.backend.objects)</a>
   </dt>
 
       
   <dt><a href="core.cli.html#core.cli.runnables.configure">configure() (in module core.cli.runnables)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.configuring.Configuring">Configuring (class in core.cli.configuring)</a>
   </dt>
 
       
@@ -386,6 +400,10 @@
   </dt>
 
       
+  <dt><a href="core.cli.html#module-core.cli.configuring">core.cli.configuring (module)</a>
+  </dt>
+
+      
   <dt><a href="core.cli.html#module-core.cli.dependencies">core.cli.dependencies (module)</a>
   </dt>
 
@@ -395,6 +413,10 @@
 
       
   <dt><a href="core.cli.html#module-core.cli.runnables">core.cli.runnables (module)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#module-core.cli.viki_config">core.cli.viki_config (module)</a>
   </dt>
 
       
@@ -472,7 +494,15 @@
   </dt>
 
       
+  <dt><a href="core.cli.html#core.cli.viki_config.VikiConfig.get_option">get_option() (core.cli.viki_config.VikiConfig method)</a>
+  </dt>
+
+      
   <dt><a href="core.cli.html#core.cli.dependencies.get_package_locations">get_package_locations() (in module core.cli.dependencies)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.viki_config.VikiConfig.get_root_module_dir">get_root_module_dir() (core.cli.viki_config.VikiConfig method)</a>
   </dt>
 
       
@@ -483,12 +513,12 @@
   <dt><a href="core.backend.html#core.backend.scan.getAvailableModules">getAvailableModules() (in module core.backend.scan)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.backend.html#core.backend.config_interpreter.getConfig">getConfig() (in module core.backend.config_interpreter)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.backend.html#core.backend.helpers.getElements">getElements() (in module core.backend.helpers)</a>
   </dt>
@@ -613,6 +643,10 @@
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.cli.html#core.cli.viki_config.VikiConfig.load_config">load_config() (core.cli.viki_config.VikiConfig method)</a>
+  </dt>
+
       
   <dt><a href="core.backend.html#core.backend.writeLaunch.lookup">lookup() (in module core.backend.writeLaunch)</a>
   </dt>
@@ -750,6 +784,10 @@
   </dt>
 
       
+  <dt><a href="core.cli.html#core.cli.runnables.process_template">process_template() (in module core.cli.runnables)</a>
+  </dt>
+
+      
   <dt><a href="core.backend.html#core.backend.objects.Internal_Interface.publisher">publisher (core.backend.objects.Internal_Interface attribute)</a>
   </dt>
 
@@ -778,9 +816,15 @@
   </dt>
 
       
-  <dt><a href="core.cli.html#core.cli.runnables.run">run() (in module core.cli.runnables)</a>
+  <dt><a href="core.cli.html#core.cli.configuring.Configuring.run">run() (core.cli.configuring.Configuring method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="core.cli.html#core.cli.runnables.run">(in module core.cli.runnables)</a>
+  </dt>
+
+      </dl></dd>
   </dl></td>
 </tr></table>
 
@@ -788,7 +832,15 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="core.cli.html#core.cli.viki_config.VikiConfig.save_config">save_config() (core.cli.viki_config.VikiConfig method)</a>
+  </dt>
+
+      
   <dt><a href="core.backend.html#core.backend.objects.Selected_machine">Selected_machine (class in core.backend.objects)</a>
+  </dt>
+
+      
+  <dt><a href="core.cli.html#core.cli.viki_config.VikiConfig.set_option">set_option() (core.cli.viki_config.VikiConfig method)</a>
   </dt>
 
       
@@ -799,12 +851,12 @@
   <dt><a href="core.backend.html#core.backend.objects.Module.setPath">setPath() (core.backend.objects.Module method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.cli.html#core.cli.dependencies.start_aptget_installation">start_aptget_installation() (in module core.cli.dependencies)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.gui.html#core.gui.webgui.start_gtk_thread">start_gtk_thread() (in module core.gui.webgui)</a>
   </dt>
@@ -857,6 +909,16 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="core.gui.html#core.gui.webgui.UseWebKit">UseWebKit (class in core.gui.webgui)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="core.cli.html#core.cli.viki_config.VikiConfig">VikiConfig (class in core.cli.viki_config)</a>
   </dt>
 
   </dl></td>

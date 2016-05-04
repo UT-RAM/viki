@@ -76,9 +76,10 @@
 <li class="toctree-l1"><a class="reference internal" href="user.html">User documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#id3">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#ros-package-dependencies">ROS package dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html">Getting started</a><ul>
@@ -140,6 +141,10 @@
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="contributing.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="releasing.html">Releasing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="releasing.html#hotfixing">Hotfixing</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
@@ -209,7 +214,7 @@
 </pre></div>
 </div>
 <p>Write, on the first line of the file</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- VIKI_MODULE --&gt;</span>
 </pre></div>
 </div>
 <p>and save the file. Congratulations, you have just defined your first module! Nevertheless you did not do a good job, yet. Try running VIKI (you should know how by now). You should see that there is something wrong with the file you have just created because the terminal tells you something like:</p>
@@ -248,7 +253,7 @@ ExpatError: no element found: line 2, column 0
 </pre></div>
 </div>
 <p>For your convenience, this is how your viki.xml file should look now:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- VIKI_MODULE --&gt;</span>
 <span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;feedback_to_user&quot;</span> <span class="na">id=</span><span class="s">&quot;rqtmodule&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
         <span class="nt">&lt;name&gt;</span>rqt module<span class="nt">&lt;/name&gt;</span>

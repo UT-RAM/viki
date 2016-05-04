@@ -73,9 +73,10 @@
 <li class="toctree-l1"><a class="reference internal" href="user.html">User documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#id3">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#ros-package-dependencies">ROS package dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html">Getting started</a><ul>
@@ -201,6 +202,26 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="module-core.cli.configuring">
+<span id="core-cli-configuring-module"></span><h2>core.cli.configuring module<a class="headerlink" href="#module-core.cli.configuring" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="core.cli.configuring.Configuring">
+<em class="property">class </em><code class="descclassname">core.cli.configuring.</code><code class="descname">Configuring</code><a class="reference internal" href="_modules/core/cli/configuring.html#Configuring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.configuring.Configuring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class which will run the configuration for the user
+especially useful the first time</p>
+<dl class="method">
+<dt id="core.cli.configuring.Configuring.ask_config_option">
+<code class="descname">ask_config_option</code><span class="sig-paren">(</span><em>option</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/configuring.html#Configuring.ask_config_option"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.configuring.Configuring.ask_config_option" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="core.cli.configuring.Configuring.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/configuring.html#Configuring.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.configuring.Configuring.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-core.cli.dependencies">
 <span id="core-cli-dependencies-module"></span><h2>core.cli.dependencies module<a class="headerlink" href="#module-core.cli.dependencies" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -250,14 +271,14 @@ This is based on the package names provided as the parameter</div></blockquote>
 
 <dl class="function">
 <dt id="core.cli.dependencies.get_missing_packages">
-<code class="descclassname">core.cli.dependencies.</code><code class="descname">get_missing_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/dependencies.html#get_missing_packages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.dependencies.get_missing_packages" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">core.cli.dependencies.</code><code class="descname">get_missing_packages</code><span class="sig-paren">(</span><em>viki_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/dependencies.html#get_missing_packages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.dependencies.get_missing_packages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Looks for missing ROS packages that are defined as dependency in a module
 :return: List with names of the missing ROS packages</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="core.cli.dependencies.get_modules">
-<code class="descclassname">core.cli.dependencies.</code><code class="descname">get_modules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/dependencies.html#get_modules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.dependencies.get_modules" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">core.cli.dependencies.</code><code class="descname">get_modules</code><span class="sig-paren">(</span><em>viki_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/dependencies.html#get_modules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.dependencies.get_modules" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -307,7 +328,7 @@ This is based on the package names provided as the parameter</div></blockquote>
 
 <dl class="function">
 <dt id="core.cli.repositories.clone_module_repository">
-<code class="descclassname">core.cli.repositories.</code><code class="descname">clone_module_repository</code><span class="sig-paren">(</span><em>repo</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/repositories.html#clone_module_repository"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.repositories.clone_module_repository" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">core.cli.repositories.</code><code class="descname">clone_module_repository</code><span class="sig-paren">(</span><em>repo</em>, <em>viki_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/repositories.html#clone_module_repository"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.repositories.clone_module_repository" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clone a repository into the viki_modules folder
 :param repo:
 :return:</p>
@@ -360,10 +381,53 @@ This can either be with apt-get, or git, something else is not yet supported
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="core.cli.runnables.process_template">
+<code class="descclassname">core.cli.runnables.</code><code class="descname">process_template</code><span class="sig-paren">(</span><em>file</em>, <em>viki_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/runnables.html#process_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.runnables.process_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="core.cli.runnables.run">
 <code class="descclassname">core.cli.runnables.</code><code class="descname">run</code><span class="sig-paren">(</span><em>options</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/runnables.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.runnables.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run VIKI :D
 :return:</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-core.cli.viki_config">
+<span id="core-cli-viki-config-module"></span><h2>core.cli.viki_config module<a class="headerlink" href="#module-core.cli.viki_config" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="core.cli.viki_config.VikiConfig">
+<em class="property">class </em><code class="descclassname">core.cli.viki_config.</code><code class="descname">VikiConfig</code><a class="reference internal" href="_modules/core/cli/viki_config.html#VikiConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.viki_config.VikiConfig" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="core.cli.viki_config.VikiConfig.config_filename">
+<code class="descname">config_filename</code><em class="property"> = 'config.json'</em><a class="headerlink" href="#core.cli.viki_config.VikiConfig.config_filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="core.cli.viki_config.VikiConfig.get_option">
+<code class="descname">get_option</code><span class="sig-paren">(</span><em>option</em>, <em>none_valid=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/viki_config.html#VikiConfig.get_option"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.viki_config.VikiConfig.get_option" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="core.cli.viki_config.VikiConfig.get_root_module_dir">
+<code class="descname">get_root_module_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/viki_config.html#VikiConfig.get_root_module_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.viki_config.VikiConfig.get_root_module_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="core.cli.viki_config.VikiConfig.load_config">
+<code class="descname">load_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/viki_config.html#VikiConfig.load_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.viki_config.VikiConfig.load_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="core.cli.viki_config.VikiConfig.save_config">
+<code class="descname">save_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/viki_config.html#VikiConfig.save_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.viki_config.VikiConfig.save_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="core.cli.viki_config.VikiConfig.set_option">
+<code class="descname">set_option</code><span class="sig-paren">(</span><em>option</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/cli/viki_config.html#VikiConfig.set_option"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#core.cli.viki_config.VikiConfig.set_option" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>

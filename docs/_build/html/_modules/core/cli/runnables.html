@@ -74,9 +74,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../user.html">User documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#id3">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../installation.html#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#ros-package-dependencies">ROS package dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html">Getting started</a><ul>
@@ -202,9 +203,14 @@
 
 <span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">stat</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
 
 <span class="kn">import</span>  <span class="nn">dependencies</span>
 <span class="kn">import</span> <span class="nn">repositories</span>
+<span class="kn">from</span> <span class="nn">configuring</span> <span class="kn">import</span> <span class="n">Configuring</span>
+
+<span class="kn">from</span> <span class="nn">viki_config</span> <span class="kn">import</span> <span class="n">VikiConfig</span>
 
 <span class="c"># Be careful to import stuff here, this is the very low level of VIKI, where not all dependencies are met yet</span>
 <span class="c"># If something is imported, test thoroughly!</span>
@@ -223,9 +229,9 @@
 <span class="sd">        and do some more configuration like creating a desktop entry</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">ros_version</span> <span class="o">=</span> <span class="s">&#39;indigo&#39;</span>
-    <span class="n">viki_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">configuring</span> <span class="o">=</span> <span class="n">Configuring</span><span class="p">()</span>
+    <span class="n">configuring</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">configuring</span><span class="o">.</span><span class="n">config</span>
 
     <span class="c"># Install the right dependencies</span>
     <span class="n">print_to_terminal</span><span class="p">(</span><span class="s">&quot;Installing extra dependencies (webkit, gth and simplejson)&quot;</span><span class="p">)</span>
@@ -233,14 +239,21 @@
     <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&#39;sudo&#39;</span><span class="p">,</span> <span class="s">&#39;apt-get&#39;</span><span class="p">,</span> <span class="s">&#39;install&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">to_install_packages</span><span class="p">)</span>
 
     <span class="c"># Create fancy desktop entry</span>
-    <span class="n">print_to_terminal</span><span class="p">(</span><span class="s">&quot;Creating a desktop entry...&quot;</span><span class="p">)</span>
-    <span class="n">desktop_template</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;viki.desktop.template&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="n">desktop_entry</span> <span class="o">=</span> <span class="n">desktop_template</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;{{viki_dir}}&#39;</span><span class="p">,</span> <span class="n">viki_dir</span><span class="p">)</span>
-    <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&#39;~/.local/share/applications/viki.desktop&#39;</span><span class="p">),</span> <span class="s">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">desktop_entry</span><span class="p">)</span>
-
-    <span class="c"># TODO: create viki_env.sh file</span>
+    <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;viki.desktop&#39;</span><span class="p">,</span> <span class="s">&#39;viki_env.sh&#39;</span><span class="p">,</span> <span class="s">&#39;viki_launch.sh&#39;</span><span class="p">]:</span>
+        <span class="n">process_template</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span><span class="o">.</span><span class="n">st_mode</span> <span class="o">|</span> <span class="n">stat</span><span class="o">.</span><span class="n">S_IEXEC</span><span class="p">)</span>
+    <span class="n">app_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&#39;~/.local/share/applications&#39;</span><span class="p">)</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="s">&quot;desktop-file-install --dir={} {}/viki.desktop&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_dir</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="process_template"><a class="viewcode-back" href="../../../core.cli.html#core.cli.runnables.process_template">[docs]</a><span class="k">def</span> <span class="nf">process_template</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">viki_config</span><span class="p">):</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;file_templates/&#39;</span><span class="o">+</span><span class="nb">file</span><span class="o">+</span><span class="s">&#39;.template&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">viki_config</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;{{&#39;</span><span class="o">+</span><span class="n">option</span><span class="o">+</span><span class="s">&#39;}}&#39;</span><span class="p">,</span> <span class="n">viki_config</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="n">option</span><span class="p">))</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">write_file</span><span class="p">:</span>
+        <span class="n">write_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
 
 </div>
 <div class="viewcode-block" id="check_packages"><a class="viewcode-back" href="../../../core.cli.html#core.cli.runnables.check_packages">[docs]</a><span class="k">def</span> <span class="nf">check_packages</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
@@ -266,7 +279,8 @@
 <span class="sd">        This can either be with apt-get, or git, something else is not yet supported</span>
 <span class="sd">        :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">missing_ros_packages</span> <span class="o">=</span> <span class="n">dependencies</span><span class="o">.</span><span class="n">get_missing_packages</span><span class="p">()</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">VikiConfig</span><span class="p">()</span>
+    <span class="n">missing_ros_packages</span> <span class="o">=</span> <span class="n">dependencies</span><span class="o">.</span><span class="n">get_missing_packages</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_ros_packages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">&quot;[OK] - All ROS package dependencies are met, noting to install!&quot;</span>
 
@@ -279,9 +293,10 @@
 </div>
 <div class="viewcode-block" id="add_module_repository"><a class="viewcode-back" href="../../../core.cli.html#core.cli.runnables.add_module_repository">[docs]</a><span class="k">def</span> <span class="nf">add_module_repository</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
     <span class="c"># does not work yet really...</span>
-    <span class="n">repositories</span><span class="o">.</span><span class="n">clone_module_repository</span><span class="p">(</span><span class="s">&#39;core&#39;</span><span class="p">)</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">VikiConfig</span><span class="p">()</span>
+    <span class="n">repositories</span><span class="o">.</span><span class="n">clone_module_repository</span><span class="p">(</span><span class="s">&#39;core&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
     <span class="c"># install direct dependencies</span>
-    <span class="n">install_packages</span><span class="p">()</span>
+    <span class="n">install_packages</span><span class="p">({})</span>
     <span class="c"># install using rosdep, for build dependencies</span>
     <span class="n">dependencies</span><span class="o">.</span><span class="n">install_second_level_dependencies</span><span class="p">()</span>
     <span class="c"># build</span>

@@ -23,7 +23,7 @@ Write, on the first line of the file
 
 .. code-block:: xml
 
-    <!-- AEROWORKS -->
+    <!-- VIKI_MODULE -->
 
 and save the file. Congratulations, you have just defined your first module! Nevertheless you did not do a good job, yet. Try running VIKI (you should know how by now). You should see that there is something wrong with the file you have just created because the terminal tells you something like:
 
@@ -74,7 +74,7 @@ For your convenience, this is how your viki.xml file should look now:
 
 .. code-block:: xml
 
-    <!-- AEROWORKS -->
+    <!-- VIKI_MODULE -->
     <module type="feedback_to_user" id="rqtmodule">
         <meta>
             <name>rqt module</name>

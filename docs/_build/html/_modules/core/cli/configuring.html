@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>core.cli.repositories &mdash; VIKI 0.1 Alice documentation</title>
+  <title>core.cli.configuring &mdash; VIKI 0.1 Alice documentation</title>
   
 
   
@@ -187,7 +187,7 @@
       
           <li><a href="../../index.html">Module code</a> &raquo;</li>
       
-    <li>core.cli.repositories</li>
+    <li>core.cli.configuring</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -198,53 +198,48 @@
 </div>
           <div role="main" class="document">
             
-  <h1>Source code for core.cli.repositories</h1><div class="highlight"><pre>
-<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;robin&#39;</span>
-
-<span class="kn">import</span> <span class="nn">subprocess</span>
+  <h1>Source code for core.cli.configuring</h1><div class="highlight"><pre>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Package that handles repository installation.</span>
-<span class="sd">    Right now, this is very basic, but can be more elaborate in the future</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">viki_config</span> <span class="kn">import</span> <span class="n">VikiConfig</span>
 
-<span class="n">repositories</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;core&#39;</span><span class="p">:</span>  <span class="p">{</span>
-        <span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="s">&#39;https://github.com/UT-RAM/viki-modules&#39;</span><span class="p">,</span>
-        <span class="s">&#39;type&#39;</span><span class="p">:</span> <span class="s">&#39;git&#39;</span><span class="p">,</span>
-        <span class="s">&#39;branch&#39;</span><span class="p">:</span> <span class="s">&#39;dev&#39;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<div class="viewcode-block" id="clone_module_repository"><a class="viewcode-back" href="../../../core.cli.html#core.cli.repositories.clone_module_repository">[docs]</a><span class="k">def</span> <span class="nf">clone_module_repository</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">viki_config</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Clone a repository into the viki_modules folder</span>
-<span class="sd">    :param repo:</span>
-<span class="sd">    :return:</span>
+<span class="k">class</span> <span class="nc">Configuring</span><span class="p">:</span>
+<div class="viewcode-block" id="Configuring"><a class="viewcode-back" href="../../../core.cli.html#core.cli.configuring.Configuring">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class which will run the configuration for the user</span>
+<span class="sd">    especially useful the first time</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">repository</span> <span class="o">=</span> <span class="n">repositories</span><span class="p">[</span><span class="n">repo</span><span class="p">]</span>
 
-    <span class="k">if</span> <span class="n">repository</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Repository {} is not a valid configuration&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">repo</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">VikiConfig</span><span class="p">()</span>
 
-    <span class="c"># TODO: Check if repository exists!</span>
+        <span class="c"># Return functions here, which are used with lazy evaluation,</span>
+        <span class="c"># such that we can evaluate already set options</span>
+        <span class="c"># Also, initialize it in this way, because of order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_options</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_options</span><span class="p">[</span><span class="s">&#39;ros_version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s">&#39;indigo&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_options</span><span class="p">[</span><span class="s">&#39;ros_dir&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s">&#39;/opt/ros/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s">&#39;ros_version&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_options</span><span class="p">[</span><span class="s">&#39;viki_dir&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_options</span><span class="p">[</span><span class="s">&#39;catkin_workspace&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="s">&#39;~/catkin_ws&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_options</span><span class="p">[</span><span class="s">&#39;root_module_directory&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s">&#39;catkin_workspace&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;/src/viki_modules&#39;</span>
 
-    <span class="n">target_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&quot;{}/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">viki_config</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s">&#39;root_module_directory&#39;</span><span class="p">),</span> <span class="n">repo</span><span class="p">))</span>
-    <span class="n">command</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">if</span> <span class="n">repository</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;hg&#39;</span><span class="p">:</span>
-        <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;hg&#39;</span><span class="p">,</span> <span class="s">&#39;clone&#39;</span><span class="p">,</span> <span class="n">repository</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">],</span> <span class="n">target_directory</span><span class="p">,</span> <span class="s">&#39;-r&#39;</span><span class="p">,</span> <span class="n">repository</span><span class="p">[</span><span class="s">&#39;branch&#39;</span><span class="p">]]</span>
-    <span class="k">elif</span> <span class="n">repository</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;git&#39;</span><span class="p">:</span>
-        <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;clone&#39;</span><span class="p">,</span> <span class="n">repository</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">],</span> <span class="n">target_directory</span><span class="p">,</span> <span class="s">&#39;-b&#39;</span><span class="p">,</span> <span class="n">repository</span><span class="p">[</span><span class="s">&#39;branch&#39;</span><span class="p">]]</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuring.run"><a class="viewcode-back" href="../../../core.cli.html#core.cli.configuring.Configuring.run">[docs]</a>        <span class="k">print</span> <span class="s">&quot;Configuring settings:</span><span class="se">\n</span><span class="s">Press enter to use default, or enter your own value&quot;</span>
+        <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_options</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">default</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_options</span><span class="p">[</span><span class="n">option</span><span class="p">]()</span>
 
-    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-</div>
-<div class="viewcode-block" id="catkin_make"><a class="viewcode-back" href="../../../core.cli.html#core.cli.repositories.catkin_make">[docs]</a><span class="k">def</span> <span class="nf">catkin_make</span><span class="p">():</span>
-    <span class="c"># does not work yet!</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="s">&#39;. ~/.bashrc &amp;&amp; catkin_make --directory ../..&#39;</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span></div>
-</pre></div>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask_config_option</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">save_config</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">ask_config_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span></div>
+<div class="viewcode-block" id="Configuring.ask_config_option"><a class="viewcode-back" href="../../../core.cli.html#core.cli.configuring.Configuring.ask_config_option">[docs]</a>        <span class="nb">input</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;{}: [{}]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">input</span> <span class="ow">is</span> <span class="ow">not</span> <span class="s">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">input</span>
+        <span class="k">return</span> <span class="n">value</span>
+</pre></div></div></div>
 
           </div>
           <footer>

@@ -76,9 +76,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="user.html">User documentation</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-viki">Configuring VIKI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ros-package-dependencies">ROS package dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html">Getting started</a><ul>
@@ -142,6 +143,10 @@
 <li class="toctree-l3"><a class="reference internal" href="contributing.html#workflow">Workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="releasing.html">Releasing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="releasing.html#hotfixing">Hotfixing</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="framework_description.html#core">Core</a></li>
 <li class="toctree-l3"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
@@ -200,24 +205,30 @@
   <div class="section" id="installation">
 <span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>This installation guide assumes you have installed ROS already. If you have not done this, follow <a class="reference external" href="http://wiki.ros.org/jade/Installation/Ubuntu">this guide</a> to install it.</p>
-<p>If you have already a catkin workspace, VIKI can be installed in that workspace. However, we recommend to install VIKI in its own <strong>seperate workspace</strong>. ROS packages that are not defined as a module can not be used anyway in VIKI and setting up a new workspace allows for a clean installation with up-to-date package versions. If you just want some functionality from the modules of VIKI, while not using the GUI, you can also just get a module repository and use ROS packages directly in your base workspace.</p>
+<p>If you have already a catkin workspace, VIKI can be installed in that workspace. If not, you have to create one using <a class="reference external" href="http://wiki.ros.org/catkin/Tutorials/create_a_workspace">this guide</a>. It is also possible to create a new workspace, just for the VIKI modules or even extend your old workspace.</p>
+<p>If you want to have the most clean configuration, we suggest creating a new workspace for VIKI. ROS packages that are not defined as a module can not be used anyway in VIKI and setting up a new workspace allows for a clean installation with up-to-date package versions. If you just want some functionality from the modules of VIKI, while not using the GUI, you can also just get a module repository and use ROS packages directly in your base workspace.</p>
 <p>VIKI consists of a core and at least one module repository. Right now, there is only one main repository, but this design makes it easy to create your own repository of modules for use easy sharing. This installation will setup the core and the main module repository for you. Adding extra module respositories is quite easy and discussed in <a class="reference internal" href="#module-repositories">Module repositories</a>.</p>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>VIKI uses ROS for all its main functionality and therefore builds on top of those dependencies. In line with ROS, VIKI only supports Ubuntu as its platform and is tested on 12.04 and 14.04. Other Ubuntu (and even Linux) distributions may work just as well, but are not supported.</p>
+<p>VIKI uses ROS for all its main functionality and therefore builds on top of those dependencies. In line with ROS, VIKI only supports Ubuntu as its platform and is tested on LTS versions 12.04 and 14.04. Other Ubuntu (and even Linux) distributions may work just as well, but are not supported.</p>
 </div>
-<div class="section" id="id2">
-<h2>Installation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>Installation is as easy as pulling the repository into your (or a new) catkin_workspace. Detailed instructions can be found in the repository itself. Go to <a class="reference external" href="https://github.com/UT-RAM/VIKI/">https://github.com/UT-RAM/VIKI/</a> to install VIKI easily.</p>
+<div class="section" id="id3">
+<h2>Installation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Installation is as easy as pulling the repository into your (or a new) catkin_workspace. The repository can be found on <a class="reference external" href="https://github.com/UT-RAM/viki/">https://github.com/UT-RAM/viki/</a>. VIKI is a standalone tool and therefore, by default, does not live in your catkin workspace. We recommend installing it in your home folder, but you&#8217;re free to install it where you like.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~
+git pull https://github.com/UT-RAM/viki
+</pre></div>
+</div>
+<p>This will create a new folder /home/&lt;user&gt;/viki, where all the VIKI magic lives.</p>
 </div>
 <div class="section" id="configuring-viki">
 <h2>Configuring VIKI<a class="headerlink" href="#configuring-viki" title="Permalink to this headline">¶</a></h2>
-<p>VIKI can be easily configured using</p>
-<div class="highlight-bash"><div class="highlight"><pre>./viki configure
+<p>VIKI has a self-configuring tool, which setups the folder directories for you. This is done by launching the configure application from the terminal.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> &lt;viki_dir&gt;
+./viki configure
 </pre></div>
 </div>
-<p>This will install some extra dependencies. It should also put a symlink in your catkin_workspace directory that is included in your PATH, such that you can directly use VIKI, but this doesn&#8217;t work yet..</p>
-<p>Right now, there are still some issues regarding the configuration of VIKI.</p>
+<p>Running this will install some extra dependencies, setup a config.json file for the right directories and setup a .desktop file such that you can launch VIKI from the Unity Dash.</p>
 </div>
 <div class="section" id="module-repositories">
 <h2>Module repositories<a class="headerlink" href="#module-repositories" title="Permalink to this headline">¶</a></h2>
@@ -227,6 +238,18 @@ get started quickly by automatically adding a set of packages. Using the command
 </pre></div>
 </div>
 <p>This will pull the repository and automatically install all dependencies that might be needed for the modules so they can be launched. Furthermore, VIKI should be able to run catkin_make instantly, but this does not work as well,</p>
+</div>
+<div class="section" id="ros-package-dependencies">
+<h2>ROS package dependencies<a class="headerlink" href="#ros-package-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>If you followed the steps above, you should be all set. VIKI tries to handle all its ROS package dependencies by using the rosdep tool. However, since this is not optimized for different ROS versions, this may sometimes not work that well. To get an overview of what your missing packages are, run</p>
+<div class="highlight-bash"><div class="highlight"><pre>./viki check-packages
+</pre></div>
+</div>
+<p>based on this, you might find out you&#8217;re missing the <em>libuvc_camera</em> package when using ROS jade. Since this package is not available for jade, it may not automatically install. To install this by hand, you can run</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-indigo-libuvc-camera
+</pre></div>
+</div>
+<p>as the package is available for ROS indigo. It should not be that hard to figure this out for your packages and we are working to find a way to neatly resolve this. In the meantime, if you&#8217;re still experiencing any problems, please do not hesitate to contact <a class="reference internal" href="developers.html#developers"><span>The developers</span></a></p>
 </div>
 </div>
 
