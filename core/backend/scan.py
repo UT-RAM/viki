@@ -8,7 +8,7 @@ from objects import *
 from helpers import *
 
 
-def getAvailableModules():
+def getAvailableModules(viki_config):
     """Return a list of modules available in the framework at this moment.
 
     #. Run through the entire project tree searching for files called 'viki.xml'.
@@ -19,8 +19,8 @@ def getAvailableModules():
     available_mods = []
 
     # START FILE LOOP
-    # TODO: Being able to configure this directory, making it able to run viki everywhere, not just in its own directory
-    rootDir = '../'
+    rootDir = viki_config.get_root_module_dir()
+
     for dirName, subdirList, fileList in os.walk(rootDir):
         for fName in fileList:
             if fName == 'viki.xml':
