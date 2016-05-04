@@ -1,7 +1,0 @@
-{
- "ros_version": "indigo", 
- "ros_dir": "/opt/ros/indigo", 
- "viki_dir": "/mnt/data/RAM/workspace/src/viki", 
- "catkin_workspace": "/mnt/data/RAM/workspace", 
- "root_module_directory": "/mnt/data/RAM/workspace/src/viki_modules"
-}
