@@ -154,11 +154,11 @@ def start_vcs_installation(missing_vcs_packages):
             subprocess.call(command)
     return None
 
-def get_modules():
+def get_modules(viki_config):
     # TODO: Cache the module list in here, so that we don't scan all files again and again, and again...
     # if module_list == None:
-    module_list = scan.getAvailableModules()
 
+    module_list = scan.getAvailableModules(viki_config)
     return module_list
 
 def get_distinct_packages(modules):
