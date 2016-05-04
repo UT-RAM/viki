@@ -78,7 +78,8 @@ def install_packages(options):
         This can either be with apt-get, or git, something else is not yet supported
         :return:
     """
-    missing_ros_packages = dependencies.get_missing_packages()
+    config = VikiConfig()
+    missing_ros_packages = dependencies.get_missing_packages(config)
     if len(missing_ros_packages) == 0:
         print "[OK] - All ROS package dependencies are met, noting to install!"
 

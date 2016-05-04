@@ -11,6 +11,7 @@ __author__ = 'robin'
 """
 
 from core.backend import scan
+from viki_config import VikiConfig
 import os
 import subprocess
 
@@ -22,7 +23,8 @@ def check_installed_packages():
 
     :return: Boolean
     """
-    missing_packages = get_missing_packages()
+    viki_config = VikiConfig()
+    missing_packages = get_missing_packages(viki_config)
 
     if len(missing_packages) > 0:
         print "[WARNING] - There are missing packages for full VIKI support:"
@@ -43,13 +45,13 @@ def get_installed_packages():
 
     return packages
 
-def get_missing_packages():
+def get_missing_packages(viki_config):
     """
     Looks for missing ROS packages that are defined as dependency in a module
     :return: List with names of the missing ROS packages
     """
     installed_packages = get_installed_packages()
-    modules_on_system = get_modules()
+    modules_on_system = get_modules(viki_config)
 
     missing_packages = []
 
