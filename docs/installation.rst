@@ -21,7 +21,7 @@ Installation is as easy as pulling the repository into your (or a new) catkin_wo
 .. code-block:: bash
 
     cd ~
-    git pull https://github.com/UT-RAM/viki
+    git clone https://github.com/UT-RAM/viki
 
 This will create a new folder /home/<user>/viki, where all the VIKI magic lives.
 
