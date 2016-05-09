@@ -1,3 +1,10 @@
+"""
+VIKI: more than a GUI for ROS, https://github.com/UT-RAM/viki 
+version: 0.2 - Alice
+copyright: Robin Hoogervorst, Alex Kamphuis, Cees Trouwborst, 2016 
+licensed under the MIT License
+"""
+
 """Provide tools to interpret configuration files and return abstractions of it."""
 """VIKI_VERSION_INFO
 VIKI: more than a GUI for ROS 
