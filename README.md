@@ -41,7 +41,9 @@ Congratulations! You can now start using VIKI, look further into the documentati
 
 ## Documentation
 
-Documentation for VIKI is included in the repository. To view this, open the file ``<viki_dir>/docs/_build/html/index.html `` in your favourite browser to read the docs. This can also be done using the terminal. (again from the viki directory)
+The documentation for VIKI is hosted on [Read the Docs](http://viki.readthedocs.io).
+
+Documentation is included in the repository as well. Open ``docs/_build/html/index.html `` in your favourite browser to read this. To launch the documentation using a terminal, from within the VIKI directory, run
 
     xdg-open docs/_build/html/index.html
     
