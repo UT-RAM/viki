@@ -3,10 +3,8 @@
 User documentation
 ==================
 
-Hi there VIKI user!
-
-This part of the documentation is focused on using VIKI itself, not on developing modules or contributing to VIKI itself.
-Are you looking to write a module? Look at :ref:`contributor`.
+This part of the documentation is focused on the using VIKI itself, not on developing modules or contributing to VIKI itself.
+Are you looking to write a module? Please have a look at :ref:`CustomModuleDevelopment`.
 Are you looking for internal documentation on VIKI? Look at :ref:`developer`.
 
 This documentation will guide you through the main process of using the GUI and launching your first applications.
@@ -15,7 +13,7 @@ This documentation will guide you through the main process of using the GUI and 
     :maxdepth: 2
 
     Installation <installation>
-    Quickstart <quickstart>
+    Getting started <quickstart>
     Commandline <commandline>
     Features <features>
     Distributed systems (ssh doc) <sshdoc>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tutorial on module.xml writing &mdash; VIKI 0.1 Alice documentation</title>
+  <title>Tutorial on module XML writing &mdash; VIKI 0.1 Alice documentation</title>
   
 
   
@@ -31,9 +31,9 @@
 
   
     <link rel="top" title="VIKI 0.1 Alice documentation" href="index.html"/>
-        <link rel="up" title="Contributor documentation" href="contributor.html"/>
+        <link rel="up" title="Custom module development" href="contributor.html"/>
         <link rel="next" title="More advanced modules" href="modintroduction.html"/>
-        <link rel="prev" title="Contributor documentation" href="contributor.html"/> 
+        <link rel="prev" title="Custom module development" href="contributor.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -46,27 +46,17 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
+      <div class="wy-side-nav-search">
+        
 
-          
-            <a href="index.html" class="icon icon-home"> VIKI
-          
+        
+          <a href="index.html" class="icon icon-home"> VIKI
+        
 
-          
-          </a>
+        
+        </a>
 
-          
-            
-            
-              <div class="version">
-                0.1
-              </div>
-            
-          
-
-          
+        
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -75,31 +65,110 @@
   </form>
 </div>
 
-          
-        </div>
+        
+      </div>
 
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
           
-            
-            
-                <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="user.html">User documentation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="contributor.html">Contributor documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Module tutorial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modintroduction.html">Advanced modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modrepositories.html">Module repositories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modtaglist.html">Tag list</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html">Package Guidelines</a></li>
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user.html">User documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#id3">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#ros-package-dependencies">ROS package dependencies</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commandline.html">Commandline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="features.html#currently-supported">Currently supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html#future-goals">Future goals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html">Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="contributor.html">Custom module development</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Module tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html">Advanced modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modrepositories.html">Module repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modtaglist.html">Tag list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html">Package Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="releasing.html">Releasing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="releasing.html#hotfixing">Hotfixing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#updating-documentation">Updating documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system_overview.html">System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">API documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
 </ul>
 
-            
           
-        </div>
+        
       </div>
+      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -114,19 +183,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          
-
- 
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
+          <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-          <li><a href="contributor.html">Contributor documentation</a> &raquo;</li>
+          <li><a href="contributor.html">Custom module development</a> &raquo;</li>
       
-    <li>Tutorial on module.xml writing</li>
+    <li>Tutorial on module XML writing</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -137,26 +200,25 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+          <div role="main" class="document">
             
   <div class="section" id="tutorial-on-module-xml-writing">
-<span id="modtutorial"></span><h1>Tutorial on module.xml writing<a class="headerlink" href="#tutorial-on-module-xml-writing" title="Permalink to this headline">¶</a></h1>
+<span id="modtutorial"></span><h1>Tutorial on module XML writing<a class="headerlink" href="#tutorial-on-module-xml-writing" title="Permalink to this headline">¶</a></h1>
 <p id="simplemoduletutorial">In this tutorial we will create a module. The module in this tutorial will start the ros_rqt_graph (which is already installed in ROS), which is a nice graph of ROS nodes and topics active on your PC.</p>
 <p>To keep your module nicely separated from the rest it is advisable to create your modules in a new folder. Let us assume that your name is Doutzen Kroes and you name your folder <em>DoutzenMSC</em>. If you have installed the framework in the default location then running this should do the job for you:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/catkin_ws/src/viki_modules/ <span class="o">&amp;&amp;</span> mkdir DoutzenMSC
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws/src/viki_modules/ <span class="o">&amp;&amp;</span> mkdir DoutzenMSC
 </pre></div>
 </div>
-<p>Inside there create your very first module definition file. You have no choice for name here, it must be named <em>module.xml</em>. Open it to start defining your module. This should help you:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>gedit module.xml
+<p>Inside there create your very first module definition file. You have no choice for name here, it must be named <em>viki.xml</em>. Open it to start defining your module. This should help you:</p>
+<div class="highlight-bash"><div class="highlight"><pre>gedit viki.xml
 </pre></div>
 </div>
 <p>Write, on the first line of the file</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- VIKI_MODULE --&gt;</span>
 </pre></div>
 </div>
 <p>and save the file. Congratulations, you have just defined your first module! Nevertheless you did not do a good job, yet. Try running VIKI (you should know how by now). You should see that there is something wrong with the file you have just created because the terminal tells you something like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>Skipped adding <span class="s1">&#39;../aeroworks/contrib/DoutzenMSC/module.xml&#39;</span> because it is a broken file. Error thrown was:
+<div class="highlight-bash"><div class="highlight"><pre>Skipped adding <span class="s1">&#39;../aeroworks/contrib/DoutzenMSC/viki.xml&#39;</span> because it is a broken file. Error thrown was:
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
   File <span class="s2">&quot;core/aero/scan.py&quot;</span>, line 33, in getAvailableModules
     <span class="nv">dom</span> <span class="o">=</span> xml.dom.minidom.parse<span class="o">(</span>fPath<span class="o">)</span>
@@ -170,15 +232,15 @@ ExpatError: no element found: line 2, column 0
 </pre></div>
 </div>
 <p>As you can see that is quite a lot of text. The framework does not crash, and other modules are still available, but you can imagine that this is undesireable.</p>
-<p>Now open your gedit with module.xml again, and we will create something more useful.</p>
+<p>Now open your gedit with viki.xml again, and we will create something more useful.</p>
 <p>Add this to your module file and save:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;feedback_to_user&quot;</span> <span class="na">id=</span><span class="s">&quot;rqtmodule&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;feedback_to_user&quot;</span> <span class="na">id=</span><span class="s">&quot;rqtmodule&quot;</span><span class="nt">&gt;</span>
 
 <span class="nt">&lt;/module&gt;</span>
 </pre></div>
 </div>
 <p>To help you and others increase the re-useability of the module please add metadata to all your module files, between the module tags, in this format:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;name&gt;</span>rqt module<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;description&gt;</span>Created using a tutorial, this modules starts the ros_rqt_graph<span class="nt">&lt;/description&gt;</span>
     <span class="nt">&lt;author&gt;</span>Doutzen Kroes<span class="nt">&lt;/author&gt;</span>
@@ -186,12 +248,12 @@ ExpatError: no element found: line 2, column 0
 </pre></div>
 </div>
 <p>Your module is now no longer broken (confirm by running the core if you like) but it has not got any functionality either. You will need to add a reference to an <em>executable</em> which is a rosnode for us. Add this below your meta data, between the module tags, and save:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;executable</span> <span class="na">id=</span><span class="s">&quot;graphnode&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rqt_graph&quot;</span> <span class="na">exec=</span><span class="s">&quot;rqt_graph&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;executable</span> <span class="na">id=</span><span class="s">&quot;graphnode&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rqt_graph&quot;</span> <span class="na">exec=</span><span class="s">&quot;rqt_graph&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/executable&gt;</span>
 </pre></div>
 </div>
-<p>For your convenience, this is how your module.xml file should look now:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- AEROWORKS --&gt;</span>
+<p>For your convenience, this is how your viki.xml file should look now:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- VIKI_MODULE --&gt;</span>
 <span class="nt">&lt;module</span> <span class="na">type=</span><span class="s">&quot;feedback_to_user&quot;</span> <span class="na">id=</span><span class="s">&quot;rqtmodule&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
         <span class="nt">&lt;name&gt;</span>rqt module<span class="nt">&lt;/name&gt;</span>
@@ -204,12 +266,11 @@ ExpatError: no element found: line 2, column 0
 <span class="nt">&lt;/module&gt;</span>
 </pre></div>
 </div>
-<p>Your module is now finished and runnable. Of course, these are the real basics, look at <a class="reference internal" href="modtaglist.html#modtaglist"><span class="std std-ref">description of module attributes and tags</span></a>
+<p>Your module is now finished and runnable. Of course, these are the real basics, look at <a class="reference internal" href="modtaglist.html#modtaglist"><span>description of module attributes and tags</span></a>
 to go more in-depth regarding writing a module file.</p>
 </div>
 
 
-           </div>
           </div>
           <footer>
   
@@ -218,7 +279,7 @@ to go more in-depth regarding writing a module file.</p>
         <a href="modintroduction.html" class="btn btn-neutral float-right" title="More advanced modules" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="contributor.html" class="btn btn-neutral" title="Contributor documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="contributor.html" class="btn btn-neutral" title="Custom module development" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -228,10 +289,9 @@ to go more in-depth regarding writing a module file.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
-
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
 </footer>
 

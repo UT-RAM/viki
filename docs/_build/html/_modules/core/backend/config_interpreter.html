@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>core.backend.config_interpreter &mdash; VIKI 0.1 Alice documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user.html">User documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#id3">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#configuring-viki">Configuring VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#ros-package-dependencies">ROS package dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commandline.html">Commandline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../features.html">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../features.html#currently-supported">Currently supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../features.html#future-goals">Future goals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sshdoc.html">Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor.html">Custom module development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modtutorial.html">Module tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html">Advanced modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#executables">Executables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modrepositories.html">Module repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modtaglist.html">Tag list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html">Package Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releasing.html">Releasing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releasing.html#hotfixing">Hotfixing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../framework_description.html">Framework description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#core">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#updating-documentation">Updating documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../system_overview.html">System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html">API documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">VIKI</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>core.backend.config_interpreter</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for core.backend.config_interpreter</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Provide tools to interpret configuration files and return abstractions of it.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">xml.dom.minidom</span>
+<span class="kn">from</span> <span class="nn">objects</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="getConfig"><a class="viewcode-back" href="../../../core.backend.html#core.backend.config_interpreter.getConfig">[docs]</a><span class="k">def</span> <span class="nf">getConfig</span><span class="p">(</span><span class="n">configfilename</span><span class="o">=</span><span class="s">&#39;configuration.xml&#39;</span><span class="p">,</span> <span class="n">config_id_to_use</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Read in the configuration file with path *configfilename*.</span>
+
+<span class="sd">    If *config_id_to_use* is set, use a configuration with this specific id.</span>
+
+<span class="sd">    :param configfilename: the xml-file containing configuration(s) (default configuration.xml)</span>
+<span class="sd">    :param config_id_to_use: use this specific configuration from within the configuration file (default None)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">configfilename</span><span class="p">:</span>
+        <span class="n">configfilename</span> <span class="o">=</span> <span class="s">&#39;configuration.xml&#39;</span>
+    <span class="k">print</span> <span class="s">&#39;Parsing &#39;</span> <span class="o">+</span> <span class="n">configfilename</span> <span class="o">+</span> <span class="s">&#39;, looking for configurations...&#39;</span>
+    <span class="n">dom</span> <span class="o">=</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">minidom</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">configfilename</span><span class="p">)</span>
+    <span class="n">configurations</span> <span class="o">=</span> <span class="n">dom</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&#39;configurations&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">domconfig</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">configurations</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;No configurations found&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">configelements</span> <span class="o">=</span> <span class="n">configurations</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&#39;configuration&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">configuration</span> <span class="ow">in</span> <span class="n">configelements</span><span class="p">:</span>
+            <span class="n">this_id</span> <span class="o">=</span> <span class="n">getOptionalAttribute</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="s">&#39;id&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">this_id</span> <span class="o">==</span> <span class="n">config_id_to_use</span><span class="p">:</span>
+                <span class="n">domconfig</span> <span class="o">=</span> <span class="n">configuration</span>
+                <span class="k">print</span> <span class="s">&#39;Found the desired configuration in &quot;&#39;</span> <span class="o">+</span> <span class="n">configfilename</span> <span class="o">+</span><span class="s">&#39;&quot;&#39;</span>
+                <span class="k">print</span> <span class="s">&#39;Now interpreting configuration...&#39;</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">domconfig</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Could not found the desired configuration&quot;</span><span class="p">)</span>
+
+        <span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span><span class="n">config_id_to_use</span><span class="p">)</span>
+        <span class="n">recursiveGet</span><span class="p">(</span><span class="n">domconfig</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;Configuration interpreted succesfully.&#39;</span>
+        <span class="k">return</span> <span class="n">config</span>
+
+</div>
+<div class="viewcode-block" id="recursiveGet"><a class="viewcode-back" href="../../../core.backend.html#core.backend.config_interpreter.recursiveGet">[docs]</a><span class="k">def</span> <span class="nf">recursiveGet</span><span class="p">(</span><span class="n">domparent</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get information from dom element *domparent* and place in an abstraction called *parent*.</span>
+
+<span class="sd">    Recursively increase depth, stepping untill the deepest level of *domparent*. use objects from :mod:`core.aero.objects` to create an abstraction.</span>
+
+<span class="sd">    :param domparent: the (current) dom parent</span>
+<span class="sd">    :param parent: the parent to which abstractions of the domparent are to be added</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">elementsInParent</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevelExceptTag</span><span class="p">(</span><span class="n">domparent</span><span class="p">,</span> <span class="s">&#39;namespace&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">elementsInParent</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">dommod</span> <span class="ow">in</span> <span class="n">elementsInParent</span><span class="p">:</span>
+            <span class="n">tagtype</span> <span class="o">=</span> <span class="n">dommod</span><span class="o">.</span><span class="n">tagName</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">tagtype</span> <span class="o">==</span> <span class="s">&#39;connect&#39;</span><span class="p">:</span>
+                <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection_to_add</span><span class="p">(</span>
+                    <span class="n">dommod</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">dommod</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;listener&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                <span class="p">)</span>
+                <span class="n">parent</span><span class="o">.</span><span class="n">connections_to_add</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">connection</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">tagtype</span> <span class="o">==</span> <span class="s">&#39;machine&#39;</span><span class="p">:</span>
+                <span class="n">machine</span> <span class="o">=</span> <span class="n">Machine</span><span class="p">(</span>
+                    <span class="n">dommod</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">dommod</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;hostname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">dommod</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;username&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">dommod</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;password&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                <span class="p">)</span>
+                <span class="n">parent</span><span class="o">.</span><span class="n">machines_to_add</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">machine</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mod</span> <span class="o">=</span> <span class="n">Module_to_add</span><span class="p">(</span>
+                    <span class="n">dommod</span><span class="o">.</span><span class="n">tagName</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+                    <span class="n">dommod</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">dommod</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">getOptionalAttribute</span><span class="p">(</span><span class="n">dommod</span><span class="p">,</span> <span class="s">&#39;supress_warning&#39;</span><span class="p">)</span>
+                <span class="p">)</span>
+
+                <span class="n">params</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">dommod</span><span class="p">,</span> <span class="s">&#39;param&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">domparam</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                        <span class="n">param</span> <span class="o">=</span> <span class="n">Parameter_to_add</span><span class="p">(</span>
+                            <span class="n">domparam</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                            <span class="n">domparam</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                        <span class="p">)</span>
+                        <span class="n">mod</span><span class="o">.</span><span class="n">parameters_to_add</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+
+                <span class="n">args</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">dommod</span><span class="p">,</span> <span class="s">&#39;arg&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">args</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">domarg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+                        <span class="n">arg</span> <span class="o">=</span> <span class="n">Cmdline_argument</span><span class="p">(</span>
+                            <span class="n">domarg</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;exec_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                            <span class="n">domarg</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;argument&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                            <span class="p">)</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s">&quot;found a cmd line argument and added it to module to add&quot;</span><span class="p">)</span>
+                        <span class="n">mod</span><span class="o">.</span><span class="n">add_cmdline_arg</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+
+                <span class="n">pfs</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">dommod</span><span class="p">,</span> <span class="s">&#39;launch-prefix&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">pfs</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">dompf</span> <span class="ow">in</span> <span class="n">pfs</span><span class="p">:</span>
+                        <span class="n">pf</span> <span class="o">=</span> <span class="n">Launch_prefix</span><span class="p">(</span>
+                            <span class="n">dompf</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;exec_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                            <span class="n">dompf</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;prefix&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                            <span class="p">)</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Adding prefix&quot;</span><span class="p">)</span>
+                        <span class="n">mod</span><span class="o">.</span><span class="n">add_prefix</span><span class="p">(</span><span class="n">pf</span><span class="p">)</span>
+
+                <span class="n">selections</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">dommod</span><span class="p">,</span> <span class="s">&#39;selected-machine&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">selections</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">domselection</span> <span class="ow">in</span> <span class="n">selections</span><span class="p">:</span>
+                        <span class="n">selection</span> <span class="o">=</span> <span class="n">Selected_machine</span><span class="p">(</span>
+                            <span class="n">domselection</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;exec_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                            <span class="n">domselection</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;machine_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                        <span class="p">)</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Adding machine selection&quot;</span><span class="p">)</span>
+                        <span class="n">mod</span><span class="o">.</span><span class="n">add_machine_selection</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
+
+                <span class="n">parent</span><span class="o">.</span><span class="n">modules_to_add</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
+    <span class="n">namespacesInParent</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">domparent</span><span class="p">,</span> <span class="s">&#39;namespace&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">namespacesInParent</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">domNamespace</span> <span class="ow">in</span> <span class="n">namespacesInParent</span><span class="p">:</span>
+            <span class="n">ns</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="n">domNamespace</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">recursiveGet</span><span class="p">(</span><span class="n">domNamespace</span><span class="p">,</span> <span class="n">ns</span><span class="p">)</span>
+            <span class="n">parent</span><span class="o">.</span><span class="n">namespaces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1 Alice',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

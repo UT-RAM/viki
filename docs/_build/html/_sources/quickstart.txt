@@ -1,8 +1,7 @@
-.. _quickstart:
-.. _`Quick start guide`:
+.. _GettingStarted:
 
-Quick start guide
-=================
+Getting started
+===============
 
 This guide assumes you have installed VIKI succesfully. If you have not, check out :ref:`installation`. Using this guide you can run your first setup: controlling a turtle-simulator with your keyboard.
 

@@ -6,7 +6,7 @@ Subpackages
 
 .. toctree::
 
-    core.aero
+    core.backend
     core.cli
     core.gui
 

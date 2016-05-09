@@ -3,13 +3,13 @@
 More advanced modules
 =====================
 
-VIKI comes with (a currently not so) wide range of modules. As an engineer, you probably want to use your own functionality within VIKI. To do this, you will have to write a ROS package and enable it for VIKI by creating a *module.xml* file. This file is a module description for your package which describes the inputs, outputs, executables and meta data. This guide assumes you already have a ROS package (or multiple of them) that you want to use within VIKI. For creating new ROS packages for use in VIKI, it is useful to follow some guidelines, which can be found at :ref:`package_guidelines`.
+VIKI comes with (a currently not so) wide range of modules. As an engineer, you probably want to use your own functionality within VIKI. To do this, you will have to write a ROS package and enable it for VIKI by creating a *viki.xml* file. This file is a module description for your package which describes the inputs, outputs, executables and meta data. This guide assumes you already have a ROS package (or multiple of them) that you want to use within VIKI. For creating new ROS packages for use in VIKI, it is useful to follow some guidelines, which can be found at :ref:`package_guidelines`.
 
 A module file is standard XML and generally looks like this:
 
 .. code-block:: xml
 
-    <!-- AEROWORKS -->
+    <!-- VIKI_MODULE -->
     <module type="sensor" id="camera_source">
 
         <meta>
@@ -27,7 +27,7 @@ A module file is standard XML and generally looks like this:
 
         <!-- The in- and outputs of the module as a whole. They are linked to specific executables within the module -->
         <outputs>
-            <output type="ros_topic" name="imag e" link="usb_cam/image_raw" message_type="sensor_msgs/Image" required="true" />
+            <output type="ros_topic" name="image" link="usb_cam/image_raw" message_type="sensor_msgs/Image" required="true" />
         </outputs>
 
         <executable id="usb_cam" pkg="libuvc_camera" exec="camera_node">
@@ -53,7 +53,7 @@ Every module file starts out with:
 
 .. code-block:: xml
 
-    <!--AEROWORKS-->
+    <!-- VIKI_MODULE -->
 
 This line makes sure the module is found by VIKI during the scan of files. Not implementing this line makes your module invisible to VIKI. The second line starts the module description:
 
@@ -109,7 +109,7 @@ Icon
 For specifying the icon, you have three options:
 
 * Specify nothing: The default VIKI icon will be used.
-* Specify a filename: VIKI will look for a image with this filename in the same folder as the module.xml file. If you add icon.png here, make sure you add a icon.png file as well.
+* Specify a filename: VIKI will look for a image with this filename in the same folder as the viki.xml file. If you add icon.png here, make sure you add a icon.png file as well.
 * Specify a bootstrap icon: If you provide an icon name which starts with 'glyphicon-' (e.g. glyphicon-star), VIKI will look for a bootstrap icon. This is an easy way to quickly add fancy icons. An overview of icons can be found at `bootstrap icons`_ 
 
 .. _`bootstrap icons`: http://getbootstrap.com/components/

@@ -1,0 +1,3 @@
+#!/bin/bash
+. {{ros_dir}}/setup.bash
+. {{catkin_workspace}}/devel/setup.bash

@@ -40,10 +40,10 @@ from objects import *
 from helpers import *
 
 
-def getAvailableModules():
+def getAvailableModules(viki_config):
     """Return a list of modules available in the framework at this moment.
 
-    #. Run through the entire project tree searching for files called 'module.xml'.
+    #. Run through the entire project tree searching for files called 'viki.xml'.
     #. Create an abstraction from each .xml file as objects from :mod:`core.aero.objects`.
     #. Put abstraction in a list
     #. Return list when done.
@@ -51,16 +51,16 @@ def getAvailableModules():
     available_mods = []
 
     # START FILE LOOP
-    # TODO: Being able to configure this directory, making it able to run viki everywhere, not just in its own directory
-    rootDir = '../'
+    rootDir = os.path.expanduser(viki_config.get_root_module_dir())
+
     for dirName, subdirList, fileList in os.walk(rootDir):
         for fName in fileList:
-            if fName == 'module.xml':
+            if fName == 'viki.xml':
                 try:
                     fPath = dirName + '/' + fName
                     f = open(fPath)
                     fLine = f.readlines()[0]
-                    if re.search('AEROWORKS', fLine) is not None:
+                    if re.search('VIKI_MODULE', fLine) is not None:
                         # Get DOM
                         dom = xml.dom.minidom.parse(fPath)
                         moddom = dom.getElementsByTagName('module')[0]
@@ -136,7 +136,10 @@ def getAvailableModules():
                             executableId = executable.attributes['id'].value
                             executablePkg = executable.attributes['pkg'].value
                             executableExec = executable.attributes['exec'].value
+                            executableArg = getOptionalAttribute(executable, 'args')
                             executableObject = Executable(executableId, executablePkg, executableExec)
+                            if executableArg is not None:
+                                executableObject.setArguments(executableArg)
 
                             # EXECUTABLE INPUTS
                             gInputElement = getElementsOnFirstLevel(executable, 'inputs')

@@ -1,6 +1,7 @@
 __author__ = 'robin'
 
 import subprocess
+import os
 
 """
     Package that handles repository installation.
@@ -47,7 +48,7 @@ repositories = {
     }
 }
 
-def clone_module_repository(repo):
+def clone_module_repository(repo, viki_config):
     """
     Clone a repository into the viki_modules folder
     :param repo:
@@ -56,15 +57,16 @@ def clone_module_repository(repo):
     repository = repositories[repo]
 
     if repository == None:
-        print "Not known repository"
+        raise Exception("Repository {} is not a valid configuration".format(repo))
 
     # TODO: Check if repository exists!
 
+    target_directory = os.path.expanduser("{}/{}".format(viki_config.get_option('root_module_directory'), repo))
     command = []
     if repository['type'] == 'hg':
-        command = ['hg', 'clone', repository['url'], '../viki_modules/'+repo, '-r', repository['branch']]
+        command = ['hg', 'clone', repository['url'], target_directory, '-r', repository['branch']]
     elif repository['type'] == 'git':
-        command = ['git', 'clone', repository['url'], '../viki_modules/'+repo, '-b', repository['branch']]
+        command = ['git', 'clone', repository['url'], target_directory, '-b', repository['branch']]
 
     subprocess.call(command)
 

@@ -12,7 +12,7 @@ VIKI aims at creating and maintaining a highly modular environment. This means w
 
 Location
 """"""""
-If you want to add your own module, you can place this in your own folder in the viki_modules directory. If you have installed VIKI properly, you should have a viki_modules directory inside the src directory in your workspace. In there, there is the core directory that supplies the basic modules for VIKI. You can place a directory next to that, where your own modules and packages will live. You can place the module.xml for VIKI in the same folder as you create your ROS package with.
+If you want to add your own module, you can place this in your own folder in the viki_modules directory. If you have installed VIKI properly, you should have a viki_modules directory inside the src directory in your workspace. In there, there is the core directory that supplies the basic modules for VIKI. You can place a directory next to that, where your own modules and packages will live. You can place the viki.xml for VIKI in the same folder as you create your ROS package with.
 
 ::
 
@@ -24,11 +24,11 @@ If you want to add your own module, you can place this in your own folder in the
     |       |    |--- <your_module>
     |       |    |   |--- src/
     |       |    |   |--- package.xml
-    |       |    |   |--- module.xml
+    |       |    |   |--- viki.xml
     |       |    |--- <your_second_module>
     |       |        |--- src/
     |       |        |--- package.xml
-    |       |        |--- module.xml
+    |       |        |--- viki.xml
 
 Since VIKI does have good dependency management, you can also just put your ROS package in its own seperate repository and define the dependency in the module file.
 
@@ -39,8 +39,8 @@ When writing a (ROS package for a) VIKI module you **must**:
 
 * Use catkin to build your package
 * Specify the right dependencies in the package.xml file (from ROS)
-* Specify your name and contact information within the module.xml file
-* Specify your own package name in the dependency in the module.xml file
+* Specify your name and contact information within the viki.xml file
+* Specify your own package name in the dependency in the viki.xml file
 
 Your module **must**:
 
@@ -52,5 +52,5 @@ Your module **should**
 
 Your ROS package/node **should**:
 
-* Live in the same folder as the module.xml file
+* Live in the same folder as the viki.xml file
 * Have clear documentation within the code

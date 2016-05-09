@@ -42,7 +42,8 @@ Thank you for letting us use your great work, David.
 This work has been funded by the European Commission's H2020 project AEROWORKS under grant no. 644128
 END_VERSION_INFO"""
 
-from core.aero import scan
+from core.backend import scan
+from viki_config import VikiConfig
 import os
 import subprocess
 
@@ -54,7 +55,8 @@ def check_installed_packages():
 
     :return: Boolean
     """
-    missing_packages = get_missing_packages()
+    viki_config = VikiConfig()
+    missing_packages = get_missing_packages(viki_config)
 
     if len(missing_packages) > 0:
         print "[WARNING] - There are missing packages for full VIKI support:"
@@ -75,13 +77,13 @@ def get_installed_packages():
 
     return packages
 
-def get_missing_packages():
+def get_missing_packages(viki_config):
     """
     Looks for missing ROS packages that are defined as dependency in a module
     :return: List with names of the missing ROS packages
     """
     installed_packages = get_installed_packages()
-    modules_on_system = get_modules()
+    modules_on_system = get_modules(viki_config)
 
     missing_packages = []
 
@@ -186,11 +188,11 @@ def start_vcs_installation(missing_vcs_packages):
             subprocess.call(command)
     return None
 
-def get_modules():
+def get_modules(viki_config):
     # TODO: Cache the module list in here, so that we don't scan all files again and again, and again...
     # if module_list == None:
-    module_list = scan.getAvailableModules()
 
+    module_list = scan.getAvailableModules(viki_config)
     return module_list
 
 def get_distinct_packages(modules):

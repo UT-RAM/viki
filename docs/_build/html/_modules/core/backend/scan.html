@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>core.backend.scan &mdash; VIKI 0.1 Alice documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user.html">User documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#id3">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#configuring-viki">Configuring VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#ros-package-dependencies">ROS package dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commandline.html">Commandline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../features.html">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../features.html#currently-supported">Currently supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../features.html#future-goals">Future goals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sshdoc.html">Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor.html">Custom module development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modtutorial.html">Module tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html">Advanced modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#executables">Executables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modrepositories.html">Module repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modtaglist.html">Tag list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html">Package Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releasing.html">Releasing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releasing.html#hotfixing">Hotfixing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../framework_description.html">Framework description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#core">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#updating-documentation">Updating documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../system_overview.html">System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html">API documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">VIKI</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>core.backend.scan</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for core.backend.scan</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Provides :func:`getAvailableModules`.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">xml.dom.minidom</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">from</span> <span class="nn">objects</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="getAvailableModules"><a class="viewcode-back" href="../../../core.backend.html#core.backend.scan.getAvailableModules">[docs]</a><span class="k">def</span> <span class="nf">getAvailableModules</span><span class="p">(</span><span class="n">viki_config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of modules available in the framework at this moment.</span>
+
+<span class="sd">    #. Run through the entire project tree searching for files called &#39;viki.xml&#39;.</span>
+<span class="sd">    #. Create an abstraction from each .xml file as objects from :mod:`core.aero.objects`.</span>
+<span class="sd">    #. Put abstraction in a list</span>
+<span class="sd">    #. Return list when done.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">available_mods</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c"># START FILE LOOP</span>
+    <span class="n">rootDir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">viki_config</span><span class="o">.</span><span class="n">get_root_module_dir</span><span class="p">())</span>
+
+    <span class="k">for</span> <span class="n">dirName</span><span class="p">,</span> <span class="n">subdirList</span><span class="p">,</span> <span class="n">fileList</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">rootDir</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">fName</span> <span class="ow">in</span> <span class="n">fileList</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fName</span> <span class="o">==</span> <span class="s">&#39;viki.xml&#39;</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">fPath</span> <span class="o">=</span> <span class="n">dirName</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="n">fName</span>
+                    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fPath</span><span class="p">)</span>
+                    <span class="n">fLine</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;VIKI_MODULE&#39;</span><span class="p">,</span> <span class="n">fLine</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="c"># Get DOM</span>
+                        <span class="n">dom</span> <span class="o">=</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">minidom</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">fPath</span><span class="p">)</span>
+                        <span class="n">moddom</span> <span class="o">=</span> <span class="n">dom</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&#39;module&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                        <span class="c"># Skip if the module already exists</span>
+                        <span class="n">modname</span> <span class="o">=</span> <span class="n">moddom</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                        <span class="n">existingMod</span> <span class="o">=</span> <span class="n">findModuleById</span><span class="p">(</span><span class="n">available_mods</span><span class="p">,</span> <span class="n">modname</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">existingMod</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                            <span class="k">print</span> <span class="s">&quot;Module &quot;</span><span class="p">,</span> <span class="n">modname</span><span class="p">,</span> <span class="s">&quot; (in &quot;</span><span class="p">,</span> <span class="n">fPath</span><span class="p">,</span> <span class="s">&quot;) already exists (in &quot;</span><span class="p">,</span> <span class="n">mod</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s">&quot;) and is therefore skipped.&quot;</span>
+                            <span class="k">continue</span>
+
+                        <span class="n">mod</span> <span class="o">=</span> <span class="n">Module</span><span class="p">(</span><span class="n">moddom</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">modname</span><span class="p">)</span>
+
+                        <span class="c"># META DATA</span>
+                        <span class="n">meta</span> <span class="o">=</span> <span class="n">dom</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&#39;meta&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">meta</span><span class="p">:</span>
+                            <span class="k">print</span> <span class="s">&quot;No meta data present&quot;</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="c"># We can have multiple META sections</span>
+                            <span class="k">for</span> <span class="n">metaelem</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">:</span>
+                                <span class="c"># Check if there are childnodes</span>
+                                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">getElements</span><span class="p">(</span><span class="n">metaelem</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                                    <span class="k">for</span> <span class="n">metachild</span> <span class="ow">in</span> <span class="n">getElements</span><span class="p">(</span><span class="n">metaelem</span><span class="p">):</span>
+                                        <span class="n">mod</span><span class="o">.</span><span class="n">addMeta</span><span class="p">(</span><span class="n">metachild</span><span class="o">.</span><span class="n">tagName</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">metachild</span><span class="o">.</span><span class="n">firstChild</span><span class="o">.</span><span class="n">nodeValue</span><span class="p">)</span>
+                                <span class="k">else</span><span class="p">:</span>
+                                    <span class="k">print</span> <span class="s">&quot;Empty meta data section in document&quot;</span>
+
+                        <span class="c"># DEPENDENCIES</span>
+                        <span class="n">dependencies</span> <span class="o">=</span> <span class="n">dom</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&#39;dependencies&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dependencies</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="k">for</span> <span class="n">depchild</span> <span class="ow">in</span> <span class="n">getElements</span><span class="p">(</span><span class="n">dependencies</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                                <span class="k">if</span> <span class="n">depchild</span><span class="o">.</span><span class="n">tagName</span> <span class="o">==</span> <span class="s">&quot;depends&quot;</span><span class="p">:</span>
+                                    <span class="n">src</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+                                    <span class="nb">type</span> <span class="o">=</span> <span class="s">&quot;apt-get&quot;</span>
+                                    <span class="k">if</span> <span class="n">depchild</span><span class="o">.</span><span class="n">hasAttribute</span><span class="p">(</span><span class="s">&#39;src&#39;</span><span class="p">):</span>
+                                        <span class="n">src</span> <span class="o">=</span> <span class="n">depchild</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;src&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="k">if</span> <span class="n">depchild</span><span class="o">.</span><span class="n">hasAttribute</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">):</span>
+                                        <span class="nb">type</span> <span class="o">=</span> <span class="n">depchild</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">mod</span><span class="o">.</span><span class="n">addPackageDependency</span><span class="p">(</span><span class="n">depchild</span><span class="o">.</span><span class="n">firstChild</span><span class="o">.</span><span class="n">nodeValue</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">src</span><span class="p">)</span>
+
+                        <span class="c"># MODULE PATH</span>
+                        <span class="n">mod</span><span class="o">.</span><span class="n">setPath</span><span class="p">(</span><span class="n">fPath</span><span class="p">)</span>
+
+                        <span class="c"># MODULE INPUTS</span>
+                        <span class="n">gInputElement</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">moddom</span><span class="p">,</span> <span class="s">&#39;inputs&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">gInputElement</span><span class="p">:</span>
+                            <span class="n">gInputs</span> <span class="o">=</span> <span class="n">getElements</span><span class="p">(</span><span class="n">gInputElement</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                            <span class="k">for</span> <span class="n">gInput</span> <span class="ow">in</span> <span class="n">gInputs</span><span class="p">:</span>
+                                <span class="n">oType</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">oName</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">oLink</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;link&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">oMessageType</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;message_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">oRequired</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;required&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">interface</span> <span class="o">=</span> <span class="n">Interface</span><span class="p">(</span><span class="n">oType</span><span class="p">,</span> <span class="n">oName</span><span class="p">,</span> <span class="n">oMessageType</span><span class="p">,</span> <span class="n">oRequired</span><span class="p">,</span> <span class="n">oLink</span><span class="p">)</span>
+                                <span class="n">mod</span><span class="o">.</span><span class="n">addInput</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+
+                        <span class="c"># MODULE OUTPUTS</span>
+                        <span class="n">gOutputElement</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">moddom</span><span class="p">,</span> <span class="s">&#39;outputs&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">gOutputElement</span><span class="p">:</span>
+                            <span class="n">gOutputs</span> <span class="o">=</span> <span class="n">getElements</span><span class="p">(</span><span class="n">gOutputElement</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                            <span class="k">for</span> <span class="n">gOutput</span> <span class="ow">in</span> <span class="n">gOutputs</span><span class="p">:</span>
+                                <span class="n">oType</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">oName</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">oLink</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;link&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">oMessageType</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;message_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">oRequired</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;required&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                <span class="n">interface</span> <span class="o">=</span> <span class="n">Interface</span><span class="p">(</span><span class="n">oType</span><span class="p">,</span> <span class="n">oName</span><span class="p">,</span> <span class="n">oMessageType</span><span class="p">,</span> <span class="n">oRequired</span><span class="p">,</span> <span class="n">oLink</span><span class="p">)</span>
+                                <span class="n">mod</span><span class="o">.</span><span class="n">addOutput</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+
+                        <span class="c"># Instead of looping over userinputs, controllers, etc. separately, go find the executables to add flexibility in the classes</span>
+                        <span class="n">executables</span> <span class="o">=</span> <span class="n">dom</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&#39;executable&#39;</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">executable</span> <span class="ow">in</span> <span class="n">executables</span><span class="p">:</span>
+                            <span class="n">executableId</span> <span class="o">=</span> <span class="n">executable</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                            <span class="n">executablePkg</span> <span class="o">=</span> <span class="n">executable</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;pkg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                            <span class="n">executableExec</span> <span class="o">=</span> <span class="n">executable</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;exec&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                            <span class="n">executableArg</span> <span class="o">=</span> <span class="n">getOptionalAttribute</span><span class="p">(</span><span class="n">executable</span><span class="p">,</span> <span class="s">&#39;args&#39;</span><span class="p">)</span>
+                            <span class="n">executableObject</span> <span class="o">=</span> <span class="n">Executable</span><span class="p">(</span><span class="n">executableId</span><span class="p">,</span> <span class="n">executablePkg</span><span class="p">,</span> <span class="n">executableExec</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">executableArg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                                <span class="n">executableObject</span><span class="o">.</span><span class="n">setArguments</span><span class="p">(</span><span class="n">executableArg</span><span class="p">)</span>
+
+                            <span class="c"># EXECUTABLE INPUTS</span>
+                            <span class="n">gInputElement</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">executable</span><span class="p">,</span> <span class="s">&#39;inputs&#39;</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">gInputElement</span><span class="p">:</span>
+                                <span class="n">gInputs</span> <span class="o">=</span> <span class="n">getElements</span><span class="p">(</span><span class="n">gInputElement</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                                <span class="k">for</span> <span class="n">gInput</span> <span class="ow">in</span> <span class="n">gInputs</span><span class="p">:</span>
+                                    <span class="n">oType</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">oName</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">oMessageType</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;message_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">oRequired</span> <span class="o">=</span> <span class="n">getOptionalAttribute</span><span class="p">(</span><span class="n">gInput</span><span class="p">,</span> <span class="s">&#39;required&#39;</span><span class="p">)</span>
+                                    <span class="n">oNamespace</span> <span class="o">=</span> <span class="s">&quot;base&quot;</span>
+                                    <span class="k">if</span> <span class="n">gInput</span><span class="o">.</span><span class="n">hasAttribute</span><span class="p">(</span><span class="s">&#39;namespace&#39;</span><span class="p">):</span>
+                                        <span class="n">oNamespace</span> <span class="o">=</span> <span class="n">gInput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;namespace&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">interface</span> <span class="o">=</span> <span class="n">Interface</span><span class="p">(</span><span class="n">oType</span><span class="p">,</span> <span class="n">oName</span><span class="p">,</span> <span class="n">oMessageType</span><span class="p">,</span> <span class="n">oRequired</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">oNamespace</span><span class="p">)</span>
+                                    <span class="n">executableObject</span><span class="o">.</span><span class="n">addInput</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+
+                            <span class="c"># EXECUTABLE OUTPUTS</span>
+                            <span class="n">gOutputElement</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">executable</span><span class="p">,</span> <span class="s">&#39;outputs&#39;</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">gOutputElement</span><span class="p">:</span>
+                                <span class="n">gOutputs</span> <span class="o">=</span> <span class="n">getElements</span><span class="p">(</span><span class="n">gOutputElement</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                                <span class="k">for</span> <span class="n">gOutput</span> <span class="ow">in</span> <span class="n">gOutputs</span><span class="p">:</span>
+                                    <span class="n">oType</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">oName</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">oMessageType</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;message_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">oRequired</span> <span class="o">=</span> <span class="n">getOptionalAttribute</span><span class="p">(</span><span class="n">gOutput</span><span class="p">,</span> <span class="s">&#39;required&#39;</span><span class="p">)</span>
+                                    <span class="n">oNamespace</span> <span class="o">=</span> <span class="s">&quot;base&quot;</span>
+                                    <span class="k">if</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">hasAttribute</span><span class="p">(</span><span class="s">&#39;namespace&#39;</span><span class="p">):</span>
+                                        <span class="n">oNamespace</span> <span class="o">=</span> <span class="n">gOutput</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;namespace&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">interface</span> <span class="o">=</span> <span class="n">Interface</span><span class="p">(</span><span class="n">oType</span><span class="p">,</span> <span class="n">oName</span><span class="p">,</span> <span class="n">oMessageType</span><span class="p">,</span> <span class="n">oRequired</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">oNamespace</span><span class="p">)</span>
+                                    <span class="n">executableObject</span><span class="o">.</span><span class="n">addOutput</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+
+                            <span class="c"># PARAMS</span>
+                            <span class="n">ParameterElement</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">executable</span><span class="p">,</span> <span class="s">&#39;params&#39;</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">ParameterElement</span><span class="p">:</span>
+                                <span class="n">Parameters</span> <span class="o">=</span> <span class="n">getElements</span><span class="p">(</span><span class="n">ParameterElement</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                                <span class="k">for</span> <span class="n">aParameter</span> <span class="ow">in</span> <span class="n">Parameters</span><span class="p">:</span>
+                                    <span class="n">aName</span> <span class="o">=</span> <span class="n">aParameter</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                                    <span class="n">aType</span> <span class="o">=</span> <span class="n">getOptionalAttribute</span><span class="p">(</span><span class="n">aParameter</span><span class="p">,</span> <span class="s">&#39;type&#39;</span><span class="p">)</span>
+                                    <span class="k">if</span> <span class="n">aType</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;str&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="s">&#39;double&#39;</span><span class="p">,</span> <span class="s">&#39;bool&#39;</span><span class="p">]:</span>
+                                        <span class="k">print</span> <span class="s">&quot;[WARNING] - Type of parameter {} in {} has no valid type&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aName</span><span class="p">,</span> <span class="n">executableId</span><span class="p">)</span>
+                                    <span class="n">aDefault</span> <span class="o">=</span> <span class="n">getOptionalAttribute</span><span class="p">(</span><span class="n">aParameter</span><span class="p">,</span> <span class="s">&#39;default&#39;</span><span class="p">)</span>
+                                    <span class="n">parameter</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">aName</span><span class="p">,</span> <span class="n">aType</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">aDefault</span><span class="p">)</span>
+                                    <span class="n">executableObject</span><span class="o">.</span><span class="n">addParameter</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+
+                            <span class="n">mod</span><span class="o">.</span><span class="n">addExecutable</span><span class="p">(</span><span class="n">executableObject</span><span class="p">)</span>
+
+                        <span class="c"># Internal connections</span>
+                        <span class="n">ConfigElements</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">moddom</span><span class="p">,</span> <span class="s">&#39;configuration&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">ConfigElements</span><span class="p">:</span>
+                            <span class="k">for</span> <span class="n">ConfigElement</span> <span class="ow">in</span> <span class="n">ConfigElements</span><span class="p">:</span>
+                                <span class="n">connections_to_add</span> <span class="o">=</span> <span class="n">getElementsOnFirstLevel</span><span class="p">(</span><span class="n">ConfigElement</span><span class="p">,</span> <span class="s">&#39;connect&#39;</span><span class="p">)</span>
+                                <span class="k">if</span> <span class="n">connections_to_add</span><span class="p">:</span>
+                                    <span class="k">for</span> <span class="n">connection_to_add</span> <span class="ow">in</span> <span class="n">connections_to_add</span><span class="p">:</span>
+                                        <span class="n">internal_interface</span> <span class="o">=</span> <span class="n">Internal_Interface</span><span class="p">(</span><span class="n">connection_to_add</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                                                        <span class="n">connection_to_add</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;listener&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+                                        <span class="n">mod</span><span class="o">.</span><span class="n">addIntConnect</span><span class="p">(</span><span class="n">internal_interface</span><span class="p">)</span>
+
+                        <span class="n">available_mods</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&quot;Skipped adding &#39;&quot;</span> <span class="o">+</span> <span class="n">fPath</span> <span class="o">+</span> <span class="s">&quot;&#39; because it is a broken file. Error thrown was:&quot;</span>
+                    <span class="k">print</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
+
+    <span class="c"># END FILE LOOP</span>
+    <span class="k">return</span> <span class="n">available_mods</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1 Alice',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

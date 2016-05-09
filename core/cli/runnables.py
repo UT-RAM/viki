@@ -33,9 +33,15 @@ This work has been funded by the European Commission's H2020 project AEROWORKS u
 END_VERSION_INFO"""
 
 import subprocess
+import os
+import stat
+import shutil
 
 import  dependencies
 import repositories
+from configuring import Configuring
+
+from viki_config import VikiConfig
 
 # Be careful to import stuff here, this is the very low level of VIKI, where not all dependencies are met yet
 # If something is imported, test thoroughly!
@@ -54,13 +60,31 @@ def configure(options):
         and do some more configuration like creating a desktop entry
     :return:
     """
+    configuring = Configuring()
+    configuring.run()
+    config = configuring.config
+
     # Install the right dependencies
+    print_to_terminal("Installing extra dependencies (webkit, gth and simplejson)")
     to_install_packages = ['python-webkit', 'python-gtk2', 'python-simplejson']
     subprocess.call(['sudo', 'apt-get', 'install']+to_install_packages)
 
     # Create fancy desktop entry
+    for file in ['viki.desktop', 'viki_env.sh', 'viki_launch.sh']:
+        process_template(file, config)
+        os.chmod(file, os.stat(file).st_mode | stat.S_IEXEC)
+    app_dir = os.path.expanduser('~/.local/share/applications')
+    command = "desktop-file-install --dir={} {}/viki.desktop".format(app_dir, os.getcwd())
+    subprocess.call(command)
 
     return None
+
+def process_template(file, viki_config):
+    template = open('file_templates/'+file+'.template', 'r').read()
+    for option in viki_config.config.keys():
+        template = template.replace('{{'+option+'}}', viki_config.get_option(option))
+    with open(file, 'w') as write_file:
+        write_file.write(template)
 
 
 def check_packages(options):
@@ -86,7 +110,8 @@ def install_packages(options):
         This can either be with apt-get, or git, something else is not yet supported
         :return:
     """
-    missing_ros_packages = dependencies.get_missing_packages()
+    config = VikiConfig()
+    missing_ros_packages = dependencies.get_missing_packages(config)
     if len(missing_ros_packages) == 0:
         print "[OK] - All ROS package dependencies are met, noting to install!"
 
@@ -99,11 +124,17 @@ def install_packages(options):
 
 def add_module_repository(options):
     # does not work yet really...
-    repositories.clone_module_repository('core')
+    config = VikiConfig()
+    repositories.clone_module_repository('core', config)
     # install direct dependencies
-    install_packages()
+    install_packages({})
     # install using rosdep, for build dependencies
     dependencies.install_second_level_dependencies()
     # build
     # repositories.catkin_make()
     # TODO: Make this work!
+
+
+def print_to_terminal(string, color='black'):
+    print '\033[1;33m# {} \033[1;m'.format(string)
+    return 0

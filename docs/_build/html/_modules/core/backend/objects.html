@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>core.backend.objects &mdash; VIKI 0.1 Alice documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="VIKI 0.1 Alice documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> VIKI
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user.html">User documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#id3">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#configuring-viki">Configuring VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#module-repositories">Module repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#ros-package-dependencies">ROS package dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#launching-viki">Launching VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#a-quick-look-at-the-interface">A quick look at the interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#launching-your-first-project">Launching your first project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#where-to-move-from-here">Where to move from here?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commandline.html">Commandline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../features.html">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../features.html#currently-supported">Currently supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../features.html#future-goals">Future goals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sshdoc.html">Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor.html">Custom module development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modtutorial.html">Module tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modintroduction.html">Advanced modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modintroduction.html#executables">Executables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modrepositories.html">Module repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modtaglist.html">Tag list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package_guidelines.html">Package Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releasing.html">Releasing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releasing.html#hotfixing">Hotfixing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../framework_description.html">Framework description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#core">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#updating-documentation">Updating documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../system_overview.html">System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html">API documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">VIKI</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>core.backend.objects</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for core.backend.objects</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Describes the different objects used as abstraction of the AeroWorks configuration and modules.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">helpers</span>
+
+
+<div class="viewcode-block" id="Interface"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Interface">[docs]</a><span class="k">class</span> <span class="nc">Interface</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An *interface* represents an in- or output of a module. This in- and outputs can be connected to other module&#39;s in- and outputs.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface_type</span><span class="p">,</span>
+                 <span class="n">name</span><span class="p">,</span> <span class="n">message_type</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">link</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">&quot;base&quot;</span><span class="p">):</span>
+        <span class="c">#: Represents the name of the interface. E.g.: &quot;cmd_vel&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="c">#: Represents the type of the interface. E.g.: &quot;ros_topic&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">interface_type</span>
+        <span class="c">#: Namespace used in the ros package for this topic, &quot;base&quot;, &quot;global&quot; or &quot;private&quot;; according to wiki.ros.org/Names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
+        <span class="c">#: Represents the message type the interface can handle. E.g.: &quot;twist&quot; or &quot;standard_msgs/Empty&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_type</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">lookupMessageType</span><span class="p">(</span><span class="n">message_type</span><span class="p">)</span>
+        <span class="c">#: Defines if the interface is required to be connected. Execution will halt if this requirement is not met.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="n">required</span>
+        <span class="c">#: Contains the reference to the executable within the module that actually provides the in- or output. E.g.: &quot;test_node/test_topic&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link</span> <span class="o">=</span> <span class="n">link</span>
+
+</div>
+<div class="viewcode-block" id="Internal_Interface"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Internal_Interface">[docs]</a><span class="k">class</span> <span class="nc">Internal_Interface</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An *internal_interface* represents a connection between an in- and output **within** a module. At this point, implicitly only implemented for *ros_topic* type interfaces.</span>
+
+<span class="sd">    .. note:: In the future, this might be a specific case of :class:`Interface`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publisher</span><span class="p">,</span> <span class="n">listener</span><span class="p">):</span>
+        <span class="c">#: Refers to the topic on which messages are be published. E.g. &quot;node_name/command_giver&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span> <span class="o">=</span> <span class="n">publisher</span>
+        <span class="c">#: Refers to the topic where the node is listening for messages. This topic is remapped to listen to the publisher. E.g. &quot;node2_name/i_listen_here&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="n">listener</span>
+
+</div>
+<div class="viewcode-block" id="Module"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module">[docs]</a><span class="k">class</span> <span class="nc">Module</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A *module* represents a separately distributable piece of software, that is able to work within the AeroWorks infrastructure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="c">#: A list of :class:`Interface` describing all inputs of the module.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: A list of :class:`Interface` describing all outputs of the module.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: A list of :class:`Executable` describing all executables (ROS nodes) in the module.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">executables</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: Represents the ID of the module, as defined in the ``viki.xml``. This is used for identifying and selecting the module throughout the process, so this value should be unique.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="c">#: Represents the type of the module, as defined in the ``viki.xml``. This categorization is added for the comfort of the user. Examples are &quot;userinput&quot;, &quot;sensor&quot;, &quot;controller&quot; and &quot;vehicle&quot;.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="c">#: Contains a dictionary with all module metadata, as defined in ``viki.xml``.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c">#: A list of :class:`Internal_Interface` describing all internal connections.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: Contains the path to the module config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="c">#: List with names of dependent ROS packages</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">package_dependencies</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: List with missing packages, initially empty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_packages</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="Module.addMeta"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module.addMeta">[docs]</a>    <span class="k">def</span> <span class="nf">addMeta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds metadata to :attr:`meta`.</span>
+
+<span class="sd">        :param key: The key of the metadata. E.g. &quot;name&quot;</span>
+<span class="sd">        :type key: string</span>
+<span class="sd">        :param value: The value of the metadata. E.g. &quot;AeroWorks&quot;</span>
+<span class="sd">        :type value: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</div>
+<div class="viewcode-block" id="Module.addPackageDependency"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module.addPackageDependency">[docs]</a>    <span class="k">def</span> <span class="nf">addPackageDependency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;apt-get&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">package_dependencies</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="n">package_name</span><span class="p">,</span>
+            <span class="s">&#39;type&#39;</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span>
+            <span class="s">&#39;src&#39;</span><span class="p">:</span> <span class="n">src</span>
+        <span class="p">})</span>
+</div>
+<div class="viewcode-block" id="Module.addMissingPackage"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module.addMissingPackage">[docs]</a>    <span class="k">def</span> <span class="nf">addMissingPackage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_packages</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Module.addInput"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module.addInput">[docs]</a>    <span class="k">def</span> <span class="nf">addInput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an input to the list of module inputs (:attr:`inputs`).</span>
+
+<span class="sd">        :param interface: The interface to add</span>
+<span class="sd">        :type interface: :class:`Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Module.addOutput"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module.addOutput">[docs]</a>    <span class="k">def</span> <span class="nf">addOutput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an output to the list of module outputs (:attr:`outputs`).</span>
+
+<span class="sd">        :param interface: The interface to add</span>
+<span class="sd">        :type interface: :class:`Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Module.addExecutable"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module.addExecutable">[docs]</a>    <span class="k">def</span> <span class="nf">addExecutable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an executable to the list of module executables (:attr:`executables`). Those executables are ROS nodes.</span>
+
+<span class="sd">        :param executable: The executable to add.</span>
+<span class="sd">        :type executable: :class:`Executable`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">executables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">executable</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Module.addIntConnect"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module.addIntConnect">[docs]</a>    <span class="k">def</span> <span class="nf">addIntConnect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">internal_interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an internal connection to the list of module internal connections (:attr:`config`).</span>
+
+<span class="sd">        :param internal_interface: The connection to add</span>
+<span class="sd">        :type internal_interface: :class:`Internal_Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">internal_interface</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Module.setPath"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module.setPath">[docs]</a>    <span class="k">def</span> <span class="nf">setPath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the path for the current module.</span>
+
+<span class="sd">        :param path: The path where to find the module</span>
+<span class="sd">        :type path: string&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+</div>
+<div class="viewcode-block" id="Module.getExecutable"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module.getExecutable">[docs]</a>    <span class="k">def</span> <span class="nf">getExecutable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exec_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the executable with the id, within this module</span>
+<span class="sd">        :param exec_id: the string id of the executable, as defined in the xml file</span>
+<span class="sd">        :return: Executable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">executable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">executables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">executable</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">exec_id</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">executable</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</div></div>
+<div class="viewcode-block" id="Executable"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Executable">[docs]</a><span class="k">class</span> <span class="nc">Executable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An *executable* represents a ROS node that can be launched through a ROS launch file, generated by the AeroWorks infrastructure.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">pkg</span><span class="p">,</span> <span class="n">executable</span><span class="p">):</span>
+        <span class="c">#: A list of :class:`Interface` describing all inputs of the executable.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: A list of :class:`Interface` describing all outputs of the executable.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: A list of :class:`Parameter` describing parameters to be set for the executable.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c">#: A string with default arguments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+        <span class="c">#: The ID of the executable, as given in the ``viki.xml``.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="c">#: The ROS package that contains the executable. E.g.: &quot;joy&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pkg</span> <span class="o">=</span> <span class="n">pkg</span>
+        <span class="c">#: The ROS node executable to launch. E.g. &quot;joy_node&quot;.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">executable</span> <span class="o">=</span> <span class="n">executable</span>
+
+<div class="viewcode-block" id="Executable.addInput"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Executable.addInput">[docs]</a>    <span class="k">def</span> <span class="nf">addInput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an input to the list of executable inputs (:attr:`inputs`).</span>
+
+<span class="sd">        :param interface: The interface to add</span>
+<span class="sd">        :type interface: :class:`Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Executable.addOutput"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Executable.addOutput">[docs]</a>    <span class="k">def</span> <span class="nf">addOutput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an output to the list of executable outputs (:attr:`outputs`).</span>
+
+<span class="sd">        :param interface: The interface to add</span>
+<span class="sd">        :type interface: :class:`Interface`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Executable.addParameter"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Executable.addParameter">[docs]</a>    <span class="k">def</span> <span class="nf">addParameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a parameter to the list of executable parameters (:attr:`params`).</span>
+
+<span class="sd">        :param parameter: The parameter to add</span>
+<span class="sd">        :type parameter: :class:`Parameter`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Executable.setArguments"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Executable.setArguments">[docs]</a>    <span class="k">def</span> <span class="nf">setArguments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argument</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">argument</span>
+</div>
+<div class="viewcode-block" id="Executable.getInterface"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Executable.getInterface">[docs]</a>    <span class="k">def</span> <span class="nf">getInterface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">interface</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">interface</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+</div></div>
+<div class="viewcode-block" id="Parameter"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Parameter">[docs]</a><span class="k">class</span> <span class="nc">Parameter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A *Parameter* represents a param in the rosparam server</span>
+
+<span class="sd">    :param name: The name of the parameter</span>
+<span class="sd">    :param default: A default value, when no specific value is given</span>
+<span class="sd">    :param type: Type of parameter</span>
+<span class="sd">    :param value: Value of the parameter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+</div>
+<div class="viewcode-block" id="Configuration"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Configuration">[docs]</a><span class="k">class</span> <span class="nc">Configuration</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A *Configuration* is a list of settings,</span>
+<span class="sd">    usually from a configuration file, used to setup an experiment.</span>
+
+<span class="sd">    it contains:</span>
+<span class="sd">    :param id: unique id for this configuration</span>
+<span class="sd">    :param modules_to_add: list of modules needed in this *configuration*</span>
+<span class="sd">    :param connections_to_add: list of connections needed</span>
+<span class="sd">    :param namespaces: list of :class:Namespace in this *configuration*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modules_to_add</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connections_to_add</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">machines_to_add</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">namespaces</span> <span class="o">=</span> <span class="p">[]</span>
+
+</div>
+<div class="viewcode-block" id="Namespace"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Namespace">[docs]</a><span class="k">class</span> <span class="nc">Namespace</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A namespace is in itself basically a :class:Configuration ,</span>
+<span class="sd">    which can in turn contain multiple namespaces.</span>
+<span class="sd">    </span>
+<span class="sd">    :param id: unique id for this configuration</span>
+<span class="sd">    :param modules_to_add: list of modules needed in this *configuration*</span>
+<span class="sd">    :param connections_to_add: list of connections needed</span>
+<span class="sd">    :param namespaces: list of *namespace*s</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modules_to_add</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connections_to_add</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">namespaces</span> <span class="o">=</span> <span class="p">[]</span>
+
+</div>
+<div class="viewcode-block" id="Module_to_add"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module_to_add">[docs]</a><span class="k">class</span> <span class="nc">Module_to_add</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An object representing a module that is desired to be in a configuration.</span>
+<span class="sd">    It is a temporary container for all information to get the actual :class:Module classes,</span>
+<span class="sd">    and contains an *implementation* where the :class:Module can be placed.</span>
+
+<span class="sd">    :param role: role of this module eg. userinput, vehicle, etc.</span>
+<span class="sd">    :param id: unique id of the module</span>
+<span class="sd">    :param type: type of module</span>
+<span class="sd">    :param supress_warning: suppress warnings given in/by this module (not yet implemented)</span>
+<span class="sd">    :param parameters_to_add: list of parameters that are to be added to class:Executable in this module</span>
+<span class="sd">    :param args: list of command line arguments that are used to start this modules nodes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">role</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">supress_warning</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="n">role</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supress_warning</span> <span class="o">=</span> <span class="n">supress_warning</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters_to_add</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefixes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">machine_selections</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c"># here we put Module classes used for implementation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">implementation</span> <span class="o">=</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="Module_to_add.add_cmdline_arg"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module_to_add.add_cmdline_arg">[docs]</a>    <span class="k">def</span> <span class="nf">add_cmdline_arg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a command line argument object *arg* to the list of arguments needed to run this module</span>
+
+<span class="sd">        :param arg: The command line argument object to add</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Module_to_add.add_prefix"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module_to_add.add_prefix">[docs]</a>    <span class="k">def</span> <span class="nf">add_prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a launch-prefix object *pf* to the list of prefixes desired to run</span>
+
+<span class="sd">        :param pf: prefix object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefixes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pf</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Module_to_add.add_machine_selection"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Module_to_add.add_machine_selection">[docs]</a>    <span class="k">def</span> <span class="nf">add_machine_selection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selection</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a machine selection object *selection* to the list of machine selections desired to run</span>
+
+<span class="sd">        :param selection: machine selection object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">machine_selections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
+
+</div></div>
+<div class="viewcode-block" id="Connection_to_add"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Connection_to_add">[docs]</a><span class="k">class</span> <span class="nc">Connection_to_add</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Representation of a connection desired to add to a configuration</span>
+
+<span class="sd">    :param publisher: topic of the publisher to be connected</span>
+<span class="sd">    :param subscriber: topic of the subscriber to be connected</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publisher</span><span class="p">,</span> <span class="n">listener</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span> <span class="o">=</span> <span class="n">publisher</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="n">listener</span>
+
+</div>
+<div class="viewcode-block" id="Parameter_to_add"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Parameter_to_add">[docs]</a><span class="k">class</span> <span class="nc">Parameter_to_add</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A parameter to add to a module (and finally to an executable)</span>
+
+<span class="sd">    :param name: name of the parameter</span>
+<span class="sd">    :param value: value of the parameter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+</div>
+<div class="viewcode-block" id="Cmdline_argument"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Cmdline_argument">[docs]</a><span class="k">class</span> <span class="nc">Cmdline_argument</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An argument to use when starting a specific rosnode.</span>
+<span class="sd">    Used for instance when starting rviz with a configuration file.</span>
+
+<span class="sd">    :param executable_id: id of the executable this argument is used for</span>
+<span class="sd">    :param argument: string of all arguments to use for this executable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_id</span><span class="p">,</span> <span class="n">argument</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execid</span> <span class="o">=</span> <span class="n">executable_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">argument</span> <span class="o">=</span> <span class="n">argument</span>
+
+</div>
+<div class="viewcode-block" id="Launch_prefix"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Launch_prefix">[docs]</a><span class="k">class</span> <span class="nc">Launch_prefix</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A launch prefix that will be run before the actual ROSnode.</span>
+<span class="sd">    Can be very useful to for instance start a node in debug mode.</span>
+
+<span class="sd">    :param executable_id: id of the executable this prefix is used for</span>
+<span class="sd">    :param prefix: string of the prefix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_id</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execid</span> <span class="o">=</span> <span class="n">executable_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
+</div>
+<div class="viewcode-block" id="Selected_machine"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Selected_machine">[docs]</a><span class="k">class</span> <span class="nc">Selected_machine</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A machine selection defines at what machine the ros_node will run.</span>
+
+<span class="sd">    :param executable_id: id of the executable this selection is used for</span>
+<span class="sd">    :param machine_name: name of the machine</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_id</span><span class="p">,</span> <span class="n">machine_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execid</span> <span class="o">=</span> <span class="n">executable_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">machine_name</span> <span class="o">=</span> <span class="n">machine_name</span>
+</div>
+<div class="viewcode-block" id="Machine"><a class="viewcode-back" href="../../../core.backend.html#core.backend.objects.Machine">[docs]</a><span class="k">class</span> <span class="nc">Machine</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1 Alice',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Quick start guide &mdash; VIKI 0.1 Alice documentation</title>
+  <title>Getting started &mdash; VIKI 0.1 Alice documentation</title>
   
 
   
@@ -46,27 +46,17 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
+      <div class="wy-side-nav-search">
+        
 
-          
-            <a href="index.html" class="icon icon-home"> VIKI
-          
+        
+          <a href="index.html" class="icon icon-home"> VIKI
+        
 
-          
-          </a>
+        
+        </a>
 
-          
-            
-            
-              <div class="version">
-                0.1
-              </div>
-            
-          
-
-          
+        
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -75,17 +65,23 @@
   </form>
 </div>
 
-          
-        </div>
+        
+      </div>
 
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
           
-            
-            
-                <ul class="current">
+          
+              <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="user.html">User documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#id2">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#configuring-viki">Configuring VIKI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#module-repositories">Module repositories</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Getting started</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#launching-viki">Launching VIKI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a-quick-look-at-the-interface">A quick look at the interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#launching-your-first-project">Launching your first project</a></li>
@@ -93,19 +89,81 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="commandline.html">Commandline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features.html">Features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sshdoc.html">Distributed systems (ssh doc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="features.html#currently-supported">Currently supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html#future-goals">Future goals</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="contributor.html">Contributor documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sshdoc.html">Distributed systems (ssh doc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-up-the-network">Setting up the network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#network-connection">Network connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#finding-computer-names">Finding computer names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#finding-ip-adresses">Finding IP adresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#setting-hostnames">Setting hostnames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#setting-up-ssh">Setting up SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#testing-ssh">Testing SSH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#adding-to-known-hosts">Adding to known_hosts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sshdoc.html#creating-the-environment-file">Creating the environment file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sshdoc.html#testing-the-setup-tutorial">Testing the setup (tutorial)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributor.html">Custom module development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modtutorial.html">Module tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modintroduction.html">Advanced modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#general-outline">General outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#meta">Meta</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modintroduction.html#icon">Icon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#inputs-and-outputs">Inputs and Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modintroduction.html#executables">Executables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modrepositories.html">Module repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modtaglist.html">Tag list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_guidelines.html">Package Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#modularity">Modularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="package_guidelines.html#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="framework_description.html">Framework description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#core">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#updating-documentation">Updating documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework_description.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system_overview.html">System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">API documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">The developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#supervisor">Supervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#core-developers">Core developers</a></li>
+</ul>
+</li>
 </ul>
 
-            
           
-        </div>
+        
       </div>
+      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -120,19 +178,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          
-
- 
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
+          <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
           <li><a href="user.html">User documentation</a> &raquo;</li>
       
-    <li>Quick start guide</li>
+    <li>Getting started</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -143,16 +195,15 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+          <div role="main" class="document">
             
-  <div class="section" id="quick-start-guide">
-<span id="quickstart"></span><span id="id1"></span><h1>Quick start guide<a class="headerlink" href="#quick-start-guide" title="Permalink to this headline">¶</a></h1>
-<p>This guide assumes you have installed VIKI succesfully. If you have not, check out <a class="reference internal" href="installation.html#installation"><span class="std std-ref">Installation</span></a>. Using this guide you can run your first setup: controlling a turtle-simulator with your keyboard.</p>
+  <div class="section" id="getting-started">
+<span id="gettingstarted"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>This guide assumes you have installed VIKI succesfully. If you have not, check out <a class="reference internal" href="installation.html#installation"><span>Installation</span></a>. Using this guide you can run your first setup: controlling a turtle-simulator with your keyboard.</p>
 <div class="section" id="launching-viki">
 <h2>Launching VIKI<a class="headerlink" href="#launching-viki" title="Permalink to this headline">¶</a></h2>
 <p>First off, you will have to start VIKI. Open a terminal, navigate to the installation folder of viki (usually <em>~/catkin_ws/src/viki</em>) and execute</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>./viki run
+<div class="highlight-bash"><div class="highlight"><pre>./viki run
 </pre></div>
 </div>
 <p>You should see a screen pop up with the interface of VIKI.</p>
@@ -185,12 +236,11 @@
 </div>
 <div class="section" id="where-to-move-from-here">
 <h2>Where to move from here?<a class="headerlink" href="#where-to-move-from-here" title="Permalink to this headline">¶</a></h2>
-<p>Know that you know the basic functionality of VIKI, you&#8217;re basically ready to go! Probably, you&#8217;ll want to write some own specific functionality by adding your own modules. If this is the case, you can go to the <a class="reference internal" href="contributor.html#contributor"><span class="std std-ref">Contributor documentation</span></a> page to see more information about writing your own module. For more functionality, you can check out the <a class="reference internal" href="features.html#features"><span class="std std-ref">Features</span></a> page or take a look at <a class="reference internal" href="sshdoc.html#sshdoc"><span class="std std-ref">Distributed systems (SSH documentation)</span></a> functionality. If you want to learn more about the vision, background and core of VIKI, or want to contribute to the core, you can visit the <a class="reference internal" href="developer.html#developer"><span class="std std-ref">Developer documentation</span></a> page.</p>
+<p>Know that you know the basic functionality of VIKI, you&#8217;re basically ready to go! Probably, you&#8217;ll want to write some own specific functionality by adding your own modules. If this is the case, you can go to the <span class="xref std std-ref">Contributor</span> page to see more information about writing your own module. For more functionality, you can check out the <a class="reference internal" href="features.html#features"><span>Features</span></a> page or take a look at <a class="reference internal" href="sshdoc.html#sshdoc"><span>Distributed systems (SSH documentation)</span></a> functionality. If you want to learn more about the vision, background and core of VIKI, or want to contribute to the core, you can visit the <a class="reference internal" href="developer.html#developer"><span>Developer documentation</span></a> page.</p>
 </div>
 </div>
 
 
-           </div>
           </div>
           <footer>
   
@@ -209,10 +259,9 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Alex Kamphuis, Cees Trouwborst, Robin Hoogervorst.
-
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
 </footer>
 

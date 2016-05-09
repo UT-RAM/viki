@@ -1,17 +1,17 @@
 .. _system_overview:
 
 System Overview
-=================
+===============
 
 The picture below is an overview of the system.
 
 .. image:: images/systemoverview.png
 
-Start at the right top and follow the arrows to match the discription here:
+Start at the right top and follow the arrows to match the description here:
 
-- **contributors** People that have contributed modules to the framework they make module.xml files
-- **module.xml** Several files that describe what nodes go together in what way, building blocks of an experimental setup
-- **VIKI CORE*** The core, written in Python, interpretes the module.xml files and generates a list of modules.
+- **contributors** People that have contributed modules to the framework they make viki.xml files
+- **viki.xml** Several files that describe what nodes go together in what way, building blocks of an experimental setup
+- **VIKI CORE*** The core, written in Python, interprets the viki.xml files and generates a list of modules.
 - **list of modules** A list of modules that are now readily available in the system
 - **Python Webkit** A webbrowser that opens the GUI frontend page. It has been wired via a dirty trick to make communication between javascript and Python possible: It simply changes the name of the page to send a message.
 - **list of modules** Again a list of modules, now parsed in JavaScript
@@ -21,5 +21,5 @@ Start at the right top and follow the arrows to match the discription here:
 - **Python webkit** used for communication to the Python backend again
 - **Configuration** An abstraction of the complete experimental setup, in Python
 - **configuration.xml** Human readable, temporary file that reflects the configuration. Basically just the DOM.
-- **Launchfile** The core matches info in the configuration.xml with information from the module.xml files to generate a ROS runnable launch file. Calls ROS to launch if required.
+- **Launchfile** The core matches info in the configuration.xml with information from the viki.xml files to generate a ROS runnable launch file. Calls ROS to launch if required.
 - **ROS** Robot Operating System

@@ -74,11 +74,11 @@ class Module:
         self.outputs = []
         #: A list of :class:`Executable` describing all executables (ROS nodes) in the module.
         self.executables = []
-        #: Represents the ID of the module, as defined in the ``module.xml``. This is used for identifying and selecting the module throughout the process, so this value should be unique.
+        #: Represents the ID of the module, as defined in the ``viki.xml``. This is used for identifying and selecting the module throughout the process, so this value should be unique.
         self.id = id
-        #: Represents the type of the module, as defined in the ``module.xml``. This categorization is added for the comfort of the user. Examples are "userinput", "sensor", "controller" and "vehicle".
+        #: Represents the type of the module, as defined in the ``viki.xml``. This categorization is added for the comfort of the user. Examples are "userinput", "sensor", "controller" and "vehicle".
         self.type = type
-        #: Contains a dictionary with all module metadata, as defined in ``module.xml``.
+        #: Contains a dictionary with all module metadata, as defined in ``viki.xml``.
         self.meta = {}
         #: A list of :class:`Internal_Interface` describing all internal connections.
         self.config = []
@@ -167,7 +167,9 @@ class Executable:
         self.outputs = []
         #: A list of :class:`Parameter` describing parameters to be set for the executable.
         self.params = []
-        #: The ID of the executable, as given in the ``module.xml``.
+        #: A string with default arguments
+        self.args = ""
+        #: The ID of the executable, as given in the ``viki.xml``.
         self.id = id
         #: The ROS package that contains the executable. E.g.: "joy"
         self.pkg = pkg
@@ -197,6 +199,9 @@ class Executable:
         :type parameter: :class:`Parameter`
         """
         self.params.append(parameter)
+
+    def setArguments(self, argument):
+        self.args = argument
 
     def getInterface(self, name):
         for interface in (self.inputs + self.outputs):
