@@ -50,8 +50,7 @@ def configure(options):
         os.chmod(file, os.stat(file).st_mode | stat.S_IEXEC)
     app_dir = os.path.expanduser('~/.local/share/applications')
     command = "desktop-file-install --dir={} {}/viki.desktop".format(app_dir, os.getcwd())
-    subprocess.call(command)
-
+    subprocess.call(command, shell=True)
     return None
 
 def process_template(file, viki_config):

@@ -157,6 +157,7 @@ def start_vcs_installation(missing_vcs_packages):
     for package in missing_vcs_packages:
         command = []
         if package['type'] == 'git':
+            # TODO: This should install in the right VIKI directory, not 'viki_dependencies'
             command = ['git', 'clone', package['src'], '../viki_dependencies/'+package['name']]
 
         if command != []:
