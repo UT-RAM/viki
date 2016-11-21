@@ -9,6 +9,7 @@ licensed under the MIT License
 import json
 from collections import OrderedDict
 import unicodedata
+import os.path
 
 class VikiConfig:
 
@@ -31,6 +32,7 @@ class VikiConfig:
         return self.config[option]
 
     def load_config(self):
+        self.create_config_if_not_exists()
         try:
             with open(self.config_filename, 'r') as c_file:
                 loaded_config = json.load(c_file)
@@ -39,6 +41,17 @@ class VikiConfig:
                     self.set_option(new_index, loaded_config[key])
         except:
             raise Exception("Error during loading of configuration")
+
+    def create_config_if_not_exists(self):
+        if os.path.isfile(self.config_filename):
+            return True
+        print("Config file does not exist, creating one")
+        try:
+            with open(self.config_filename, 'w+') as c_file:
+                c_file.write('{}')
+            return True
+        except:
+            raise Exception("Error while creating config file")
 
     def save_config(self):
         with open(self.config_filename, 'w') as c_file:
